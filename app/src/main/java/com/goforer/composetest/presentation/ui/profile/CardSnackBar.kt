@@ -34,9 +34,9 @@ fun CardSnackBar(modifier: Modifier, snackbarData: SnackbarData) {
             horizontalArrangement = Arrangement.spacedBy(4.dp),
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            Icon(Icons.Default.Notifications, contentDescription = "", modifier = Modifier.weight(1f))
-            Spacer(Modifier.weight(1.5f))
-            Text(modifier = Modifier.weight(4f).align(Alignment.CenterVertically)
+            Icon(Icons.Default.Notifications, contentDescription = "", modifier = Modifier.weight(1.5f))
+            Spacer(Modifier.weight(1f))
+            Text(modifier = Modifier.weight(8f).align(Alignment.CenterVertically)
                 .padding(6.dp, 2.dp, 6.dp, 2.dp), text = snackbarData.visuals.message,
                 fontFamily = FontFamily.SansSerif,
                 fontWeight = FontWeight.Normal,
