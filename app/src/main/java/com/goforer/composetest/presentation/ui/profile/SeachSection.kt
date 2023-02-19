@@ -70,7 +70,12 @@ fun SearchSection(modifier: Modifier = Modifier, onTextChanged: (String) -> Unit
                 contentDescription = null,
             )
         }, text = {
-            Text("Search")
+            Text(
+                stringResource(id = R.string.placeholder_search),
+                fontFamily = FontFamily.SansSerif,
+                fontSize = 15.sp,
+                fontStyle = FontStyle.Italic
+            )
         })
     }
 }
