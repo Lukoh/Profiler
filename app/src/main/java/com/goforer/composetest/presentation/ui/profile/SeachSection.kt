@@ -7,22 +7,24 @@ import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.goforer.composetest.R
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class)
 @Composable
 fun SearchSection(modifier: Modifier = Modifier, onTextChanged: (String) -> Unit) {
     var text by remember { mutableStateOf("") }
+    val keyboardController = LocalSoftwareKeyboardController.current
 
     Row(
         verticalAlignment = Alignment.CenterVertically,
@@ -64,7 +66,10 @@ fun SearchSection(modifier: Modifier = Modifier, onTextChanged: (String) -> Unit
             modifier = modifier
                 .weight(4f)
         )
-        SearchIconButton(onClick = { onTextChanged(text) }, icon = {
+        SearchIconButton(onClick = {
+            keyboardController?.hide()
+            onTextChanged(text)
+        }, icon = {
             Icon(
                 imageVector = Icons.Default.Search,
                 contentDescription = null,
