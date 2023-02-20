@@ -23,22 +23,23 @@ fun ProfileContent(
     contentPadding: PaddingValues = PaddingValues(4.dp),
     profileViewModel: ProfileViewModel = viewModel()) {
     val scope = rememberCoroutineScope()
-    val isChecked = rememberSaveable { mutableStateOf(false) }
+    val membered = rememberSaveable { mutableStateOf(false) }
     val context = LocalContext.current
     val profilesState = profileViewModel.profiles.collectAsStateWithLifecycle()
     val keyboardController = LocalSoftwareKeyboardController.current
 
     var memberName by rememberSaveable { mutableStateOf("") }
 
-    ProfileSection(modifier = modifier, contentPadding, profilesState, isChecked, onChecked =  { profile, checked ->
+    ProfileSection(modifier = modifier, contentPadding, profilesState, membered, onMemberChanged =  { profile, changed ->
         scope.launch {
-            profile.checked = checked
-            isChecked.value = checked
+            profileViewModel.changeMemberStatus(profile.id, profile.name, changed)
+            membered.value = changed
             memberName = profile.name
-            if (checked) {
+            if (changed) {
                 keyboardController?.hide()
                 snackbarHostState.showSnackbar("${profile.name} has been our member")
-            }
+            } else
+                snackbarHostState.showSnackbar("${profile.name} is not our member")
         }
     }, onTextChanged = { text ->
         profilesState.value.find { it.name == text }?.let {

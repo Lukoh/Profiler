@@ -8,5 +8,5 @@ data class Profile(
     val id: Int,
     val name: String,
     val sex: String,
-    var checked : Boolean = false
+    var membered : Boolean = false
 ) : Parcelable

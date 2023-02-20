@@ -48,8 +48,6 @@ fun ProfileScreen(modifier: Modifier) {
                     }
                 }
             )
-        }
-    ) { paddingValues ->
-        ProfileContent(modifier = modifier, snackbarHostState, paddingValues)
-    }
+        }, content = { paddingValues -> ProfileContent(modifier = modifier, snackbarHostState, paddingValues) }
+    )
 }

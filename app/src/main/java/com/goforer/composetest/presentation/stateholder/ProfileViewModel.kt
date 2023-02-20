@@ -18,6 +18,12 @@ class ProfileViewModel : ViewModel() {
             }
         }
     }
+
+    internal fun changeMemberStatus(id: Int, name: String, membered: Boolean) {
+        profiles.value.find { it.id == id && it.name == name }?.let {
+            it.membered = membered
+        }
+    }
 }
 
 private fun getProfiles(viewModelScope: CoroutineScope) = flow {

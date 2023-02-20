@@ -30,7 +30,7 @@ import com.goforer.composetest.R
 import com.goforer.composetest.data.source.model.entity.profile.Profile
 
 @Composable
-fun ProfileItem(modifier: Modifier = Modifier, profile: Profile, isChecked: MutableState<Boolean>, onChecked: (Profile, Boolean) -> Unit) {
+fun ProfileItem(modifier: Modifier = Modifier, profile: Profile, membered: MutableState<Boolean>, onMemberChanged: (Profile, Boolean) -> Unit) {
     val context = LocalContext.current
 
     Surface(
@@ -93,7 +93,7 @@ fun ProfileItem(modifier: Modifier = Modifier, profile: Profile, isChecked: Muta
                 .fillMaxWidth()
                 .weight(1f))
             Row(modifier = Modifier.wrapContentWidth()) {
-                isChecked.value = profile.checked
+                membered.value = profile.membered
                 Surface(modifier = Modifier.align(Alignment.CenterVertically), shape = MaterialTheme.shapes.small, shadowElevation = 1.dp) {
                     Text(
                         stringResource(id = R.string.member_check),
@@ -111,10 +111,10 @@ fun ProfileItem(modifier: Modifier = Modifier, profile: Profile, isChecked: Muta
                     .height(4.dp)
                     .width(4.dp))
                 Checkbox(
-                    checked = isChecked.value,
+                    checked = membered.value,
                     onCheckedChange = {
-                        isChecked.value = it
-                        onChecked(profile, it)
+                        membered.value = it
+                        onMemberChanged(profile, it)
                     }
                 )
             }

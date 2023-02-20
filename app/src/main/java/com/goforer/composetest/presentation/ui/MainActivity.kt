@@ -110,10 +110,10 @@ private fun PreviewShowContainer() {
 
                 var memberName by rememberSaveable { mutableStateOf("") }
 
-                ProfileSection(modifier = modifier, innerPadding, profilesState, isChecked, onChecked = { profile, checked ->
+                ProfileSection(modifier = modifier, innerPadding, profilesState, isChecked, onMemberChanged = { profile, changed ->
                     scope.launch {
-                        profile.checked = checked
-                        isChecked.value = checked
+                        profile.membered = changed
+                        isChecked.value = changed
                         memberName = profile.name
                     }
                 }, onTextChanged = {

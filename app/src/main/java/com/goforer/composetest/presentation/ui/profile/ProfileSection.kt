@@ -21,10 +21,10 @@ fun ProfileSection(
     modifier: Modifier = Modifier,
     contentPadding: PaddingValues,
     profilesState: State<List<Profile>>,
-    isChecked: MutableState<Boolean>,
+    membered: MutableState<Boolean>,
     lazyListState: LazyListState = rememberLazyListState(),
     @SuppressLint("ModifierParameter")
-    onChecked: (Profile, Boolean) -> Unit,
+    onMemberChanged: (Profile, Boolean) -> Unit,
     onTextChanged: (String) -> Unit,
 ) {
     Column(modifier = modifier.padding(0.dp, contentPadding.calculateTopPadding(), 0.dp, 0.dp)) {
@@ -35,7 +35,7 @@ fun ProfileSection(
             verticalArrangement = Arrangement.spacedBy(4.dp)
         ) {
             items(profilesState.value, key = { profile -> profile.id }) {item ->
-                ProfileItem(modifier, item, isChecked, onChecked = onChecked)
+                ProfileItem(modifier, item, membered, onMemberChanged = onMemberChanged)
                 //Divider()
             }
         }
