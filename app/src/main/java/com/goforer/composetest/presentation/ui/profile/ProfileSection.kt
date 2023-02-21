@@ -28,8 +28,10 @@ fun ProfileSection(
     onMemberChanged: (Profile, Boolean) -> Unit,
     onTextChanged: (String) -> Unit,
 ) {
-    Column(modifier = modifier.padding(0.dp, contentPadding.calculateTopPadding(), 0.dp, 0.dp).noRippleClickable {  }) {
-
+    Column(
+        modifier = modifier.padding(0.dp, contentPadding.calculateTopPadding(), 0.dp, 0.dp)
+            .noRippleClickable {  }
+    ) {
         SearchSection(modifier = Modifier.padding(8.dp), onTextChanged)
         LazyColumn(
             modifier = Modifier,

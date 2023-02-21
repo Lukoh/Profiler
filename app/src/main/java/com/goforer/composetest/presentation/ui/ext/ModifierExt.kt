@@ -1,4 +1,4 @@
-package com.goforer.composetest.presentation.ui.ext.modifier
+package com.goforer.composetest.presentation.ui.ext
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
