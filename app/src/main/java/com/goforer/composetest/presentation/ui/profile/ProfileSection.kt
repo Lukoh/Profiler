@@ -15,6 +15,7 @@ import androidx.compose.runtime.State
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.goforer.composetest.data.source.model.entity.profile.Profile
+import com.goforer.composetest.presentation.ui.ext.modifier.noRippleClickable
 
 @Composable
 fun ProfileSection(
@@ -27,7 +28,8 @@ fun ProfileSection(
     onMemberChanged: (Profile, Boolean) -> Unit,
     onTextChanged: (String) -> Unit,
 ) {
-    Column(modifier = modifier.padding(0.dp, contentPadding.calculateTopPadding(), 0.dp, 0.dp)) {
+    Column(modifier = modifier.padding(0.dp, contentPadding.calculateTopPadding(), 0.dp, 0.dp).noRippleClickable {  }) {
+
         SearchSection(modifier = Modifier.padding(8.dp), onTextChanged)
         LazyColumn(
             modifier = Modifier,
