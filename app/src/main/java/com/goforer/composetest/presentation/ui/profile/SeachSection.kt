@@ -11,8 +11,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.goforer.composetest.R
 import com.goforer.composetest.presentation.ui.base.customstate.EditableInputState
@@ -56,9 +58,14 @@ fun SearchSection(
             ),
             shape = MaterialTheme.shapes.small,
             placeholder = {
-                Text(stringResource(R.string.placeholder_search), color = LocalContentColor.current)
+                Text(stringResource(R.string.placeholder_search),  style = MaterialTheme.typography.titleMedium.copy(color = LocalContentColor.current))
             },
-            textStyle = MaterialTheme.typography.titleMedium.copy(color = LocalContentColor.current),
+            textStyle = TextStyle.Default.copy(
+                fontSize = 16.sp,
+                fontFamily = FontFamily.SansSerif,
+                fontStyle = FontStyle.Normal,
+                fontWeight = FontWeight.Medium
+            ),
             modifier = modifier
                 .weight(4f)
         )
