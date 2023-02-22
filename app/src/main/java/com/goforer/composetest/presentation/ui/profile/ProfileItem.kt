@@ -6,6 +6,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -16,6 +17,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -51,19 +53,45 @@ fun ProfileItem(
                     onItemClicked(profile, index)
                 },
         ) {
-            Image(
-                painter = painterResource(id = R.drawable.ic_headlait_notification),
-                contentDescription = "ComposeTest",
-                modifier = Modifier
-                    .align(Alignment.CenterVertically)
-                    .padding(4.dp)
-                    .requiredSize(40.dp)
-                    //.wrapContentSize()
-                    .clip(CircleShape)
-                    .border(1.dp, MaterialTheme.colorScheme.secondary, CircleShape),
-                Alignment.CenterStart,
-                contentScale = ContentScale.Crop
-            )
+            IconContainer {
+                Box {
+                    // In case of loading the profile from BackendServer, then let's use Coil Image Library
+                    /*
+                    val painter = rememberAsyncImagePainter(
+                        model = Builder(LocalContext.current)
+                            .data(item.imageUrl)
+                            .crossfade(true)
+                            .build()
+                    )
+
+                     */
+                    Image(
+                        painter = painterResource(id = R.drawable.ic_headlait_notification),
+                        contentDescription = "ComposeTest",
+                        modifier = Modifier
+                            .padding(4.dp)
+                            .fillMaxSize()
+                            .clip(CircleShape)
+                            .border(1.dp, MaterialTheme.colorScheme.secondary, CircleShape),
+                        Alignment.CenterStart,
+                        contentScale = ContentScale.Crop
+                    )
+
+                    // In case of loading the profile from BackendServer, then let's use Coil Image Library
+                    /*
+                    if (painter.state is AsyncImagePainter.State.Loading) {
+                        Image(
+                            painter = painterResource(id = R.drawable.ic_profile_logo.xml),
+                            contentDescription = null,
+                            modifier = Modifier
+                                .size(36.dp)
+                                .align(Alignment.Center),
+                        )
+                    }
+
+                     */
+                }
+            }
             Spacer(modifier = Modifier.width(12.dp))
             Column(modifier = Modifier
                 .wrapContentWidth()
@@ -120,5 +148,15 @@ fun ProfileItem(
                 )
             }
         }
+    }
+}
+
+@Composable
+private fun IconContainer(content: @Composable () -> Unit) {
+    Surface(
+        Modifier.size(width = 40.dp, height = 40.dp),
+        CircleShape
+    ) {
+        content()
     }
 }
