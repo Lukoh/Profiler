@@ -9,7 +9,6 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -24,8 +23,8 @@ fun SearchIconButton(
         remember { MutableInteractionSource() },
 ) {
     val isPressed by interactionSource.collectIsPressedAsState()
-    val isButtonEnabled = remember { mutableStateOf(true) }
     /*
+    val isButtonEnabled = remember { mutableStateOf(true) }
     val animatedButtonColor = animateColorAsState(
         targetValue = if (isButtonEnabled.value) Color.White else Color.Gray,
         animationSpec = tween(1000, 0, LinearEasing))

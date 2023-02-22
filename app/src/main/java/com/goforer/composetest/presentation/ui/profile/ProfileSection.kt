@@ -12,6 +12,7 @@ import androidx.compose.runtime.State
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.goforer.composetest.data.source.model.entity.profile.Profile
+import com.goforer.composetest.presentation.ui.base.customstate.rememberEditableInputState
 import com.goforer.composetest.presentation.ui.ext.noRippleClickable
 
 @Composable
@@ -26,11 +27,22 @@ fun ProfileSection(
     onMemberChanged: (Profile, Boolean) -> Unit,
     onTextChanged: (String) -> Unit,
 ) {
+    val editableInputState = rememberEditableInputState(hint = "Search")
+
+    if (!editableInputState.isHint)
+        onTextChanged(editableInputState.text)
+
     Column(
         modifier = modifier.padding(0.dp, contentPadding.calculateTopPadding(), 0.dp, 0.dp)
             .noRippleClickable {  }
     ) {
-        SearchSection(modifier = Modifier.padding(8.dp), onTextChanged)
+        SearchSection(
+            modifier = Modifier.padding(8.dp),
+            state = editableInputState,
+            onSearched = {
+                onTextChanged(it)
+            }
+        )
         LazyColumn(
             modifier = Modifier,
             state = lazyListState,

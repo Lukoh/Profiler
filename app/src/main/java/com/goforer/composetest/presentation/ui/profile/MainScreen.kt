@@ -2,10 +2,9 @@ package com.goforer.composetest.presentation.ui.profile
 
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-import androidx.compose.ui.Modifier
 
 @Composable
-fun MainScreen(modifier: Modifier = Modifier) {
+fun MainScreen() {
     Surface(color = MaterialTheme.colorScheme.primary) {
         var showLandingScreen by remember { mutableStateOf(true) }
 
