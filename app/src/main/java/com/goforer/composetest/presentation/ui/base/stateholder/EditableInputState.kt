@@ -1,4 +1,4 @@
-package com.goforer.composetest.presentation.ui.base.customstate
+package com.goforer.composetest.presentation.ui.base.stateholder
 
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.Saver

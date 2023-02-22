@@ -12,7 +12,7 @@ import androidx.compose.runtime.State
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.goforer.composetest.data.source.model.entity.profile.Profile
-import com.goforer.composetest.presentation.ui.base.customstate.rememberEditableInputState
+import com.goforer.composetest.presentation.ui.base.stateholder.rememberEditableInputState
 import com.goforer.composetest.presentation.ui.ext.noRippleClickable
 
 @Composable
