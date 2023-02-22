@@ -1,6 +1,7 @@
 package com.goforer.composetest.presentation.ui.profile
 
 import android.annotation.SuppressLint
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.navigationBarsPadding
@@ -53,6 +54,28 @@ fun ListSection(
                 lazyListState.firstVisibleItemIndex > 0
             }
         }
+
+        AnimatedVisibility(
+            visible = showButton,
+            modifier = Modifier.align(Alignment.BottomEnd)
+        ) {
+            val coroutineScope = rememberCoroutineScope()
+
+            FloatingActionButton(
+                modifier = Modifier
+                    .align(Alignment.BottomEnd)
+                    .navigationBarsPadding()
+                    .padding(bottom = 4.dp, end = 8.dp),
+                backgroundColor = MaterialTheme.colorScheme.primary,
+                onClick = {
+                    coroutineScope.launch {
+                        lazyListState.animateScrollToItem(0)
+                    }}
+            ) {
+                Text("Up!")
+            }
+        }
+        /*
         if (showButton) {
             val coroutineScope = rememberCoroutineScope()
 
@@ -70,5 +93,7 @@ fun ListSection(
                 Text("Up!")
             }
         }
+
+         */
     }
 }
