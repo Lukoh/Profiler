@@ -14,6 +14,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.goforer.composetest.presentation.stateholder.ProfileViewModel
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
@@ -54,7 +55,7 @@ fun ProfileContent(
                     snackbarHostState.showSnackbar("${profile.name} is not our member")
             }
         },
-        onTextChanged = { text ->
+        onSearched = { text, byClicked ->
             profilesState.value.find { it.name == text }?.let {
                 keyboardController?.hide()
                 if (it.sex == "남성")
@@ -69,6 +70,17 @@ fun ProfileContent(
                         "${it.name} is the lady and our  member.",
                         Toast.LENGTH_SHORT
                     ).show()
+            }
+
+            profilesState.value.find { it.name == text } ?: if (byClicked) {
+                keyboardController?.hide()
+                Toast.makeText(
+                    context,
+                    "$text is not our member.",
+                    Toast.LENGTH_SHORT
+                ).show()
+            } else {
+                Timber.d("is texted by typing")
             }
         }
     )

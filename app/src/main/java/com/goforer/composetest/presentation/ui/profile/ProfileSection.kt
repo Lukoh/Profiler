@@ -25,12 +25,12 @@ fun ProfileSection(
     onItemClicked: (item:Profile, index: Int) -> Unit,
     @SuppressLint("ModifierParameter")
     onMemberChanged: (Profile, Boolean) -> Unit,
-    onTextChanged: (String) -> Unit,
+    onSearched: (String, Boolean) -> Unit,
 ) {
     val editableInputState = rememberEditableInputState(hint = "Search")
 
     if (!editableInputState.isHint)
-        onTextChanged(editableInputState.text)
+        onSearched(editableInputState.text, false)
 
     Column(
         modifier = modifier.padding(0.dp, contentPadding.calculateTopPadding(), 0.dp, 0.dp)
@@ -40,7 +40,7 @@ fun ProfileSection(
             modifier = Modifier.padding(8.dp),
             state = editableInputState,
             onSearched = {
-                onTextChanged(it)
+                onSearched(it, true)
             }
         )
         LazyColumn(

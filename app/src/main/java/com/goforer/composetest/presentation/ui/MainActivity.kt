@@ -2,7 +2,6 @@ package com.goforer.composetest.presentation.ui
 
 import android.content.res.Configuration
 import android.os.Bundle
-import android.view.WindowManager
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.*
@@ -20,7 +19,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.view.WindowCompat
 import com.goforer.composetest.data.source.model.entity.profile.Profile
 import com.goforer.composetest.presentation.ui.profile.MainScreen
-import com.goforer.composetest.presentation.ui.profile.ProfileScreen
 import com.goforer.composetest.presentation.ui.profile.ProfileSection
 import com.goforer.composetest.presentation.ui.theme.ComposeTestTheme
 import kotlinx.coroutines.launch
@@ -42,7 +40,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    MainScreen(modifier = Modifier)
+                    MainScreen()
                 }
             }
         }
@@ -122,7 +120,7 @@ private fun PreviewShowContainer() {
                             isChecked.value = changed
                             memberName = profile.name
                         }
-                    }, onTextChanged = {
+                    }, onSearched = { _, _ ->
 
                     })
             }
