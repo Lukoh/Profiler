@@ -19,7 +19,7 @@ import androidx.compose.ui.unit.sp
 import com.goforer.composetest.R
 
 @Composable
-fun CardSnackBar(modifier: Modifier, snackbarData: SnackbarData) {
+fun CardSnackBar(modifier: Modifier = Modifier, snackbarData: SnackbarData) {
     Card(
         shape = RoundedCornerShape(4.dp),
         border = BorderStroke(1.dp, Color.Black),

@@ -5,17 +5,14 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyListState
-import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.lazy.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.goforer.composetest.data.source.model.entity.profile.Profile
-import com.goforer.composetest.presentation.ui.ext.modifier.noRippleClickable
+import com.goforer.composetest.presentation.ui.ext.noRippleClickable
 
 @Composable
 fun ProfileSection(
@@ -24,6 +21,7 @@ fun ProfileSection(
     profilesState: State<List<Profile>>,
     membered: MutableState<Boolean>,
     lazyListState: LazyListState = rememberLazyListState(),
+    onItemClicked: (item:Profile, index: Int) -> Unit,
     @SuppressLint("ModifierParameter")
     onMemberChanged: (Profile, Boolean) -> Unit,
     onTextChanged: (String) -> Unit,
@@ -38,10 +36,17 @@ fun ProfileSection(
             state = lazyListState,
             verticalArrangement = Arrangement.spacedBy(4.dp)
         ) {
-            items(profilesState.value, key = { profile -> profile.id }) {item ->
-                ProfileItem(modifier, item, membered, onMemberChanged = onMemberChanged)
-                //Divider()
-            }
+            itemsIndexed(profilesState.value, key = { _, item -> item.id }, itemContent = { index, item ->
+                ProfileItem(
+                    modifier,
+                    item,
+                    index,
+                    membered,
+                    onItemClicked = onItemClicked,
+                    onMemberChanged = onMemberChanged
+                )
+                //Divider()})
+            })
         }
     }
 }

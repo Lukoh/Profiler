@@ -13,7 +13,7 @@ import com.goforer.composetest.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ProfileScreen(modifier: Modifier) {
+fun ProfileScreen(modifier: Modifier = Modifier) {
     val snackbarHostState = remember { SnackbarHostState() }
 
     Scaffold(

@@ -17,7 +17,9 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.core.view.WindowCompat
 import com.goforer.composetest.data.source.model.entity.profile.Profile
+import com.goforer.composetest.presentation.ui.profile.MainScreen
 import com.goforer.composetest.presentation.ui.profile.ProfileScreen
 import com.goforer.composetest.presentation.ui.profile.ProfileSection
 import com.goforer.composetest.presentation.ui.theme.ComposeTestTheme
@@ -25,16 +27,14 @@ import kotlinx.coroutines.launch
 
 @Suppress("DEPRECATION")
 class MainActivity : ComponentActivity() {
+    companion object {
+        internal const val SplashWaitTime = 1200L
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
-        window.setFlags(
-            WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED or
-                    WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON,
-            WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED or
-                    WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON,
-        )
+        WindowCompat.setDecorFitsSystemWindows(window, false)
         setContent {
             ComposeTestTheme {
                 // A surface container using the 'background' color from the theme
@@ -42,7 +42,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    ProfileScreen(modifier = Modifier)
+                    MainScreen(modifier = Modifier)
                 }
             }
         }
@@ -110,15 +110,21 @@ private fun PreviewShowContainer() {
 
                 var memberName by rememberSaveable { mutableStateOf("") }
 
-                ProfileSection(modifier = modifier, innerPadding, profilesState, isChecked, onMemberChanged = { profile, changed ->
-                    scope.launch {
-                        profile.membered = changed
-                        isChecked.value = changed
-                        memberName = profile.name
-                    }
-                }, onTextChanged = {
+                ProfileSection(
+                    modifier = modifier,
+                    contentPadding = innerPadding,
+                    profilesState = profilesState,
+                    membered = isChecked,
+                    onItemClicked = { _, _ ->  },
+                    onMemberChanged = { profile, changed ->
+                        scope.launch {
+                            profile.membered = changed
+                            isChecked.value = changed
+                            memberName = profile.name
+                        }
+                    }, onTextChanged = {
 
-                })
+                    })
             }
         )
     }

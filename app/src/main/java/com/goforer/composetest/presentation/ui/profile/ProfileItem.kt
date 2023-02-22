@@ -30,7 +30,14 @@ import com.goforer.composetest.R
 import com.goforer.composetest.data.source.model.entity.profile.Profile
 
 @Composable
-fun ProfileItem(modifier: Modifier = Modifier, profile: Profile, membered: MutableState<Boolean>, onMemberChanged: (Profile, Boolean) -> Unit) {
+fun ProfileItem(
+    modifier: Modifier = Modifier,
+    profile: Profile,
+    index: Int,
+    membered: MutableState<Boolean>,
+    onItemClicked: (item: Profile, index: Int) -> Unit,
+    onMemberChanged: (Profile, Boolean) -> Unit
+) {
     val context = LocalContext.current
 
     Surface(
@@ -45,9 +52,7 @@ fun ProfileItem(modifier: Modifier = Modifier, profile: Profile, membered: Mutab
                 .fillMaxWidth()
                 .heightIn(min = 56.dp)
                 .clickable {
-                    Toast
-                        .makeText(context, profile.name, Toast.LENGTH_SHORT)
-                        .show()
+                    onItemClicked(profile, index)
                 },
         ) {
             Image(
