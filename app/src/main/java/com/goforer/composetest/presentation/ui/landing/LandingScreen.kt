@@ -1,4 +1,4 @@
-package com.goforer.composetest.presentation.ui.profile
+package com.goforer.composetest.presentation.ui.landing
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box

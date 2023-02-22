@@ -1,7 +1,9 @@
-package com.goforer.composetest.presentation.ui.profile
+package com.goforer.composetest.presentation.ui
 
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import com.goforer.composetest.presentation.ui.landing.LandingScreen
+import com.goforer.composetest.presentation.ui.profile.ProfileScreen
 
 @Composable
 fun MainScreen() {
