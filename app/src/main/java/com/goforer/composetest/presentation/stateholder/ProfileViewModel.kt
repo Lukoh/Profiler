@@ -2,7 +2,7 @@ package com.goforer.composetest.presentation.stateholder
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.goforer.composetest.data.source.model.entity.profile.Profile
+import com.goforer.composetest.data.source.model.entity.source.profile.Profile
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch

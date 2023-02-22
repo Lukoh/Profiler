@@ -17,7 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.view.WindowCompat
-import com.goforer.composetest.data.source.model.entity.profile.Profile
+import com.goforer.composetest.data.source.model.entity.source.profile.Profile
 import com.goforer.composetest.presentation.ui.profile.MainScreen
 import com.goforer.composetest.presentation.ui.profile.ProfileSection
 import com.goforer.composetest.presentation.ui.theme.ComposeTestTheme

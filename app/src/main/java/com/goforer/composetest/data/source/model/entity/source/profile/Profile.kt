@@ -1,4 +1,4 @@
-package com.goforer.composetest.data.source.model.entity.profile
+package com.goforer.composetest.data.source.model.entity.source.profile
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

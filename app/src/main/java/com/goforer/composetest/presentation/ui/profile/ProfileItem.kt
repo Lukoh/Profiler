@@ -27,7 +27,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.goforer.composetest.R
-import com.goforer.composetest.data.source.model.entity.profile.Profile
+import com.goforer.composetest.data.source.model.entity.source.profile.Profile
 
 @Composable
 fun ProfileItem(
