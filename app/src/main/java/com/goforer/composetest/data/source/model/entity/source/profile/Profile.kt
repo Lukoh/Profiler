@@ -24,5 +24,6 @@ data class Profile(
     val id: Int,
     val name: String,
     val sex: String,
-    var membered : Boolean = false
+    var membered : Boolean = false,
+    val profileImage: String
 ) : Parcelable

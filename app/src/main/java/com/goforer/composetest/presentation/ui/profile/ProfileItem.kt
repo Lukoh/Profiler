@@ -22,7 +22,6 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -42,6 +41,9 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.compose.AsyncImagePainter
+import coil.request.ImageRequest.Builder
+import coil.compose.rememberAsyncImagePainter
 import com.goforer.composetest.R
 import com.goforer.composetest.data.source.model.entity.source.profile.Profile
 
@@ -71,18 +73,15 @@ fun ProfileItem(
         ) {
             IconContainer {
                 Box {
-                    // In case of loading the profile from BackendServer, then let's use Coil Image Library
-                    /*
                     val painter = rememberAsyncImagePainter(
                         model = Builder(LocalContext.current)
-                            .data(item.imageUrl)
+                            .data(profile.profileImage)
                             .crossfade(true)
                             .build()
                     )
 
-                     */
                     Image(
-                        painter = painterResource(id = R.drawable.ic_headlait_notification),
+                        painter = painter,
                         contentDescription = "ComposeTest",
                         modifier = Modifier
                             .padding(4.dp)
@@ -93,19 +92,15 @@ fun ProfileItem(
                         contentScale = ContentScale.Crop
                     )
 
-                    // In case of loading the profile from BackendServer, then let's use Coil Image Library
-                    /*
                     if (painter.state is AsyncImagePainter.State.Loading) {
                         Image(
-                            painter = painterResource(id = R.drawable.ic_profile_logo.xml),
+                            painter = painterResource(id = R.drawable.ic_profile_logo),
                             contentDescription = null,
                             modifier = Modifier
                                 .size(36.dp)
                                 .align(Alignment.Center),
                         )
                     }
-
-                     */
                 }
             }
             Spacer(modifier = Modifier.width(12.dp))

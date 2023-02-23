@@ -75,17 +75,17 @@ class MainActivity : ComponentActivity() {
 private fun PreviewShowContainer() {
     ComposeTestTheme {
         val profileList = mutableListOf(
-            Profile(0,"Lukoh", "남성", true),
-            Profile(1,"Alex", "남성", false),
-            Profile(2,"Alice", "여성", false),
-            Profile(3,"Tana", "여성", false),
-            Profile(4,"Lona", "여성", true),
-            Profile(5,"Kevin", "남성", true),
-            Profile(6,"Jully", "여성", true),
-            Profile(7,"Kevin", "남성", true),
-            Profile(8,"Tom", "남성", false),
-            Profile(9,"Steven", "남성", false),
-            Profile(10,"Micle", "남성", false)
+            Profile(0,"Lukoh", "남성", true, "https://avatars.githubusercontent.com/u/18302717?v=4"),
+            Profile(1,"Alex", "남성", false,"https://avatars.githubusercontent.com/u/18302717?v=4"),
+            Profile(2,"Alice", "여성", false,"https://avatars.githubusercontent.com/u/18302717?v=4"),
+            Profile(3,"Tana", "여성", false,"https://avatars.githubusercontent.com/u/18302717?v=4"),
+            Profile(4,"Lona", "여성", true,"https://avatars.githubusercontent.com/u/18302717?v=4"),
+            Profile(5,"Kevin", "남성", true,"https://avatars.githubusercontent.com/u/18302717?v=4"),
+            Profile(6,"Jully", "여성", true,"https://avatars.githubusercontent.com/u/18302717?v=4"),
+            Profile(7,"Kevin", "남성", true,"https://avatars.githubusercontent.com/u/18302717?v=4"),
+            Profile(8,"Tom", "남성", false,"https://avatars.githubusercontent.com/u/18302717?v=4"),
+            Profile(9,"Steven", "남성", false,"https://avatars.githubusercontent.com/u/18302717?v=4"),
+            Profile(10,"Micle", "남성", false,"https://avatars.githubusercontent.com/u/18302717?v=4")
         )
         val profilesState: State<List<Profile>> = rememberSaveable { mutableStateOf<List<Profile>>(profileList) }
         val isChecked = rememberSaveable { mutableStateOf(false) }
