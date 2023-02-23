@@ -30,6 +30,16 @@ fun ListSection(
     @SuppressLint("ModifierParameter")
     onMemberChanged: (Profile, Boolean) -> Unit,
 ) {
+    val showButton by remember {
+        derivedStateOf {
+            lazyListState.firstVisibleItemIndex > 0
+        }
+    }
+
+    var clicked by remember {
+        mutableStateOf(false)
+    }
+
     Box(modifier = modifier) {
         LazyColumn(
             modifier = Modifier,
@@ -49,18 +59,10 @@ fun ListSection(
             })
         }
 
-        val showButton by remember {
-            derivedStateOf {
-                lazyListState.firstVisibleItemIndex > 0
-            }
-        }
-
         AnimatedVisibility(
             visible = showButton,
             modifier = Modifier.align(Alignment.BottomEnd)
         ) {
-            val coroutineScope = rememberCoroutineScope()
-
             FloatingActionButton(
                 modifier = Modifier
                     .align(Alignment.BottomEnd)
@@ -68,12 +70,16 @@ fun ListSection(
                     .padding(bottom = 4.dp, end = 8.dp),
                 backgroundColor = MaterialTheme.colorScheme.primary,
                 onClick = {
-                    coroutineScope.launch {
-                        lazyListState.animateScrollToItem(0)
-                    }}
+                    clicked = true
+                }
             ) {
                 Text("Up!")
             }
+        }
+
+        LaunchedEffect(lazyListState, showButton, clicked) {
+            lazyListState.animateScrollToItem(0)
+            clicked = false
         }
         /*
         if (showButton) {

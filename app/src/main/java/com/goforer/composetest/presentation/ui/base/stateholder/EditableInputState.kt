@@ -5,6 +5,7 @@ import androidx.compose.runtime.saveable.Saver
 import androidx.compose.runtime.saveable.listSaver
 import androidx.compose.runtime.saveable.rememberSaveable
 
+@Stable
 class EditableInputState(private val hint: String, initialText: String) {
     var text by mutableStateOf(initialText)
 
