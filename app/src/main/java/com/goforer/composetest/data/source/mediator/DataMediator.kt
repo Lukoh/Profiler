@@ -14,15 +14,29 @@
  * If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.goforer.composetest.data.source.model.entity.source.profile
+package com.goforer.composetest.data.source.mediator
 
-import android.os.Parcelable
-import kotlinx.parcelize.Parcelize
+import androidx.annotation.MainThread
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.shareIn
 
-@Parcelize
-data class Profile(
-    val id: Int,
-    val name: String,
-    val sex: String,
-    var membered : Boolean = false
-) : Parcelable
+abstract class DataMediator<T> constructor(
+    viewModelScope: CoroutineScope,
+    replyCount: Int = 0
+) {
+    internal val asSharedFlow = flow {
+        load().collect {
+            emit(it)
+        }
+    }.shareIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5000),
+        replay = replyCount
+    )
+
+    @MainThread
+    protected abstract fun load(): Flow<T>
+}

@@ -14,6 +14,7 @@ import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.goforer.composetest.data.repository.Repository.Companion.replyCount
 import com.goforer.composetest.data.source.model.entity.source.profile.Profile
 import com.goforer.composetest.data.source.model.entity.state.ResourceState
 import com.goforer.composetest.presentation.stateholder.profile.ProfileViewModel
@@ -45,6 +46,7 @@ fun ProfileContent(
 
     var selectedIndex by remember { mutableStateOf(-1) }
 
+    replyCount = 5
     LaunchedEffect(selectedIndex) {
         if (selectedIndex != -1)
             Toast.makeText(context, "Show the detailed profile!", Toast.LENGTH_SHORT).show()

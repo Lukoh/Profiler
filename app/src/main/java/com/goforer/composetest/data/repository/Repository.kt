@@ -14,15 +14,15 @@
  * If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.goforer.composetest.data.source.model.entity.source.profile
+package com.goforer.composetest.data.repository
 
-import android.os.Parcelable
-import kotlinx.parcelize.Parcelize
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.flow.Flow
 
-@Parcelize
-data class Profile(
-    val id: Int,
-    val name: String,
-    val sex: String,
-    var membered : Boolean = false
-) : Parcelable
+abstract class Repository<T> {
+    companion object {
+        internal var replyCount = 0
+    }
+
+    abstract fun handle(viewModelScope: CoroutineScope, replyCount: Int): Flow<T>
+}
