@@ -24,11 +24,11 @@ plugins {
 }
 
 android {
-    namespace 'com.goforer.composetest'
+    namespace 'com.goforer.profiler'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.goforer.composetest"
+        applicationId "com.goforer.profiler"
         minSdk 23
         targetSdk 33
         versionCode 1
