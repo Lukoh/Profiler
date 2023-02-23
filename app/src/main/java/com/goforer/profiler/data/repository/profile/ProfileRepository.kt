@@ -18,7 +18,7 @@ package com.goforer.profiler.data.repository.profile
 
 import com.goforer.profiler.data.repository.Repository
 import com.goforer.profiler.data.source.local.ProfilesLocalDataSource
-import com.goforer.profiler.data.source.mediator.DataMediator
+import com.goforer.profiler.data.source.mediator.LocalDataMediator
 import com.goforer.profiler.data.source.model.entity.source.profile.Profile
 import kotlinx.coroutines.CoroutineScope
 import javax.inject.Inject
@@ -28,7 +28,7 @@ class ProfileRepository
     private val profilesLocalDataSource: ProfilesLocalDataSource
 ) : Repository<List<Profile>>() {
     override fun handle(viewModelScope: CoroutineScope, replyCount: Int) =
-        object : DataMediator<List<Profile>>(viewModelScope, replyCount) {
+        object : LocalDataMediator<List<Profile>>(viewModelScope, replyCount) {
             override fun load() = profilesLocalDataSource.profiles
         }.asSharedFlow
 }

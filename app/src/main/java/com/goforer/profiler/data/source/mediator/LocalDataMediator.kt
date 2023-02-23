@@ -23,7 +23,7 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.shareIn
 
-abstract class DataMediator<T> constructor(
+abstract class LocalDataMediator<T> constructor(
     viewModelScope: CoroutineScope,
     replyCount: Int = 0
 ) {
