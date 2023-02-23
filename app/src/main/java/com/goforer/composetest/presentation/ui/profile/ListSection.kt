@@ -18,7 +18,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.goforer.composetest.data.source.model.entity.source.profile.Profile
-import kotlinx.coroutines.launch
 
 @Composable
 fun ListSection(
@@ -81,6 +80,7 @@ fun ListSection(
             lazyListState.animateScrollToItem(0)
             clicked = false
         }
+
         /*
         if (showButton) {
             val coroutineScope = rememberCoroutineScope()

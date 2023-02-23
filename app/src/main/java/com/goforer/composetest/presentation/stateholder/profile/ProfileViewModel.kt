@@ -1,13 +1,17 @@
-package com.goforer.composetest.presentation.stateholder
+package com.goforer.composetest.presentation.stateholder.profile
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.goforer.composetest.data.source.model.entity.source.profile.Profile
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class ProfileViewModel : ViewModel() {
+@HiltViewModel
+class ProfileViewModel
+@Inject constructor() : ViewModel() {
     private val _profiles = MutableStateFlow<List<Profile>>(listOf())
     val profiles = _profiles
 

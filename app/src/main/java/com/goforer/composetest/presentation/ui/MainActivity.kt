@@ -20,9 +20,10 @@ import androidx.core.view.WindowCompat
 import com.goforer.composetest.data.source.model.entity.source.profile.Profile
 import com.goforer.composetest.presentation.ui.profile.ProfileSection
 import com.goforer.composetest.presentation.ui.theme.ComposeTestTheme
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
-@Suppress("DEPRECATION")
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     companion object {
         internal const val SplashWaitTime = 1200L

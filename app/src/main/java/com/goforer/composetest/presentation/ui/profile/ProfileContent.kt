@@ -16,7 +16,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.goforer.composetest.data.source.model.entity.source.profile.Profile
 import com.goforer.composetest.data.source.model.entity.state.ResourceState
-import com.goforer.composetest.presentation.stateholder.ProfileViewModel
+import com.goforer.composetest.presentation.stateholder.profile.ProfileViewModel
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
