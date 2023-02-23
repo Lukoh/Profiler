@@ -19,7 +19,11 @@ class ProfileViewModel
 
     init {
         viewModelScope.launch {
-            profileRepository.getProfiles(viewModelScope).collectLatest {
+            profileRepository.profiles.stateIn(
+                scope = viewModelScope,
+                started = SharingStarted.WhileSubscribed(5000L),
+                initialValue = listOf()
+            ).collectLatest {
                 _profiles.value = it
             }
         }
