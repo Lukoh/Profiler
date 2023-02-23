@@ -11,6 +11,7 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -18,6 +19,7 @@ import com.goforer.profiler.data.repository.Repository.Companion.replyCount
 import com.goforer.profiler.data.source.model.entity.source.profile.Profile
 import com.goforer.profiler.data.source.model.entity.state.ResourceState
 import com.goforer.profiler.presentation.stateholder.profile.ProfileViewModel
+import com.goforer.profiler.R
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
@@ -33,6 +35,7 @@ fun ProfileContent(
     val context = LocalContext.current
     val keyboardController = LocalSoftwareKeyboardController.current
     val profilesState = profileViewModel.profiles.collectAsStateWithLifecycle()
+    val hint =  stringResource(id = R.string.placeholder_search)
     val resourceState by produceState(initialValue = ResourceState()) {
         // will be changed if the data come from Backend Server like below:
         /*
@@ -92,11 +95,12 @@ fun ProfileContent(
 
                     profilesState.value.find { it.name == text } ?: if (byClicked) {
                         keyboardController?.hide()
-                        Toast.makeText(
-                            context,
-                            "$text is not our member.",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        if (text != hint)
+                            Toast.makeText(
+                                context,
+                                "$text is not our member.",
+                                Toast.LENGTH_SHORT
+                            ).show()
                     } else {
                         Timber.d("is texted by typing")
                     }
