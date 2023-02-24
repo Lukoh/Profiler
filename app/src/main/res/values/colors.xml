@@ -19,4 +19,6 @@
     <color name="colorSystemGray10">#f0f0f0</color>
     <color name="colorSystemBgPrimary">#FFFFFF</color>
     <color name="colorSystemBgSecondary">#F2F2F7</color>
+
+    <color name="colorTransparent">#00000000</color>
 </resources>

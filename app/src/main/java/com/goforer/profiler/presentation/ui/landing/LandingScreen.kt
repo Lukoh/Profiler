@@ -39,6 +39,6 @@ fun LandingScreen(modifier: Modifier = Modifier, onTimeout: () -> Unit) {
             delay(SplashWaitTime) // Simulates loading things
             currentOnTimeout()
         }
-        Image(painterResource(id = R.drawable.ic_launcher), contentDescription = null)
+        Image(painterResource(id = R.drawable.landing_image), modifier = Modifier.fillMaxSize(), contentDescription = null)
     }
 }
