@@ -5,7 +5,7 @@
 </p>
 
 <p align="left">
-:eyeglasses: The LukohSplash by open-source contributor, Lukoh.
+:eyeglasses: Profiler by open-source contributor, Lukoh.
 </p><br>
 
 ![header](https://1.bp.blogspot.com/-9MiK78CFMLM/YQFurOq9AII/AAAAAAAAQ1A/lKj5GiDnO_MkPLb72XqgnvD5uxOsHO-eACLcBGAsYHQ/s0/Android-Compose-1.0-header-v2.png)
