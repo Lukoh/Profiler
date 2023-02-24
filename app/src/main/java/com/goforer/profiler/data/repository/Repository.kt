@@ -23,6 +23,4 @@ open class Repository() {
     companion object {
         internal var replyCount = 0
     }
-
-    //abstract fun handle(viewModelScope: CoroutineScope, replyCount: Int)
 }

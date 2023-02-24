@@ -24,7 +24,7 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.shareIn
 
 abstract class LocalDataMediator<T> constructor(
-    viewModelScope: CoroutineScope,
+    externalScope: CoroutineScope,
     replyCount: Int = 0
 ) {
     internal val asSharedFlow = flow {
@@ -32,7 +32,7 @@ abstract class LocalDataMediator<T> constructor(
             emit(it)
         }
     }.shareIn(
-        scope = viewModelScope,
+        scope = externalScope,
         started = SharingStarted.WhileSubscribed(5000),
         replay = replyCount
     )

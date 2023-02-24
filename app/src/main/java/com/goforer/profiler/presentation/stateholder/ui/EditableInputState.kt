@@ -14,7 +14,7 @@
  * If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.goforer.profiler.presentation.ui.base.stateholder
+package com.goforer.profiler.presentation.stateholder.ui
 
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.Saver

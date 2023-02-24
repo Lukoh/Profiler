@@ -18,7 +18,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.goforer.profiler.data.repository.Repository.Companion.replyCount
 import com.goforer.profiler.data.source.model.entity.source.profile.Profile
 import com.goforer.profiler.data.source.model.entity.state.ResourceState
-import com.goforer.profiler.presentation.stateholder.profile.ProfileViewModel
+import com.goforer.profiler.presentation.stateholder.business.profile.ProfileViewModel
 import com.goforer.profiler.R
 import kotlinx.coroutines.launch
 import timber.log.Timber

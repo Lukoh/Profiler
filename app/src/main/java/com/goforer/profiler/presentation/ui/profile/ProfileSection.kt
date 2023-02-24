@@ -23,7 +23,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.goforer.profiler.data.source.model.entity.source.profile.Profile
-import com.goforer.profiler.presentation.ui.base.stateholder.rememberEditableInputState
+import com.goforer.profiler.presentation.stateholder.ui.rememberEditableInputState
 import com.goforer.profiler.presentation.ui.ext.noRippleClickable
 
 @Composable

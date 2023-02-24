@@ -33,8 +33,8 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.goforer.profiler.R
-import com.goforer.profiler.presentation.ui.base.stateholder.EditableInputState
-import com.goforer.profiler.presentation.ui.base.stateholder.rememberEditableInputState
+import com.goforer.profiler.presentation.stateholder.ui.EditableInputState
+import com.goforer.profiler.presentation.stateholder.ui.rememberEditableInputState
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

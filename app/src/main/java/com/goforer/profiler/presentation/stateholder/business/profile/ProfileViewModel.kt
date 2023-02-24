@@ -14,7 +14,7 @@
  * If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.goforer.profiler.presentation.stateholder.profile
+package com.goforer.profiler.presentation.stateholder.business.profile
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
