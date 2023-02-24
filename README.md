@@ -8,7 +8,7 @@
 :eyeglasses: The LukohSplash by open-source contributor, Lukoh.
 </p><br>
 
-![header](https://capsule-render.vercel.app/api?type=slice&color=gradient&text=%LukohSplash%20%20&height=200&fontSize=100)
+![header](https://1.bp.blogspot.com/-9MiK78CFMLM/YQFurOq9AII/AAAAAAAAQ1A/lKj5GiDnO_MkPLb72XqgnvD5uxOsHO-eACLcBGAsYHQ/s0/Android-Compose-1.0-header-v2.png)
 
 Profiler - Better Android Apps Using  Android Architecture Guidelines + Dependency injection with Hilt + Jetpack Compose Samples
 
