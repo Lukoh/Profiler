@@ -41,7 +41,7 @@ This Modern App Architecture encourages using the following techniques, among ot
 
 For more information, see the following sections, the other Architecture pages in the table of contents, and the recommendations page that contains a summary of the most important best practices.
 
-UI layer
+### UI layer
 The role of the UI layer (or presentation layer) is to display the application data on the screen. Whenever the data changes, either due to user interaction (such as pressing a button) or external input (such as a network response), the UI should update to reflect the changes.
 
 The UI layer is made up of two things:
@@ -54,9 +54,8 @@ Figure 2. The UI layer's role in app architecture.
 
 To learn more about this layer, see the UI layer page.
 
-Data layer
-### The data l
-ayer of an app contains the business logic. The business logic is what gives value to your app—it's made of rules that determine how your app creates, stores, and changes data.
+### Data layer
+The data layer of an app contains the business logic. The business logic is what gives value to your app—it's made of rules that determine how your app creates, stores, and changes data.
 
 The data layer is made of repositories that each can contain zero to many data sources. You should create a repository class for each different type of data you handle in your app. For example, you might create a MoviesRepository class for data related to movies, or a PaymentsRepository class for data related to payments.
 
