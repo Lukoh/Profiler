@@ -16,5 +16,5 @@
 An app for keeping up to date with the latest techs and developments in Android.
  * Jetpack Compose app.
  * Implements the recommended [Android Architecture Guidelines](https://developer.android.com/jetpack/compose/architecture)
- * Implements the recommended Android Dependency injection with Hilt Guidelines
+ * Implements the recommended [Android Dependency injection with Hilt Guidelines](https://developer.android.com/training/dependency-injection/hilt-android)
  * Integrates Jetpack Libraries holistically in the context of a real world app
