@@ -36,7 +36,7 @@ class ProfileViewModel
 
     init {
         viewModelScope.launch {
-            profileRepository.handle(viewModelScope, replyCount).collectLatest {
+            profileRepository.profiles.collectLatest {
                 _profiles.value = it
             }
         }

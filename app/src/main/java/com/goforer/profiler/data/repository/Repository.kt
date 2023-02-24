@@ -19,10 +19,10 @@ package com.goforer.profiler.data.repository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 
-abstract class Repository<T> {
+open class Repository() {
     companion object {
         internal var replyCount = 0
     }
 
-    abstract fun handle(viewModelScope: CoroutineScope, replyCount: Int): Flow<T>
+    //abstract fun handle(viewModelScope: CoroutineScope, replyCount: Int)
 }
