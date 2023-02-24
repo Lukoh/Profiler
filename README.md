@@ -13,6 +13,14 @@
 # Profiler 
 ## Better Android Apps Using  Android Architecture Guidelines + Dependency injection with Hilt + Jetpack Compose
 
+Profiler is based on Android latest architectural components, Jetpack, Clean Architecture and follows MVVM design pattern. Also Profiler App Architecture consist of Presentation layer, DI(Dependency Injection) and Repository layer. And All new latest technologies were applied into Profiler App as Advanced Android App Architecture. The many advanced functions already were applied into Profiler App. These stuff make Android Apps to be extended being more competitive power and help them to maintain consistency. 
+
+Now let’s dive into my open-source project, Profiler, which is based on the Android MVVM with Clean Architecture and the latest libraries like Jetpack & Hilt. And I'm learning the latest Jetpack Compose. 
+
+Please get in touch with me via email if you're interested in my technical experience and all techs which are applied into LukohSplash. Also visit my LinkedIn profile if you want to know more about me. Here is my email address below:
+
+lukoh.nam@gmail.com
+
 An app for keeping up to date with the latest techs and developments in Android.
  * Jetpack Compose app.
  * Implements the recommended [Android Architecture Guidelines](https://developer.android.com/jetpack/compose/architecture)
