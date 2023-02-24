@@ -27,7 +27,7 @@ Considering the common architectural principles mentioned in the previous sectio
 
 You can add an additional layer called the domain layer to simplify and reuse the interactions between the UI and data layers.
 
-[<img src="images/mad-arch-overview.png">]([http://example.com/](https://developer.android.com/static/topic/libraries/architecture/))
+![mad-arch-overview-ui](https://developer.android.com/static/topic/libraries/architecture/images/mad-arch-overview.png)
 Figure 1. Diagram of a typical app architecture.
 
 
