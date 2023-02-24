@@ -20,25 +20,25 @@ An app for keeping up to date with the latest techs and developments in Android.
  * Integrates Jetpack Libraries holistically in the context of a real world app
 
 ## Recommended app architecture
-onsidering the common architectural principles mentioned in the previous section, each application should have at least two layers:
+Considering the common architectural principles mentioned in the previous section, each application should have at least two layers:
 
-The UI layer that displays application data on the screen.
-The data layer that contains the business logic of your app and exposes application data.
+ * The UI layer that displays application data on the screen.
+ * The data layer that contains the business logic of your app and exposes application data.
+
 You can add an additional layer called the domain layer to simplify and reuse the interactions between the UI and data layers.
 
-In a typical app architecture, the UI layer gets the application data
-    from the data layer or from the optional domain layer, which sits between
-    the UI layer and the data layer.
+![header](https://developer.android.com/static/topic/libraries/architecture/images/mad-arch-overview.png)
 Figure 1. Diagram of a typical app architecture.
-Note: The arrows in the diagrams in this guide represent dependencies between classes. For example, the domain layer depends on data layer classes.
-Modern App Architecture
+
+
 This Modern App Architecture encourages using the following techniques, among others:
 
-A reactive and layered architecture.
-Unidirectional Data Flow (UDF) in all layers of the app.
-A UI layer with state holders to manage the complexity of the UI.
-Coroutines and flows.
-Dependency injection best practices.
+ * A reactive and layered architecture.
+ * Unidirectional Data Flow (UDF) in all layers of the app.
+ * A UI layer with state holders to manage the complexity of the UI.
+ * Coroutines and flows.
+ * Dependency injection best practices.
+
 For more information, see the following sections, the other Architecture pages in the table of contents, and the recommendations page that contains a summary of the most important best practices.
 
 UI layer
@@ -46,8 +46,9 @@ The role of the UI layer (or presentation layer) is to display the application d
 
 The UI layer is made up of two things:
 
-UI elements that render the data on the screen. You build these elements using Views or Jetpack Compose functions.
-State holders (such as ViewModel classes) that hold data, expose it to the UI, and handle logic.
+ * UI elements that render the data on the screen. You build these elements using Views or Jetpack Compose functions.
+ * State holders (such as ViewModel classes) that hold data, expose it to the UI, and handle logic.
+
 In a typical architecture, the UI layer's UI elements depend on state
     holders, which in turn depend on classes from either the data layer or the
     optional domain layer.
