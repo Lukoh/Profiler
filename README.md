@@ -11,7 +11,7 @@
 ![header](https://1.bp.blogspot.com/-9MiK78CFMLM/YQFurOq9AII/AAAAAAAAQ1A/lKj5GiDnO_MkPLb72XqgnvD5uxOsHO-eACLcBGAsYHQ/s0/Android-Compose-1.0-header-v2.png)
 
 # Profiler 
-## - Better Android Apps Using  Android Architecture Guidelines + Dependency injection with Hilt + Jetpack Compose Samples
+## Better Android Apps Using  Android Architecture Guidelines + Dependency injection with Hilt + Jetpack Compose Samples
 
 An app for keeping up to date with the latest techs and developments in Android.
  * Jetpack Compose app.
