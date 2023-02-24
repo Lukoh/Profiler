@@ -47,12 +47,11 @@ The role of the UI layer (or presentation layer) is to display the application d
 The UI layer is made up of two things:
 
  * UI elements that render the data on the screen. You build these elements using Views or Jetpack Compose functions.
- * State holders (such as ViewModel classes) that hold data, expose it to the UI, and handle logic.
+ * State holders (such as [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) classes) that hold data, expose it to the UI, and handle logic.
 
-In a typical architecture, the UI layer's UI elements depend on state
-    holders, which in turn depend on classes from either the data layer or the
-    optional domain layer.
+![header]([https://developer.android.com/static/topic/libraries/architecture/images/mad-arch-overview.png](https://developer.android.com/static/topic/libraries/architecture/images/mad-arch-overview-ui.png))
 Figure 2. The UI layer's role in app architecture.
+
 To learn more about this layer, see the UI layer page.
 
 Data layer
