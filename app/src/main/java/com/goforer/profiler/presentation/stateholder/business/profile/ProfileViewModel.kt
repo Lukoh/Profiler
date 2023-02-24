@@ -18,7 +18,6 @@ package com.goforer.profiler.presentation.stateholder.business.profile
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.goforer.profiler.data.repository.Repository.Companion.replyCount
 import com.goforer.profiler.data.repository.profile.ProfileRepository
 import com.goforer.profiler.data.source.model.entity.source.profile.Profile
 import dagger.hilt.android.lifecycle.HiltViewModel

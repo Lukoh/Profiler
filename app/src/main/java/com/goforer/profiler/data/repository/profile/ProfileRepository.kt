@@ -20,6 +20,7 @@ import com.goforer.profiler.data.repository.Repository
 import com.goforer.profiler.data.source.local.ProfilesLocalDataSource
 import com.goforer.profiler.data.source.mediator.LocalDataMediator
 import com.goforer.profiler.data.source.model.entity.source.profile.Profile
+import com.goforer.profiler.data.source.network.response.Resource
 import com.goforer.profiler.di.module.ApplicationScope
 import kotlinx.coroutines.CoroutineScope
 import javax.inject.Inject
@@ -30,8 +31,21 @@ class ProfileRepository
 @Inject constructor(
     @ApplicationScope private val externalScope: CoroutineScope,
     private val profilesLocalDataSource: ProfilesLocalDataSource
-) : Repository() {
+) : Repository<Resource>() {
     val profiles = object : LocalDataMediator<List<Profile>>(externalScope, replyCount) {
         override fun load() = profilesLocalDataSource.profiles
     }.asSharedFlow
 }
+
+/*
+@Singleton
+class ProfileRepository
+@Inject constructor(
+    @ApplicationScope private val externalScope: CoroutineScope
+) : Repository<ProfileResponse>() {
+    val profiles = object : DataMediator<ProfileResponse>(externalScope, replyCount) {
+        override fun load() = restAPI.getProfiles()
+    }.asSharedFlow
+}
+
+ */

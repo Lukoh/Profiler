@@ -41,9 +41,55 @@ android {
     }
 
     buildTypes {
-        release {
+        debug {
+            lintOptions {
+                checkReleaseBuilds false
+                checkDependencies true
+            }
+
+            /*
+            FirebasePerformance {
+                // Set this flag to 'false' to disable @AddTrace annotation processing and
+                // automatic HTTP/S network request monitoring
+                // for a specific build variant at compile time.
+                instrumentationEnabled false
+            }
+
+             */
+
+            initWith debug
+            jniDebuggable true
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            shrinkResources false
+//            testCoverageEnabled !project.hasProperty('android.injected.invoked.from.ide')
+            testCoverageEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        release {
+            lintOptions {
+                checkReleaseBuilds false
+                checkDependencies true
+            }
+
+            //ndkVersion "22.0.6917172"
+            ndk {
+                debugSymbolLevel 'FULL'
+            }
+
+            /*
+            FirebasePerformance {
+                // Set this flag to 'false' to disable @AddTrace annotation processing and
+                // automatic HTTP/S network request monitoring
+                // for a specific build variant at compile time.
+                instrumentationEnabled false
+            }
+
+             */
+
+            initWith release
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
     compileOptions {
@@ -67,6 +113,58 @@ android {
 
     configurations.implementation {
         exclude group: 'org.jetbrains.kotlin', module: 'kotlin-stdlib-jdk8'
+    }
+
+    sourceSets {
+        String sharedTestDir = 'src/commonTest/kotlin'
+        main {
+            main.java.srcDirs += 'src/main/kotlin'
+            test.java.srcDirs += 'src/test/kotlin'
+            test.java.srcDirs += sharedTestDir
+            androidTest.java.srcDirs += 'src/androidTest/kotlin'
+            androidTest.java.srcDirs += sharedTestDir
+            resources.srcDirs += ['src/commonTest/resources']
+        }
+    }
+
+    flavorDimensions "default"
+
+    productFlavors {
+        prod {
+            dimension "default"
+            manifestPlaceholders = [appNameGradle: "Profiler"]
+            manifestPlaceholders = [appLabel: "@string/app_name"]
+            buildConfigField "String", "apiServer", "\"https://www.goforer.com/\""
+        }
+
+        stg {
+            dimension "default"
+            applicationIdSuffix = ".stg"
+            manifestPlaceholders = [appNameGradle: "Profiler_stg"]
+            manifestPlaceholders = [appLabel: "Profiler_Stg"]
+            buildConfigField "String", "apiServer", "\"https://www.goforer.com/\""
+        }
+
+        dev {
+            dimension "default"
+            applicationIdSuffix = ".dev"
+            manifestPlaceholders = [appNameGradle: "Profiler_Dev"]
+            manifestPlaceholders = [appLabel: "Profiler_Dev"]
+            buildConfigField "String", "apiServer", "\"https://www.goforer.com/\""
+        }
+    }
+
+    splits {
+        abi {
+            enable true
+            reset()
+            include 'x86', 'x86_64', 'armeabi', 'armeabi-v7a', 'mips', 'mips64', 'arm64-v8a'
+            universalApk true
+        }
+    }
+
+    packagingOptions {
+        resources.excludes.add("META-INF/*")
     }
 
     applicationVariants.all {
@@ -134,6 +232,26 @@ dependencies {
     implementation "androidx.hilt:hilt-navigation-compose:$navigation_compose_hilt_version"
 
     implementation "com.jakewharton.timber:timber:$timber_version"
+
+    implementation "com.squareup.retrofit2:retrofit:2.9.0"
+    implementation "com.squareup.retrofit2:converter-gson:2.9.0"
+    // define a BOM and its version
+    implementation(platform('com.squareup.okhttp3:okhttp-bom:5.0.0-alpha.11'))
+
+    // define any required OkHttp artifacts without version
+    implementation("com.squareup.okhttp3:okhttp")
+    implementation('com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.11')
+
+    implementation 'com.squareup.okio:okio:3.2.0'
+
+    // Debuging Network & Resources
+    implementation 'com.facebook.stetho:stetho:1.6.0'
+    implementation 'com.facebook.stetho:stetho-okhttp3:1.6.0'
+    
+    implementation 'com.github.franmontiel:PersistentCookieJar:v1.0.1'
+
+    // Json Logging
+    implementation 'com.orhanobut:logger:2.2.0'
 
     implementation "io.coil-kt:coil-compose:2.2.2"
 
