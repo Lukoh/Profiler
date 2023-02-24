@@ -19,7 +19,7 @@ An app for keeping up to date with the latest techs and developments in Android.
  * Implements the recommended [Android Dependency injection with Hilt Guidelines](https://developer.android.com/training/dependency-injection/hilt-android)
  * Integrates Jetpack Libraries holistically in the context of a real world app
 
-## Recommended app architecture
+## Recommended App Architecture
 Considering the common architectural principles mentioned in the previous section, each application should have at least two layers:
 
  * The UI layer that displays application data on the screen.
