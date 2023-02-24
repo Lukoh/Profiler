@@ -27,7 +27,7 @@ Considering the common architectural principles mentioned in the previous sectio
 
 You can add an additional layer called the domain layer to simplify and reuse the interactions between the UI and data layers.
 
-![header](https://developer.android.com/static/topic/libraries/architecture/images/mad-arch-overview.png)
+![alt Layer Communication](https://developer.android.com/static/topic/libraries/architecture/images/mad-arch-overview.png)
 Figure 1. Diagram of a typical app architecture.
 
 
@@ -49,7 +49,7 @@ The UI layer is made up of two things:
  * UI elements that render the data on the screen. You build these elements using Views or Jetpack Compose functions.
  * State holders (such as [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) classes) that hold data, expose it to the UI, and handle logic.
 
-![body](https://developer.android.com/static/topic/libraries/architecture/images/mad-arch-overview-ui.png)
+![alt mad-arch-overview-ui](https://developer.android.com/static/topic/libraries/architecture/images/mad-arch-overview-ui.png)
 Figure 2. The UI layer's role in app architecture.
 
 To learn more about this layer, see the UI layer page.
@@ -59,7 +59,7 @@ The data layer of an app contains the business logic. The business logic is what
 
 The data layer is made of repositories that each can contain zero to many data sources. You should create a repository class for each different type of data you handle in your app. For example, you might create a MoviesRepository class for data related to movies, or a PaymentsRepository class for data related to payments.
 
-![header](https://developer.android.com/static/topic/libraries/architecture/images/mad-arch-overview-data.png)
+![alt mad-arch-overview-data](https://developer.android.com/static/topic/libraries/architecture/images/mad-arch-overview-data.png)
 Figure 3. The data layer's role in app architecture.
 
 Repository classes are responsible for the following tasks:
@@ -78,7 +78,7 @@ The domain layer is an optional layer that sits between the UI and data layers.
 
 The domain layer is responsible for encapsulating complex business logic, or simple business logic that is reused by multiple ViewModels. This layer is optional because not all apps will have these requirements. You should use it only when needed—for example, to handle complexity or favor reusability.
 
-![header](https://developer.android.com/static/topic/libraries/architecture/images/mad-arch-overview-domain.png)
+![alt mad-arch-overview-domain](https://developer.android.com/static/topic/libraries/architecture/images/mad-arch-overview-domain.png)
 Figure 4. The domain layer's role in app architecture.
 
 Classes in this layer are commonly called use cases or interactors. Each use case should have responsibility over a single functionality. For example, your app could have a GetTimeZoneUseCase class if multiple ViewModels rely on time zones to display the proper message on the screen.
