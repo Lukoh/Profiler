@@ -49,6 +49,13 @@ fun ProfileContent(
 
     var selectedIndex by remember { mutableStateOf(-1) }
 
+    /*
+    * Just open & trigger the below code to take data from the Backend server.
+    */
+    /*
+     profileViewModel.trigger(2, Params("uud1234213"))
+     */
+
     replyCount = 5
     LaunchedEffect(selectedIndex) {
         if (selectedIndex != -1)

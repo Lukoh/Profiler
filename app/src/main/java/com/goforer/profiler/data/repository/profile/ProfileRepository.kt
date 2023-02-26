@@ -60,7 +60,7 @@ class ProfileRepository
 @Inject constructor(
     @ApplicationScope private val externalScope: CoroutineScope
 ) : Repository<Resource>() {
-    override fun request(replyCount: Int, params: Params) {
+    override fun trigger(replyCount: Int, params: Params) {
         profiles = object : DataMediator<ProfileResponse>(externalScope, Companion.replyCount) {
             override fun load() = restAPI.getProfiles(params.args[0] as String)
         }.asSharedFlow

@@ -28,7 +28,7 @@ import javax.inject.Inject
 @HiltViewModel
 class ProfileViewModel
 @Inject constructor(
-    private val profileRepository: ProfileRepository,
+    private val profileRepository: ProfileRepository
 ) : BaseViewModel() {
     private val _profiles = MutableStateFlow<List<Profile>>(listOf())
     val profiles = _profiles
@@ -87,11 +87,9 @@ class ProfileViewModel
         }
     }
 
-    override fun request(replyCount: Int, params: Params) {
+    override fun trigger(replyCount: Int, params: Params) {
         profileRepository.request(replyCount = replyCount, params = params)
     }
-
-
 
     internal fun changeMemberStatus(id: Int, name: String, membered: Boolean) {
         @Suppress("UNCHECKED_CAST")

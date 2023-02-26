@@ -38,8 +38,7 @@ abstract class Repository<T> {
     lateinit var value: SharedFlow<T>
 
     open fun invalidatePagingSource() {}
-
-    open fun request(replyCount: Int, params: Params) {}
+    open fun trigger(replyCount: Int, params: Params) {}
 
     protected fun handleNetworkError(errorMessage: String) {
         networkErrorHandler.handleError(errorMessage)

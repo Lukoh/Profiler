@@ -14,6 +14,7 @@ import com.goforer.profiler.data.source.network.NetworkError
 import com.goforer.profiler.data.source.network.NetworkErrorHandler
 import com.goforer.profiler.data.source.network.adapter.factory.FlowCallAdapterFactory
 import com.goforer.profiler.data.source.network.adapter.factory.NullOnEmptyConverterFactory
+import com.goforer.profiler.data.source.network.api.Params
 import com.goforer.profiler.data.source.network.api.RestAPI
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -41,12 +42,12 @@ object RestAPIModule {
     private const val timeout_connect = 60L
     private const val timeout_write = 60L
 
-    @Provides
     @Singleton
+    @Provides
     fun appContext(application: Application): Context = application.applicationContext
 
-    @Provides
     @Singleton
+    @Provides
     fun provideGSon(): Gson = GsonBuilder().create()
 
     @Singleton
