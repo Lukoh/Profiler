@@ -20,7 +20,6 @@ import com.goforer.profiler.data.repository.Repository
 import com.goforer.profiler.data.source.local.ProfilesLocalDataSource
 import com.goforer.profiler.data.source.mediator.LocalDataMediator
 import com.goforer.profiler.data.source.model.entity.source.profile.Profile
-import com.goforer.profiler.data.source.network.response.Resource
 import com.goforer.profiler.di.module.ApplicationScope
 import kotlinx.coroutines.CoroutineScope
 import javax.inject.Inject
@@ -31,21 +30,41 @@ class ProfileRepository
 @Inject constructor(
     @ApplicationScope private val externalScope: CoroutineScope,
     private val profilesLocalDataSource: ProfilesLocalDataSource
-) : Repository<Resource>() {
+) : Repository<List<Profile>>() {
     val profiles = object : LocalDataMediator<List<Profile>>(externalScope, replyCount) {
         override fun load() = profilesLocalDataSource.profiles
     }.asSharedFlow
 }
 
 /*
+ * Just use the below code if you take data from the Backend server.
+ */
+
+/*
+import com.goforer.profiler.data.repository.Repository
+import com.goforer.profiler.data.source.local.ProfilesLocalDataSource
+import com.goforer.profiler.data.source.mediator.DataMediator
+import com.goforer.profiler.data.source.mediator.LocalDataMediator
+import com.goforer.profiler.data.source.model.entity.source.profile.Profile
+import com.goforer.profiler.data.source.model.entity.source.response.ProfileResponse
+import com.goforer.profiler.data.source.network.api.Params
+import com.goforer.profiler.data.source.network.response.Resource
+import com.goforer.profiler.di.module.ApplicationScope
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.flow.SharedFlow
+import javax.inject.Inject
+import javax.inject.Singleton
+
 @Singleton
 class ProfileRepository
 @Inject constructor(
     @ApplicationScope private val externalScope: CoroutineScope
-) : Repository<ProfileResponse>() {
-    val profiles = object : DataMediator<ProfileResponse>(externalScope, replyCount) {
-        override fun load() = restAPI.getProfiles()
-    }.asSharedFlow
+) : Repository<Resource>() {
+    override fun request(replyCount: Int, params: Params) {
+        profiles = object : DataMediator<ProfileResponse>(externalScope, Companion.replyCount) {
+            override fun load() = restAPI.getProfiles(params.args[0] as String)
+        }.asSharedFlow
+    }
 }
 
  */

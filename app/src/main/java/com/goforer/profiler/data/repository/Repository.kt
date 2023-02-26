@@ -17,14 +17,14 @@
 package com.goforer.profiler.data.repository
 
 import com.goforer.profiler.data.source.network.NetworkErrorHandler
+import com.goforer.profiler.data.source.network.api.Params
 import com.goforer.profiler.data.source.network.api.RestAPI
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.SharedFlow
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-abstract class Repository<Resource> {
+abstract class Repository<T> {
     companion object {
         internal var replyCount = 0
     }
@@ -35,7 +35,11 @@ abstract class Repository<Resource> {
     @Inject
     lateinit var networkErrorHandler: NetworkErrorHandler
 
+    lateinit var value: SharedFlow<T>
+
     open fun invalidatePagingSource() {}
+
+    open fun request(replyCount: Int, params: Params) {}
 
     protected fun handleNetworkError(errorMessage: String) {
         networkErrorHandler.handleError(errorMessage)
