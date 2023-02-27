@@ -18,8 +18,10 @@ package com.goforer.profiler.presentation.ui
 
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.Modifier
+import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.rememberNavController
 import com.goforer.profiler.presentation.ui.landing.LandingScreen
-import com.goforer.profiler.presentation.ui.profile.ProfileScreen
 
 @Composable
 fun MainScreen() {
@@ -29,7 +31,12 @@ fun MainScreen() {
         if (showLandingScreen) {
             LandingScreen(onTimeout = { showLandingScreen = false })
         } else {
-            ProfileScreen()
+            val navController = rememberNavController()
+            val currentBackStack by navController.currentBackStackEntryAsState()
+            val currentDestination = currentBackStack?.destination
+            val currentScreen = ProfilerScreens.find { it.route == currentDestination?.route } ?: Profiles
+
+            ProfilerNavHost(Modifier, navController = navController)
         }
     }
 }

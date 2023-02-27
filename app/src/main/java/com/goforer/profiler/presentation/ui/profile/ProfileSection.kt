@@ -37,6 +37,7 @@ fun ProfileSection(
     @SuppressLint("ModifierParameter")
     onMemberChanged: (Profile, Boolean) -> Unit,
     onSearched: (String, Boolean) -> Unit,
+    onNavigateToDetailInfo: (Int) -> Unit,
 ) {
     val editableInputState = rememberEditableInputState(hint = "Search")
 
@@ -60,7 +61,8 @@ fun ProfileSection(
             membered = membered,
             lazyListState = lazyListState,
             onItemClicked = onItemClicked,
-            onMemberChanged = onMemberChanged
+            onMemberChanged = onMemberChanged,
+            onNavigateToDetailInfo = onNavigateToDetailInfo
         )
     }
 }

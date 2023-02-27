@@ -43,6 +43,9 @@ import kotlinx.coroutines.launch
 class MainActivity : ComponentActivity() {
     companion object {
         internal const val SplashWaitTime = 1200L
+
+        internal const val ProfilesRoute = "profiles"
+        internal const val DetailInfoRoute = "detail_info"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -137,6 +140,8 @@ private fun PreviewShowContainer() {
                             memberName = profile.name
                         }
                     }, onSearched = { _, _ ->
+
+                    }, onNavigateToDetailInfo = {
 
                     })
             }

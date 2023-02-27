@@ -20,8 +20,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
@@ -29,7 +28,7 @@ import com.goforer.profiler.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ProfileScreen(modifier: Modifier = Modifier) {
+fun ProfileScreen(modifier: Modifier = Modifier, onNavigateToDetailInfo: (Int) -> Unit) {
     val snackbarHostState = remember { SnackbarHostState() }
 
     Scaffold(
@@ -64,6 +63,13 @@ fun ProfileScreen(modifier: Modifier = Modifier) {
                     }
                 }
             )
-        }, content = { paddingValues -> ProfileContent(modifier = modifier, snackbarHostState, paddingValues) }
+        }, content = { paddingValues ->
+            ProfileContent(
+                modifier = modifier,
+                snackbarHostState,
+                paddingValues,
+                onNavigateToDetailInfo = onNavigateToDetailInfo
+            )
+        }
     )
 }

@@ -46,6 +46,14 @@ class ProfileViewModel
             it.membered = membered
         }
     }
+
+    internal fun getProfile(id: Int): Profile? {
+        profiles.value.find { it.id == id }?.let {
+            return it
+        }
+
+        return null
+    }
 }
 
 /*

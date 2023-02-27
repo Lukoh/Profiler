@@ -34,6 +34,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.goforer.profiler.data.source.model.entity.source.profile.Profile
+import kotlinx.coroutines.launch
 
 @Composable
 fun ListSection(
@@ -44,7 +45,9 @@ fun ListSection(
     onItemClicked: (item: Profile, index: Int) -> Unit,
     @SuppressLint("ModifierParameter")
     onMemberChanged: (Profile, Boolean) -> Unit,
+    onNavigateToDetailInfo: (Int) -> Unit
 ) {
+    val scope = rememberCoroutineScope()
     val showButton by remember {
         derivedStateOf {
             lazyListState.firstVisibleItemIndex > 0
@@ -68,7 +71,8 @@ fun ListSection(
                     index,
                     membered,
                     onItemClicked = onItemClicked,
-                    onMemberChanged = onMemberChanged
+                    onMemberChanged = onMemberChanged,
+                    onNavigateToDetailInfo = onNavigateToDetailInfo
                 )
                 //Divider()})
             })
@@ -86,6 +90,9 @@ fun ListSection(
                 backgroundColor = MaterialTheme.colorScheme.primary,
                 onClick = {
                     clicked = true
+                    scope.launch {
+                        lazyListState.animateScrollToItem(0)
+                    }
                 }
             ) {
                 Text("Up!")
@@ -93,7 +100,6 @@ fun ListSection(
         }
 
         LaunchedEffect(lazyListState, showButton, clicked) {
-            lazyListState.animateScrollToItem(0)
             clicked = false
         }
 

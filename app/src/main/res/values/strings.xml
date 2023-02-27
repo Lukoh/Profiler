@@ -3,4 +3,8 @@
     <string name="member_check">Member</string>
     <string name="profile">Profiler</string>
     <string name="placeholder_search">Search</string>
+
+    <string name="profile_detail">Profile Detail</string>
+    <string name="profile_detail_name">Full Name</string>
+
 </resources>

@@ -54,7 +54,8 @@ fun ProfileItem(
     index: Int,
     membered: MutableState<Boolean>,
     onItemClicked: (item: Profile, index: Int) -> Unit,
-    onMemberChanged: (Profile, Boolean) -> Unit
+    onMemberChanged: (Profile, Boolean) -> Unit,
+    onNavigateToDetailInfo: (Int) -> Unit
 ) {
     Surface(
         shape = MaterialTheme.shapes.small,
@@ -69,6 +70,7 @@ fun ProfileItem(
                 .heightIn(min = 56.dp)
                 .clickable {
                     onItemClicked(profile, index)
+                    onNavigateToDetailInfo(profile.id)
                 },
         ) {
             IconContainer {

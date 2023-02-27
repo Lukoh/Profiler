@@ -13,8 +13,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.goforer.profiler.data.repository.Repository.Companion.replyCount
 import com.goforer.profiler.data.source.model.entity.source.profile.Profile
 import com.goforer.profiler.data.source.model.entity.state.ResourceState
@@ -29,11 +29,13 @@ fun ProfileContent(
     modifier: Modifier = Modifier,
     snackbarHostState: SnackbarHostState,
     contentPadding: PaddingValues = PaddingValues(4.dp),
-    profileViewModel: ProfileViewModel = viewModel()) {
+    onNavigateToDetailInfo: (Int) -> Unit
+) {
     val scope = rememberCoroutineScope()
     val membered = rememberSaveable { mutableStateOf(false) }
     val context = LocalContext.current
     val keyboardController = LocalSoftwareKeyboardController.current
+    val profileViewModel: ProfileViewModel = hiltViewModel<ProfileViewModel>()
     val profilesState = profileViewModel.profiles.collectAsStateWithLifecycle()
     val hint =  stringResource(id = R.string.placeholder_search)
     val resourceState by produceState(initialValue = ResourceState()) {
@@ -111,7 +113,8 @@ fun ProfileContent(
                     } else {
                         Timber.d("is texted by typing")
                     }
-                }
+                },
+                onNavigateToDetailInfo = onNavigateToDetailInfo
             )
         }
         resourceState.isLoading -> { }
