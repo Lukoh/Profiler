@@ -11,8 +11,8 @@ import androidx.navigation.NavHostController
 import com.goforer.profiler.presentation.stateholder.business.profile.ProfileViewModel
 import com.goforer.profiler.presentation.ui.MainActivity.Companion.DetailInfoRoute
 import com.goforer.profiler.presentation.ui.MainActivity.Companion.ProfilesRoute
-import com.goforer.profiler.presentation.ui.profile.ProfileScreen
-import com.goforer.profiler.presentation.ui.profile.detail.DetailScreen
+import com.goforer.profiler.presentation.ui.screen.profile.ProfileScreen
+import com.goforer.profiler.presentation.ui.screen.detail.DetailScreen
 
 interface ProfilerDestination {
     val icon: ImageVector

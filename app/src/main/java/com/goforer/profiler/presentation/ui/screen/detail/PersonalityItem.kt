@@ -1,4 +1,4 @@
-package com.goforer.profiler.presentation.ui.profile.detail
+package com.goforer.profiler.presentation.ui.screen.detail
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -36,7 +36,7 @@ fun PersonalityItem(
                 .heightIn(min = 56.dp)
         ) {
             Text(
-                stringResource(id = R.string.profile_detail_name),
+                stringResource(id = R.string.profile_detail_personality),
                 modifier = Modifier.padding(16.dp, 0.dp, 0.dp, 0.dp),
                 fontFamily = FontFamily.SansSerif,
                 fontWeight = FontWeight.Bold,

@@ -1,4 +1,4 @@
-package com.goforer.profiler.presentation.ui.profile.detail
+package com.goforer.profiler.presentation.ui.screen.detail
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBackIos
@@ -15,7 +15,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.sp
 import com.goforer.profiler.R
 import com.goforer.profiler.presentation.stateholder.business.profile.ProfileViewModel
-import com.goforer.profiler.presentation.ui.profile.CardSnackBar
+import com.goforer.profiler.presentation.ui.screen.profile.CardSnackBar
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

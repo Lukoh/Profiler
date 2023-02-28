@@ -1,4 +1,4 @@
-package com.goforer.profiler.presentation.ui.profile.detail
+package com.goforer.profiler.presentation.ui.screen.detail
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -19,7 +19,7 @@ import com.goforer.profiler.R
 import com.goforer.profiler.data.source.model.entity.source.profile.Profile
 
 @Composable
-fun CellphoneItem(
+fun BirthdayItem(
     modifier: Modifier = Modifier,
     profile: Profile
 ) {
@@ -36,7 +36,7 @@ fun CellphoneItem(
                 .heightIn(min = 56.dp)
         ) {
             Text(
-                stringResource(id = R.string.profile_detail_cellphone),
+                stringResource(id = R.string.profile_detail_birthday),
                 modifier = Modifier.padding(16.dp, 0.dp, 0.dp, 0.dp),
                 fontFamily = FontFamily.SansSerif,
                 fontWeight = FontWeight.Bold,
@@ -46,7 +46,7 @@ fun CellphoneItem(
             )
             Spacer(modifier = Modifier.height(4.dp))
             Text(
-                profile.cellphone,
+                profile.birthday,
                 modifier = Modifier.padding(8.dp, 0.dp, 0.dp, 0.dp),
                 fontFamily = FontFamily.SansSerif,
                 fontWeight = FontWeight.Bold,

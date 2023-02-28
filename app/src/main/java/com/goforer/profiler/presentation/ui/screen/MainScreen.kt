@@ -21,7 +21,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.goforer.profiler.presentation.ui.landing.LandingScreen
+import com.goforer.profiler.presentation.ui.screen.landing.LandingScreen
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 
 @OptIn(ExperimentalAnimationApi::class)

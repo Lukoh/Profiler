@@ -14,7 +14,7 @@
  * If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.goforer.profiler.presentation.ui.profile
+package com.goforer.profiler.presentation.ui.screen.profile
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.*

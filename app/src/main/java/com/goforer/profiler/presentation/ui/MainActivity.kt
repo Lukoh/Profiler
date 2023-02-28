@@ -34,7 +34,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.view.WindowCompat
 import com.goforer.profiler.data.source.model.entity.source.profile.Profile
-import com.goforer.profiler.presentation.ui.profile.ProfileSection
+import com.goforer.profiler.presentation.ui.screen.profile.ProfileSection
 import com.goforer.profiler.presentation.ui.theme.ProfilerTheme
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch

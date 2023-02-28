@@ -14,7 +14,7 @@
  * If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.goforer.profiler.presentation.ui.landing
+package com.goforer.profiler.presentation.ui.screen.landing
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box

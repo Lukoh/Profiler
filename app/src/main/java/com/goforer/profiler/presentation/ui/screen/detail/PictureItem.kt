@@ -1,4 +1,4 @@
-package com.goforer.profiler.presentation.ui.profile.detail
+package com.goforer.profiler.presentation.ui.screen.detail
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
