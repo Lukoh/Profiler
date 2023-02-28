@@ -11,19 +11,20 @@
 ![header](https://1.bp.blogspot.com/-9MiK78CFMLM/YQFurOq9AII/AAAAAAAAQ1A/lKj5GiDnO_MkPLb72XqgnvD5uxOsHO-eACLcBGAsYHQ/s0/Android-Compose-1.0-header-v2.png)
 
 # Profiler 
-## Better Android Apps Using  Android Architecture Guidelines + Dependency injection with Hilt + Jetpack Compose
+## Better Android Apps Using  Android Architecture Guidelines + Dependency injection with Hilt + Jetpack Compose + Navigation(Navigating with Compose)
 
-Profiler is based on Android latest architectural components, Jetpack, Clean Architecture and follows MVVM design pattern. Also Profiler App Architecture consist of Presentation layer, DI(Dependency Injection) and Repository layer. And All new latest technologies were applied into Profiler App as Advanced Android App Architecture. The many advanced functions already were applied into Profiler App. These stuff make Android Apps to be extended being more competitive power and help them to maintain consistency. 
+Profiler is based on Android latest architectural components, Jetpack library, Clean Architecture, Coroutine & Flow and follows MVVM design pattern. Also Profiler App Architecture consist of Presentation layer, DI(Dependency Injection) and Repository layer. And All new latest technologies were applied into Profiler App as Advanced Android App Architecture. The many advanced functions already were applied into Profiler App. These stuff make Android Apps to be extended being more competitive power and help them to maintain consistency. Profiler open source was developed to help you building real apps with all the latest Android technologies mentioned below.
 
-Now let’s dive into my open-source project, Profiler, which is based on the Android MVVM with Clean Architecture and the latest libraries like Jetpack & Hilt. And I'm learning the latest Jetpack Compose. 
+Now let’s dive into my open-source project, Profiler, which is based on the Android MVVM with Clean Architecture and the latest libraries like Jetpack & Hilt libraries. And the latest Jetpack Compose(Navigating with Compose + Adding a Hilt ViewModel to the Navigation graph) will help you develop your code very easily.
 
-Please get in touch with me via email if you're interested in my technical experience and all techs which are applied into LukohSplash. Also visit my LinkedIn profile if you want to know more about me. Here is my email address below:
+Please get in touch with me via email if you're interested in my technical experience and all techs which are applied into Profiler. Also visit my LinkedIn profile if you want to know more about me. Here is my email address below:
 
 lukoh.nam@gmail.com
 
 An app for keeping up to date with the latest techs and developments in Android.
  * Jetpack Compose app.
  * Implements the recommended [Android Architecture Guidelines](https://developer.android.com/jetpack/compose/architecture)
+ * Implements the recommended [Navigation(Navigating with Compose)](https://developer.android.com/jetpack/compose/navigation) Guidelines
  * Implements the recommended [Android Dependency injection with Hilt Guidelines](https://developer.android.com/training/dependency-injection/hilt-android)
  * Integrates Jetpack Libraries holistically in the context of a real world app
 
@@ -147,3 +148,12 @@ Having a good Architecture implemented in your app brings a lot of benefits to t
  * Bugs can be investigated methodically with well defined processes.
 
 Investing in Architecture also has a direct impact in your users. They benefit from a more stable application, and more features due to a more productive engineering team. However, Architecture also requires an up-front time investment. To help you justify this time to the rest of you company, take a look at these case studies where other companies share their success stories when having a good architecture in their app.
+
+# Navigating with Compose
+If you’re working on an Android app, chances are you’ll need some form of navigation. Back stack handling, lifecycle, state saving and restoring, and deep linking are just some of them. You can take a closer look at the navigation component’s support for Jetpack Compose in the Profiler source.
+
+The Navigation component provides support for Jetpack Compose applications. You can navigate between composables while taking advantage of the Navigation component’s infrastructure and features.
+
+Jump to [Navigating with Compose](https://developer.android.com/jetpack/compose/navigation) if you’d like to learn it.
+
+If you go through the above process, you can understand the source code more easily.
