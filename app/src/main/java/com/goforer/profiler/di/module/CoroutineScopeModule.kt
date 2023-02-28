@@ -28,7 +28,7 @@ import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)
 @Module
-object CoroutineScopesModule {
+object CoroutineScopeModule {
     @Singleton
     @ApplicationScope
     @Provides
