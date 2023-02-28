@@ -6,6 +6,7 @@ import androidx.compose.material.icons.filled.Adb
 import androidx.compose.material.icons.filled.Details
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.goforer.profiler.presentation.stateholder.business.profile.ProfileViewModel
@@ -40,7 +41,7 @@ object DetailInfo : ProfilerDestination {
     override val icon = Icons.Filled.Details
     override val screen: @Composable (navController: NavHostController, arguments: Bundle?) -> Unit = { navController, arguments ->
         navController.previousBackStackEntry?.let {
-            val profileViewModel: ProfileViewModel = viewModel(it)
+            val profileViewModel: ProfileViewModel =  hiltViewModel<ProfileViewModel>(it)
             val id = arguments?.getInt(idTypeArg)
 
             id?.let { userId ->
