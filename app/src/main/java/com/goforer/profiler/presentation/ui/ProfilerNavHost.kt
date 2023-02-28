@@ -1,9 +1,11 @@
 package com.goforer.profiler.presentation.ui
 
 import androidx.compose.animation.*
+import androidx.compose.animation.core.CubicBezierEasing
 import androidx.compose.animation.core.tween
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.IntOffset
 import androidx.navigation.*
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import com.google.accompanist.navigation.animation.composable
@@ -21,17 +23,39 @@ fun ProfilerNavHost(
         startDestination = Profiles.route,
         modifier = modifier
     ) {
+        val effect = tween<IntOffset>(durationMillis = 700, easing = CubicBezierEasing(0.08f,0.93f,0.68f,1.27f))
+
         composable(route = Profiles.route,
-            enterTransition = { slideInHorizontally(animationSpec = tween(500)) },
-            exitTransition = { slideOutHorizontally(animationSpec = tween(500)) }
+            enterTransition = {
+                slideInHorizontally(initialOffsetX = { it / 2 }, animationSpec = effect)
+            },
+            exitTransition = {
+                slideOutHorizontally(targetOffsetX = { -(it / 2) }, animationSpec = effect)
+            },
+            popEnterTransition = {
+                slideInHorizontally(initialOffsetX = { -(it / 2) }, animationSpec = effect)
+            },
+            popExitTransition = {
+                slideOutHorizontally(targetOffsetX = { it / 2 }, animationSpec = effect)
+            }
         ) {
             Profiles.screen(navController, it.arguments)
         }
 
         composable(
             DetailInfo.routeWithArgs,
-            enterTransition = { slideInHorizontally(initialOffsetX = { it / 2 }, animationSpec = tween(500)) },
-            exitTransition = { slideOutHorizontally(targetOffsetX = { it / 2 }, animationSpec = tween(500)) }
+            enterTransition = {
+                slideInHorizontally(initialOffsetX = { it / 2 }, animationSpec = effect)
+            },
+            exitTransition = {
+                slideOutHorizontally(targetOffsetX = { -(it / 2) }, animationSpec = effect)
+            },
+            popEnterTransition = {
+                slideInHorizontally(initialOffsetX = { -(it / 2) }, animationSpec = effect)
+            },
+            popExitTransition = {
+                slideOutHorizontally(targetOffsetX = { it / 2 }, animationSpec = effect)
+            }
         ) {
            DetailInfo.screen(navController, it.arguments)
         }
