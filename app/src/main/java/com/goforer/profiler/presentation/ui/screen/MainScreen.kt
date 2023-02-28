@@ -14,7 +14,7 @@
  * If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.goforer.profiler.presentation.ui
+package com.goforer.profiler.presentation.ui.screen
 
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.material3.*
@@ -36,7 +36,7 @@ fun MainScreen() {
             val navController = rememberAnimatedNavController()
             val currentBackStack by navController.currentBackStackEntryAsState()
             val currentDestination = currentBackStack?.destination
-            val currentScreen = ProfilerScreens.find { it.route == currentDestination?.route } ?: Profiles
+            //val currentScreen = ProfilerScreens.find { it.route == currentDestination?.route } ?: Profiles
 
             ProfilerNavHost(Modifier, navController = navController)
         }

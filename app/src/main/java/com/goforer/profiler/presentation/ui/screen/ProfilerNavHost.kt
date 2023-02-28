@@ -1,4 +1,4 @@
-package com.goforer.profiler.presentation.ui
+package com.goforer.profiler.presentation.ui.screen
 
 import androidx.compose.animation.*
 import androidx.compose.animation.core.CubicBezierEasing
@@ -44,6 +44,7 @@ fun ProfilerNavHost(
 
         composable(
             DetailInfo.routeWithArgs,
+            arguments = DetailInfo.arguments,
             enterTransition = {
                 slideInHorizontally(initialOffsetX = { it / 2 }, animationSpec = effect) + fadeIn()
             },

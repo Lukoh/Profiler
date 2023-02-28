@@ -1,4 +1,4 @@
-package com.goforer.profiler.presentation.ui
+package com.goforer.profiler.presentation.ui.screen
 
 import android.os.Bundle
 import androidx.compose.material.icons.Icons
@@ -7,8 +7,9 @@ import androidx.compose.material.icons.filled.Details
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
+import androidx.navigation.navArgument
 import com.goforer.profiler.presentation.stateholder.business.profile.ProfileViewModel
 import com.goforer.profiler.presentation.ui.MainActivity.Companion.DetailInfoRoute
 import com.goforer.profiler.presentation.ui.MainActivity.Companion.ProfilesRoute
@@ -37,15 +38,18 @@ object DetailInfo : ProfilerDestination {
     override val route = DetailInfoRoute
     private const val idTypeArg = "user_id"
     val routeWithArgs = "${route}/{${idTypeArg}}"
+    val arguments = listOf(
+        navArgument(idTypeArg) { type = NavType.IntType }
+    )
 
     override val icon = Icons.Filled.Details
     override val screen: @Composable (navController: NavHostController, arguments: Bundle?) -> Unit = { navController, arguments ->
         navController.previousBackStackEntry?.let {
-            val profileViewModel: ProfileViewModel =  hiltViewModel<ProfileViewModel>(it)
+            val profileViewModel: ProfileViewModel =  hiltViewModel(it)
             val id = arguments?.getInt(idTypeArg)
 
-            id?.let { userId ->
-                DetailScreen(profileViewModel = profileViewModel, userId = userId, onBackPressed = {
+            id?.let {
+                DetailScreen(profileViewModel = profileViewModel, userId = it, onBackPressed = {
                     navController.popBackStack()
                 })
             }
