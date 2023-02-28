@@ -78,17 +78,17 @@ class MainActivity : ComponentActivity() {
 private fun PreviewShowContainer() {
     ProfilerTheme {
         val profileList = mutableListOf(
-            Profile(0,"Lukoh", "남성", true, "https://avatars.githubusercontent.com/u/18302717?v=4"),
-            Profile(1,"Alex", "남성", false,"https://avatars.githubusercontent.com/u/18302717?v=4"),
-            Profile(2,"Alice", "여성", false,"https://avatars.githubusercontent.com/u/18302717?v=4"),
-            Profile(3,"Tana", "여성", false,"https://avatars.githubusercontent.com/u/18302717?v=4"),
-            Profile(4,"Lona", "여성", true,"https://avatars.githubusercontent.com/u/18302717?v=4"),
-            Profile(5,"Kevin", "남성", true,"https://avatars.githubusercontent.com/u/18302717?v=4"),
-            Profile(6,"Jully", "여성", true,"https://avatars.githubusercontent.com/u/18302717?v=4"),
-            Profile(7,"Kevin", "남성", true,"https://avatars.githubusercontent.com/u/18302717?v=4"),
-            Profile(8,"Tom", "남성", false,"https://avatars.githubusercontent.com/u/18302717?v=4"),
-            Profile(9,"Steven", "남성", false,"https://avatars.githubusercontent.com/u/18302717?v=4"),
-            Profile(10,"Micle", "남성", false,"https://avatars.githubusercontent.com/u/18302717?v=4")
+            Profile(0,"LLyyiok", "남성", true,"https://avatars.githubusercontent.com/u/18302717?v=4", "sociable & gregarious", "+820101111-1111","", "Mar, 04, 1999"),
+            Profile(1,"Afredo", "남성", true,"https://avatars.githubusercontent.com/u/18302717?v=4", "gregarious & friendly", "+820101111-1111","", "Mar, 04, 1999"),
+            Profile(2,"Aliche", "여성", true,"https://avatars.githubusercontent.com/u/18302717?v=4", "affable & convivial", "+820101111-1111","", "Mar, 04, 1999"),
+            Profile(3,"Tina", "여성", true,"https://avatars.githubusercontent.com/u/18302717?v=4","affable & convivial", "+820101111-1111","", "Mar, 04, 1999"),
+            Profile(4,"Lolly", "여성", true,"https://avatars.githubusercontent.com/u/18302717?v=4","affable & convivial", "+820101111-1111","", "Mar, 04, 1999"),
+            Profile(5,"Hassen", "남성", true,"https://avatars.githubusercontent.com/u/18302717?v=4","affable & convivial", "+820101111-1111","", "Mar, 04, 1999"),
+            Profile(6,"Lyll", "여성", true,"https://avatars.githubusercontent.com/u/18302717?v=4", "sociable & gregarious", "+820101111-1111","", "Mar, 04, 1999"),
+            Profile(7,"Kevin", "남성", true,"https://avatars.githubusercontent.com/u/18302717?v=4", "affable & convivial", "+820101111-1111","", "Mar, 04, 1999"),
+            Profile(8,"Tony", "남성", true,"https://avatars.githubusercontent.com/u/18302717?v=4", "affable & convivial", "+820101111-1111","", "Mar, 04, 1999"),
+            Profile(9,"Steven", "남성", false,"https://avatars.githubusercontent.com/u/18302717?v=4", "affable & convivial", "+820101111-1111","", "Mar, 04, 1999"),
+            Profile(10,"Micle", "남성", false,"https://avatars.githubusercontent.com/u/18302717?v=4", "affable & convivial", "+820101111-1111","", "Mar, 04, 1999")
         )
         val profilesState: State<List<Profile>> = rememberSaveable { mutableStateOf<List<Profile>>(profileList) }
         val isChecked = rememberSaveable { mutableStateOf(false) }

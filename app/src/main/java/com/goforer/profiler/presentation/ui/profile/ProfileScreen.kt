@@ -23,7 +23,11 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.sp
 import com.goforer.profiler.R
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -43,7 +47,11 @@ fun ProfileScreen(modifier: Modifier = Modifier, onNavigateToDetailInfo: (Int) -
                     Text(
                         stringResource(id = R.string.profile),
                         maxLines = 1,
-                        overflow = TextOverflow.Ellipsis
+                        overflow = TextOverflow.Ellipsis,
+                        fontFamily = FontFamily.SansSerif,
+                        fontSize = 20.sp,
+                        fontStyle = FontStyle.Normal,
+                        fontWeight = FontWeight.Bold,
                     )
                 },
                 navigationIcon = {

@@ -19,7 +19,7 @@ import com.goforer.profiler.R
 import com.goforer.profiler.data.source.model.entity.source.profile.Profile
 
 @Composable
-fun NameItem(
+fun PersonalityItem(
     modifier: Modifier = Modifier,
     profile: Profile
 ) {
@@ -46,7 +46,7 @@ fun NameItem(
             )
             Spacer(modifier = Modifier.height(4.dp))
             Text(
-                profile.name,
+                profile.personality,
                 modifier = Modifier.padding(8.dp, 0.dp, 0.dp, 0.dp),
                 fontFamily = FontFamily.SansSerif,
                 fontWeight = FontWeight.Bold,
@@ -58,5 +58,3 @@ fun NameItem(
         }
     }
 }
-
-

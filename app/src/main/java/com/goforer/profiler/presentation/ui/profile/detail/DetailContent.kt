@@ -1,8 +1,6 @@
 package com.goforer.profiler.presentation.ui.profile.detail
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -29,7 +27,15 @@ fun DetailContent(
                 )
                 .noRippleClickable { }
         ) {
+            PictureItem(modifier = Modifier, it)
+            Spacer(modifier = Modifier.height(4.dp))
             NameItem(modifier = Modifier, it)
+            Spacer(modifier = Modifier.height(4.dp))
+            BirthdayItem(modifier = Modifier, it)
+            Spacer(modifier = Modifier.height(4.dp))
+            CellphoneItem(modifier = Modifier, it)
+            Spacer(modifier = Modifier.height(4.dp))
+            PersonalityItem(modifier = Modifier, it)
         }
     }
 }

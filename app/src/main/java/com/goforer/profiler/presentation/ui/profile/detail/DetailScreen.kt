@@ -8,7 +8,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.sp
 import com.goforer.profiler.R
 import com.goforer.profiler.presentation.stateholder.business.profile.ProfileViewModel
 import com.goforer.profiler.presentation.ui.profile.CardSnackBar
@@ -30,7 +34,11 @@ fun DetailScreen(modifier: Modifier = Modifier, profileViewModel: ProfileViewMod
                     Text(
                         stringResource(id = R.string.profile_detail),
                         maxLines = 1,
-                        overflow = TextOverflow.Ellipsis
+                        overflow = TextOverflow.Ellipsis,
+                        fontFamily = FontFamily.SansSerif,
+                        fontSize = 20.sp,
+                        fontStyle = FontStyle.Normal,
+                        fontWeight = FontWeight.Bold,
                     )
                 },
                 navigationIcon = {

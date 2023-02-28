@@ -5,6 +5,9 @@
     <string name="placeholder_search">Search</string>
 
     <string name="profile_detail">Profile Detail</string>
-    <string name="profile_detail_name">Full Name</string>
-
+    <string name="profile_detail_picture">Picture  :  </string>
+    <string name="profile_detail_name">Full Name  :  </string>
+    <string name="profile_detail_birthday">Birthday  :  </string>
+    <string name="profile_detail_cellphone">Cellphone  :  </string>
+    <string name="profile_detail_personality">Personality  :  </string>
 </resources>
