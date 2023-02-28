@@ -11,7 +11,7 @@
 ![header](https://1.bp.blogspot.com/-9MiK78CFMLM/YQFurOq9AII/AAAAAAAAQ1A/lKj5GiDnO_MkPLb72XqgnvD5uxOsHO-eACLcBGAsYHQ/s0/Android-Compose-1.0-header-v2.png)
 
 # Profiler 
-## Better Android Apps Using  Android Architecture Guidelines + Dependency injection with Hilt + Jetpack Compose + 
+## Better Android Apps Using  Android Architecture Guidelines + Dependency injection with Hilt + Jetpack Compose + Navigation(Navigating with Compose)
 
 Profiler is based on Android latest architectural components, Jetpack library, Clean Architecture, Coroutine & Flow and follows MVVM design pattern. Also Profiler App Architecture consist of Presentation layer, DI(Dependency Injection) and Repository layer. And All new latest technologies were applied into Profiler App as Advanced Android App Architecture. The many advanced functions already were applied into Profiler App. These stuff make Android Apps to be extended being more competitive power and help them to maintain consistency. Profiler open source was developed to help you building real apps with all the latest Android technologies mentioned below.
 
