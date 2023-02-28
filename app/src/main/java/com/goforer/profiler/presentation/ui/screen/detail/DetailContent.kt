@@ -36,6 +36,8 @@ fun DetailContent(
             CellphoneItem(modifier = Modifier, it)
             Spacer(modifier = Modifier.height(4.dp))
             PersonalityItem(modifier = Modifier, it)
+            Spacer(modifier = Modifier.height(4.dp))
+            MemberItem(modifier = Modifier, it)
         }
     }
 }
