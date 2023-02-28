@@ -48,8 +48,8 @@ object DetailInfo : ProfilerDestination {
             val profileViewModel: ProfileViewModel =  hiltViewModel(it)
             val id = arguments?.getInt(idTypeArg)
 
-            id?.let {
-                DetailScreen(profileViewModel = profileViewModel, userId = it, onBackPressed = {
+            id?.let { userId ->
+                DetailScreen(profileViewModel = profileViewModel, userId = userId, onBackPressed = {
                     navController.popBackStack()
                 })
             }
