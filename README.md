@@ -17,7 +17,7 @@ Profiler is based on Android latest architectural components, Jetpack library, C
 
 Now let’s dive into my open-source project, Profiler, which is based on the Android MVVM with Clean Architecture and the latest libraries like Jetpack & Hilt libraries. And the latest Jetpack Compose(Navigating with Compose + Adding a Hilt ViewModel to the Navigation graph) will help you develop your code very easily.
 
-Please get in touch with me via email if you're interested in my technical experience and all techs which are applied into LukohSplash. Also visit my LinkedIn profile if you want to know more about me. Here is my email address below:
+Please get in touch with me via email if you're interested in my technical experience and all techs which are applied into Profiler. Also visit my LinkedIn profile if you want to know more about me. Here is my email address below:
 
 lukoh.nam@gmail.com
 
