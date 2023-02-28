@@ -16,13 +16,15 @@
 
 package com.goforer.profiler.presentation.ui
 
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.currentBackStackEntryAsState
-import androidx.navigation.compose.rememberNavController
 import com.goforer.profiler.presentation.ui.landing.LandingScreen
+import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 
+@OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun MainScreen() {
     Surface(color = MaterialTheme.colorScheme.primary) {
@@ -31,7 +33,7 @@ fun MainScreen() {
         if (showLandingScreen) {
             LandingScreen(onTimeout = { showLandingScreen = false })
         } else {
-            val navController = rememberNavController()
+            val navController = rememberAnimatedNavController()
             val currentBackStack by navController.currentBackStackEntryAsState()
             val currentDestination = currentBackStack?.destination
             val currentScreen = ProfilerScreens.find { it.route == currentDestination?.route } ?: Profiles

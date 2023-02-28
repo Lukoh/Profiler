@@ -226,11 +226,11 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.5.1'
     implementation 'androidx.compose.material3:material3:1.1.0-alpha06'
 
-    implementation "androidx.navigation:navigation-compose:$nav_version"
-
     implementation "com.google.dagger:hilt-android:$dagger_hilt_version"
     kapt "com.google.dagger:hilt-compiler:$dagger_hilt_version"
 
+    implementation "androidx.navigation:navigation-compose:$nav_version"
+    implementation "com.google.accompanist:accompanist-navigation-animation:0.28.0"
     implementation "androidx.hilt:hilt-navigation-compose:$navigation_compose_hilt_version"
 
     implementation "com.jakewharton.timber:timber:$timber_version"

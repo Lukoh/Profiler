@@ -1,32 +1,39 @@
 package com.goforer.profiler.presentation.ui
 
+import androidx.compose.animation.*
+import androidx.compose.animation.core.tween
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.navigation.*
 import androidx.navigation.NavGraph.Companion.findStartDestination
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
+import com.google.accompanist.navigation.animation.composable
+import com.google.accompanist.navigation.animation.AnimatedNavHost
+import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 
+@OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun ProfilerNavHost(
     modifier: Modifier = Modifier,
-    navController: NavHostController = rememberNavController()
+    navController: NavHostController = rememberAnimatedNavController()
 ) {
-    NavHost(
+    AnimatedNavHost(
         navController = navController,
         startDestination = Profiles.route,
         modifier = modifier
     ) {
-        composable(route = Profiles.route) {
+        composable(route = Profiles.route,
+            enterTransition = { slideInHorizontally(animationSpec = tween(500)) },
+            exitTransition = { slideOutHorizontally(animationSpec = tween(500)) }
+        ) {
             Profiles.screen(navController, it.arguments)
         }
 
         composable(
             DetailInfo.routeWithArgs,
-            arguments = DetailInfo.arguments
+            enterTransition = { slideInHorizontally(initialOffsetX = { it / 2 }, animationSpec = tween(500)) },
+            exitTransition = { slideOutHorizontally(targetOffsetX = { it / 2 }, animationSpec = tween(500)) }
         ) {
-            DetailInfo.screen(navController, it.arguments)
+           DetailInfo.screen(navController, it.arguments)
         }
     }
 }

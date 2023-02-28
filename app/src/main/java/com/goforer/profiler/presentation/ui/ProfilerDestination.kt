@@ -8,8 +8,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
-import androidx.navigation.NavType
-import androidx.navigation.navArgument
 import com.goforer.profiler.presentation.stateholder.business.profile.ProfileViewModel
 import com.goforer.profiler.presentation.ui.MainActivity.Companion.DetailInfoRoute
 import com.goforer.profiler.presentation.ui.MainActivity.Companion.ProfilesRoute
@@ -38,15 +36,12 @@ object DetailInfo : ProfilerDestination {
     override val route = DetailInfoRoute
     private const val idTypeArg = "user_id"
     val routeWithArgs = "${route}/{${idTypeArg}}"
-    val arguments = listOf(
-        navArgument(idTypeArg) { type = NavType.IntType }
-    )
 
     override val icon = Icons.Filled.Details
     override val screen: @Composable (navController: NavHostController, arguments: Bundle?) -> Unit = { navController, arguments ->
         navController.previousBackStackEntry?.let {
             val profileViewModel: ProfileViewModel = viewModel(it)
-            val id = arguments?.getInt(DetailInfo.idTypeArg)
+            val id = arguments?.getInt(idTypeArg)
 
             id?.let { userId ->
                 DetailScreen(profileViewModel = profileViewModel, userId = userId, onBackPressed = {
