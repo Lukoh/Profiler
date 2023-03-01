@@ -27,16 +27,16 @@ fun ProfilerNavHost(
 
         composable(route = Profiles.route,
             enterTransition = {
-                slideInHorizontally(initialOffsetX = { it / 2 }, animationSpec = effect) + fadeIn()
+                slideInHorizontally(initialOffsetX = { it / 2 }, animationSpec = effect)
             },
             exitTransition = {
-                fadeOut() + slideOutHorizontally(targetOffsetX = { -(it / 2) }, animationSpec = effect)
+                slideOutHorizontally(targetOffsetX = { -(it / 2) }, animationSpec = effect)
             },
             popEnterTransition = {
-                fadeIn() + slideInHorizontally(initialOffsetX = { -(it / 2) }, animationSpec = effect)
+                slideInHorizontally(initialOffsetX = { -(it / 2) }, animationSpec = effect)
             },
             popExitTransition = {
-                slideOutHorizontally(targetOffsetX = { it / 2 }, animationSpec = effect) + fadeOut()
+                slideOutHorizontally(targetOffsetX = { it / 2 }, animationSpec = effect)
             }
         ) {
             Profiles.screen(navController, it.arguments)
@@ -46,16 +46,16 @@ fun ProfilerNavHost(
             DetailInfo.routeWithArgs,
             arguments = DetailInfo.arguments,
             enterTransition = {
-                slideInHorizontally(initialOffsetX = { it / 2 }, animationSpec = effect) + fadeIn()
+                slideInHorizontally(initialOffsetX = { it / 2 }, animationSpec = effect)
             },
             exitTransition = {
-                fadeOut() + slideOutHorizontally(targetOffsetX = { -(it / 2) }, animationSpec = effect)
+                slideOutHorizontally(targetOffsetX = { -(it / 2) }, animationSpec = effect)
             },
             popEnterTransition = {
-                fadeIn() + slideInHorizontally(initialOffsetX = { -(it / 2) }, animationSpec = effect)
+                slideInHorizontally(initialOffsetX = { -(it / 2) }, animationSpec = effect)
             },
             popExitTransition = {
-                slideOutHorizontally(targetOffsetX = { it / 2 }, animationSpec = effect) + fadeOut()
+                slideOutHorizontally(targetOffsetX = { it / 2 }, animationSpec = effect)
             }
         ) {
            DetailInfo.screen(navController, it.arguments)
