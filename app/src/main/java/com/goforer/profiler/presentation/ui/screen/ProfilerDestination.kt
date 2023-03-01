@@ -1,6 +1,8 @@
 package com.goforer.profiler.presentation.ui.screen
 
+import android.os.Build
 import android.os.Bundle
+import androidx.annotation.RequiresApi
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Adb
 import androidx.compose.material.icons.filled.Details
@@ -43,6 +45,7 @@ object DetailInfo : ProfilerDestination {
     )
 
     override val icon = Icons.Filled.Details
+    @RequiresApi(Build.VERSION_CODES.N)
     override val screen: @Composable (navController: NavHostController, arguments: Bundle?) -> Unit = { navController, arguments ->
         navController.previousBackStackEntry?.let {
             val profileViewModel: ProfileViewModel =  hiltViewModel(it)
@@ -50,7 +53,8 @@ object DetailInfo : ProfilerDestination {
 
             id?.let { userId ->
                 DetailScreen(profileViewModel = profileViewModel, userId = userId, onBackPressed = {
-                    navController.navigateUp()
+                    if (navController.previousBackStackEntry?.destination?.route == Profiles.route)
+                        navController.navigateUp()
                 })
             }
         }
