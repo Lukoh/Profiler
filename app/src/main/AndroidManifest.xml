@@ -22,7 +22,9 @@
         <activity
             android:name=".presentation.ui.MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.Profiler">
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.Profiler"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

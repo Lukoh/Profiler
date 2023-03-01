@@ -35,7 +35,7 @@ fun ProfileContent(
     val membered = rememberSaveable { mutableStateOf(false) }
     val context = LocalContext.current
     val keyboardController = LocalSoftwareKeyboardController.current
-    val profileViewModel: ProfileViewModel = hiltViewModel<ProfileViewModel>()
+    val profileViewModel: ProfileViewModel = hiltViewModel()
     val profilesState = profileViewModel.profiles.collectAsStateWithLifecycle()
     val hint =  stringResource(id = R.string.placeholder_search)
     val resourceState by produceState(initialValue = ResourceState()) {

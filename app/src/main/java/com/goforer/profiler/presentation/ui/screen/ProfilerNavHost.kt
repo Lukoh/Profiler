@@ -27,7 +27,7 @@ fun ProfilerNavHost(
 
         composable(route = Profiles.route,
             enterTransition = {
-                slideInHorizontally(initialOffsetX = { it / 2 }, animationSpec = effect)
+                slideInHorizontally(initialOffsetX = { it }, animationSpec = effect)
             },
             exitTransition = {
                 slideOutHorizontally(targetOffsetX = { -(it / 2) }, animationSpec = effect)
@@ -36,7 +36,7 @@ fun ProfilerNavHost(
                 slideInHorizontally(initialOffsetX = { -(it / 2) }, animationSpec = effect)
             },
             popExitTransition = {
-                slideOutHorizontally(targetOffsetX = { it / 2 }, animationSpec = effect)
+                slideOutHorizontally(targetOffsetX = { it }, animationSpec = effect)
             }
         ) {
             Profiles.screen(navController, it.arguments)
@@ -46,7 +46,7 @@ fun ProfilerNavHost(
             DetailInfo.routeWithArgs,
             arguments = DetailInfo.arguments,
             enterTransition = {
-                slideInHorizontally(initialOffsetX = { it / 2 }, animationSpec = effect)
+                slideInHorizontally(initialOffsetX = { it }, animationSpec = effect)
             },
             exitTransition = {
                 slideOutHorizontally(targetOffsetX = { -(it / 2) }, animationSpec = effect)
@@ -55,7 +55,7 @@ fun ProfilerNavHost(
                 slideInHorizontally(initialOffsetX = { -(it / 2) }, animationSpec = effect)
             },
             popExitTransition = {
-                slideOutHorizontally(targetOffsetX = { it / 2 }, animationSpec = effect)
+                slideOutHorizontally(targetOffsetX = { it }, animationSpec = effect)
             }
         ) {
            DetailInfo.screen(navController, it.arguments)

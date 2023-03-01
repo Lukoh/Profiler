@@ -76,7 +76,7 @@ class MainActivity : ComponentActivity() {
     showSystemUi = true
 )
 @Composable
-private fun PreviewShowContainer() {
+fun PreviewShowContainer() {
     ProfilerTheme {
         val profileList = mutableListOf(
             Profile(0,"LLyyiok", "남성", true,"https://avatars.githubusercontent.com/u/18302717?v=4", "sociable & gregarious", "+820101111-1111","", "Mar, 04, 1999"),

@@ -50,7 +50,7 @@ object DetailInfo : ProfilerDestination {
 
             id?.let { userId ->
                 DetailScreen(profileViewModel = profileViewModel, userId = userId, onBackPressed = {
-                    navController.popBackStack()
+                    navController.navigateUp()
                 })
             }
         }
