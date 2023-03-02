@@ -38,7 +38,7 @@ import com.goforer.profiler.data.source.model.entity.source.profile.Profile
 @Composable
 fun ListSection(
     modifier: Modifier = Modifier,
-    profilesState: State<List<Profile>>,
+    profiles: List<Profile>,
     membered: MutableState<Boolean>,
     lazyListState: LazyListState = rememberLazyListState(),
     onItemClicked: (item: Profile, index: Int) -> Unit,
@@ -55,7 +55,7 @@ fun ListSection(
             state = lazyListState,
             verticalArrangement = Arrangement.spacedBy(4.dp)
         ) {
-            itemsIndexed(profilesState.value, key = { _, item -> item.id }, itemContent = { index, item ->
+            itemsIndexed(profiles, key = { _, item -> item.id }, itemContent = { index, item ->
                 ProfileItem(
                     modifier,
                     item,

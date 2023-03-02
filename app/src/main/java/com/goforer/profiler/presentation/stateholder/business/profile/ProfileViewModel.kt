@@ -31,7 +31,7 @@ class ProfileViewModel
     private val profileRepository: ProfileRepository
 ) : BaseViewModel() {
     private val _profiles = MutableStateFlow<List<Profile>>(listOf())
-    val profiles = _profiles
+    val profiles: StateFlow<List<Profile>> = _profiles
 
     init {
         viewModelScope.launch {

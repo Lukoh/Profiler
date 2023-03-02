@@ -18,6 +18,7 @@ package com.goforer.profiler.presentation.stateholder.business
 
 import androidx.lifecycle.ViewModel
 import com.goforer.profiler.data.source.network.api.Params
+import timber.log.Timber
 import javax.inject.Singleton
 
 /*
@@ -25,5 +26,7 @@ import javax.inject.Singleton
  */
 @Singleton
 abstract class BaseViewModel : ViewModel() {
-    open fun trigger(replyCount: Int, params: Params) {}
+    open fun trigger(replyCount: Int, params: Params) {
+        Timber.d("Triggered Params")
+    }
 }
