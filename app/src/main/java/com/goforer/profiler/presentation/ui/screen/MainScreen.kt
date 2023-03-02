@@ -38,7 +38,7 @@ fun MainScreen() {
             val currentDestination = currentBackStack?.destination
             val currentScreen = ProfilerScreens.find { it.route == currentDestination?.route } ?: Profiles
 
-            ProfilerNavHost(Modifier, navController = navController)
+            ProfilerHomeScreen(Modifier, navController = navController)
         }
     }
 }

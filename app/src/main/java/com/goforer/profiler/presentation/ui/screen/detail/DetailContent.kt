@@ -23,7 +23,7 @@ fun DetailContent(
                     0.dp,
                     contentPadding.calculateTopPadding(),
                     0.dp,
-                    contentPadding.calculateBottomPadding()
+                    0.dp
                 )
                 .noRippleClickable { }
         ) {

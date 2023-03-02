@@ -18,7 +18,7 @@ fun NavGraphBuilder.profileGraph(navController: NavHostController, navigationRou
 
         composable(route = Profiles.route,
             enterTransition = {
-                slideInHorizontally(initialOffsetX = { it }, animationSpec = effect)
+                slideInHorizontally(initialOffsetX = { it / 2}, animationSpec = effect)
             },
             exitTransition = {
                 slideOutHorizontally(targetOffsetX = { -(it / 2) }, animationSpec = effect)
@@ -27,7 +27,7 @@ fun NavGraphBuilder.profileGraph(navController: NavHostController, navigationRou
                 slideInHorizontally(initialOffsetX = { -(it / 2) }, animationSpec = effect)
             },
             popExitTransition = {
-                slideOutHorizontally(targetOffsetX = { it }, animationSpec = effect)
+                slideOutHorizontally(targetOffsetX = { it / 2 }, animationSpec = effect)
             }
         ) {
             Profiles.screen(navController, it.arguments)
@@ -37,7 +37,7 @@ fun NavGraphBuilder.profileGraph(navController: NavHostController, navigationRou
             DetailInfo.routeWithArgs,
             arguments = DetailInfo.arguments,
             enterTransition = {
-                slideInHorizontally(initialOffsetX = { it }, animationSpec = effect)
+                slideInHorizontally(initialOffsetX = { it / 2 }, animationSpec = effect)
             },
             exitTransition = {
                 slideOutHorizontally(targetOffsetX = { -(it / 2) }, animationSpec = effect)
@@ -46,10 +46,34 @@ fun NavGraphBuilder.profileGraph(navController: NavHostController, navigationRou
                 slideInHorizontally(initialOffsetX = { -(it / 2) }, animationSpec = effect)
             },
             popExitTransition = {
-                slideOutHorizontally(targetOffsetX = { it }, animationSpec = effect)
+                slideOutHorizontally(targetOffsetX = { it / 2 }, animationSpec = effect)
             }
         ) {
             DetailInfo.screen(navController, it.arguments)
+        }
+    }
+}
+
+@OptIn(ExperimentalAnimationApi::class)
+fun NavGraphBuilder.settingGraph(navController: NavHostController, navigationRoute: String, startDestination: String ) {
+    navigation(startDestination = startDestination, route = navigationRoute) {
+        val effect = tween<IntOffset>(durationMillis = 700, easing = CubicBezierEasing(0.08f,0.93f,0.68f,1.27f))
+
+        composable(route = Setting.route,
+            enterTransition = {
+                slideInHorizontally(initialOffsetX = { it / 2}, animationSpec = effect)
+            },
+            exitTransition = {
+                slideOutHorizontally(targetOffsetX = { -(it / 2) }, animationSpec = effect)
+            },
+            popEnterTransition = {
+                slideInHorizontally(initialOffsetX = { -(it / 2) }, animationSpec = effect)
+            },
+            popExitTransition = {
+                slideOutHorizontally(targetOffsetX = { it / 2 }, animationSpec = effect)
+            }
+        ) {
+            Setting.screen(navController, it.arguments)
         }
     }
 }

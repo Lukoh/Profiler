@@ -2,7 +2,9 @@ package com.goforer.profiler.presentation.ui.screen
 
 import android.os.Build
 import android.os.Bundle
+import androidx.annotation.DrawableRes
 import androidx.annotation.RequiresApi
+import androidx.annotation.StringRes
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Adb
 import androidx.compose.material.icons.filled.Details
@@ -12,16 +14,25 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.navArgument
+import com.goforer.profiler.R
 import com.goforer.profiler.presentation.stateholder.business.profile.ProfileViewModel
 import com.goforer.profiler.presentation.ui.MainActivity.Companion.DetailInfoRoute
 import com.goforer.profiler.presentation.ui.MainActivity.Companion.ProfilesRoute
+import com.goforer.profiler.presentation.ui.MainActivity.Companion.SettingRoute
+import com.goforer.profiler.presentation.ui.MainActivity.Companion.navigationRoutes
 import com.goforer.profiler.presentation.ui.screen.profile.ProfileScreen
 import com.goforer.profiler.presentation.ui.screen.detail.DetailScreen
+import com.goforer.profiler.presentation.ui.screen.setting.SettingScreen
 
 interface ProfilerDestination {
     val icon: ImageVector
     val route: String
     val screen: @Composable (navController: NavHostController, arguments: Bundle) -> Unit
+}
+
+sealed class BottomNavItem(val route: String, @DrawableRes val icon: Int, @StringRes val title: Int) {
+    object Profile : BottomNavItem(navigationRoutes[0], R.drawable.ic_profile, R.string.profile)
+    object Setting : BottomNavItem(navigationRoutes[1], R.drawable.ic_setting, R.string.setting)
 }
 
 object Profiles : ProfilerDestination {
@@ -57,6 +68,18 @@ object DetailInfo : ProfilerDestination {
                         navController.navigateUp()
                 })
             }
+        }
+    }
+}
+
+object Setting : ProfilerDestination {
+    override val route = SettingRoute
+
+    override val icon = Icons.Filled.Details
+    @RequiresApi(Build.VERSION_CODES.N)
+    override val screen: @Composable (navController: NavHostController, arguments: Bundle?) -> Unit = { navController, _ ->
+        navController.previousBackStackEntry?.let {
+            SettingScreen()
         }
     }
 }
