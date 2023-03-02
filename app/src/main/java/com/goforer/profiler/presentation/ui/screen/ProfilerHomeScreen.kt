@@ -1,6 +1,8 @@
 package com.goforer.profiler.presentation.ui.screen
 
 import android.annotation.SuppressLint
+import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
 import androidx.compose.animation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.BottomNavigation
@@ -25,8 +27,15 @@ import androidx.navigation.*
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.currentBackStackEntryAsState
+import com.goforer.profiler.R
+import com.goforer.profiler.presentation.ui.MainActivity
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
+
+sealed class BottomNavItem(val route: String, @DrawableRes val icon: Int, @StringRes val title: Int) {
+    object Profile : BottomNavItem(MainActivity.navigationRoutes[0], R.drawable.ic_profile, R.string.profile)
+    object Setting : BottomNavItem(MainActivity.navigationRoutes[1], R.drawable.ic_setting, R.string.setting)
+}
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalAnimationApi::class, ExperimentalMaterial3Api::class)
