@@ -45,13 +45,12 @@ fun ProfileSection(
 ) {
     val lazyListState: LazyListState = rememberLazyListState()
     val editableInputState = rememberEditableInputState(hint = "Search")
-    var showButton by remember { mutableStateOf(false) }
     var searchedKeyword by remember { mutableStateOf("") }
+    val showButton by remember { derivedStateOf { searchedKeyword.isNotEmpty() } }
+    var clicked by remember { mutableStateOf(false) }
     val profiles by remember(profilesState.value) {
         derivedStateOf { profilesState.value.filter { it.name.contains(searchedKeyword) } }
     }
-
-    var clicked by remember { mutableStateOf(false) }
 
     if (!editableInputState.isHint)
         onSearched(editableInputState.text, false)
@@ -73,7 +72,6 @@ fun ProfileSection(
                 onSearched = { keyword ->
                     profilesState.value.find { it.name.contains(keyword)}?.let {
                         searchedKeyword = keyword
-                        showButton = true
                     }
 
                     onSearched(keyword, true)
@@ -112,7 +110,6 @@ fun ProfileSection(
             LaunchedEffect(lazyListState) {
                 searchedKeyword = ""
                 clicked = false
-                showButton = false
             }
         }
     }
