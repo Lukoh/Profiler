@@ -47,6 +47,7 @@ class MainActivity : ComponentActivity() {
 
         internal const val ProfilesRoute = "profiles"
         internal const val DetailInfoRoute = "detail_info"
+        internal val navigationRoutes = listOf("Profile", "Setting")
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
