@@ -21,7 +21,7 @@ fun SettingContent(
     contentPadding: PaddingValues = PaddingValues(4.dp)
 ) {
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize()
             .background(colorResource(id = R.color.white))
             .wrapContentSize(Alignment.Center)
