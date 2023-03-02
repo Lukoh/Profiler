@@ -47,7 +47,7 @@ fun ProfileScreen(modifier: Modifier = Modifier, onNavigateToDetailInfo: (Int) -
             CenterAlignedTopAppBar(
                 title = {
                     Text(
-                        stringResource(id = R.string.profile),
+                        stringResource(id = R.string.app_name),
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis,
                         fontFamily = FontFamily.SansSerif,
