@@ -70,9 +70,8 @@ fun ProfileContent(
                 modifier = modifier, contentPadding,
                 profilesState = resourceState.data as State<List<Profile>>,
                 membered = membered,
-                onItemClicked = { item, index ->
+                onItemClicked = { _, index ->
                     selectedIndex = index
-                    Toast.makeText(context, "${item.name} & Selected Index : $selectedIndex", Toast.LENGTH_SHORT).show()
                 },
                 onMemberChanged =  { profile, changed ->
                     scope.launch {
