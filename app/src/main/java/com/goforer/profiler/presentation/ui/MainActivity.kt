@@ -45,10 +45,9 @@ class MainActivity : ComponentActivity() {
     companion object {
         internal const val SplashWaitTime = 1200L
 
-        internal const val ProfilesRoute = "profiles"
-        internal const val DetailInfoRoute = "detail_info"
-        internal const val SettingRoute = "setting"
-        internal val navigationRoutes = listOf("Profile", "Setting")
+        internal val profileRoutes = listOf("profiles", "detail_info")
+        internal val settingRoutes = listOf("setting")
+        internal val navigationRoutes = listOf("profileHome", "settingHome")
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

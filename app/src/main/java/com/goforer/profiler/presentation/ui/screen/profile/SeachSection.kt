@@ -65,8 +65,9 @@ fun SearchSection(
                 )
             },
             colors = TextFieldDefaults.textFieldColors(
-                placeholderColor = MaterialTheme.colorScheme.surface,
-                textColor = Color.Gray,
+                focusedPlaceholderColor = MaterialTheme.colorScheme.primary,
+                unfocusedPlaceholderColor = MaterialTheme.colorScheme.primary,
+                focusedTextColor = Color.Gray,
                 disabledTextColor = Color.Transparent,
                 focusedIndicatorColor = Color.Transparent,
                 unfocusedIndicatorColor = Color.Transparent,

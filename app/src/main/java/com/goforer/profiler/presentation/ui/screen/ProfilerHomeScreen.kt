@@ -28,9 +28,9 @@ import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.goforer.profiler.R
-import com.goforer.profiler.presentation.ui.MainActivity.Companion.ProfilesRoute
-import com.goforer.profiler.presentation.ui.MainActivity.Companion.SettingRoute
 import com.goforer.profiler.presentation.ui.MainActivity.Companion.navigationRoutes
+import com.goforer.profiler.presentation.ui.MainActivity.Companion.profileRoutes
+import com.goforer.profiler.presentation.ui.MainActivity.Companion.settingRoutes
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 
@@ -111,7 +111,7 @@ fun ProfilerHomeScreen(
 
     navController.addOnDestinationChangedListener { _, destination, _ ->
         isVisible = when(destination.route) {
-            ProfilesRoute, SettingRoute -> {
+            profileRoutes[0], settingRoutes[0] -> {
                 true
             }
 

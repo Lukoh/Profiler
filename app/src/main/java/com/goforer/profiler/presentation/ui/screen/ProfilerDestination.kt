@@ -4,8 +4,9 @@ import android.os.Build
 import android.os.Bundle
 import androidx.annotation.RequiresApi
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Adb
 import androidx.compose.material.icons.filled.Details
+import androidx.compose.material.icons.sharp.Person
+import androidx.compose.material.icons.sharp.Settings
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -13,9 +14,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.navArgument
 import com.goforer.profiler.presentation.stateholder.business.profile.ProfileViewModel
-import com.goforer.profiler.presentation.ui.MainActivity.Companion.DetailInfoRoute
-import com.goforer.profiler.presentation.ui.MainActivity.Companion.ProfilesRoute
-import com.goforer.profiler.presentation.ui.MainActivity.Companion.SettingRoute
+import com.goforer.profiler.presentation.ui.MainActivity.Companion.profileRoutes
+import com.goforer.profiler.presentation.ui.MainActivity.Companion.settingRoutes
 import com.goforer.profiler.presentation.ui.screen.profile.ProfileScreen
 import com.goforer.profiler.presentation.ui.screen.detail.DetailScreen
 import com.goforer.profiler.presentation.ui.screen.setting.SettingScreen
@@ -27,8 +27,8 @@ interface ProfilerDestination {
 }
 
 object Profiles : ProfilerDestination {
-    override val icon = Icons.Filled.Adb
-    override val route = ProfilesRoute
+    override val icon = Icons.Sharp.Person
+    override val route = profileRoutes[0]
     override val screen: @Composable (navController: NavHostController, arguments: Bundle?) -> Unit = { navHostController, _ ->
         ProfileScreen(
             onNavigateToDetailInfo = {
@@ -39,7 +39,7 @@ object Profiles : ProfilerDestination {
 }
 
 object DetailInfo : ProfilerDestination {
-    override val route = DetailInfoRoute
+    override val route = profileRoutes[0]
     private const val idTypeArg = "user_id"
     val routeWithArgs = "${route}/{${idTypeArg}}"
     val arguments = listOf(
@@ -64,9 +64,9 @@ object DetailInfo : ProfilerDestination {
 }
 
 object Setting : ProfilerDestination {
-    override val route = SettingRoute
+    override val route = settingRoutes[0]
 
-    override val icon = Icons.Filled.Details
+    override val icon = Icons.Sharp.Settings
     @RequiresApi(Build.VERSION_CODES.N)
     override val screen: @Composable (navController: NavHostController, arguments: Bundle?) -> Unit = { navController, _ ->
         navController.previousBackStackEntry?.let {
