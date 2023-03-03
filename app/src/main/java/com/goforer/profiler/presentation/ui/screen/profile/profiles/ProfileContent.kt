@@ -87,18 +87,6 @@ fun ProfileContent(
                 onSearched = { text, byClicked ->
                     profilesState.value.find { it.name == text }?.let {
                         keyboardController?.hide()
-                        if (it.sex == "남성")
-                            Toast.makeText(
-                                context,
-                                "${it.name} is the gentlemen and our member.",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        else
-                            Toast.makeText(
-                                context,
-                                "${it.name} is the lady and our  member.",
-                                Toast.LENGTH_SHORT
-                            ).show()
                     }
 
                     profilesState.value.find { it.name == text } ?: if (byClicked) {
@@ -109,9 +97,9 @@ fun ProfileContent(
                                 "$text is not our member.",
                                 Toast.LENGTH_SHORT
                             ).show()
-                    } else {
-                        Timber.d("is texted by typing")
-                    }
+                        } else {
+                            Timber.d("is texted by typing")
+                        }
                 },
                 onNavigateToDetailInfo = onNavigateToDetailInfo
             )
