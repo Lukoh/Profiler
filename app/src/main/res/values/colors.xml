@@ -21,4 +21,5 @@
     <color name="colorSystemBgSecondary">#F2F2F7</color>
 
     <color name="colorTransparent">#00000000</color>
+    <color name="bottom_bar">#FFF0FFF0</color>
 </resources>

@@ -55,9 +55,57 @@ fun NavGraphBuilder.profileGraph(navController: NavHostController, navigationRou
 }
 
 @OptIn(ExperimentalAnimationApi::class)
-fun NavGraphBuilder.settingGraph(navController: NavHostController, navigationRoute: String, startDestination: String ) {
+fun NavGraphBuilder.communityGraph(navController: NavHostController, navigationRoute: String, startDestination: String ) {
     navigation(startDestination = startDestination, route = navigationRoute) {
         val effect = tween<IntOffset>(durationMillis = 700, easing = CubicBezierEasing(0.08f,0.93f,0.68f,1.27f))
+
+        composable(route = Community.route,
+            enterTransition = {
+                slideInHorizontally(initialOffsetX = { it / 2}, animationSpec = effect)
+            },
+            exitTransition = {
+                slideOutHorizontally(targetOffsetX = { -(it / 2) }, animationSpec = effect)
+            },
+            popEnterTransition = {
+                slideInHorizontally(initialOffsetX = { -(it / 2) }, animationSpec = effect)
+            },
+            popExitTransition = {
+                slideOutHorizontally(targetOffsetX = { it / 2 }, animationSpec = effect)
+            }
+        ) {
+            Community.screen(navController, it.arguments)
+        }
+    }
+}
+
+@OptIn(ExperimentalAnimationApi::class)
+fun NavGraphBuilder.notificationGraph(navController: NavHostController, navigationRoute: String, startDestination: String ) {
+    navigation(startDestination = startDestination, route = navigationRoute) {
+        val effect = tween<IntOffset>(durationMillis = 700, easing = CubicBezierEasing(0.08f,0.93f,0.68f,1.27f))
+
+        composable(route = Notification.route,
+            enterTransition = {
+                slideInHorizontally(initialOffsetX = { it / 2}, animationSpec = effect)
+            },
+            exitTransition = {
+                slideOutHorizontally(targetOffsetX = { -(it / 2) }, animationSpec = effect)
+            },
+            popEnterTransition = {
+                slideInHorizontally(initialOffsetX = { -(it / 2) }, animationSpec = effect)
+            },
+            popExitTransition = {
+                slideOutHorizontally(targetOffsetX = { it / 2 }, animationSpec = effect)
+            }
+        ) {
+            Notification.screen(navController, it.arguments)
+        }
+    }
+}
+
+@OptIn(ExperimentalAnimationApi::class)
+fun NavGraphBuilder.settingGraph(navController: NavHostController, navigationRoute: String, startDestination: String ) {
+    navigation(startDestination = startDestination, route = navigationRoute) {
+        val effect = tween<IntOffset>(durationMillis = 700, easing = CubicBezierEasing(0.08f,0.23f,0.68f,1.27f))
 
         composable(route = Setting.route,
             enterTransition = {

@@ -5,6 +5,8 @@ import android.os.Bundle
 import androidx.annotation.RequiresApi
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Details
+import androidx.compose.material.icons.sharp.Commute
+import androidx.compose.material.icons.sharp.Notifications
 import androidx.compose.material.icons.sharp.Person
 import androidx.compose.material.icons.sharp.Settings
 import androidx.compose.runtime.Composable
@@ -14,10 +16,14 @@ import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.navArgument
 import com.goforer.profiler.presentation.stateholder.business.profile.ProfileViewModel
+import com.goforer.profiler.presentation.ui.MainActivity.Companion.communityRoutes
+import com.goforer.profiler.presentation.ui.MainActivity.Companion.notificationRoutes
 import com.goforer.profiler.presentation.ui.MainActivity.Companion.profileRoutes
 import com.goforer.profiler.presentation.ui.MainActivity.Companion.settingRoutes
-import com.goforer.profiler.presentation.ui.screen.profile.ProfileScreen
-import com.goforer.profiler.presentation.ui.screen.detail.DetailScreen
+import com.goforer.profiler.presentation.ui.screen.community.CommunityScreen
+import com.goforer.profiler.presentation.ui.screen.notification.NotificationScreen
+import com.goforer.profiler.presentation.ui.screen.profile.profiles.ProfileScreen
+import com.goforer.profiler.presentation.ui.screen.profile.detail.DetailScreen
 import com.goforer.profiler.presentation.ui.screen.setting.SettingScreen
 
 interface ProfilerDestination {
@@ -26,6 +32,7 @@ interface ProfilerDestination {
     val screen: @Composable (navController: NavHostController, arguments: Bundle) -> Unit
 }
 
+//Profile
 object Profiles : ProfilerDestination {
     override val icon = Icons.Sharp.Person
     override val route = profileRoutes[0]
@@ -63,6 +70,33 @@ object DetailInfo : ProfilerDestination {
     }
 }
 
+//Community
+object Community : ProfilerDestination {
+    override val route = communityRoutes[0]
+
+    override val icon = Icons.Sharp.Commute
+    @RequiresApi(Build.VERSION_CODES.N)
+    override val screen: @Composable (navController: NavHostController, arguments: Bundle?) -> Unit = { navController, _ ->
+        navController.previousBackStackEntry?.let {
+            CommunityScreen()
+        }
+    }
+}
+
+//Notification
+object Notification : ProfilerDestination {
+    override val route = notificationRoutes[0]
+
+    override val icon = Icons.Sharp.Notifications
+    @RequiresApi(Build.VERSION_CODES.N)
+    override val screen: @Composable (navController: NavHostController, arguments: Bundle?) -> Unit = { navController, _ ->
+        navController.previousBackStackEntry?.let {
+            NotificationScreen()
+        }
+    }
+}
+
+//Setting
 object Setting : ProfilerDestination {
     override val route = settingRoutes[0]
 
@@ -75,4 +109,4 @@ object Setting : ProfilerDestination {
     }
 }
 
-val ProfilerScreens = listOf(Profiles, DetailInfo)
+val ProfilerScreens = listOf(Profiles, DetailInfo, Community, Setting)

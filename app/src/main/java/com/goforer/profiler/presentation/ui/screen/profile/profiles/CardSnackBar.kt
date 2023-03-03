@@ -14,7 +14,7 @@
  * If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.goforer.profiler.presentation.ui.screen.profile
+package com.goforer.profiler.presentation.ui.screen.profile.profiles
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.*

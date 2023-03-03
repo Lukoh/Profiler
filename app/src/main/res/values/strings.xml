@@ -2,6 +2,8 @@
     <string name="app_name">Profiler</string>
     <string name="member_check">Member</string>
     <string name="profile">Profile</string>
+    <string name="community">Community</string>
+    <string name="notification">Notification</string>
     <string name="setting">Setting</string>
     <string name="placeholder_search">Search</string>
 

@@ -35,7 +35,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.view.WindowCompat
 import com.goforer.profiler.data.source.model.entity.source.profile.Profile
 import com.goforer.profiler.presentation.ui.screen.MainScreen
-import com.goforer.profiler.presentation.ui.screen.profile.ProfileSection
+import com.goforer.profiler.presentation.ui.screen.profile.profiles.ProfileSection
 import com.goforer.profiler.presentation.ui.theme.ProfilerTheme
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -46,8 +46,10 @@ class MainActivity : ComponentActivity() {
         internal const val SplashWaitTime = 1200L
 
         internal val profileRoutes = listOf("profiles", "detail_info")
+        internal val communityRoutes = listOf("community")
+        internal val notificationRoutes = listOf("notification")
         internal val settingRoutes = listOf("setting")
-        internal val navigationRoutes = listOf("profileHome", "settingHome")
+        internal val navigationRoutes = listOf("profileHome", "communityHome", "Notification", "settingHome")
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

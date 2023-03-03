@@ -1,6 +1,6 @@
 @file:Suppress("UNCHECKED_CAST")
 
-package com.goforer.profiler.presentation.ui.screen.profile
+package com.goforer.profiler.presentation.ui.screen.profile.profiles
 
 import android.widget.Toast
 import androidx.compose.foundation.layout.PaddingValues
