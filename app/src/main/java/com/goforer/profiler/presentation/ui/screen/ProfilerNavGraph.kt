@@ -14,7 +14,7 @@ import com.google.accompanist.navigation.animation.composable
 @OptIn(ExperimentalAnimationApi::class)
 fun NavGraphBuilder.profileGraph(navController: NavHostController, navigationRoute: String, startDestination: String ) {
     navigation(startDestination = startDestination, route = navigationRoute) {
-        val effect = tween<IntOffset>(durationMillis = 700, easing = CubicBezierEasing(0.08f,0.93f,0.68f,1.27f))
+        val effect = tween<IntOffset>(durationMillis = 600, easing = CubicBezierEasing(0.125f,0.2f,0.35f,2.55f))
 
         composable(route = Profiles.route,
             enterTransition = {
