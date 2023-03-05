@@ -42,7 +42,7 @@ object Content : ProfilerDestination {
     override val icon = Icons.Filled.Details
     @RequiresApi(Build.VERSION_CODES.N)
     override val screen: @Composable (navController: NavHostController, bundle: Bundle?) -> Unit = { navController, bundle ->
-        navController.currentBackStackEntry?.let {
+        navController.previousBackStackEntry?.let {
             val notificationViewModel: NotificationViewModel =  hiltViewModel(it)
             val id = bundle?.getInt(idTypeArg)
 
