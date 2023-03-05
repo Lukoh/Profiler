@@ -19,4 +19,5 @@
 
     <string name="notification_posted">posted </string>
     <string name="notification_content">Notification Content</string>
+    <string name="notification_work">Work In - </string>
 </resources>

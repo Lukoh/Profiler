@@ -29,10 +29,15 @@ fun ContentContent(
                 .animateContentSize()
                 .noRippleClickable { }
         ) {
+            TitleItem(modifier = Modifier, it)
+            Spacer(modifier = Modifier.height(4.dp))
             PictureItem(modifier = Modifier, it)
             Spacer(modifier = Modifier.height(4.dp))
             NameItem(modifier = Modifier, it)
             Spacer(modifier = Modifier.height(4.dp))
+            TeamItem(modifier = Modifier, it)
+            Spacer(modifier = Modifier.height(16.dp))
+            ContentItem(modifier = Modifier, it)
         }
     }
 }
