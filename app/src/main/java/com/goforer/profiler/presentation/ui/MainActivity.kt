@@ -33,9 +33,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.view.WindowCompat
-import com.goforer.profiler.data.source.model.entity.source.profile.Profile
+import com.goforer.profiler.data.source.model.entity.source.response.mynetwork.Person
 import com.goforer.profiler.presentation.ui.screen.MainScreen
-import com.goforer.profiler.presentation.ui.screen.profile.profiles.ProfileSection
+import com.goforer.profiler.presentation.ui.screen.mynetwork.networks.MyNetworkSection
 import com.goforer.profiler.presentation.ui.theme.ProfilerTheme
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -44,12 +44,6 @@ import kotlinx.coroutines.launch
 class MainActivity : ComponentActivity() {
     companion object {
         internal const val SplashWaitTime = 1200L
-
-        internal val profileRoutes = listOf("profiles", "detail_info")
-        internal val communityRoutes = listOf("community")
-        internal val notificationRoutes = listOf("notification")
-        internal val settingRoutes = listOf("setting")
-        internal val navigationRoutes = listOf("profileHome", "communityHome", "Notification", "settingHome")
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -82,19 +76,19 @@ class MainActivity : ComponentActivity() {
 fun PreviewShowContainer() {
     ProfilerTheme {
         val profileList = mutableListOf(
-            Profile(0,"LLyyiok", "남성", true,"https://avatars.githubusercontent.com/u/18302717?v=4", "sociable & gregarious", "+820101111-1111","", "Mar, 04, 1999"),
-            Profile(1,"Afredo", "남성", true,"https://avatars.githubusercontent.com/u/18302717?v=4", "gregarious & friendly", "+820101111-1111","", "Mar, 04, 1999"),
-            Profile(2,"Aliche", "여성", true,"https://avatars.githubusercontent.com/u/18302717?v=4", "affable & convivial", "+820101111-1111","", "Mar, 04, 1999"),
-            Profile(3,"Tina", "여성", true,"https://avatars.githubusercontent.com/u/18302717?v=4","affable & convivial", "+820101111-1111","", "Mar, 04, 1999"),
-            Profile(4,"Lolly", "여성", true,"https://avatars.githubusercontent.com/u/18302717?v=4","affable & convivial", "+820101111-1111","", "Mar, 04, 1999"),
-            Profile(5,"Hassen", "남성", true,"https://avatars.githubusercontent.com/u/18302717?v=4","affable & convivial", "+820101111-1111","", "Mar, 04, 1999"),
-            Profile(6,"Lyll", "여성", true,"https://avatars.githubusercontent.com/u/18302717?v=4", "sociable & gregarious", "+820101111-1111","", "Mar, 04, 1999"),
-            Profile(7,"Kevin", "남성", true,"https://avatars.githubusercontent.com/u/18302717?v=4", "affable & convivial", "+820101111-1111","", "Mar, 04, 1999"),
-            Profile(8,"Tony", "남성", true,"https://avatars.githubusercontent.com/u/18302717?v=4", "affable & convivial", "+820101111-1111","", "Mar, 04, 1999"),
-            Profile(9,"Steven", "남성", false,"https://avatars.githubusercontent.com/u/18302717?v=4", "affable & convivial", "+820101111-1111","", "Mar, 04, 1999"),
-            Profile(10,"Micle", "남성", false,"https://avatars.githubusercontent.com/u/18302717?v=4", "affable & convivial", "+820101111-1111","", "Mar, 04, 1999")
+            Person(0,"LLyyiok", "남성", true,"https://avatars.githubusercontent.com/u/18302717?v=4", "sociable & gregarious", "+820101111-1111","", "Mar, 04, 1999"),
+            Person(1,"Afredo", "남성", true,"https://avatars.githubusercontent.com/u/18302717?v=4", "gregarious & friendly", "+820101111-1111","", "Mar, 04, 1999"),
+            Person(2,"Aliche", "여성", true,"https://avatars.githubusercontent.com/u/18302717?v=4", "affable & convivial", "+820101111-1111","", "Mar, 04, 1999"),
+            Person(3,"Tina", "여성", true,"https://avatars.githubusercontent.com/u/18302717?v=4","affable & convivial", "+820101111-1111","", "Mar, 04, 1999"),
+            Person(4,"Lolly", "여성", true,"https://avatars.githubusercontent.com/u/18302717?v=4","affable & convivial", "+820101111-1111","", "Mar, 04, 1999"),
+            Person(5,"Hassen", "남성", true,"https://avatars.githubusercontent.com/u/18302717?v=4","affable & convivial", "+820101111-1111","", "Mar, 04, 1999"),
+            Person(6,"Lyll", "여성", true,"https://avatars.githubusercontent.com/u/18302717?v=4", "sociable & gregarious", "+820101111-1111","", "Mar, 04, 1999"),
+            Person(7,"Kevin", "남성", true,"https://avatars.githubusercontent.com/u/18302717?v=4", "affable & convivial", "+820101111-1111","", "Mar, 04, 1999"),
+            Person(8,"Tony", "남성", true,"https://avatars.githubusercontent.com/u/18302717?v=4", "affable & convivial", "+820101111-1111","", "Mar, 04, 1999"),
+            Person(9,"Steven", "남성", false,"https://avatars.githubusercontent.com/u/18302717?v=4", "affable & convivial", "+820101111-1111","", "Mar, 04, 1999"),
+            Person(10,"Micle", "남성", false,"https://avatars.githubusercontent.com/u/18302717?v=4", "affable & convivial", "+820101111-1111","", "Mar, 04, 1999")
         )
-        val profilesState: State<List<Profile>> = rememberSaveable { mutableStateOf<List<Profile>>(profileList) }
+        val myNetworksState: State<List<Person>> = rememberSaveable { mutableStateOf<List<Person>>(profileList) }
         val isChecked = rememberSaveable { mutableStateOf(false) }
         val modifier = Modifier
 
@@ -131,15 +125,15 @@ fun PreviewShowContainer() {
 
                 var memberName by rememberSaveable { mutableStateOf("") }
 
-                ProfileSection(
+                MyNetworkSection(
                     modifier = modifier,
                     contentPadding = innerPadding,
-                    profilesState = profilesState,
-                    membered = isChecked,
+                    myNetworksState = myNetworksState,
+                    followed = isChecked,
                     onItemClicked = { _, _ ->  },
-                    onMemberChanged = { profile, changed ->
+                    onFollowed = { profile, changed ->
                         scope.launch {
-                            profile.membered = changed
+                            profile.followed = changed
                             isChecked.value = changed
                             memberName = profile.name
                         }

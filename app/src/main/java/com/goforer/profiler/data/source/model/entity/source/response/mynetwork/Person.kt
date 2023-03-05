@@ -14,21 +14,20 @@
  * If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.goforer.profiler.presentation.ui.theme
+package com.goforer.profiler.data.source.model.entity.source.response.mynetwork
 
-import androidx.compose.ui.graphics.Color
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 
-val Purple80 = Color(0xFFD0BCFF)
-val PurpleGrey80 = Color(0xFFCCC2DC)
-val Pink80 = Color(0xFFEFB8C8)
-
-val Purple40 = Color(0xFF6650a4)
-val PurpleGrey40 = Color(0xFF625b71)
-val Pink40 = Color(0xFF7D5260)
-
-val ColorBgSecondary = Color(0xFFF3FAFE)
-
-val ColorBottomBar = Color(0xFFD4F2FF)
-val ColorText1 = Color(0xFF203F2F)
-val ColorText2 = Color(0xFF018786)
-val ColorText3 = Color(0x993C3C43)
+@Parcelize
+data class Person(
+    val id: Int,
+    val name: String,
+    val sex: String,
+    var followed : Boolean = false,
+    val profileImage: String,
+    val personality: String,
+    val cellphone: String,
+    val address: String,
+    val birthday: String
+) : Parcelable

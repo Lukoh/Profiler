@@ -7,13 +7,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.goforer.profiler.R
 import com.goforer.profiler.presentation.ui.ext.noRippleClickable
+import com.goforer.profiler.presentation.ui.theme.ColorBgSecondary
 
 @Composable
 fun SettingContent(
@@ -23,7 +22,7 @@ fun SettingContent(
     Column(
         modifier = modifier
             .fillMaxSize()
-            .background(colorResource(id = R.color.white))
+            .background(ColorBgSecondary)
             .wrapContentSize(Alignment.Center)
             .padding(0.dp, contentPadding.calculateTopPadding(), 0.dp, 0.dp)
             .noRippleClickable { }

@@ -16,7 +16,8 @@
 
 package com.goforer.profiler.data.source.network.api
 
-import com.goforer.profiler.data.source.model.entity.source.response.ProfileResponse
+import com.goforer.profiler.data.source.model.entity.source.response.mynetwork.PersonResponse
+import com.goforer.profiler.data.source.model.entity.source.response.notification.NotificationResponse
 import com.goforer.profiler.data.source.network.response.ApiResponse
 import kotlinx.coroutines.flow.Flow
 import retrofit2.http.GET
@@ -24,7 +25,12 @@ import retrofit2.http.Path
 
 interface RestAPI {
     @GET("/profile/{user_id}/profiles")
-    fun getProfiles(
-        @Path("news_id") newsId: String
-    ): Flow<ApiResponse<ProfileResponse>>
+    fun getMyNetworks(
+        @Path("user_id") userId: String
+    ): Flow<ApiResponse<PersonResponse>>
+
+    @GET("")
+    fun getNotifications(
+        @Path("user_id") userId: String
+    ): Flow<ApiResponse<NotificationResponse>>
 }

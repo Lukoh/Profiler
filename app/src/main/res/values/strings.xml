@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Profiler</string>
-    <string name="member_check">Member</string>
-    <string name="profile">Profile</string>
+    <string name="follower_check">Follower</string>
+    <string name="my_network">My Network</string>
     <string name="community">Community</string>
     <string name="notification">Notification</string>
     <string name="setting">Setting</string>
@@ -16,4 +16,7 @@
     <string name="profile_detail_member">Member Status  :  </string>
     <string name="profile_detail_is_member">Member</string>
     <string name="profile_detail_is_not_member">Not Member</string>
+
+    <string name="notification_posted">posted </string>
+    <string name="notification_content">Notification Content</string>
 </resources>

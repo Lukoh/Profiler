@@ -5,8 +5,8 @@
         <!-- Customize your theme here. -->
         <item name="android:windowDisablePreview">true</item>
         <item name="android:forceDarkAllowed" tools:ignore="NewApi">false</item>
-        <item name="android:background">@color/colorTransparent</item>
-        <item name="android:windowBackground">@color/teal_700</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowActionModeOverlay">true</item>
         <item name="android:fontFamily">sans-serif</item>
         <item name="android:windowAnimationStyle">@null</item>

@@ -17,7 +17,6 @@
 package com.goforer.profiler.data.source.mediator
 
 import androidx.annotation.MainThread
-import com.goforer.profiler.data.source.model.entity.source.response.ProfileResponse
 import com.goforer.profiler.data.source.network.response.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
@@ -57,6 +56,7 @@ abstract class DataMediator<T> constructor(viewModelScope: CoroutineScope, reply
     )
 
     protected open suspend fun onNetworkError(errorMessage: String, errorCode: Int) {
+        Timber.d("errorMessage")
     }
 
     @MainThread
