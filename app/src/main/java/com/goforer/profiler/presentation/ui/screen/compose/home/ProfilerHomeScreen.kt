@@ -37,6 +37,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.*
@@ -94,9 +95,10 @@ fun ProfilerHomeScreen(
                 backgroundColor = ColorBottomBar,
                 contentColor = Color(0xFF3F414E),
                 elevation = 5.dp,
-                modifier = Modifier
-                    .offset(y = bottomBarOffset)
-                    .navigationBarsPadding()
+                modifier = if (bottomBarVisible)
+                    modifier.navigationBarsPadding()
+                else
+                    modifier.offset(y = bottomBarOffset)
             ) {
                 val navBackStackEntry by navController.currentBackStackEntryAsState()
                 val currentDestination = navBackStackEntry?.destination
@@ -129,31 +131,36 @@ fun ProfilerHomeScreen(
             }
         },
         content = { innerPadding ->
-            AnimatedNavHost(
-                navController = navController,
-                startDestination = myNetworkHomeRoute,
-                modifier = modifier.padding(0.dp, 0.dp, 0.dp, innerPadding.calculateBottomPadding()),
-            ) {
-                networkGraph(
+            Box(Modifier.padding(
+                start = innerPadding.calculateStartPadding(LayoutDirection.Ltr),
+                top = 0.dp,
+                end = innerPadding.calculateEndPadding(LayoutDirection.Ltr),
+                bottom = innerPadding.calculateBottomPadding() - 20.dp)) {
+                AnimatedNavHost(
                     navController = navController,
-                    startDestination =  myNetworksStartRoute,
-                    route = myNetworkHomeRoute
-                )
-                communityGraph(
-                    navController = navController,
-                    startDestination = communitiesStartRoute,
-                    route = communityHomeRoute
-                )
-                notificationGraph(
-                    navController = navController,
-                    startDestination = notificationsStartRoute,
-                    route = notificationHomeRoute
-                )
-                settingGraph(
-                    navController = navController,
-                    startDestination = settingStartRoute,
-                    route = settingHomeRoute
-                )
+                    startDestination = myNetworkHomeRoute
+                ) {
+                    networkGraph(
+                        navController = navController,
+                        startDestination =  myNetworksStartRoute,
+                        route = myNetworkHomeRoute
+                    )
+                    communityGraph(
+                        navController = navController,
+                        startDestination = communitiesStartRoute,
+                        route = communityHomeRoute
+                    )
+                    notificationGraph(
+                        navController = navController,
+                        startDestination = notificationsStartRoute,
+                        route = notificationHomeRoute
+                    )
+                    settingGraph(
+                        navController = navController,
+                        startDestination = settingStartRoute,
+                        route = settingHomeRoute
+                    )
+                }
             }
         }
     )

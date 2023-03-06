@@ -29,5 +29,6 @@ data class Person(
     val personality: String,
     val cellphone: String,
     val address: String,
-    val birthday: String
+    val birthday: String,
+    val repuation: String
 ) : Parcelable
