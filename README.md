@@ -173,8 +173,13 @@ Use Kotlin Coroutine and Flow to remove callbacks and make it a little neater. U
 
 This is one of the best and most scalable architectures for Android apps. I hope you enjoyed this article, and I look forward to hearing how you’ve used this approach in your own apps!
 
-## 
+
+## Contact
 
 Please get in touch with me via email if you're interested in my technical experience and all techs which are applied into Profiler. Also visit my LinkedIn profile if you want to know more about me. Here is my email address below:
 
 lukoh.nam@gmail.com
+
+LinkedIn : https://www.linkedin.com/in/lukoh-nam-68207941/
+
+Medium : https://medium.com/@lukohnam
