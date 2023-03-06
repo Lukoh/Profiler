@@ -122,7 +122,7 @@ fun ProfilerHomeScreen(
                         selectedContentColor = MaterialTheme.colorScheme.primary,
                         unselectedContentColor = Gray,
                         selected = currentDestination?.hierarchy?.any { it.route == item.route } == true,
-                        alwaysShowLabel = true,
+                        alwaysShowLabel = false,
                         onClick = {
                             navController.navigateSingleTopToGraph(item.route)
                         }
@@ -135,7 +135,11 @@ fun ProfilerHomeScreen(
                 start = innerPadding.calculateStartPadding(LayoutDirection.Ltr),
                 top = 0.dp,
                 end = innerPadding.calculateEndPadding(LayoutDirection.Ltr),
-                bottom = innerPadding.calculateBottomPadding() - 20.dp)) {
+                bottom = if (bottomBarVisible)
+                    innerPadding.calculateBottomPadding()
+                else
+                    innerPadding.calculateBottomPadding() - 20.dp)
+            ) {
                 AnimatedNavHost(
                     navController = navController,
                     startDestination = myNetworkHomeRoute
@@ -225,7 +229,7 @@ fun ProfilerHomeScreenPreview(
                                     stringResource(id = item.title),
                                     fontFamily = FontFamily.SansSerif,
                                     fontWeight = FontWeight.Normal,
-                                    fontSize = 13.sp
+                                    fontSize = 8.sp
                                 )
                             },
                             selectedContentColor = MaterialTheme.colorScheme.primary,

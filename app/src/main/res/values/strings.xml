@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Profiler</string>
     <string name="follower_check">Follower</string>
-    <string name="my_network">My Network</string>
+    <string name="my_network">Network</string>
     <string name="community">Community</string>
     <string name="notification">Notification</string>
     <string name="setting">Setting</string>
