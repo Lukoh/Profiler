@@ -33,7 +33,7 @@ import com.goforer.profiler.presentation.ui.theme.ProfilerTheme
 @Composable
 fun DetailContent(
     modifier: Modifier = Modifier,
-    contentPadding: PaddingValues = PaddingValues(46.dp),
+    contentPadding: PaddingValues = PaddingValues(4.dp),
     profileViewModel: MyNetworkViewModel,
     userId: Int
 ) {
