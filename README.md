@@ -21,7 +21,7 @@ Please get in touch with me via email if you're interested in my technical exper
 
 lukoh.nam@gmail.com
 
-![alt mad-arch-overview-data](https://developer.android.com/static/topic/libraries/architecture/images/mad-arch-overview-data.png)
+![alt mad-arch-overview-data](https://github.com/Lukoh/Profiler/blob/main/Screenshot_1.jpg) ![alt mad-arch-overview-data](https://github.com/Lukoh/Profiler/blob/main/Screenshot_2.jpg) ![alt mad-arch-overview-data](https://github.com/Lukoh/Profiler/blob/main/Screenshot_3.jpg) ![alt mad-arch-overview-data](https://github.com/Lukoh/Profiler/blob/main/Screenshot_4.jpg)
 
 An app for keeping up to date with the latest techs and developments in Android.
  * Jetpack Compose app.
