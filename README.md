@@ -17,9 +17,6 @@ Profiler is based on Android latest architectural components, Jetpack library, C
 
 Now let’s dive into my open-source project, Profiler, which is based on the Android MVVM with Clean Architecture and the latest libraries like Jetpack & Hilt libraries. And the latest Jetpack Compose(Navigating with Compose + Adding a Hilt ViewModel to the Navigation graph) will help you develop your code very easily.
 
-Please get in touch with me via email if you're interested in my technical experience and all techs which are applied into Profiler. Also visit my LinkedIn profile if you want to know more about me. Here is my email address below:
-
-lukoh.nam@gmail.com
 
 <p align="left">
 <img src="https://github.com/Lukoh/Profiler/blob/main/Screenshot_1.jpg" width="24%" height="24%">
@@ -175,3 +172,7 @@ My purpose with this open-source project was to understand MVVM with Clean Archi
 Use Kotlin Coroutine and Flow to remove callbacks and make it a little neater. Use states to represent your UI. (For that, check out this amazing talk by Jake Wharton.) Use Dagger2 to inject dependencies.
 
 This is one of the best and most scalable architectures for Android apps. I hope you enjoyed this article, and I look forward to hearing how you’ve used this approach in your own apps!
+
+Please get in touch with me via email if you're interested in my technical experience and all techs which are applied into Profiler. Also visit my LinkedIn profile if you want to know more about me. Here is my email address below:
+
+lukoh.nam@gmail.com
