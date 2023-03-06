@@ -178,7 +178,7 @@ This is one of the best and most scalable architectures for Android apps. I hope
 
 Please get in touch with me via email if you're interested in my technical experience and all techs which are applied into Profiler. Also visit my LinkedIn profile if you want to know more about me. Here is my email address below:
 
-lukoh.nam@gmail.com
+Email : lukoh.nam@gmail.com
 
 LinkedIn : https://www.linkedin.com/in/lukoh-nam-68207941/
 
