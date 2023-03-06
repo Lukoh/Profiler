@@ -7,7 +7,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.sharp.Settings
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
-import com.goforer.profiler.presentation.ui.screen.content.setting.SettingScreen
+import com.goforer.profiler.presentation.ui.screen.compose.setting.SettingScreen
 import com.goforer.profiler.presentation.ui.screen.navigation.destination.ProfilerDestination.Companion.settingStartRoute
 
 object Setting : ProfilerDestination {

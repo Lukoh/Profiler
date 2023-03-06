@@ -12,11 +12,11 @@ import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.navArgument
 import com.goforer.profiler.presentation.stateholder.business.mynetwork.MyNetworkViewModel
-import com.goforer.profiler.presentation.ui.ext.navigateSingleTopTo
-import com.goforer.profiler.presentation.ui.screen.content.mynetwork.detail.DetailScreen
-import com.goforer.profiler.presentation.ui.screen.content.mynetwork.networks.MyNetworkScreen
+import com.goforer.profiler.presentation.ui.screen.compose.mynetwork.detail.DetailScreen
+import com.goforer.profiler.presentation.ui.screen.compose.mynetwork.networks.MyNetworkScreen
 import com.goforer.profiler.presentation.ui.screen.navigation.destination.ProfilerDestination.Companion.detailInfoRoute
 import com.goforer.profiler.presentation.ui.screen.navigation.destination.ProfilerDestination.Companion.myNetworksStartRoute
+import com.goforer.profiler.presentation.ui.screen.navigation.ext.navigateSingleTopTo
 
 object MyNetworks : ProfilerDestination {
     override val icon = Icons.Sharp.Person
