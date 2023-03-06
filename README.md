@@ -21,13 +21,13 @@ Please get in touch with me via email if you're interested in my technical exper
 
 lukoh.nam@gmail.com
 
-<img src="https://github.com/Lukoh/Profiler/blob/main/Screenshot_1.jpg  width="30%" height="30%"/>
+<img src="https://github.com/Lukoh/Profiler/blob/main/Screenshot_1.jpg  width="300" height="600"/>
 
-<img src="https://github.com/Lukoh/Profiler/blob/main/Screenshot_2.jpg  width="30%" height="30%"/>
+<img src="https://github.com/Lukoh/Profiler/blob/main/Screenshot_2.jpg  width="300" height="600"/>
 
-<img src="https://github.com/Lukoh/Profiler/blob/main/Screenshot_3.jpg  width="30%" height="30%"/>
+<img src="https://github.com/Lukoh/Profiler/blob/main/Screenshot_3.jpg  width="300" height="600"/>
                                                                                                 
-<img src="https://github.com/Lukoh/Profiler/blob/main/Screenshot_4.jpg  width="30%" height="30%"/>                                                                                                
+<img src="https://github.com/Lukoh/Profiler/blob/main/Screenshot_4.jpg  width="300" height="600"/>                                                                                               
 
 
 An app for keeping up to date with the latest techs and developments in Android.
