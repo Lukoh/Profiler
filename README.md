@@ -168,3 +168,10 @@ The Navigation component provides support for Jetpack Compose applications. You 
 Jump to [Navigating with Compose](https://developer.android.com/jetpack/compose/navigation) if you’d like to learn it.
 
 If you go through the above process, you can understand the source code more easily.
+
+## MVVM with Clean Architecture: A Solid Combination
+My purpose with this open-source project was to understand MVVM with Clean Architecture and latest Jetpack libraries, so I skipped over a few things that you can try to improve it further:
+
+Use Kotlin Coroutine and Flow to remove callbacks and make it a little neater. Use states to represent your UI. (For that, check out this amazing talk by Jake Wharton.) Use Dagger2 to inject dependencies.
+
+This is one of the best and most scalable architectures for Android apps. I hope you enjoyed this article, and I look forward to hearing how you’ve used this approach in your own apps!
