@@ -26,7 +26,7 @@ lukoh.nam@gmail.com
   
 <img src="https://github.com/Lukoh/Profiler/blob/main/Screenshot_2.jpg" width="24%" height="24%">
   
-<img src="https://github.com/Lukoh/Profiler/blob/main/Screenshot_3.jpg" width="23%" height="24%">
+<img src="https://github.com/Lukoh/Profiler/blob/main/Screenshot_3.jpg" width="24%" height="24%">
   
 <img src="https://github.com/Lukoh/Profiler/blob/main/Screenshot_4.jpg" width="24%" height="24%">
 </p>                                                                                            
