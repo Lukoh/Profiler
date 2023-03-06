@@ -33,7 +33,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     companion object {
-        internal const val SplashWaitTime = 1200L
+        internal const val SplashWaitTime = 2000L
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -16,16 +16,14 @@
 
 package com.goforer.profiler.presentation.ui.screen.compose.landing
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.rememberUpdatedState
+import androidx.compose.foundation.layout.size
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.dp
+import com.airbnb.lottie.compose.*
 import com.goforer.profiler.R
 import com.goforer.profiler.presentation.ui.MainActivity.Companion.SplashWaitTime
 import kotlinx.coroutines.delay
@@ -40,6 +38,32 @@ fun LandingScreen(modifier: Modifier = Modifier, onTimeout: () -> Unit) {
             currentOnTimeout()
         }
 
-        Image(painterResource(id = R.drawable.landing_image), modifier = Modifier.fillMaxSize(), contentDescription = null)
+        //Image(painterResource(id = R.drawable.landing_image), modifier = Modifier.fillMaxSize(), contentDescription = null)
+
+        val isPlaying by remember { mutableStateOf(true) }
+        val speed by remember { mutableStateOf(3.2f) }
+        val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.splash))
+        val lottieAnimatable = rememberLottieAnimatable()
+        val progress by animateLottieCompositionAsState(
+            composition,
+            iterations = LottieConstants.IterateForever,
+            isPlaying = isPlaying,
+            speed = speed,
+            restartOnPlay = false
+        )
+
+        LaunchedEffect(composition) {
+            lottieAnimatable.animate(
+                composition = composition,
+                clipSpec = LottieClipSpec.Frame(0, 180),
+                initialProgress = 0f
+            )
+        }
+
+        LottieAnimation(
+            composition,
+            progress,
+            modifier = Modifier.size(400.dp)
+        )
     }
 }
