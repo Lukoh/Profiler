@@ -21,6 +21,8 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.currentBackStackEntryAsState
+import com.goforer.profiler.presentation.ui.screen.compose.home.ProfilerHomeScreen
+import com.goforer.profiler.presentation.ui.screen.compose.home.ProfilerScreens
 import com.goforer.profiler.presentation.ui.screen.compose.landing.LandingScreen
 import com.goforer.profiler.presentation.ui.screen.navigation.destination.MyNetworks
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController

@@ -12,8 +12,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.navArgument
 import com.goforer.profiler.presentation.stateholder.business.notification.NotificationViewModel
-import com.goforer.profiler.presentation.ui.screen.compose.notification.content.ContentScreen
-import com.goforer.profiler.presentation.ui.screen.compose.notification.notifications.NotificationScreen
+import com.goforer.profiler.presentation.ui.screen.compose.home.notification.content.ContentScreen
+import com.goforer.profiler.presentation.ui.screen.compose.home.notification.notifications.NotificationScreen
 import com.goforer.profiler.presentation.ui.screen.navigation.destination.ProfilerDestination.Companion.contentRoute
 import com.goforer.profiler.presentation.ui.screen.navigation.destination.ProfilerDestination.Companion.notificationsStartRoute
 import com.goforer.profiler.presentation.ui.screen.navigation.ext.navigateSingleTopTo

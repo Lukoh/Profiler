@@ -12,8 +12,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.navArgument
 import com.goforer.profiler.presentation.stateholder.business.mynetwork.MyNetworkViewModel
-import com.goforer.profiler.presentation.ui.screen.compose.mynetwork.detail.DetailScreen
-import com.goforer.profiler.presentation.ui.screen.compose.mynetwork.networks.MyNetworkScreen
+import com.goforer.profiler.presentation.ui.screen.compose.home.mynetwork.detail.DetailScreen
+import com.goforer.profiler.presentation.ui.screen.compose.home.mynetwork.networks.MyNetworkScreen
 import com.goforer.profiler.presentation.ui.screen.navigation.destination.ProfilerDestination.Companion.detailInfoRoute
 import com.goforer.profiler.presentation.ui.screen.navigation.destination.ProfilerDestination.Companion.myNetworksStartRoute
 import com.goforer.profiler.presentation.ui.screen.navigation.ext.navigateSingleTopTo
