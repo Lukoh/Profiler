@@ -22,13 +22,13 @@ Please get in touch with me via email if you're interested in my technical exper
 lukoh.nam@gmail.com
 
 <p align="left">
-<img src="https://github.com/Lukoh/Profiler/blob/main/Screenshot_1.jpg" width="23%" height="23%">
+<img src="https://github.com/Lukoh/Profiler/blob/main/Screenshot_1.jpg" width="24%" height="24%">
   
-<img src="https://github.com/Lukoh/Profiler/blob/main/Screenshot_2.jpg" width="23%" height="23%">
+<img src="https://github.com/Lukoh/Profiler/blob/main/Screenshot_2.jpg" width="24%" height="24%">
   
-<img src="https://github.com/Lukoh/Profiler/blob/main/Screenshot_3.jpg" width="23%" height="230%">
+<img src="https://github.com/Lukoh/Profiler/blob/main/Screenshot_3.jpg" width="23%" height="24%">
   
-<img src="https://github.com/Lukoh/Profiler/blob/main/Screenshot_4.jpg" width="23%" height="23%">
+<img src="https://github.com/Lukoh/Profiler/blob/main/Screenshot_4.jpg" width="24%" height="24%">
 </p>                                                                                            
 
 
