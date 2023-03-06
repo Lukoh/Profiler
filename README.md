@@ -21,6 +21,8 @@ Please get in touch with me via email if you're interested in my technical exper
 
 lukoh.nam@gmail.com
 
+![alt mad-arch-overview-data](https://developer.android.com/static/topic/libraries/architecture/images/mad-arch-overview-data.png)
+
 An app for keeping up to date with the latest techs and developments in Android.
  * Jetpack Compose app.
  * Implements the recommended [Android Architecture Guidelines](https://developer.android.com/jetpack/compose/architecture)
