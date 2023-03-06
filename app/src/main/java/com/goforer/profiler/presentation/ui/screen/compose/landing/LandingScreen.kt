@@ -38,8 +38,6 @@ fun LandingScreen(modifier: Modifier = Modifier, onTimeout: () -> Unit) {
             currentOnTimeout()
         }
 
-        //Image(painterResource(id = R.drawable.landing_image), modifier = Modifier.fillMaxSize(), contentDescription = null)
-
         val isPlaying by remember { mutableStateOf(true) }
         val speed by remember { mutableStateOf(3.2f) }
         val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.splash))
