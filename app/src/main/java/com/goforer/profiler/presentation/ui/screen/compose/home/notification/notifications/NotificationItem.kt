@@ -74,7 +74,7 @@ fun NotificationItem(
                 },
         ) {
             IconContainer {
-                BoxWithConstraints() {
+                BoxWithConstraints {
                     val painter = rememberAsyncImagePainter(
                         model = ImageRequest.Builder(LocalContext.current)
                             .data(notification.sender)

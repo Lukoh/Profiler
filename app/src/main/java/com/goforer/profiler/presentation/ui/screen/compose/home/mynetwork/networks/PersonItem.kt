@@ -80,7 +80,7 @@ fun PersonItem(
                 },
         ) {
             IconContainer {
-                BoxWithConstraints() {
+                BoxWithConstraints {
                     val painter = rememberAsyncImagePainter(
                         model = Builder(LocalContext.current)
                             .data(person.profileImage)
@@ -189,7 +189,7 @@ private fun IconContainer(content: @Composable () -> Unit) {
     showSystemUi = true
 )
 @Composable
-fun MyNetworkSectionPreview() {
+fun PersonItemPreview() {
     ProfilerTheme {
         Surface(
             shape = MaterialTheme.shapes.small,

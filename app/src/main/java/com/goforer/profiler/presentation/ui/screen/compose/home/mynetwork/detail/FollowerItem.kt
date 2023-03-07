@@ -137,7 +137,6 @@ fun FollowerItemPreview(modifier: Modifier = Modifier) {
                         "I am confident that his leadership experience and expertise in SW development will make him a good SW engineer who works with many colleagues, and should come up with creative awesome ideas.\n" +
                         "He is an expert and architect in Android application development which has resulted in excellent reviews from all collegue. Lukoh is an honest and hardworking team lead, always willing to pitch in to help the team. He is efficient in planning projects, punctual in meeting deadlines, and conscientiously adheres to company standards and guidelines. On the other he understands the technical design and development, techniques and constraints. Lukoh has a true talent for communicating and negotiating where the outcome is beneficial for all involved. He is absolutely a valuable strength to any team as team lead!")
 
-
                 Text(
                     stringResource(id = R.string.profile_detail_member),
                     modifier = Modifier.padding(16.dp, 0.dp, 0.dp, 0.dp),
