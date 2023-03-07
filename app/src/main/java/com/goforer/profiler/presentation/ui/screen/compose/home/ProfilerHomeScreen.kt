@@ -137,9 +137,9 @@ fun ProfilerHomeScreen(
                     top = 0.dp,
                     end = innerPadding.calculateEndPadding(LayoutDirection.Ltr),
                     bottom = if (bottomBarVisible)
-                        56.dp
+                        innerPadding.calculateBottomPadding()
                     else
-                        16.dp)
+                        0.dp)
             ) {
                 AnimatedNavHost(
                     navController = navController,

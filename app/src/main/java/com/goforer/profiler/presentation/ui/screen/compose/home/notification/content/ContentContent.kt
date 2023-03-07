@@ -47,7 +47,7 @@ fun ContentContent(
                     0.dp,
                     contentPadding.calculateTopPadding(),
                     0.dp,
-                    0.dp
+                    16.dp
                 )
                 .animateContentSize()
                 .noRippleClickable { }
@@ -84,7 +84,7 @@ fun MyNetworkSectionPreview(modifier: Modifier = Modifier) {
                     0.dp,
                     56.dp,
                     0.dp,
-                    0.dp
+                    16.dp
                 )
                 .animateContentSize()
                 .noRippleClickable { }

@@ -48,7 +48,7 @@ fun DetailContent(
                     0.dp,
                     contentPadding.calculateTopPadding(),
                     0.dp,
-                    0.dp
+                    16.dp
                 )
                 .animateContentSize()
                 .noRippleClickable { }
