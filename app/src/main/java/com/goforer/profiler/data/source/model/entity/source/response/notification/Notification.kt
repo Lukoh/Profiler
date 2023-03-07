@@ -11,5 +11,6 @@ data class Notification(
     val team: String,
     val sender: String,
     val title: String,
+    val importance: Int,
     val content: String
 ) : Parcelable

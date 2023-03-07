@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021 The Android Open Source Project by Lukoh Nam, goForer
+ * Copyright (C) 2023 The Android Open Source Project by Lukoh Nam, goForer
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,6 @@
 
 package com.goforer.profiler.presentation.ui.screen.compose.landing
 
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size

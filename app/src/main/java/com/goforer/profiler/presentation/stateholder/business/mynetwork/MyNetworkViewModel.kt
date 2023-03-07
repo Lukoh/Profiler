@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021 The Android Open Source Project by Lukoh Nam, goForer
+ * Copyright (C) 2023 The Android Open Source Project by Lukoh Nam, goForer
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -55,8 +55,6 @@ class MyNetworkViewModel
 
         return null
     }
-
-    internal fun getMembers(followed: Boolean) = myNetworks.value.filter { it.followed == followed }
 }
 
 /*

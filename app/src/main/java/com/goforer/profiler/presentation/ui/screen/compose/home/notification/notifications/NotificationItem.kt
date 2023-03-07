@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021 The Android Open Source Project by Lukoh Nam, goForer
+ * Copyright (C) 2023 The Android Open Source Project by Lukoh Nam, goForer
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,6 +29,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
@@ -61,7 +62,7 @@ fun NotificationItem(
         modifier = modifier.padding(8.dp, 0.dp)
     ) {
         Row(
-            verticalAlignment = Alignment.CenterVertically,
+            verticalAlignment = CenterVertically,
             modifier = modifier
                 .height(IntrinsicSize.Min)
                 .background(ColorBgSecondary)
@@ -128,18 +129,37 @@ fun NotificationItem(
                 Spacer(modifier = Modifier.height(4.dp))
                 Row(modifier = Modifier
                     .height(IntrinsicSize.Min)
-                    .wrapContentWidth()
-                    .height(IntrinsicSize.Min)) {
+                    .width(284.dp)
+                ) {
                     Text(
                         "${notification.name}${" "}${stringResource(id = R.string.notification_posted)}${" : "}${notification.title}",
                         modifier = Modifier
-                            .align(Alignment.CenterVertically)
+                            .align(CenterVertically)
                             .padding(0.dp, 2.dp, 6.dp, 2.dp),
                         fontFamily = FontFamily.SansSerif,
                         fontWeight = FontWeight.Medium,
                         fontSize = 15.sp,
                         color = ColorText1,
                         fontStyle = FontStyle.Normal
+                    )
+                }
+            }
+            Spacer(modifier = Modifier.weight(1f))
+            IconContainer {
+                BoxWithConstraints {
+                    Image(
+                        painter = when(notification.importance) {
+                            0 -> painterResource(id = R.drawable.ic_check)
+                            1 -> painterResource(id = R.drawable.ic_inportant)
+                            2 -> painterResource(id = R.drawable.ic_info)
+                            else -> painterResource(id = R.drawable.ic_common)
+                        },
+                        contentDescription = "ComposeTest",
+                        modifier = Modifier
+                            .padding(0.dp, 0.dp, 4.dp, 0.dp)
+                            .size(32.dp),
+                        Alignment.CenterStart,
+                        contentScale = ContentScale.Crop
                     )
                 }
             }
@@ -172,7 +192,7 @@ fun MyNetworkSectionPreview() {
             modifier = Modifier.padding(8.dp, 0.dp)
         ) {
             Row(
-                verticalAlignment = Alignment.CenterVertically,
+                verticalAlignment = CenterVertically,
                 modifier = Modifier
                     .background(ColorBgSecondary)
                     .wrapContentHeight(Alignment.Top)
@@ -233,18 +253,32 @@ fun MyNetworkSectionPreview() {
 
                     Spacer(modifier = Modifier.height(4.dp))
                     Row(modifier = Modifier
-                        .wrapContentWidth()
+                        .width(284.dp)
                         .animateContentSize()) {
                         Text(
                             "${"Lukoh"}${" "}${stringResource(id = R.string.notification_posted)}${" : "}${"Coding Rules"}",
                             modifier = Modifier
-                                .align(Alignment.CenterVertically)
+                                .align(CenterVertically)
                                 .padding(0.dp, 2.dp, 6.dp, 2.dp),
                             fontFamily = FontFamily.SansSerif,
                             fontWeight = FontWeight.Medium,
                             fontSize = 15.sp,
                             color = ColorText1,
                             fontStyle = FontStyle.Normal
+                        )
+                    }
+                }
+                Spacer(modifier = Modifier.weight(1f))
+                IconContainer {
+                    BoxWithConstraints {
+                        Image(
+                            painter = painterResource(id = R.drawable.ic_common),
+                            contentDescription = "ComposeTest",
+                            modifier = Modifier
+                                .padding(0.dp, 0.dp, 4.dp, 0.dp)
+                                .size(32.dp),
+                            Alignment.CenterStart,
+                            contentScale = ContentScale.Crop
                         )
                     }
                 }

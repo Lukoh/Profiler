@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021 The Android Open Source Project by Lukoh Nam, goForer
+ * Copyright (C) 2023 The Android Open Source Project by Lukoh Nam, goForer
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,8 +29,6 @@ val Pink40 = Color(0xFF7D5260)
 val ColorBgSecondary = Color(0xFFF3FAFE)
 
 val ColorBottomBar = Color(0xFFD4F2FF)
-
-val ColorNoticationConetent = Color(0xFFD4F2FF)
 
 val ColorText1 = Color(0xFF203F2F)
 val ColorText2 = Color(0xFF018786)
