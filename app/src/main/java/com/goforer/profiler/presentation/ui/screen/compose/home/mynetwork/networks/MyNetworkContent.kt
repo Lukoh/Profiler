@@ -12,7 +12,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.goforer.profiler.data.repository.Repository.Companion.replyCount
 import com.goforer.profiler.data.source.model.entity.source.response.mynetwork.Person
@@ -26,6 +25,7 @@ import timber.log.Timber
 @Composable
 fun MyNetworkContent(
     modifier: Modifier = Modifier,
+    myNetworkViewModel: MyNetworkViewModel,
     snackbarHostState: SnackbarHostState,
     contentPadding: PaddingValues = PaddingValues(4.dp),
     onNavigateToDetailInfo: (Int) -> Unit
@@ -34,7 +34,6 @@ fun MyNetworkContent(
     val followed = rememberSaveable { mutableStateOf(false) }
     val context = LocalContext.current
     val keyboardController = LocalSoftwareKeyboardController.current
-    val myNetworkViewModel: MyNetworkViewModel = hiltViewModel()
     val myNetworksState = myNetworkViewModel.myNetworks.collectAsStateWithLifecycle()
     val hint =  stringResource(id = R.string.placeholder_search)
     val resourceState by produceState(initialValue = ResourceState()) {

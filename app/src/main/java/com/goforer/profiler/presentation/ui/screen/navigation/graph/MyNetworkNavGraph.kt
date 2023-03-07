@@ -22,7 +22,9 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.navigation
 import com.goforer.profiler.presentation.ui.screen.navigation.destination.DetailInfo
 import com.goforer.profiler.presentation.ui.screen.navigation.destination.DetailInfo.routeWithArgs
+import com.goforer.profiler.presentation.ui.screen.navigation.destination.Members
 import com.goforer.profiler.presentation.ui.screen.navigation.destination.MyNetworks
+import com.goforer.profiler.presentation.ui.screen.navigation.destination.ProfilerDestination.Companion.membersRoute
 import com.goforer.profiler.presentation.ui.screen.navigation.destination.ProfilerDestination.Companion.myNetworksStartRoute
 import com.google.accompanist.navigation.animation.composable
 
@@ -39,6 +41,10 @@ fun NavGraphBuilder.networkGraph(
 
         composable(route = routeWithArgs, arguments = DetailInfo.arguments) {
             DetailInfo.screen(navController, it.arguments)
+        }
+
+        composable(route = membersRoute) {
+            Members.screen(navController, it.arguments)
         }
     }
 }

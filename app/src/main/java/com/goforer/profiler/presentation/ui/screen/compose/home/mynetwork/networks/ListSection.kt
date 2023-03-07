@@ -38,7 +38,7 @@ import com.goforer.profiler.data.source.model.entity.source.response.mynetwork.P
 @Composable
 fun ListSection(
     modifier: Modifier = Modifier,
-    myNetworks: List<Person>,
+    persons: List<Person>,
     followed: MutableState<Boolean>,
     lazyListState: LazyListState = rememberLazyListState(),
     onItemClicked: (item: Person, index: Int) -> Unit,
@@ -55,8 +55,8 @@ fun ListSection(
             state = lazyListState,
             verticalArrangement = Arrangement.spacedBy(4.dp)
         ) {
-            itemsIndexed(myNetworks, key = { _, item -> item.id }, itemContent = { index, item ->
-                MyNetworkItem(
+            itemsIndexed(persons, key = { _, item -> item.id }, itemContent = { index, item ->
+                PersonItem(
                     modifier,
                     item,
                     index,

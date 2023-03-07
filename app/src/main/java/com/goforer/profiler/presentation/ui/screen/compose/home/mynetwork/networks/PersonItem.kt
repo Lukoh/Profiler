@@ -53,7 +53,7 @@ import com.goforer.profiler.presentation.ui.theme.ColorText2
 import com.goforer.profiler.presentation.ui.theme.ProfilerTheme
 
 @Composable
-fun MyNetworkItem(
+fun PersonItem(
     modifier: Modifier = Modifier,
     person: Person,
     index: Int,
@@ -73,7 +73,6 @@ fun MyNetworkItem(
                 .wrapContentHeight(Alignment.Top)
                 .fillMaxWidth()
                 .heightIn(min = 56.dp)
-                .animateContentSize()
                 .clickable {
                     onItemClicked(person, index)
                     onNavigateToDetailInfo(person.id)
@@ -141,7 +140,7 @@ fun MyNetworkItem(
             Spacer(modifier = Modifier
                 .fillMaxWidth()
                 .weight(1f))
-            Row(modifier = Modifier.wrapContentWidth().animateContentSize()) {
+            Row(modifier = Modifier.wrapContentWidth()) {
                 followed.value = person.followed
                 Surface(modifier = Modifier.align(Alignment.CenterVertically), shape = MaterialTheme.shapes.small, shadowElevation = 1.dp) {
                     Text(

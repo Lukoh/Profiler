@@ -17,7 +17,9 @@
 package com.goforer.profiler.presentation.stateholder.business
 
 import androidx.lifecycle.ViewModel
+import com.goforer.profiler.data.source.model.entity.source.response.mynetwork.Person
 import com.goforer.profiler.data.source.network.api.Params
+import kotlinx.coroutines.flow.StateFlow
 import timber.log.Timber
 import javax.inject.Singleton
 

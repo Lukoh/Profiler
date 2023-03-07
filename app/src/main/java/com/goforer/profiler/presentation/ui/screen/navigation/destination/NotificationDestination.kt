@@ -27,7 +27,9 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.navArgument
+import com.goforer.profiler.presentation.stateholder.business.mynetwork.MyNetworkViewModel
 import com.goforer.profiler.presentation.stateholder.business.notification.NotificationViewModel
+import com.goforer.profiler.presentation.ui.screen.compose.home.mynetwork.networks.MyNetworkScreen
 import com.goforer.profiler.presentation.ui.screen.compose.home.notification.content.ContentScreen
 import com.goforer.profiler.presentation.ui.screen.compose.home.notification.notifications.NotificationScreen
 import com.goforer.profiler.presentation.ui.screen.navigation.destination.ProfilerDestination.Companion.contentRoute
@@ -39,11 +41,16 @@ object Notifications : ProfilerDestination {
     override val icon = Icons.Sharp.Notifications
     @RequiresApi(Build.VERSION_CODES.N)
     override val screen: @Composable (navController: NavHostController, arguments: Bundle?) -> Unit = { navController, _ ->
-        NotificationScreen(
-            onNavigateToDetailInfo = {
-                navController.navigateSingleTopTo("${Content.route}/$it")
-            }
-        )
+        navController.currentBackStackEntry?.let {
+            val notificationViewModel: NotificationViewModel =  hiltViewModel(it)
+
+            NotificationScreen(
+                notificationViewModel = notificationViewModel,
+                onNavigateToDetailInfo = {
+                    navController.navigateSingleTopTo("${Content.route}/$it")
+                }
+            )
+        }
     }
 }
 

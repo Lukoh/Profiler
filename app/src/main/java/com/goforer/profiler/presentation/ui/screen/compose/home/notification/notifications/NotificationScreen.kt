@@ -29,10 +29,15 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.sp
 import com.goforer.profiler.R
+import com.goforer.profiler.presentation.stateholder.business.notification.NotificationViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun NotificationScreen(modifier: Modifier = Modifier, onNavigateToDetailInfo: (Int) -> Unit) {
+fun NotificationScreen(
+    modifier: Modifier = Modifier,
+    notificationViewModel: NotificationViewModel,
+    onNavigateToDetailInfo: (Int) -> Unit)
+{
     Scaffold(
         contentColor = Color.White,
         topBar = {
@@ -58,7 +63,12 @@ fun NotificationScreen(modifier: Modifier = Modifier, onNavigateToDetailInfo: (I
                 }
             )
         }, content = { paddingValues ->
-            NotificationContent(modifier = modifier, contentPadding = paddingValues, onNavigateToDetailInfo = onNavigateToDetailInfo)
+            NotificationContent(
+                modifier = modifier,
+                notificationViewModel = notificationViewModel,
+                contentPadding = paddingValues,
+                onNavigateToDetailInfo = onNavigateToDetailInfo
+            )
         }
     )
 }

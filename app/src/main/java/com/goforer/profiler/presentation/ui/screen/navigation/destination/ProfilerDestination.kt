@@ -33,6 +33,7 @@ interface ProfilerDestination {
         internal const val myNetworkHomeRoute = "home/profileHome"
         internal const val myNetworksStartRoute = "home/profileHome/myNetworks"
         internal const val detailInfoRoute = "home/profileHome/detailInfo"
+        internal const val membersRoute = "home/profileHome/members"
 
         internal const val notificationHomeRoute = "home/notificationHome"
         internal const val notificationsStartRoute = "home/notificationHome/notifications"

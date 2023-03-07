@@ -40,7 +40,7 @@ fun ContentItem(
 ) {
     Surface(
         shape = MaterialTheme.shapes.small,
-        modifier = modifier.padding(8.dp, 0.dp)
+        modifier = modifier.padding(8.dp, 0.dp, 8.dp, 16.dp)
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
@@ -48,11 +48,11 @@ fun ContentItem(
                 .background(ColorBgSecondary)
                 .wrapContentHeight(Alignment.Top)
                 .fillMaxWidth()
-                .heightIn(min = 56.dp)
+                .wrapContentHeight()
         ) {
             Text(
                 notification.content,
-                modifier = Modifier.padding(16.dp, 16.dp, 0.dp, 0.dp),
+                modifier = Modifier.padding(8.dp, 8.dp, 0.dp, 8.dp),
                 fontFamily = FontFamily.SansSerif,
                 fontWeight = FontWeight.Medium,
                 fontSize = 18.sp,

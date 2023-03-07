@@ -24,7 +24,7 @@ fun ReputationItem(
 ) {
     Surface(
         shape = MaterialTheme.shapes.small,
-        modifier = modifier.padding(8.dp, 0.dp)
+        modifier = modifier.padding(8.dp, 0.dp, 8.dp, 16.dp)
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,

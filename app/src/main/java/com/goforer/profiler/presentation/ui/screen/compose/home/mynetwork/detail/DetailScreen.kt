@@ -34,7 +34,13 @@ import com.goforer.profiler.presentation.stateholder.business.mynetwork.MyNetwor
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DetailScreen(modifier: Modifier = Modifier, profileViewModel: MyNetworkViewModel, userId: Int, onBackPressed: () -> Unit) {
+fun DetailScreen(
+    modifier: Modifier = Modifier,
+    myNetworkViewModel: MyNetworkViewModel,
+    userId: Int,
+    onMembersClicked: () -> Unit,
+    onBackPressed: () -> Unit,
+) {
     Scaffold(
         contentColor = Color.White,
         topBar = {
@@ -68,7 +74,13 @@ fun DetailScreen(modifier: Modifier = Modifier, profileViewModel: MyNetworkViewM
                 }
             )
         }, content = { paddingValues ->
-            DetailContent(modifier = modifier, contentPadding = paddingValues, profileViewModel = profileViewModel, userId = userId)
+            DetailContent(
+                modifier = modifier,
+                contentPadding = paddingValues,
+                myNetworkViewModel = myNetworkViewModel,
+                userId = userId,
+                onMembersClicked = onMembersClicked
+            )
         }
     )
 }

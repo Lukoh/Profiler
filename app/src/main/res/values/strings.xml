@@ -3,20 +3,23 @@
     <string name="follower_check">Follower</string>
     <string name="my_network">Network</string>
     <string name="community">Community</string>
-    <string name="notification">Notification</string>
+    <string name="notification">Notice</string>
     <string name="setting">Setting</string>
     <string name="placeholder_search">Search</string>
 
     <string name="profile_detail">Profile Detail</string>
-    <string name="profile_detail_picture">Picture  :  </string>
-    <string name="profile_detail_name">Full Name  :  </string>
-    <string name="profile_detail_birthday">Birthday  :  </string>
-    <string name="profile_detail_cellphone">Cellphone  :  </string>
-    <string name="profile_detail_personality">Personality  :  </string>
-    <string name="profile_detail_member">Member Status  :  </string>
+    <string name="profile_detail_picture">Picture : </string>
+    <string name="profile_detail_name">Full Name : </string>
+    <string name="profile_detail_birthday">Birthday : </string>
+    <string name="profile_detail_cellphone">Cellphone : </string>
+    <string name="profile_detail_personality">Personality : </string>
+    <string name="profile_detail_member">Member : </string>
     <string name="profile_detail_is_member">Member</string>
     <string name="profile_detail_is_not_member">Not Member</string>
     <string name="profile_detail_sex">Sex :  </string>
+
+    <string name="profile_members">Members</string>
+    <string name="profile_member_view">View</string>
 
     <string name="notification_posted">posted </string>
     <string name="notification_content">Notification Content</string>

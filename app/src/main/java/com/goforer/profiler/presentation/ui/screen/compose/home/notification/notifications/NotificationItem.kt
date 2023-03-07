@@ -122,7 +122,7 @@ fun NotificationItem(
                 }
 
                 Spacer(modifier = Modifier.height(4.dp))
-                Row(modifier = Modifier.wrapContentWidth().animateContentSize()) {
+                Row(modifier = Modifier.wrapContentWidth()) {
                     Text(
                         "${notification.name}${" "}${stringResource(id = R.string.notification_posted)}${" : "}${notification.title}",
                         modifier = Modifier

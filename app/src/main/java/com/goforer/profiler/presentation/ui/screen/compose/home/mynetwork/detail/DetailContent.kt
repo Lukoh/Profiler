@@ -34,10 +34,11 @@ import com.goforer.profiler.presentation.ui.theme.ProfilerTheme
 fun DetailContent(
     modifier: Modifier = Modifier,
     contentPadding: PaddingValues = PaddingValues(4.dp),
-    profileViewModel: MyNetworkViewModel,
-    userId: Int
+    myNetworkViewModel: MyNetworkViewModel,
+    userId: Int,
+    onMembersClicked: () -> Unit
 ) {
-    val person = profileViewModel.getPerson(userId)
+    val person = myNetworkViewModel.getPerson(userId)
     val scrollState = rememberScrollState()
 
     person?.let {
@@ -65,7 +66,7 @@ fun DetailContent(
             Spacer(modifier = Modifier.height(4.dp))
             PersonalityItem(modifier = Modifier, it)
             Spacer(modifier = Modifier.height(4.dp))
-            MemberItem(modifier = Modifier, it)
+            FollowerItem(modifier = Modifier, it, onMembersClicked = onMembersClicked)
             Spacer(modifier = Modifier.height(16.dp))
             ReputationItem(modifier = Modifier, it)
         }
@@ -112,7 +113,7 @@ fun MyNetworkSectionPreview(modifier: Modifier = Modifier) {
             Spacer(modifier = Modifier.height(4.dp))
             PersonalityItem(modifier = Modifier, person)
             Spacer(modifier = Modifier.height(4.dp))
-            MemberItem(modifier = Modifier, person)
+            FollowerItem(modifier = Modifier, person, onMembersClicked = {})
             Spacer(modifier = Modifier.height(16.dp))
             ReputationItem(modifier = Modifier, person)
         }

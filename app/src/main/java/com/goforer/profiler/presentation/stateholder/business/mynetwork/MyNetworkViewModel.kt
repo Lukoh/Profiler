@@ -33,6 +33,7 @@ class MyNetworkViewModel
     private val _myNetworks = MutableStateFlow<List<Person>>(listOf())
     val myNetworks: StateFlow<List<Person>> = _myNetworks
 
+
     init {
         viewModelScope.launch {
             myNetworkRepository.profiles.collectLatest {
@@ -54,6 +55,8 @@ class MyNetworkViewModel
 
         return null
     }
+
+    internal fun getMembers(followed: Boolean) = myNetworks.value.filter { it.followed == followed }
 }
 
 /*

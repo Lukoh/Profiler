@@ -50,7 +50,6 @@ fun SearchSection(
             .background(ColorBgSecondary)
             .wrapContentHeight(Alignment.Top)
             .fillMaxWidth()
-            .animateContentSize()
     ) {
         TextField(
             value = if (state.isHint)
