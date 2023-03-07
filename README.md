@@ -24,6 +24,10 @@ Now let’s dive into my open-source project, Profiler, which is based on the An
 <img src="https://github.com/Lukoh/Profiler/blob/main/Screenshot_2.jpg" width="24%" height="24%">
   
 <img src="https://github.com/Lukoh/Profiler/blob/main/Screenshot_3.jpg" width="24%" height="24%">
+
+<img src="https://github.com/Lukoh/Profiler/blob/main/Screenshot_7.jpg" width="24%" height="24%">
+  
+<img src="https://github.com/Lukoh/Profiler/blob/main/Screenshot_8.jpg" width="24%" height="24%">
   
 <img src="https://github.com/Lukoh/Profiler/blob/main/Screenshot_4.jpg" width="24%" height="24%">
 
