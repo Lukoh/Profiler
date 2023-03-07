@@ -17,9 +17,17 @@ Profiler is based on Android latest architectural components, Jetpack library, C
 
 Now let’s dive into my open-source project, Profiler, which is based on the Android MVVM with Clean Architecture and the latest libraries like Jetpack & Hilt libraries. And the latest Jetpack Compose(Navigating with Compose + Adding a Hilt ViewModel to the Navigation graph) will help you develop your code very easily.
 
-Please get in touch with me via email if you're interested in my technical experience and all techs which are applied into Profiler. Also visit my LinkedIn profile if you want to know more about me. Here is my email address below:
 
-lukoh.nam@gmail.com
+<p align="left">
+<img src="https://github.com/Lukoh/Profiler/blob/main/Screenshot_1.jpg" width="24%" height="24%">
+  
+<img src="https://github.com/Lukoh/Profiler/blob/main/Screenshot_2.jpg" width="24%" height="24%">
+  
+<img src="https://github.com/Lukoh/Profiler/blob/main/Screenshot_3.jpg" width="24%" height="24%">
+  
+<img src="https://github.com/Lukoh/Profiler/blob/main/Screenshot_4.jpg" width="24%" height="24%">
+</p>                                                                                            
+
 
 An app for keeping up to date with the latest techs and developments in Android.
  * Jetpack Compose app.
@@ -157,3 +165,21 @@ The Navigation component provides support for Jetpack Compose applications. You 
 Jump to [Navigating with Compose](https://developer.android.com/jetpack/compose/navigation) if you’d like to learn it.
 
 If you go through the above process, you can understand the source code more easily.
+
+## MVVM with Clean Architecture: A Solid Combination
+My purpose with this open-source project was to understand MVVM with Clean Architecture and latest Jetpack libraries, so I skipped over a few things that you can try to improve it further:
+
+Use Kotlin Coroutine and Flow to remove callbacks and make it a little neater. Use states to represent your UI. (For that, check out this amazing talk by Jake Wharton.) Use Dagger2 to inject dependencies.
+
+This is one of the best and most scalable architectures for Android apps. I hope you enjoyed this article, and I look forward to hearing how you’ve used this approach in your own apps!
+
+
+## Contact
+
+Please get in touch with me via email if you're interested in my technical experience and all techs which are applied into Profiler. Also visit my LinkedIn profile if you want to know more about me. Here is my email address below:
+
+Email : lukoh.nam@gmail.com
+
+LinkedIn : https://www.linkedin.com/in/lukoh-nam-68207941/
+
+Medium : https://medium.com/@lukohnam
