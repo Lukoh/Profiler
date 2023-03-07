@@ -57,6 +57,7 @@ fun PictureItem(
         Row(
             verticalAlignment = Alignment.CenterVertically,
             modifier = modifier
+                .height(IntrinsicSize.Min)
                 .background(ColorBgSecondary)
                 .wrapContentHeight(Alignment.Top)
                 .fillMaxWidth()
@@ -77,7 +78,7 @@ fun PictureItem(
                 Modifier.size(width = 40.dp, height = 40.dp),
                 CircleShape
             ) {
-                Box {
+                BoxWithConstraints() {
                     val painter = rememberAsyncImagePainter(
                         model = ImageRequest.Builder(LocalContext.current)
                             .data(profile.profileImage)

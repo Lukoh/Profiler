@@ -17,6 +17,7 @@
 package com.goforer.profiler.presentation.ui.screen.compose.landing
 
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.*
@@ -30,7 +31,7 @@ import kotlinx.coroutines.delay
 
 @Composable
 fun LandingScreen(modifier: Modifier = Modifier, onTimeout: () -> Unit) {
-    Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+    BoxWithConstraints(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
         val currentOnTimeout by rememberUpdatedState(onTimeout)
 
         LaunchedEffect(true) {

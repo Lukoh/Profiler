@@ -69,6 +69,7 @@ fun PersonItem(
         Row(
             verticalAlignment = Alignment.CenterVertically,
             modifier = modifier
+                .height(IntrinsicSize.Min)
                 .background(ColorBgSecondary)
                 .wrapContentHeight(Alignment.Top)
                 .fillMaxWidth()
@@ -79,7 +80,7 @@ fun PersonItem(
                 },
         ) {
             IconContainer {
-                Box {
+                BoxWithConstraints() {
                     val painter = rememberAsyncImagePainter(
                         model = Builder(LocalContext.current)
                             .data(person.profileImage)
@@ -196,7 +197,8 @@ fun MyNetworkSectionPreview() {
         ) {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.background(ColorBgSecondary)
+                modifier = Modifier
+                    .background(ColorBgSecondary)
                     .wrapContentHeight(Alignment.Top)
                     .fillMaxWidth()
                     .heightIn(min = 56.dp)
@@ -268,7 +270,9 @@ fun MyNetworkSectionPreview() {
                         .fillMaxWidth()
                         .weight(1f)
                 )
-                Row(modifier = Modifier.wrapContentWidth().animateContentSize()) {
+                Row(modifier = Modifier
+                    .wrapContentWidth()
+                    .animateContentSize()) {
                     Surface(
                         modifier = Modifier.align(Alignment.CenterVertically),
                         shape = MaterialTheme.shapes.small,

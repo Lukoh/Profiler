@@ -63,6 +63,7 @@ fun NotificationItem(
         Row(
             verticalAlignment = Alignment.CenterVertically,
             modifier = modifier
+                .height(IntrinsicSize.Min)
                 .background(ColorBgSecondary)
                 .wrapContentHeight(Alignment.Top)
                 .fillMaxWidth()
@@ -73,7 +74,7 @@ fun NotificationItem(
                 },
         ) {
             IconContainer {
-                Box {
+                BoxWithConstraints() {
                     val painter = rememberAsyncImagePainter(
                         model = ImageRequest.Builder(LocalContext.current)
                             .data(notification.sender)
@@ -109,7 +110,10 @@ fun NotificationItem(
                 .wrapContentWidth()
                 .animateContentSize()
             ) {
-                Row(modifier = Modifier.wrapContentWidth()) {
+                Row(modifier = Modifier
+                    .height(IntrinsicSize.Min)
+                    .wrapContentWidth()
+                    .height(IntrinsicSize.Min)) {
                     Text(
                         text = "${notification.division}${"  -  "}${notification.team}" ,
                         modifier = Modifier.padding(0.dp, 6.dp, 0.dp, 0.dp),
@@ -122,7 +126,10 @@ fun NotificationItem(
                 }
 
                 Spacer(modifier = Modifier.height(4.dp))
-                Row(modifier = Modifier.wrapContentWidth()) {
+                Row(modifier = Modifier
+                    .height(IntrinsicSize.Min)
+                    .wrapContentWidth()
+                    .height(IntrinsicSize.Min)) {
                     Text(
                         "${notification.name}${" "}${stringResource(id = R.string.notification_posted)}${" : "}${notification.title}",
                         modifier = Modifier
@@ -225,7 +232,9 @@ fun MyNetworkSectionPreview() {
                     }
 
                     Spacer(modifier = Modifier.height(4.dp))
-                    Row(modifier = Modifier.wrapContentWidth().animateContentSize()) {
+                    Row(modifier = Modifier
+                        .wrapContentWidth()
+                        .animateContentSize()) {
                         Text(
                             "${"Lukoh"}${" "}${stringResource(id = R.string.notification_posted)}${" : "}${"Coding Rules"}",
                             modifier = Modifier

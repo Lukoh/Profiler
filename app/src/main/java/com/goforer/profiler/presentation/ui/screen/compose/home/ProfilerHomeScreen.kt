@@ -131,7 +131,7 @@ fun ProfilerHomeScreen(
             }
         },
         content = { innerPadding ->
-            Box(Modifier.padding(
+            BoxWithConstraints(Modifier.padding(
                 start = innerPadding.calculateStartPadding(LayoutDirection.Ltr),
                 top = 0.dp,
                 end = innerPadding.calculateEndPadding(LayoutDirection.Ltr),

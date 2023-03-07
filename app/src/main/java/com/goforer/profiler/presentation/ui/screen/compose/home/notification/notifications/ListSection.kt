@@ -42,7 +42,7 @@ fun ListSection(
     val showButton by remember { derivedStateOf { lazyListState.firstVisibleItemIndex > 0 } }
     var clicked by remember { mutableStateOf(false) }
 
-    Box(modifier = modifier) {
+    BoxWithConstraints(modifier = modifier) {
         LazyColumn(
             modifier = Modifier,
             state = lazyListState,

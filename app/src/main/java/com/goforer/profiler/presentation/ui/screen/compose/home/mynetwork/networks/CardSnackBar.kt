@@ -40,6 +40,7 @@ fun CardSnackBar(modifier: Modifier = Modifier, snackbarData: SnackbarData) {
         border = BorderStroke(1.dp, Color.Black),
         elevation = CardDefaults.cardElevation(defaultElevation =  2.dp),
         modifier = modifier
+            .height(IntrinsicSize.Min)
             .padding(8.dp)
             .fillMaxWidth()
             .heightIn(48.dp)

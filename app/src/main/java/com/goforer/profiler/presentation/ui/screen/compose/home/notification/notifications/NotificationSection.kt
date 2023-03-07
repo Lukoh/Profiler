@@ -39,7 +39,7 @@ fun NotificationSection(
 ) {
     val lazyListState: LazyListState = rememberLazyListState()
 
-    Box(modifier = modifier) {
+    BoxWithConstraints(modifier = modifier) {
         Column(
             modifier = modifier
                 .padding(
@@ -74,7 +74,7 @@ fun MyNetworkSectionPreview(modifier: Modifier = Modifier) {
     ProfilerTheme {
         val lazyListState: LazyListState = rememberLazyListState()
 
-        Box(modifier = modifier) {
+        BoxWithConstraints(modifier = modifier) {
             Column(
                 modifier = modifier
                     .padding(

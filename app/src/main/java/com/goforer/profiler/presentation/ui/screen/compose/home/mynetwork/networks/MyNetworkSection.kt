@@ -59,7 +59,7 @@ fun MyNetworkSection(
     if (!editableInputState.isHint)
         onSearched(editableInputState.text, false)
 
-    Box(modifier = modifier) {
+    BoxWithConstraints(modifier = modifier) {
         Column(
             modifier = modifier
                 .padding(
@@ -130,7 +130,7 @@ fun MyNetworkSection(
 @Composable
 fun MyNetworkSectionPreview(modifier: Modifier = Modifier) {
     ProfilerTheme {
-        Box(modifier = modifier) {
+        BoxWithConstraints(modifier = modifier) {
             Column(
                 modifier = modifier
                     .padding(

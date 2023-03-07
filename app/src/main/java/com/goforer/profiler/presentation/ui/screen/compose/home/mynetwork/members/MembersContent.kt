@@ -17,6 +17,7 @@
 package com.goforer.profiler.presentation.ui.screen.compose.home.mynetwork.members
 
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyListState
@@ -55,7 +56,7 @@ fun MembersContent(
 
     when {
         resourceState.data != null -> {
-            Box(modifier = modifier.padding(
+            BoxWithConstraints(modifier = modifier.padding(
                 0.dp,
                 contentPadding.calculateTopPadding(),
                 0.dp,

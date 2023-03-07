@@ -45,6 +45,7 @@ fun TitleItem(
         Row(
             verticalAlignment = Alignment.CenterVertically,
             modifier = modifier
+                .height(IntrinsicSize.Min)
                 .background(Color.Transparent)
                 .wrapContentHeight(Alignment.Top)
                 .fillMaxWidth()

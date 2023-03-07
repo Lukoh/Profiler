@@ -48,6 +48,7 @@ fun PersonalityItem(
         Row(
             verticalAlignment = Alignment.CenterVertically,
             modifier = modifier
+                .height(IntrinsicSize.Min)
                 .background(ColorBgSecondary)
                 .wrapContentHeight(Alignment.Top)
                 .fillMaxWidth()

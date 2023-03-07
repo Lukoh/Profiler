@@ -126,6 +126,7 @@ fun FollowerItemPreview(modifier: Modifier = Modifier) {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = modifier
+                    .height(IntrinsicSize.Min)
                     .background(ColorBgSecondary)
                     .wrapContentHeight(Alignment.Top)
                     .fillMaxWidth()
@@ -162,7 +163,7 @@ fun FollowerItemPreview(modifier: Modifier = Modifier) {
                 )
                 Spacer(Modifier.weight(1f))
                 MembersIconButton(
-                    modifier = Modifier.padding(0.dp, 0.dp, 16.dp, 0.dp),
+                    modifier = Modifier.padding(0.dp, 0.dp, 16.dp, 0.dp).height(IntrinsicSize.Min),
                     onClick = {
                     },
                     icon = {
