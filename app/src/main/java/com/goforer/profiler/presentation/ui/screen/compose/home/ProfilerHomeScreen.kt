@@ -131,14 +131,15 @@ fun ProfilerHomeScreen(
             }
         },
         content = { innerPadding ->
-            BoxWithConstraints(Modifier.padding(
-                start = innerPadding.calculateStartPadding(LayoutDirection.Ltr),
-                top = 0.dp,
-                end = innerPadding.calculateEndPadding(LayoutDirection.Ltr),
-                bottom = if (bottomBarVisible)
-                    innerPadding.calculateBottomPadding()
-                else
-                    innerPadding.calculateBottomPadding() - 20.dp)
+            BoxWithConstraints(
+                Modifier.padding(
+                    start = innerPadding.calculateStartPadding(LayoutDirection.Ltr),
+                    top = 0.dp,
+                    end = innerPadding.calculateEndPadding(LayoutDirection.Ltr),
+                    bottom = if (bottomBarVisible)
+                        56.dp
+                    else
+                        16.dp)
             ) {
                 AnimatedNavHost(
                     navController = navController,
