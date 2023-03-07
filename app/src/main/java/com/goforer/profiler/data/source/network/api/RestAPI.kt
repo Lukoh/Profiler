@@ -33,4 +33,7 @@ interface RestAPI {
     fun getNotifications(
         @Path("user_id") userId: String
     ): Flow<ApiResponse<NotificationResponse>>
+
+    @GET("/profile/members")
+    fun getMembers(): Flow<ApiResponse<PersonResponse>>
 }
