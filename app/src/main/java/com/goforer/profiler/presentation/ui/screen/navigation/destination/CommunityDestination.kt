@@ -27,9 +27,8 @@ import com.goforer.profiler.presentation.ui.screen.compose.home.community.Commun
 import com.goforer.profiler.presentation.ui.screen.navigation.destination.ProfilerDestination.Companion.communitiesStartRoute
 
 object Community : ProfilerDestination {
-    override val route = communitiesStartRoute
-
     override val icon = Icons.Sharp.Commute
+    override val route = communitiesStartRoute
     @RequiresApi(Build.VERSION_CODES.N)
     override val screen: @Composable (navController: NavHostController, bundle: Bundle?) -> Unit = { _, _ ->
         CommunityScreen()

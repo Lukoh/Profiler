@@ -35,8 +35,8 @@ import com.goforer.profiler.presentation.ui.screen.navigation.destination.Profil
 import com.goforer.profiler.presentation.ui.screen.navigation.ext.navigateSingleTopTo
 
 object Notifications : ProfilerDestination {
-    override val route = notificationsStartRoute
     override val icon = Icons.Sharp.Notifications
+    override val route = notificationsStartRoute
     @RequiresApi(Build.VERSION_CODES.N)
     override val screen: @Composable (navController: NavHostController, arguments: Bundle?) -> Unit = { navController, _ ->
         navController.currentBackStackEntry?.let {
@@ -53,6 +53,7 @@ object Notifications : ProfilerDestination {
 }
 
 object Content : ProfilerDestination {
+    override val icon = Icons.Filled.Details
     override val route = contentRoute
     private const val idTypeArg = "user_id"
     val routeWithArgs = "${route}/{${idTypeArg}}"
@@ -60,7 +61,6 @@ object Content : ProfilerDestination {
         navArgument(idTypeArg) { type = NavType.IntType }
     )
 
-    override val icon = Icons.Filled.Details
     @RequiresApi(Build.VERSION_CODES.N)
     override val screen: @Composable (navController: NavHostController, bundle: Bundle?) -> Unit = { navController, bundle ->
         navController.previousBackStackEntry?.let {

@@ -27,9 +27,8 @@ import com.goforer.profiler.presentation.ui.screen.compose.home.setting.SettingS
 import com.goforer.profiler.presentation.ui.screen.navigation.destination.ProfilerDestination.Companion.settingStartRoute
 
 object Setting : ProfilerDestination {
-    override val route = settingStartRoute
-
     override val icon = Icons.Sharp.Settings
+    override val route = settingStartRoute
     @RequiresApi(Build.VERSION_CODES.N)
     override val screen: @Composable (navController: NavHostController, bundle: Bundle?) -> Unit = { _, _ ->
         SettingScreen()

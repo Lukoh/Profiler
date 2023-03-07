@@ -56,6 +56,7 @@ object MyNetworks : ProfilerDestination {
 }
 
 object DetailInfo : ProfilerDestination {
+    override val icon = Icons.Filled.Details
     override val route = detailInfoRoute
     private const val idTypeArg = "user_id"
     val routeWithArgs = "${route}/{${idTypeArg}}"
@@ -63,7 +64,6 @@ object DetailInfo : ProfilerDestination {
         navArgument(idTypeArg) { type = NavType.IntType }
     )
 
-    override val icon = Icons.Filled.Details
     @RequiresApi(Build.VERSION_CODES.N)
     override val screen: @Composable (navController: NavHostController, bundle: Bundle?) -> Unit = { navController, bundle ->
         navController.previousBackStackEntry?.let {
