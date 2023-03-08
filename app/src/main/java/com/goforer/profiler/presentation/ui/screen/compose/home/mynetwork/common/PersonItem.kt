@@ -63,7 +63,11 @@ fun PersonItem(
     onFollowed: (Person, Boolean) -> Unit,
     onNavigateToDetailInfo: (Int) -> Unit
 ) {
-    // For Just Testing
+    /*
+     * The following code implements the requirement of advancing automatically
+     * to the DetailInfo screen when person id is changed....
+     * and the user wanted to continue with the next process.
+     */
     /*
     val lifecycle = LocalLifecycleOwner.current.lifecycle
     val currentNavigateToDetailInfo by rememberUpdatedState(onNavigateToDetailInfo)

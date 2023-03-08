@@ -50,20 +50,23 @@ fun FollowerItem(
     person: Person,
     onMembersClicked: () -> Unit
 ) {
-    // For Just Testing
+    /*
+     * The following code implements the requirement of advancing automatically
+     * to the DetailInfo screen when person index is changed....
+     * and the user wanted to continue with the next process.
+     */
     /*
     val lifecycle = LocalLifecycleOwner.current.lifecycle
     val currentNavigateToMembers by rememberUpdatedState(onMembersClicked)
     var clikced by remember { mutableStateOf(false) }
 
-    LaunchedEffect(clikced, lifecycle) {
-        if (clikced) {
-            snapshotFlow {}
-                .flowWithLifecycle(lifecycle)
-                .collect {
-                    currentNavigateToMembers()
-                }
-        }
+    if (clikced) {
+        LaunchedEffect(clikced, lifecycle) {
+        snapshotFlow {person.index }
+            .flowWithLifecycle(lifecycle)
+            .collect {
+                currentNavigateToMembers()
+            }
     }
 
      */
