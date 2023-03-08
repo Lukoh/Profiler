@@ -14,7 +14,7 @@
  * If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.goforer.profiler.presentation.ui.screen.compose.home.mynetwork.networks
+package com.goforer.profiler.presentation.ui.screen.compose.home.mynetwork.common
 
 import android.annotation.SuppressLint
 import android.content.res.Configuration

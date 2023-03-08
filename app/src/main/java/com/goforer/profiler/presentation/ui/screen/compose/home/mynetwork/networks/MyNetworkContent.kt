@@ -83,17 +83,17 @@ fun MyNetworkContent(
                             snackbarHostState.showSnackbar("${person.name} is not our member")
                     }
                 },
-                onSearched = { text, byClicked ->
-                    myNetworksState.value.find { it.name == text }?.let {
+                onSearched = { name, byClicked ->
+                    myNetworksState.value.find { it.name == name }?.let {
                         keyboardController?.hide()
                     }
 
-                    myNetworksState.value.find { it.name == text } ?: if (byClicked) {
+                    myNetworksState.value.find { it.name == name } ?: if (byClicked) {
                         keyboardController?.hide()
-                        if (text != hint)
+                        if (name != hint)
                             Toast.makeText(
                                 context,
-                                "$text is not our member.",
+                                "$name is not our member.",
                                 Toast.LENGTH_SHORT
                             ).show()
                         } else {

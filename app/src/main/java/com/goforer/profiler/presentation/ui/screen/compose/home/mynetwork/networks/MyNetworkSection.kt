@@ -33,6 +33,7 @@ import androidx.compose.ui.unit.dp
 import com.goforer.profiler.data.model.datum.response.mynetwork.Person
 import com.goforer.profiler.presentation.stateholder.ui.rememberEditableInputState
 import com.goforer.profiler.presentation.ui.ext.noRippleClickable
+import com.goforer.profiler.presentation.ui.screen.compose.home.mynetwork.common.ListSection
 import com.goforer.profiler.presentation.ui.theme.ProfilerTheme
 
 @Composable

@@ -39,10 +39,10 @@ import com.goforer.profiler.R
 import com.goforer.profiler.presentation.ui.theme.ProfilerTheme
 
 @Composable
-fun SearchIconButton(
-    onClick: () -> Unit,
-    icon: @Composable () -> Unit,
-    text: @Composable () -> Unit,
+internal inline fun SearchIconButton(
+    noinline onClick: () -> Unit,
+    crossinline icon: @Composable () -> Unit,
+    crossinline text: @Composable () -> Unit,
     modifier: Modifier = Modifier,
     interactionSource: MutableInteractionSource =
         remember { MutableInteractionSource() },
