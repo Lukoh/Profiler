@@ -18,7 +18,6 @@ package com.goforer.profiler.presentation.ui.screen.navigation.destination
 
 import android.os.Bundle
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.Stable
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NavHostController
 
