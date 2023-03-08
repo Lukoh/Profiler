@@ -9,6 +9,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -36,6 +37,7 @@ fun MyNetworkContent(
     val keyboardController = LocalSoftwareKeyboardController.current
     val myNetworksState = myNetworkViewModel.myNetworks.collectAsStateWithLifecycle()
     val hint =  stringResource(id = R.string.placeholder_search)
+    val lifecycle = LocalLifecycleOwner.current.lifecycle
     val resourceState by produceState(initialValue = ResourceState()) {
         // will be changed if the data come from Backend Server like below:
         /*
@@ -57,7 +59,7 @@ fun MyNetworkContent(
      */
 
     replyCount = 5
-    LaunchedEffect(selectedIndex) {
+    LaunchedEffect(selectedIndex, lifecycle) {
         if (selectedIndex != -1)
             Toast.makeText(context, "Show the detailed profile!", Toast.LENGTH_SHORT).show()
     }
