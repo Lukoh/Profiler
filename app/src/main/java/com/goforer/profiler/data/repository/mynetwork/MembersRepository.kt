@@ -42,14 +42,16 @@ class MembersRepository
  */
 
 /*
+import com.goforer.profiler.data.mediator.DataMediator
 import com.goforer.profiler.data.repository.Repository
-import com.goforer.profiler.data.source.mediator.DataMediator
-import com.goforer.profiler.data.source.model.entity.source.response.mynetwork.PersonResponse
-import com.goforer.profiler.data.source.network.api.Params
-import com.goforer.profiler.data.source.network.response.Resource
+import com.goforer.profiler.data.source.local.mynetwork.MembersLocalDataSource
+import com.goforer.profiler.data.mediator.LocalDataMediator
+import com.goforer.profiler.data.model.datum.response.mynetwork.Person
+import com.goforer.profiler.data.model.datum.response.mynetwork.PersonResponse
+import com.goforer.profiler.data.network.api.Params
+import com.goforer.profiler.data.network.response.Resource
 import com.goforer.profiler.di.module.ApplicationScope
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.flow.SharedFlow
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -57,7 +59,7 @@ import javax.inject.Singleton
 class MembersRepository
 @Inject constructor(
     @ApplicationScope private val externalScope: CoroutineScope
-) : Repository<Resource>() {
+) : Repository<Resource() {
     override fun trigger(replyCount: Int, params: Params) {
         value = object : DataMediator<PersonResponse>(externalScope, Companion.replyCount) {
             override fun load() = restAPI.getMembers()

@@ -64,7 +64,6 @@ fun MyNetworkContent(
 
     when {
         resourceState.data != null -> {
-            @Suppress("UNCHECKED_CAST")
             MyNetworkSection(
                 modifier = modifier,
                 contentPadding = contentPadding,

@@ -46,7 +46,6 @@ fun NotificationContent(
 
     when {
         resourceState.data != null -> {
-            @Suppress("UNCHECKED_CAST")
             NotificationSection(
                 modifier = modifier, contentPadding,
                 onItemClicked = { _, _ ->

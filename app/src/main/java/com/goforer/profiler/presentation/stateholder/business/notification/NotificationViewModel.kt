@@ -57,21 +57,15 @@ class NotificationViewModel
  */
 
 /*
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.goforer.profiler.data.repository.notification.NotificationRepository
-import com.goforer.profiler.data.source.model.entity.source.nofication.Notification
+import com.goforer.profiler.data.model.datum.response.notification.Notification
+import com.goforer.profiler.data.network.api.Params
 import com.goforer.profiler.presentation.stateholder.business.BaseViewModel
-import com.goforer.profiler.data.source.network.api.Params
-import com.goforer.profiler.data.source.network.response.Resource
-import com.goforer.profiler.data.source.network.response.Status
-import dagger.assisted.Assisted
-import dagger.assisted.AssistedFactory
-import dagger.assisted.AssistedInject
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dagger.hilt.android.scopes.ViewModelScoped
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -80,7 +74,7 @@ class ProfileViewModel
 @Inject constructor(
     private val notificationRepository: NotificationRepository
 ) : BaseViewModel() {
-    private val _notifications = MutableStateFlow<List<Notification>>(listOf())
+    private val _notifications = MutableStateFlow<(listOf())
     val notifications: StateFlow<List<Notification>> = _notifications
 
     init {
@@ -92,7 +86,7 @@ class ProfileViewModel
     }
 
     override fun trigger(replyCount: Int, params: Params) {
-        notificationRepository.request(replyCount = replyCount, params = params)
+        notificationRepository.trigger(replyCount = replyCount, params = params)
     }
 
     internal fun getNotification(id: Int): Notification? {

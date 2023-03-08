@@ -62,20 +62,14 @@ class MyNetworkViewModel
  */
 
 /*
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.goforer.profiler.data.repository.mynetwork.MyNetworkRepository
-import com.goforer.profiler.data.source.model.entity.source.response.mynetwork.Person
+import com.goforer.profiler.data.model.datum.response.mynetwork.Person
+import com.goforer.profiler.data.network.api.Params
+import com.goforer.profiler.data.network.response.Resource
+import com.goforer.profiler.data.network.response.Status
 import com.goforer.profiler.presentation.stateholder.business.BaseViewModel
-import com.goforer.profiler.data.source.network.api.Params
-import com.goforer.profiler.data.source.network.response.Resource
-import com.goforer.profiler.data.source.network.response.Status
-import dagger.assisted.Assisted
-import dagger.assisted.AssistedFactory
-import dagger.assisted.AssistedInject
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dagger.hilt.android.scopes.ViewModelScoped
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -97,12 +91,11 @@ class ProfileViewModel
     }
 
     override fun trigger(replyCount: Int, params: Params) {
-        myNetworkRepository.request(replyCount = replyCount, params = params)
+        myNetworkRepository.trigger(replyCount = replyCount, params = params)
     }
 
     internal fun changeFollowStatus(id: Int, name: String, followed: Boolean) {
-        @Suppress("UNCHECKED_CAST")
-        val profileList = myNetworks.value as  List<Person>
+        val profileList = myNetworks.value as List<Person>
 
         profileList.find { it.id == id && it.name == name }?.let {
             it.followed = followed
@@ -110,7 +103,7 @@ class ProfileViewModel
     }
 
     internal fun getPerson(id: Int): Person? {
-        myNetworks.value.find { it.id == id }?.let {
+        myNetworks.value.data?.find { it.id == id }?.let {
             return it
         }
 

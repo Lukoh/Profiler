@@ -45,13 +45,15 @@ class Resource {
         else
             resource.message == null
 
-        return if (messageEqualed)
-            true
+        if (messageEqualed)
+            return true
         else {
-            if (data != null)
+            val resourceEqualed = if (data != null)
                 data == resource.data
             else
                 resource.data == null
+
+            return resourceEqualed
         }
     }
 
@@ -92,6 +94,7 @@ class Resource {
     internal fun loading(data: Any?): Resource {
         status = Status.LOADING
         this.errorCode = 0
+        @Suppress("UNCHECKED_CAST")
         this.data = data
         message = null
 

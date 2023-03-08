@@ -41,15 +41,16 @@ class NotificationRepository
  */
 
 /*
+import com.goforer.profiler.data.mediator.DataMediator
 import com.goforer.profiler.data.repository.Repository
-import com.goforer.profiler.data.source.mediator.DataMediator
-import com.goforer.profiler.data.source.model.entity.source.notification.Notification
-import com.goforer.profiler.data.source.model.entity.source.response.notification.NotificationResponse
-import com.goforer.profiler.data.source.network.api.Params
-import com.goforer.profiler.data.source.network.response.Resource
+import com.goforer.profiler.data.source.local.notification.NotificationsLocalDataSource
+import com.goforer.profiler.data.mediator.LocalDataMediator
+import com.goforer.profiler.data.model.datum.response.notification.Notification
+import com.goforer.profiler.data.model.datum.response.notification.NotificationResponse
+import com.goforer.profiler.data.network.api.Params
+import com.goforer.profiler.data.network.response.Resource
 import com.goforer.profiler.di.module.ApplicationScope
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.flow.SharedFlow
 import javax.inject.Inject
 import javax.inject.Singleton
 
