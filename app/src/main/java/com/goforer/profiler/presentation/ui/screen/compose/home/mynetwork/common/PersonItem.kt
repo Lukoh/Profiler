@@ -34,7 +34,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalLifecycleOwner
+//import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
@@ -43,7 +43,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.flowWithLifecycle
+//import androidx.lifecycle.flowWithLifecycle
 import coil.compose.AsyncImagePainter
 import coil.request.ImageRequest.Builder
 import coil.compose.rememberAsyncImagePainter
@@ -63,6 +63,8 @@ fun PersonItem(
     onFollowed: (Person, Boolean) -> Unit,
     onNavigateToDetailInfo: (Int) -> Unit
 ) {
+    // For Just Testing
+    /*
     val lifecycle = LocalLifecycleOwner.current.lifecycle
     val currentNavigateToDetailInfo by rememberUpdatedState(onNavigateToDetailInfo)
     var clikced by remember { mutableStateOf(false) }
@@ -77,6 +79,8 @@ fun PersonItem(
         }
     }
 
+     */
+
     Surface(
         shape = MaterialTheme.shapes.small,
         modifier = modifier.padding(8.dp, 0.dp)
@@ -90,7 +94,8 @@ fun PersonItem(
                 .fillMaxWidth()
                 .heightIn(min = 56.dp)
                 .clickable {
-                    clikced = true
+                    //clikced = true
+                    onNavigateToDetailInfo(person.id)
                     onItemClicked(person, index)
                 },
         ) {

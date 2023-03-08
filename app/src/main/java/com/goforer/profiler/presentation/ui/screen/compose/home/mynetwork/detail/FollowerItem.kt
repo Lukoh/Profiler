@@ -29,7 +29,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalLifecycleOwner
+//import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
@@ -37,7 +37,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.flowWithLifecycle
+//import androidx.lifecycle.flowWithLifecycle
 import com.goforer.profiler.R
 import com.goforer.profiler.data.model.datum.response.mynetwork.Person
 import com.goforer.profiler.presentation.ui.theme.ColorBgSecondary
@@ -50,6 +50,8 @@ fun FollowerItem(
     person: Person,
     onMembersClicked: () -> Unit
 ) {
+    // For Just Testing
+    /*
     val lifecycle = LocalLifecycleOwner.current.lifecycle
     val currentNavigateToMembers by rememberUpdatedState(onMembersClicked)
     var clikced by remember { mutableStateOf(false) }
@@ -63,6 +65,8 @@ fun FollowerItem(
                 }
         }
     }
+
+     */
 
     Surface(
         shape = MaterialTheme.shapes.small,
@@ -104,7 +108,8 @@ fun FollowerItem(
             MembersIconButton(
                 modifier = Modifier.padding(0.dp, 0.dp, 16.dp, 0.dp),
                 onClick = {
-                    clikced = true
+                    onMembersClicked()
+                    //clikced = true
                 },
                 icon = {
                     Icon(
