@@ -33,7 +33,7 @@ class MembersViewModel
     private val membersRepository: MembersRepository
 ) : BaseViewModel() {
     private val _members = MutableStateFlow<List<Person>>(listOf())
-    val members: StateFlow<List<Person>> = _members
+    val uiState: StateFlow<List<Person>> = _members
 
     init {
         viewModelScope.launch {
@@ -69,7 +69,7 @@ class ProfileViewModel
     private val membersRepository: MembersRepository
 ) : BaseViewModel() {
     private val _members = MutableStateFlow(Resource().loading(Status.LOADING))
-    val members = _members
+    val uiState = _members
 
     init {
         viewModelScope.launch {

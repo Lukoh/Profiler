@@ -22,10 +22,12 @@ import androidx.annotation.RequiresApi
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.sharp.Commute
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Stable
 import androidx.navigation.NavHostController
 import com.goforer.profiler.presentation.ui.screen.compose.home.community.CommunityScreen
 import com.goforer.profiler.presentation.ui.screen.navigation.destination.ProfilerDestination.Companion.communitiesStartRoute
 
+@Stable
 object Community : ProfilerDestination {
     override val icon = Icons.Sharp.Commute
     override val route = communitiesStartRoute

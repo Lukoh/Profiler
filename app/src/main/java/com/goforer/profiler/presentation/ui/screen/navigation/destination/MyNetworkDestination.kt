@@ -24,6 +24,7 @@ import androidx.compose.material.icons.filled.Details
 import androidx.compose.material.icons.sharp.People
 import androidx.compose.material.icons.sharp.Person
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Stable
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -38,15 +39,16 @@ import com.goforer.profiler.presentation.ui.screen.navigation.destination.Profil
 import com.goforer.profiler.presentation.ui.screen.navigation.destination.ProfilerDestination.Companion.myNetworksStartRoute
 import com.goforer.profiler.presentation.ui.screen.navigation.ext.navigateSingleTopTo
 
+@Stable
 object MyNetworks : ProfilerDestination {
     override val icon = Icons.Sharp.Person
     override val route = myNetworksStartRoute
     override val screen: @Composable (navController: NavHostController, bundle: Bundle?) -> Unit = { navController, _ ->
         navController.currentBackStackEntry?.let {
-            val myNetworkViewModel: MyNetworkViewModel =  hiltViewModel(it)
+            val viewModel: MyNetworkViewModel =  hiltViewModel(it)
 
             MyNetworkScreen(
-                myNetworkViewModel = myNetworkViewModel,
+                viewModel  = viewModel,
                 onNavigateToDetailInfo = { userId ->
                     navController.navigateSingleTopTo("${DetailInfo.route}/$userId")
                 }
@@ -55,6 +57,7 @@ object MyNetworks : ProfilerDestination {
     }
 }
 
+@Stable
 object DetailInfo : ProfilerDestination {
     override val icon = Icons.Filled.Details
     override val route = detailInfoRoute
@@ -64,15 +67,16 @@ object DetailInfo : ProfilerDestination {
         navArgument(idTypeArg) { type = NavType.IntType }
     )
 
+    @Stable
     @RequiresApi(Build.VERSION_CODES.N)
     override val screen: @Composable (navController: NavHostController, bundle: Bundle?) -> Unit = { navController, bundle ->
         navController.previousBackStackEntry?.let {
-            val myNetworkViewModel: MyNetworkViewModel =  hiltViewModel(it)
+            val viewModel: MyNetworkViewModel =  hiltViewModel(it)
             val id = bundle?.getInt(idTypeArg)
 
             id?.let { userId ->
                 DetailScreen(
-                    myNetworkViewModel = myNetworkViewModel,
+                    viewModel = viewModel,
                     userId = userId,
                     onMembersClicked = {
                         navController.navigateSingleTopTo(Members.route)
@@ -86,14 +90,15 @@ object DetailInfo : ProfilerDestination {
     }
 }
 
+@Stable
 object Members : ProfilerDestination {
     override val icon = Icons.Sharp.People
     override val route = membersRoute
     override val screen: @Composable (navController: NavHostController, bundle: Bundle?) -> Unit = { navController, _ ->
         navController.previousBackStackEntry?.let {
-            val membersViewModel: MembersViewModel =  hiltViewModel(it)
+            val viewModel: MembersViewModel =  hiltViewModel(it)
 
-            MembersScreen(membersViewModel = membersViewModel, onBackPressed = {
+            MembersScreen(viewModel = viewModel, onBackPressed = {
                 navController.navigateUp()
             })
         }

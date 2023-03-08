@@ -18,6 +18,7 @@ package com.goforer.profiler.presentation.ui.screen.compose
 
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.material3.*
+import androidx.compose.material3.windowsizeclass.WindowSizeClass
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -29,7 +30,7 @@ import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
-fun MainScreen() {
+fun MainScreen(windowSizeClass: WindowSizeClass) {
     Surface(color = MaterialTheme.colorScheme.primary) {
         var showLandingScreen by remember { mutableStateOf(true) }
 
@@ -41,7 +42,11 @@ fun MainScreen() {
             val currentDestination = currentBackStack?.destination
             val currentScreen = ProfilerScreens.find { it.route == currentDestination?.route } ?: MyNetworks
 
-            ProfilerHomeScreen(Modifier, navController = navController)
+            ProfilerHomeScreen(
+                windowSizeClass = windowSizeClass,
+                modifier = Modifier,
+                navController = navController
+            )
         }
     }
 }

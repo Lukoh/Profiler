@@ -17,6 +17,7 @@
 package com.goforer.profiler.presentation.ui.screen.navigation.graph
 
 import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.runtime.Stable
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.navigation
@@ -25,6 +26,7 @@ import com.goforer.profiler.presentation.ui.screen.navigation.destination.Settin
 import com.google.accompanist.navigation.animation.composable
 
 @OptIn(ExperimentalAnimationApi::class)
+@Stable
 fun NavGraphBuilder.settingGraph(
     navController: NavHostController,
     startDestination: String,

@@ -33,7 +33,7 @@ import com.goforer.profiler.presentation.ui.theme.ProfilerTheme
 fun NotificationSection(
     modifier: Modifier = Modifier,
     contentPadding: PaddingValues,
-    notificationsState: State<List<Notification>>,
+    state: State<List<Notification>>,
     onItemClicked: (item: Notification, index: Int) -> Unit,
     onNavigateToDetailInfo: (Int) -> Unit,
 ) {
@@ -53,7 +53,7 @@ fun NotificationSection(
         ) {
             ListSection(
                 modifier = Modifier.weight(1f),
-                notifications = notificationsState.value,
+                notifications = state.value,
                 lazyListState = lazyListState,
                 onItemClicked = onItemClicked,
                 onNavigateToDetailInfo = onNavigateToDetailInfo

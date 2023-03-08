@@ -22,10 +22,12 @@ import androidx.annotation.RequiresApi
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.sharp.Settings
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Stable
 import androidx.navigation.NavHostController
 import com.goforer.profiler.presentation.ui.screen.compose.home.setting.SettingScreen
 import com.goforer.profiler.presentation.ui.screen.navigation.destination.ProfilerDestination.Companion.settingStartRoute
 
+@Stable
 object Setting : ProfilerDestination {
     override val icon = Icons.Sharp.Settings
     override val route = settingStartRoute

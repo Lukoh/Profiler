@@ -36,7 +36,7 @@ import com.goforer.profiler.presentation.ui.screen.compose.home.mynetwork.networ
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ContentScreen(modifier: Modifier = Modifier, notificationViewModel: NotificationViewModel, userId: Int, onBackPressed: () -> Unit) {
+fun ContentScreen(modifier: Modifier = Modifier, viewModel: NotificationViewModel, userId: Int, onBackPressed: () -> Unit) {
     val snackbarHostState = remember { SnackbarHostState() }
 
     Scaffold(
@@ -77,7 +77,7 @@ fun ContentScreen(modifier: Modifier = Modifier, notificationViewModel: Notifica
                 }
             )
         }, content = { paddingValues ->
-            ContentContent(modifier = modifier, contentPadding = paddingValues, notificationViewModel = notificationViewModel, userId = userId)
+            ContentContent(modifier = modifier, contentPadding = paddingValues, viewModel = viewModel, userId = userId)
         }
     )
 }

@@ -43,7 +43,7 @@ import timber.log.Timber
 @Composable
 fun MembersScreen(
     modifier: Modifier = Modifier,
-    membersViewModel: MembersViewModel,
+    viewModel: MembersViewModel,
     onBackPressed: () -> Unit)
 {
     val snackbarHostState = remember { SnackbarHostState() }
@@ -88,7 +88,7 @@ fun MembersScreen(
         }, content = { paddingValues ->
             MembersContent(
                 modifier = modifier,
-                membersViewModel = membersViewModel,
+                viewModel = viewModel,
                 contentPadding = paddingValues,
                 onItemClicked = { _, _ ->
                 },

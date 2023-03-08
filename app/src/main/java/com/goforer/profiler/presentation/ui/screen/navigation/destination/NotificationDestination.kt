@@ -23,6 +23,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Details
 import androidx.compose.material.icons.sharp.Notifications
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Stable
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -34,6 +35,7 @@ import com.goforer.profiler.presentation.ui.screen.navigation.destination.Profil
 import com.goforer.profiler.presentation.ui.screen.navigation.destination.ProfilerDestination.Companion.notificationsStartRoute
 import com.goforer.profiler.presentation.ui.screen.navigation.ext.navigateSingleTopTo
 
+@Stable
 object Notifications : ProfilerDestination {
     override val icon = Icons.Sharp.Notifications
     override val route = notificationsStartRoute
@@ -64,11 +66,11 @@ object Content : ProfilerDestination {
     @RequiresApi(Build.VERSION_CODES.N)
     override val screen: @Composable (navController: NavHostController, bundle: Bundle?) -> Unit = { navController, bundle ->
         navController.previousBackStackEntry?.let {
-            val notificationViewModel: NotificationViewModel =  hiltViewModel(it)
+            val viewModel: NotificationViewModel =  hiltViewModel(it)
             val id = bundle?.getInt(idTypeArg)
 
             id?.let { userId ->
-                ContentScreen(notificationViewModel = notificationViewModel, userId = userId, onBackPressed = {
+                ContentScreen(viewModel = viewModel, userId = userId, onBackPressed = {
                     navController.navigateUp()
                 })
             }

@@ -33,7 +33,7 @@ class NotificationViewModel
     private val notificationRepository: NotificationRepository
 ) : BaseViewModel() {
     private val _notifications = MutableStateFlow<List<Notification>>(listOf())
-    val notifications: StateFlow<List<Notification>> = _notifications
+    val uiState: StateFlow<List<Notification>> = _notifications
 
     init {
         viewModelScope.launch {
@@ -44,7 +44,7 @@ class NotificationViewModel
     }
 
     internal fun getNotification(id: Int): Notification? {
-        notifications.value.find { it.id == id }?.let {
+        uiState.value.find { it.id == id }?.let {
             return it
         }
 
@@ -75,7 +75,7 @@ class ProfileViewModel
     private val notificationRepository: NotificationRepository
 ) : BaseViewModel() {
     private val _notifications = MutableStateFlow<(listOf())
-    val notifications: StateFlow<List<Notification>> = _notifications
+    val uiState: StateFlow<List<Notification>> = _notifications
 
     init {
         viewModelScope.launch {

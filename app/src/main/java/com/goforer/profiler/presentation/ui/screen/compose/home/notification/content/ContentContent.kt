@@ -34,10 +34,10 @@ import com.goforer.profiler.presentation.ui.theme.ProfilerTheme
 fun ContentContent(
     modifier: Modifier = Modifier,
     contentPadding: PaddingValues = PaddingValues(4.dp),
-    notificationViewModel: NotificationViewModel,
+    viewModel: NotificationViewModel,
     userId: Int
 ) {
-    val notification = notificationViewModel.getNotification(userId)
+    val notification = viewModel.getNotification(userId)
     val scrollState = rememberScrollState()
 
     notification?.let {

@@ -34,11 +34,11 @@ import com.goforer.profiler.presentation.ui.theme.ProfilerTheme
 fun DetailContent(
     modifier: Modifier = Modifier,
     contentPadding: PaddingValues = PaddingValues(4.dp),
-    myNetworkViewModel: MyNetworkViewModel,
+    viewModel: MyNetworkViewModel,
     userId: Int,
     onMembersClicked: () -> Unit
 ) {
-    val person = myNetworkViewModel.getPerson(userId)
+    val person = viewModel.getPerson(userId)
     val scrollState = rememberScrollState()
 
     person?.let {

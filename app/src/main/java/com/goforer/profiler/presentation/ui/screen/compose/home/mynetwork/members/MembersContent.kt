@@ -35,12 +35,12 @@ import com.goforer.profiler.presentation.ui.theme.ProfilerTheme
 @Composable
 fun MembersContent(
     modifier: Modifier = Modifier,
-    membersViewModel: MembersViewModel,
+    viewModel: MembersViewModel,
     contentPadding: PaddingValues = PaddingValues(4.dp),
     onItemClicked: (item: Person, index: Int) -> Unit,
     onFollowed: (Person, Boolean) -> Unit
 ) {
-    val membersState = membersViewModel.members.collectAsStateWithLifecycle()
+    val uiState = viewModel.uiState.collectAsStateWithLifecycle()
     val lazyListState: LazyListState = rememberLazyListState()
     val followed = rememberSaveable { mutableStateOf(false) }
     val resourceState by produceState(initialValue = ResourceState()) {
@@ -51,7 +51,7 @@ fun MembersContent(
             Status.ERROR -> { ResourceState(throwError = true) }
             Status.LOADING -> { ResourceState(isLoading = true) }
          */
-        value = ResourceState(membersState)
+        value = ResourceState(uiState)
     }
 
     when {
@@ -64,7 +64,7 @@ fun MembersContent(
             )) {
                 ListSection(
                     modifier = Modifier,
-                    membersState.value,
+                    uiState.value,
                     followed = followed,
                     lazyListState = lazyListState,
                     onItemClicked = onItemClicked,

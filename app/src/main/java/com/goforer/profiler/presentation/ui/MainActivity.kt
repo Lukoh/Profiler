@@ -16,15 +16,15 @@
 
 package com.goforer.profiler.presentation.ui
 
-import android.content.res.Configuration
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
+import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
+import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.view.WindowCompat
 import com.goforer.profiler.presentation.ui.screen.compose.MainScreen
 import com.goforer.profiler.presentation.ui.theme.ProfilerTheme
@@ -36,6 +36,7 @@ class MainActivity : ComponentActivity() {
         internal const val SplashWaitTime = 2000L
     }
 
+    @OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -47,28 +48,11 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize().statusBarsPadding(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    MainScreen()
+                    val windowSizeClass = calculateWindowSizeClass(this)
+
+                    MainScreen(windowSizeClass)
                 }
             }
-        }
-    }
-}
-
-@Preview(name = "Light Mode")
-@Preview(
-    uiMode = Configuration.UI_MODE_NIGHT_YES,
-    showBackground = true,
-    name = "Dark Mode",
-    showSystemUi = true
-)
-@Composable
-fun PreviewShowContainer() {
-    ProfilerTheme {
-        Surface(
-            modifier = Modifier.fillMaxSize(),
-            color = MaterialTheme.colorScheme.background
-        ) {
-            MainScreen()
         }
     }
 }

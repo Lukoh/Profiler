@@ -32,16 +32,16 @@ fun NotificationContent(
     contentPadding: PaddingValues = PaddingValues(4.dp),
     onNavigateToDetailInfo: (Int) -> Unit
 ) {
-    val notificationsState = notificationViewModel.notifications.collectAsStateWithLifecycle()
+    val uiState = notificationViewModel.uiState.collectAsStateWithLifecycle()
     val resourceState by produceState(initialValue = ResourceState()) {
         // will be changed if the data come from Backend Server like below:
         /*
-        when (profilesState.resource.status) {
-            Status.SUCCESS -> { ResourceState(profilesState.resource.data) }
+        when (uiState.resource.status) {
+            Status.SUCCESS -> { ResourceState(uiState.resource.data) }
             Status.ERROR -> { ResourceState(throwError = true) }
             Status.LOADING -> { ResourceState(isLoading = true) }
          */
-        value = ResourceState(notificationsState)
+        value = ResourceState(uiState)
     }
 
     when {
@@ -51,7 +51,7 @@ fun NotificationContent(
                 onItemClicked = { _, _ ->
 
                 },
-                notificationsState = resourceState.data as State<List<Notification>>,
+                state = resourceState.data as State<List<Notification>>,
                 onNavigateToDetailInfo = onNavigateToDetailInfo
             )
         }

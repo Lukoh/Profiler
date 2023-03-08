@@ -36,7 +36,7 @@ import com.goforer.profiler.presentation.stateholder.business.mynetwork.MyNetwor
 @Composable
 fun DetailScreen(
     modifier: Modifier = Modifier,
-    myNetworkViewModel: MyNetworkViewModel,
+    viewModel: MyNetworkViewModel,
     userId: Int,
     onMembersClicked: () -> Unit,
     onBackPressed: () -> Unit,
@@ -77,7 +77,7 @@ fun DetailScreen(
             DetailContent(
                 modifier = modifier,
                 contentPadding = paddingValues,
-                myNetworkViewModel = myNetworkViewModel,
+                viewModel = viewModel,
                 userId = userId,
                 onMembersClicked = onMembersClicked
             )

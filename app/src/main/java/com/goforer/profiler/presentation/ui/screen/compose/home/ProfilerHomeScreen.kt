@@ -28,6 +28,8 @@ import androidx.compose.material.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.windowsizeclass.WindowSizeClass
+import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -66,6 +68,7 @@ import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 
 val ProfilerScreens = listOf(MyNetworks, Community, DetailInfo, Notifications, Content, Setting)
 
+@Stable
 sealed class BottomNavItem(val route: String, @DrawableRes val icon: Int, @StringRes val title: Int) {
     object Profile : BottomNavItem(myNetworkHomeRoute, R.drawable.ic_profile, R.string.my_network)
     object Community :  BottomNavItem(communityHomeRoute, R.drawable.ic_community, R.string.community)
@@ -76,58 +79,64 @@ sealed class BottomNavItem(val route: String, @DrawableRes val icon: Int, @Strin
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun ProfilerHomeScreen(
+    windowSizeClass: WindowSizeClass,
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberAnimatedNavController()
 ) {
     var bottomBarVisible by remember { mutableStateOf(false) }
     val bottomBarOffset by animateDpAsState(targetValue = if (bottomBarVisible) 0.dp else 56.dp)
+    val showBottomBar = windowSizeClass.widthSizeClass == WindowWidthSizeClass.Compact
 
     Scaffold(
         bottomBar = {
-            val items = listOf(
-                BottomNavItem.Profile ,
-                BottomNavItem.Community,
-                BottomNavItem.Notification,
-                BottomNavItem.Setting,
-            )
+            if (showBottomBar) {
+                val items = listOf(
+                    BottomNavItem.Profile ,
+                    BottomNavItem.Community,
+                    BottomNavItem.Notification,
+                    BottomNavItem.Setting,
+                )
 
-            BottomNavigation(
-                backgroundColor = ColorBottomBar,
-                contentColor = Color(0xFF3F414E),
-                elevation = 5.dp,
-                modifier = if (bottomBarVisible)
-                    modifier.navigationBarsPadding()
-                else
-                    modifier.offset(y = bottomBarOffset)
-            ) {
-                val navBackStackEntry by navController.currentBackStackEntryAsState()
-                val currentDestination = navBackStackEntry?.destination
+                BottomNavigation(
+                    backgroundColor = ColorBottomBar,
+                    contentColor = Color(0xFF3F414E),
+                    elevation = 5.dp,
+                    modifier = if (bottomBarVisible)
+                        modifier.navigationBarsPadding()
+                    else
+                        modifier.offset(y = bottomBarOffset)
+                ) {
+                    val navBackStackEntry by navController.currentBackStackEntryAsState()
+                    val currentDestination = navBackStackEntry?.destination
 
-                items.forEach { item ->
-                    BottomNavigationItem(
-                        icon = {
-                            Icon(
-                                painter = painterResource(id = item.icon),
-                                contentDescription = stringResource(id = item.title)
-                            )
-                        },
-                        label = {
-                            Text(
-                                stringResource(id = item.title),
-                                fontFamily = FontFamily.SansSerif,
-                                fontWeight = FontWeight.Normal,
-                                fontSize = 13.sp
-                            )
-                        },
-                        selectedContentColor = MaterialTheme.colorScheme.primary,
-                        unselectedContentColor = Gray,
-                        selected = currentDestination?.hierarchy?.any { it.route == item.route } == true,
-                        alwaysShowLabel = false,
-                        onClick = {
-                            navController.navigateSingleTopToGraph(item.route)
-                        }
-                    )
+                    items.forEach { item ->
+                        BottomNavigationItem(
+                            icon = {
+                                Icon(
+                                    painter = painterResource(id = item.icon),
+                                    contentDescription = stringResource(id = item.title)
+                                )
+                            },
+                            label = {
+                                Text(
+                                    stringResource(id = item.title),
+                                    fontFamily = FontFamily.SansSerif,
+                                    fontWeight = FontWeight.Normal,
+                                    fontSize = 13.sp
+                                )
+                            },
+                            selectedContentColor = MaterialTheme.colorScheme.primary,
+                            unselectedContentColor = Gray,
+                            selected = currentDestination?.hierarchy?.any { it.route == item.route } == true,
+                            alwaysShowLabel = false,
+                            onClick = {
+                                navController.navigateSingleTopToGraph(item.route)
+                            }
+                        )
+                    }
                 }
+            } else {
+                // To Do : In case of Tablet, you've to implement here
             }
         },
         content = { innerPadding ->

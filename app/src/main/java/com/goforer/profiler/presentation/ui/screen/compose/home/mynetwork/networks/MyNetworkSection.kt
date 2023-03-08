@@ -40,7 +40,7 @@ import com.goforer.profiler.presentation.ui.theme.ProfilerTheme
 fun MyNetworkSection(
     modifier: Modifier = Modifier,
     contentPadding: PaddingValues,
-    myNetworksState: State<List<Person>>,
+    state: State<List<Person>>,
     followed: MutableState<Boolean>,
     onItemClicked: (item: Person, index: Int) -> Unit,
     @SuppressLint("ModifierParameter")
@@ -53,8 +53,8 @@ fun MyNetworkSection(
     var searchedKeyword by remember { mutableStateOf("") }
     val showButton by remember { derivedStateOf { searchedKeyword.isNotEmpty() } }
     var clicked by remember { mutableStateOf(false) }
-    val myNetworks by remember(myNetworksState.value) {
-        derivedStateOf { myNetworksState.value.filter { it.name.contains(searchedKeyword) } }
+    val myNetworks by remember(state.value) {
+        derivedStateOf { state.value.filter { it.name.contains(searchedKeyword) } }
     }
 
     if (!editableInputState.isHint)
@@ -76,7 +76,7 @@ fun MyNetworkSection(
                 modifier = Modifier.padding(8.dp),
                 state = editableInputState,
                 onSearched = { keyword ->
-                    myNetworksState.value.find { it.name.contains(keyword)}?.let {
+                    state.value.find { it.name.contains(keyword)}?.let {
                         searchedKeyword = keyword
                     }
 

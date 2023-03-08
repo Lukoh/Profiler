@@ -31,7 +31,7 @@ class MyNetworkViewModel
     private val myNetworkRepository: MyNetworkRepository
 ) : BaseViewModel() {
     private val _myNetworks = MutableStateFlow<List<Person>>(listOf())
-    val myNetworks: StateFlow<List<Person>> = _myNetworks
+    val uiState: StateFlow<List<Person>> = _myNetworks
 
 
     init {
@@ -43,13 +43,13 @@ class MyNetworkViewModel
     }
 
     internal fun changeFollowStatus(id: Int, name: String, followed: Boolean) {
-        myNetworks.value.find { it.id == id && it.name == name }?.let {
+        uiState.value.find { it.id == id && it.name == name }?.let {
             it.followed = followed
         }
     }
 
     internal fun getPerson(id: Int): Person? {
-        myNetworks.value.find { it.id == id }?.let {
+        uiState.value.find { it.id == id }?.let {
             return it
         }
 
@@ -80,7 +80,7 @@ class ProfileViewModel
     private val myNetworkRepository: MyNetworkRepository
 ) : BaseViewModel() {
     private val _myNetworks = MutableStateFlow(Resource().loading(Status.LOADING))
-    val myNetworks = _myNetworks
+    val uiState = _myNetworks
 
     init {
         viewModelScope.launch {

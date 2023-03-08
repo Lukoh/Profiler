@@ -40,7 +40,7 @@ import com.goforer.profiler.presentation.ui.theme.ProfilerTheme
 @Composable
 fun MyNetworkScreen(
     modifier: Modifier = Modifier,
-    myNetworkViewModel: MyNetworkViewModel,
+    viewModel: MyNetworkViewModel,
     onNavigateToDetailInfo: (Int) -> Unit)
 {
     val snackbarHostState = remember { SnackbarHostState() }
@@ -85,7 +85,7 @@ fun MyNetworkScreen(
         }, content = { paddingValues ->
             MyNetworkContent(
                 modifier = modifier,
-                myNetworkViewModel = myNetworkViewModel,
+                viewModel = viewModel,
                 snackbarHostState,
                 paddingValues,
                 onNavigateToDetailInfo

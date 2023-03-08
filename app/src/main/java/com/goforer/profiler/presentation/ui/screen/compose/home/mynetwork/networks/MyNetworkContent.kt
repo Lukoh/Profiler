@@ -26,7 +26,7 @@ import timber.log.Timber
 @Composable
 fun MyNetworkContent(
     modifier: Modifier = Modifier,
-    myNetworkViewModel: MyNetworkViewModel,
+    viewModel: MyNetworkViewModel,
     snackbarHostState: SnackbarHostState,
     contentPadding: PaddingValues = PaddingValues(4.dp),
     onNavigateToDetailInfo: (Int) -> Unit
@@ -35,18 +35,18 @@ fun MyNetworkContent(
     val followed = rememberSaveable { mutableStateOf(false) }
     val context = LocalContext.current
     val keyboardController = LocalSoftwareKeyboardController.current
-    val myNetworksState = myNetworkViewModel.myNetworks.collectAsStateWithLifecycle()
+    val uiState = viewModel.uiState.collectAsStateWithLifecycle()
     val hint =  stringResource(id = R.string.placeholder_search)
     val lifecycle = LocalLifecycleOwner.current.lifecycle
     val resourceState by produceState(initialValue = ResourceState()) {
         // will be changed if the data come from Backend Server like below:
         /*
-        when (profilesState.resource.status) {
-            Status.SUCCESS -> { ResourceState(profilesState.resource.data) }
+        when (uiState.resource.status) {
+            Status.SUCCESS -> { ResourceState(uiState.resource.data) }
             Status.ERROR -> { ResourceState(throwError = true) }
             Status.LOADING -> { ResourceState(isLoading = true) }
          */
-        value = ResourceState(myNetworksState)
+        value = ResourceState(uiState)
     }
 
     var selectedIndex by remember { mutableStateOf(-1) }
@@ -69,14 +69,14 @@ fun MyNetworkContent(
             MyNetworkSection(
                 modifier = modifier,
                 contentPadding = contentPadding,
-                myNetworksState = resourceState.data as State<List<Person>>,
+                state = resourceState.data as State<List<Person>>,
                 followed = followed,
                 onItemClicked = { _, index ->
                     selectedIndex = index
                 },
                 onFollowed =  { person, changed ->
                     scope.launch {
-                        myNetworkViewModel.changeFollowStatus(person.id, person.name, changed)
+                        viewModel.changeFollowStatus(person.id, person.name, changed)
                         if (changed) {
                             keyboardController?.hide()
                             snackbarHostState.showSnackbar("${person.name} has been our member")
@@ -85,11 +85,11 @@ fun MyNetworkContent(
                     }
                 },
                 onSearched = { name, byClicked ->
-                    myNetworksState.value.find { it.name == name }?.let {
+                    uiState.value.find { it.name == name }?.let {
                         keyboardController?.hide()
                     }
 
-                    myNetworksState.value.find { it.name == name } ?: if (byClicked) {
+                    uiState.value.find { it.name == name } ?: if (byClicked) {
                         keyboardController?.hide()
                         if (name != hint)
                             Toast.makeText(
