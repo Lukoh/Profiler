@@ -81,7 +81,6 @@ fun MembersContent(
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Preview(name = "Light Mode")
 @Preview(
     uiMode = Configuration.UI_MODE_NIGHT_YES,
