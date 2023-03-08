@@ -27,7 +27,6 @@ import androidx.navigation.NavHostController
 import com.goforer.profiler.presentation.ui.screen.compose.home.setting.SettingScreen
 import com.goforer.profiler.presentation.ui.screen.navigation.destination.ProfilerDestination.Companion.settingStartRoute
 
-@Stable
 object Setting : ProfilerDestination {
     override val icon = Icons.Sharp.Settings
     override val route = settingStartRoute

@@ -39,7 +39,6 @@ import com.goforer.profiler.presentation.ui.screen.navigation.destination.Profil
 import com.goforer.profiler.presentation.ui.screen.navigation.destination.ProfilerDestination.Companion.myNetworksStartRoute
 import com.goforer.profiler.presentation.ui.screen.navigation.ext.navigateSingleTopTo
 
-@Stable
 object MyNetworks : ProfilerDestination {
     override val icon = Icons.Sharp.Person
     override val route = myNetworksStartRoute
@@ -57,7 +56,6 @@ object MyNetworks : ProfilerDestination {
     }
 }
 
-@Stable
 object DetailInfo : ProfilerDestination {
     override val icon = Icons.Filled.Details
     override val route = detailInfoRoute
@@ -90,7 +88,6 @@ object DetailInfo : ProfilerDestination {
     }
 }
 
-@Stable
 object Members : ProfilerDestination {
     override val icon = Icons.Sharp.People
     override val route = membersRoute

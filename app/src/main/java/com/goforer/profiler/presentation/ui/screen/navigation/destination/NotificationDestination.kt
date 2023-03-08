@@ -35,7 +35,6 @@ import com.goforer.profiler.presentation.ui.screen.navigation.destination.Profil
 import com.goforer.profiler.presentation.ui.screen.navigation.destination.ProfilerDestination.Companion.notificationsStartRoute
 import com.goforer.profiler.presentation.ui.screen.navigation.ext.navigateSingleTopTo
 
-@Stable
 object Notifications : ProfilerDestination {
     override val icon = Icons.Sharp.Notifications
     override val route = notificationsStartRoute
