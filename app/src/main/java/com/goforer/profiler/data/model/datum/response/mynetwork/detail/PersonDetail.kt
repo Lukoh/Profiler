@@ -17,6 +17,7 @@
 package com.goforer.profiler.data.model.datum.response.mynetwork.detail
 
 import android.os.Parcelable
+import com.goforer.profiler.data.model.BaseModel
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
@@ -25,4 +26,4 @@ data class PersonDetail(
     val birthPlace: String,
     val country: String,
     val cellphone: String
-) : Parcelable
+) : BaseModel(), Parcelable

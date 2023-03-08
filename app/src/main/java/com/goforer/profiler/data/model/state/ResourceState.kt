@@ -17,6 +17,7 @@
 package com.goforer.profiler.data.model.state
 
 import android.os.Parcelable
+import com.goforer.profiler.data.model.BaseModel
 import kotlinx.parcelize.Parcelize
 import kotlinx.parcelize.RawValue
 
@@ -25,4 +26,4 @@ data class ResourceState(
     val data: @RawValue Any? = null,
     val isLoading: Boolean = false,
     val throwError: Boolean = false
-) : Parcelable
+) : BaseModel(), Parcelable

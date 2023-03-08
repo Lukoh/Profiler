@@ -61,7 +61,7 @@ fun MembersContent(
                 0.dp,
                 contentPadding.calculateTopPadding(),
                 0.dp,
-                0.dp
+                28.dp
             )) {
                 @Suppress("UNCHECKED_CAST")
                 ListSection(
