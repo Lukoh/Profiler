@@ -1,4 +1,4 @@
-package com.goforer.profiler.data.source.model.entity.source.response.notification
+package com.goforer.profiler.data.model.datum.response.notification
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

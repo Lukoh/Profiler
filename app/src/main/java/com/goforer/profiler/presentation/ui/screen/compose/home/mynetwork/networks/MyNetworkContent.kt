@@ -14,8 +14,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.goforer.profiler.data.repository.Repository.Companion.replyCount
-import com.goforer.profiler.data.source.model.entity.source.response.mynetwork.Person
-import com.goforer.profiler.data.source.model.entity.state.ResourceState
+import com.goforer.profiler.data.model.datum.response.mynetwork.Person
+import com.goforer.profiler.data.model.state.ResourceState
 import com.goforer.profiler.presentation.stateholder.business.mynetwork.MyNetworkViewModel
 import com.goforer.profiler.R
 import kotlinx.coroutines.launch

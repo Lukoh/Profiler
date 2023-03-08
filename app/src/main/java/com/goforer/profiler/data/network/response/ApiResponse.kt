@@ -14,7 +14,7 @@
  * If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.goforer.profiler.data.source.network.response
+package com.goforer.profiler.data.network.response
 
 import retrofit2.Response
 import timber.log.Timber

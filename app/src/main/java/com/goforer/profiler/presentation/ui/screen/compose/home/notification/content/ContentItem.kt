@@ -31,7 +31,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.goforer.profiler.data.source.model.entity.source.response.notification.Notification
+import com.goforer.profiler.data.model.datum.response.notification.Notification
 import com.goforer.profiler.presentation.ui.theme.ColorBgSecondary
 import com.goforer.profiler.presentation.ui.theme.ColorText4
 import com.goforer.profiler.presentation.ui.theme.ProfilerTheme

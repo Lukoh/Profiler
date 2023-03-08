@@ -27,8 +27,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.goforer.profiler.data.source.model.entity.source.response.mynetwork.Person
-import com.goforer.profiler.data.source.model.entity.state.ResourceState
+import com.goforer.profiler.data.model.datum.response.mynetwork.Person
+import com.goforer.profiler.data.model.state.ResourceState
 import com.goforer.profiler.presentation.stateholder.business.mynetwork.MembersViewModel
 import com.goforer.profiler.presentation.ui.screen.compose.home.mynetwork.networks.ListSection
 import com.goforer.profiler.presentation.ui.theme.ProfilerTheme

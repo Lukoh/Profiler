@@ -14,15 +14,21 @@
  * If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.goforer.profiler.data.source.model.entity.source.response.mynetwork.detail
+package com.goforer.profiler.data.model.datum.response.mynetwork
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class PersonDetail(
-    val nickname: String,
-    val birthPlace: String,
-    val country: String,
-    val cellphone: String
+data class Person(
+    val id: Int,
+    val name: String,
+    val sex: String,
+    var followed : Boolean = false,
+    val profileImage: String,
+    val personality: String,
+    val cellphone: String,
+    val address: String,
+    val birthday: String,
+    val repuation: String
 ) : Parcelable

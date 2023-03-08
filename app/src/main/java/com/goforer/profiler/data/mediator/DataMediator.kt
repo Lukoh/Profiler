@@ -14,10 +14,10 @@
  * If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.goforer.profiler.data.source.mediator
+package com.goforer.profiler.data.mediator
 
 import androidx.annotation.MainThread
-import com.goforer.profiler.data.source.network.response.*
+import com.goforer.profiler.data.network.response.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.SharingStarted

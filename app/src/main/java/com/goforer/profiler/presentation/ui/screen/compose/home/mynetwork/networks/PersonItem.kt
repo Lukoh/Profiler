@@ -47,7 +47,7 @@ import coil.compose.AsyncImagePainter
 import coil.request.ImageRequest.Builder
 import coil.compose.rememberAsyncImagePainter
 import com.goforer.profiler.R
-import com.goforer.profiler.data.source.model.entity.source.response.mynetwork.Person
+import com.goforer.profiler.data.model.datum.response.mynetwork.Person
 import com.goforer.profiler.presentation.ui.theme.ColorBgSecondary
 import com.goforer.profiler.presentation.ui.theme.ColorText2
 import com.goforer.profiler.presentation.ui.theme.ProfilerTheme

@@ -18,8 +18,8 @@ package com.goforer.profiler.data.repository.notification
 
 import com.goforer.profiler.data.repository.Repository
 import com.goforer.profiler.data.source.local.notification.NotificationsLocalDataSource
-import com.goforer.profiler.data.source.mediator.LocalDataMediator
-import com.goforer.profiler.data.source.model.entity.source.response.notification.Notification
+import com.goforer.profiler.data.mediator.LocalDataMediator
+import com.goforer.profiler.data.model.datum.response.notification.Notification
 import com.goforer.profiler.di.module.ApplicationScope
 import kotlinx.coroutines.CoroutineScope
 import javax.inject.Inject

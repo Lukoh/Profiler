@@ -14,7 +14,7 @@
  * If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.goforer.profiler.data.source.network.adapter.factory
+package com.goforer.profiler.data.network.adapter.factory
 
 import okhttp3.ResponseBody
 import retrofit2.Converter

@@ -16,7 +16,7 @@
 
 package com.goforer.profiler.data.source.local.mynetwork
 
-import com.goforer.profiler.data.source.model.entity.source.response.mynetwork.Person
+import com.goforer.profiler.data.model.datum.response.mynetwork.Person
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 import javax.inject.Singleton

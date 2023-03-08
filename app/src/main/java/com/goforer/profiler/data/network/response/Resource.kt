@@ -14,7 +14,7 @@
  * If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.goforer.profiler.data.source.network.response
+package com.goforer.profiler.data.network.response
 
 class Resource {
     internal lateinit var status: Status
@@ -40,10 +40,19 @@ class Resource {
             return false
         }
 
-        if (if (message != null) message == resource.message else resource.message == null)
-            if (if (data != null) data == resource.data else resource.data == null) return true
+        val messageEqualed = if (message != null)
+            message == resource.message
+        else
+            resource.message == null
 
-        return false
+        return if (messageEqualed)
+            true
+        else {
+            if (data != null)
+                data == resource.data
+            else
+                resource.data == null
+        }
     }
 
     override fun hashCode(): Int {

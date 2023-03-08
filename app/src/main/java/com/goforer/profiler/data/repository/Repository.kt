@@ -16,10 +16,11 @@
 
 package com.goforer.profiler.data.repository
 
-import com.goforer.profiler.data.source.network.NetworkErrorHandler
-import com.goforer.profiler.data.source.network.api.Params
-import com.goforer.profiler.data.source.network.api.RestAPI
+import com.goforer.profiler.data.network.NetworkErrorHandler
+import com.goforer.profiler.data.network.api.Params
+import com.goforer.profiler.data.network.api.RestAPI
 import kotlinx.coroutines.flow.SharedFlow
+import timber.log.Timber
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -37,8 +38,12 @@ abstract class Repository<T> {
 
     lateinit var value: SharedFlow<T>
 
-    open fun invalidatePagingSource() {}
-    open fun trigger(replyCount: Int, params: Params) {}
+    open fun invalidatePagingSource() {
+        Timber.d("invalidatePagingSource")
+    }
+    open fun trigger(replyCount: Int, params: Params) {
+        Timber.d("trigger")
+    }
 
     protected fun handleNetworkError(errorMessage: String) {
         networkErrorHandler.handleError(errorMessage)

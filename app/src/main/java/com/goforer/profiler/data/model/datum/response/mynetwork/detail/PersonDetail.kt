@@ -14,16 +14,15 @@
  * If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.goforer.profiler.data.source.network.response
+package com.goforer.profiler.data.model.datum.response.mynetwork.detail
 
-/**
- * Status of a resource that is provided to the UI.
- * <p>
- * These are usually created by the Repository classes where they return
- * {@code LiveData<Resource<T>>} to pass back the latest data to the UI with its fetch status.
- */
-enum class Status {
-    SUCCESS,
-    ERROR,
-    LOADING
-}
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
+data class PersonDetail(
+    val nickname: String,
+    val birthPlace: String,
+    val country: String,
+    val cellphone: String
+) : Parcelable

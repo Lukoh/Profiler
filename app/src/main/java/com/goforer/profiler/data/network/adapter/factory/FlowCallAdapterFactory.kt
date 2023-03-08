@@ -14,10 +14,10 @@
  * If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.goforer.profiler.data.source.network.adapter.factory
+package com.goforer.profiler.data.network.adapter.factory
 
-import com.goforer.profiler.data.source.network.adapter.FlowCallAdapter
-import com.goforer.profiler.data.source.network.response.ApiResponse
+import com.goforer.profiler.data.network.adapter.FlowCallAdapter
+import com.goforer.profiler.data.network.response.ApiResponse
 import kotlinx.coroutines.flow.Flow
 import retrofit2.CallAdapter
 import retrofit2.Retrofit

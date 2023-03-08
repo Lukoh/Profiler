@@ -16,7 +16,7 @@
 
 package com.goforer.profiler.data.source.local.notification
 
-import com.goforer.profiler.data.source.model.entity.source.response.notification.Notification
+import com.goforer.profiler.data.model.datum.response.notification.Notification
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 import javax.inject.Singleton

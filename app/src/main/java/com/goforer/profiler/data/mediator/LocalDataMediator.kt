@@ -14,31 +14,29 @@
  * If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.goforer.profiler.data.source.network
+package com.goforer.profiler.data.mediator
 
-import android.content.Context
-import com.google.gson.Gson
-import timber.log.Timber
-import javax.inject.Inject
-import javax.inject.Singleton
+import androidx.annotation.MainThread
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.shareIn
 
-@Singleton
-class NetworkErrorHandler
-@Inject
-constructor(val context: Context) {
-    internal fun handleError(errorMessage: String) {
-        runCatching {
-            val networkError = Gson().fromJson(errorMessage, NetworkError::class.java)
-            networkError.detail[0].type.let {
-                when (it) {
-                    "INVALID_SESSION" -> {
-                    }
-                    "OBSOLETE_VERSION" -> {
-                    }
-                }
-            }
-        }.onFailure { e ->
-            Timber.d("Exception $e")
+abstract class LocalDataMediator<T> constructor(
+    externalScope: CoroutineScope,
+    replyCount: Int = 0
+) {
+    internal val asSharedFlow = flow {
+        load().collect {
+            emit(it)
         }
-    }
+    }.shareIn(
+        scope = externalScope,
+        started = SharingStarted.WhileSubscribed(5000),
+        replay = replyCount
+    )
+
+    @MainThread
+    protected abstract fun load(): Flow<T>
 }

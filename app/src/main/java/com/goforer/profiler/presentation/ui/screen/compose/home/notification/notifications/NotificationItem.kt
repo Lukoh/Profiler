@@ -46,7 +46,7 @@ import coil.compose.AsyncImagePainter
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.goforer.profiler.R
-import com.goforer.profiler.data.source.model.entity.source.response.notification.Notification
+import com.goforer.profiler.data.model.datum.response.notification.Notification
 import com.goforer.profiler.presentation.ui.theme.*
 
 @Composable

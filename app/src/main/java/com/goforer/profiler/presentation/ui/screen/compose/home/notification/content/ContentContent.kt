@@ -25,7 +25,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.goforer.profiler.data.source.model.entity.source.response.notification.Notification
+import com.goforer.profiler.data.model.datum.response.notification.Notification
 import com.goforer.profiler.presentation.stateholder.business.notification.NotificationViewModel
 import com.goforer.profiler.presentation.ui.ext.noRippleClickable
 import com.goforer.profiler.presentation.ui.theme.ProfilerTheme

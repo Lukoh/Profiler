@@ -14,29 +14,26 @@
  * If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.goforer.profiler.data.source.mediator
+package com.goforer.profiler.data.network.api
 
-import androidx.annotation.MainThread
-import kotlinx.coroutines.CoroutineScope
+import com.goforer.profiler.data.model.datum.response.mynetwork.PersonResponse
+import com.goforer.profiler.data.model.datum.response.notification.NotificationResponse
+import com.goforer.profiler.data.network.response.ApiResponse
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.shareIn
+import retrofit2.http.GET
+import retrofit2.http.Path
 
-abstract class LocalDataMediator<T> constructor(
-    externalScope: CoroutineScope,
-    replyCount: Int = 0
-) {
-    internal val asSharedFlow = flow {
-        load().collect {
-            emit(it)
-        }
-    }.shareIn(
-        scope = externalScope,
-        started = SharingStarted.WhileSubscribed(5000),
-        replay = replyCount
-    )
+interface RestAPI {
+    @GET("/profile/{user_id}/profiles")
+    fun getMyNetworks(
+        @Path("user_id") userId: String
+    ): Flow<ApiResponse<PersonResponse>>
 
-    @MainThread
-    protected abstract fun load(): Flow<T>
+    @GET("")
+    fun getNotifications(
+        @Path("user_id") userId: String
+    ): Flow<ApiResponse<NotificationResponse>>
+
+    @GET("/profile/members")
+    fun getMembers(): Flow<ApiResponse<PersonResponse>>
 }

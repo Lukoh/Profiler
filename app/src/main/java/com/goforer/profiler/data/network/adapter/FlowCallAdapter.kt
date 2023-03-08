@@ -14,9 +14,9 @@
  * If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.goforer.profiler.data.source.network.adapter
+package com.goforer.profiler.data.network.adapter
 
-import com.goforer.profiler.data.source.network.response.ApiResponse
+import com.goforer.profiler.data.network.response.ApiResponse
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow

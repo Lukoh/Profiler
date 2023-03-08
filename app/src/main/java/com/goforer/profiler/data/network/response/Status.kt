@@ -14,19 +14,16 @@
  * If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.goforer.profiler.presentation.stateholder.business
+package com.goforer.profiler.data.network.response
 
-import androidx.lifecycle.ViewModel
-import com.goforer.profiler.data.network.api.Params
-import timber.log.Timber
-import javax.inject.Singleton
-
-/*
- * Just use the below code if you take data from the Backend server.
+/**
+ * Status of a resource that is provided to the UI.
+ * <p>
+ * These are usually created by the Repository classes where they return
+ * {@code LiveData<Resource<T>>} to pass back the latest data to the UI with its fetch status.
  */
-@Singleton
-abstract class BaseViewModel : ViewModel() {
-    open fun trigger(replyCount: Int, params: Params) {
-        Timber.d("Triggered Params")
-    }
+enum class Status {
+    SUCCESS,
+    ERROR,
+    LOADING
 }

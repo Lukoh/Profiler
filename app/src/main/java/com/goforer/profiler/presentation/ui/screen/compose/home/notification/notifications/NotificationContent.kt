@@ -21,8 +21,8 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.goforer.profiler.data.source.model.entity.source.response.notification.Notification
-import com.goforer.profiler.data.source.model.entity.state.ResourceState
+import com.goforer.profiler.data.model.datum.response.notification.Notification
+import com.goforer.profiler.data.model.state.ResourceState
 import com.goforer.profiler.presentation.stateholder.business.notification.NotificationViewModel
 
 @Composable

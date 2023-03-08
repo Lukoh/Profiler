@@ -18,7 +18,7 @@ package com.goforer.profiler.presentation.stateholder.business.notification
 
 import androidx.lifecycle.viewModelScope
 import com.goforer.profiler.data.repository.notification.NotificationRepository
-import com.goforer.profiler.data.source.model.entity.source.response.notification.Notification
+import com.goforer.profiler.data.model.datum.response.notification.Notification
 import com.goforer.profiler.presentation.stateholder.business.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

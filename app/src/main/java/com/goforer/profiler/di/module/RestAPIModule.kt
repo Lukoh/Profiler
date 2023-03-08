@@ -26,11 +26,11 @@ import com.franmontiel.persistentcookiejar.cache.SetCookieCache
 import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor
 import com.goforer.base.extension.isNull
 import com.goforer.profiler.BuildConfig
-import com.goforer.profiler.data.source.network.NetworkError
-import com.goforer.profiler.data.source.network.NetworkErrorHandler
-import com.goforer.profiler.data.source.network.adapter.factory.FlowCallAdapterFactory
-import com.goforer.profiler.data.source.network.adapter.factory.NullOnEmptyConverterFactory
-import com.goforer.profiler.data.source.network.api.RestAPI
+import com.goforer.profiler.data.network.NetworkError
+import com.goforer.profiler.data.network.NetworkErrorHandler
+import com.goforer.profiler.data.network.adapter.factory.FlowCallAdapterFactory
+import com.goforer.profiler.data.network.adapter.factory.NullOnEmptyConverterFactory
+import com.goforer.profiler.data.network.api.RestAPI
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
