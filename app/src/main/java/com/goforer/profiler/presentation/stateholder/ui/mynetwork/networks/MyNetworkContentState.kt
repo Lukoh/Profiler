@@ -21,7 +21,7 @@ class MyNetworkContentState(
     val context: Context,
     val scope: CoroutineScope,
     val lifecycle: Lifecycle,
-    val followed: MutableState<Boolean>,
+    val followedState: MutableState<Boolean>,
     var selectedIndex: MutableState<Int>,
     val keyboardController: SoftwareKeyboardController?,
     val onFollowStatusChanged: (id: Int, name: String, followed: Boolean) -> Unit,
@@ -39,7 +39,7 @@ fun rememberMyNetworkContentState(
     context: Context = LocalContext.current,
     scope: CoroutineScope = rememberCoroutineScope(),
     lifecycle: Lifecycle = LocalLifecycleOwner.current.lifecycle,
-    followed: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
+    followedState: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
     selectedIndex: MutableState<Int> = remember { mutableStateOf(-1) },
     keyboardController: SoftwareKeyboardController? = LocalSoftwareKeyboardController.current,
     resourceState: ResourceState<StateFlow<List<Person>>> = produceState(initialValue = ResourceState()) {
@@ -54,7 +54,7 @@ fun rememberMyNetworkContentState(
     }.value,
     onFollowStatusChanged: (id: Int, name: String, followed: Boolean) -> Unit
 ): MyNetworkContentState = remember(
-    uiState, context, scope, lifecycle, followed, selectedIndex,
+    uiState, context, scope, lifecycle, followedState, selectedIndex,
     keyboardController, resourceState, onFollowStatusChanged
 ) {
     MyNetworkContentState(
@@ -62,7 +62,7 @@ fun rememberMyNetworkContentState(
         context = context,
         scope = scope,
         lifecycle = lifecycle,
-        followed = followed,
+        followedState = followedState,
         selectedIndex = selectedIndex,
         keyboardController = keyboardController,
         resourceState = resourceState,

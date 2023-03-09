@@ -39,12 +39,14 @@ import com.goforer.profiler.presentation.ui.theme.ProfilerTheme
 @Composable
 fun ListSection(
     modifier: Modifier = Modifier,
+    sexButtonVisible: Boolean,
     persons: List<Person>,
-    followed: MutableState<Boolean>,
+    followedState: MutableState<Boolean>,
     lazyListState: LazyListState = rememberLazyListState(),
     onItemClicked: (item: Person, index: Int) -> Unit,
     @SuppressLint("ModifierParameter")
     onFollowed: (Person, Boolean) -> Unit,
+    onSexViewed: (String) -> Unit,
     onNavigateToDetailInfo: (Int) -> Unit
 ) {
     val showButton by remember { derivedStateOf { lazyListState.firstVisibleItemIndex > 0 } }
@@ -59,11 +61,13 @@ fun ListSection(
             itemsIndexed(persons, key = { _, item -> item.id }, itemContent = { index, item ->
                 PersonItem(
                     modifier,
+                    sexButtonVisible = sexButtonVisible,
                     item,
                     index,
-                    followed,
+                    followedState,
                     onItemClicked = onItemClicked,
                     onFollowed = onFollowed,
+                    onSexViewed = onSexViewed,
                     onNavigateToDetailInfo = onNavigateToDetailInfo
                 )
                 //Divider()})
@@ -156,11 +160,13 @@ fun ListSectionPreview(modifier: Modifier = Modifier) {
                     itemContent = { index, item ->
                         PersonItem(
                             modifier,
+                            sexButtonVisible = true,
                             item,
                             index,
                             followed,
                             onItemClicked = { _, _ -> },
                             onFollowed = { _, _ -> },
+                            onSexViewed = {},
                             onNavigateToDetailInfo = {}
                         )
                         //Divider()})

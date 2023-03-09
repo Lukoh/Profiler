@@ -12,19 +12,23 @@ import kotlinx.coroutines.flow.StateFlow
 class MembersContentState(
     val uiState: StateFlow<List<Person>>,
     val lazyListState: LazyListState,
-    val followed: MutableState<Boolean>,
+    val sexState: MutableState<String>,
+    val followedState: MutableState<Boolean>,
     resourceState: ResourceState<StateFlow<List<Person>>>
 ) {
     val data: StateFlow<List<Person>>? = resourceState.data
     val isLoading: Boolean = resourceState.isLoading
     val throwError: Boolean = resourceState.throwError
+
+    lateinit var membersState: State<List<Person>>
 }
 
 @Composable
 fun rememberMembersContentState(
     uiState: StateFlow<List<Person>>,
     lazyListState: LazyListState = rememberLazyListState(),
-    followed: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
+    sexState: MutableState<String> = rememberSaveable { mutableStateOf("") },
+    followedState: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
     resourceState: ResourceState<StateFlow<List<Person>>> = produceState(initialValue = ResourceState()) {
         // will be changed if the data come from Backend Server like below:
         /*
@@ -35,6 +39,6 @@ fun rememberMembersContentState(
         */
         value = ResourceState(uiState)
     }.value
-): MembersContentState = remember(uiState, lazyListState, followed, resourceState) {
-    MembersContentState(uiState, lazyListState, followed, resourceState)
+): MembersContentState = remember(uiState, lazyListState, sexState, followedState, resourceState) {
+    MembersContentState(uiState, lazyListState, sexState, followedState, resourceState)
 }

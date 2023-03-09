@@ -24,10 +24,9 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.Checkbox
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Man
+import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -49,6 +48,7 @@ import coil.request.ImageRequest.Builder
 import coil.compose.rememberAsyncImagePainter
 import com.goforer.profiler.R
 import com.goforer.profiler.data.model.datum.response.mynetwork.Person
+import com.goforer.profiler.presentation.ui.screen.compose.home.mynetwork.members.SexIconButton
 import com.goforer.profiler.presentation.ui.theme.ColorBgSecondary
 import com.goforer.profiler.presentation.ui.theme.ColorText2
 import com.goforer.profiler.presentation.ui.theme.ProfilerTheme
@@ -56,11 +56,13 @@ import com.goforer.profiler.presentation.ui.theme.ProfilerTheme
 @Composable
 fun PersonItem(
     modifier: Modifier = Modifier,
+    sexButtonVisible: Boolean,
     person: Person,
     index: Int,
     followed: MutableState<Boolean>,
     onItemClicked: (item: Person, index: Int) -> Unit,
     onFollowed: (Person, Boolean) -> Unit,
+    onSexViewed: (String) -> Unit,
     onNavigateToDetailInfo: (Int) -> Unit
 ) {
     /*
@@ -150,18 +152,58 @@ fun PersonItem(
                     style = MaterialTheme.typography.titleMedium
                 )
                 Spacer(modifier = Modifier.height(4.dp))
-                Text(
-                    person.sex,
+                Row(
                     modifier = Modifier
-                        .paddingFromBaseline(4.dp)
-                        .offset(x = 0.dp, y = (-2).dp),
-                    fontFamily = FontFamily.SansSerif,
-                    fontSize = 13.sp,
-                    fontStyle = FontStyle.Normal,
-                    color = ColorText2,
-                    style = MaterialTheme.typography.titleSmall
-                )
+                        .wrapContentWidth()
+                        .animateContentSize()
+                ) {
+                    Surface(
+                        modifier = Modifier.align(Alignment.CenterVertically),
+                        shape = MaterialTheme.shapes.small,
+                        shadowElevation = 1.dp
+                    ) {
+                        Text(
+                            person.sex,
+                            modifier = Modifier
+                                .paddingFromBaseline(4.dp)
+                                .offset(x = 0.dp, y = (-2).dp),
+                            fontFamily = FontFamily.SansSerif,
+                            fontSize = 13.sp,
+                            fontStyle = FontStyle.Normal,
+                            color = ColorText2,
+                            style = MaterialTheme.typography.titleSmall
+                        )
+                    }
+                    Spacer(
+                        modifier = Modifier
+                            .height(4.dp)
+                            .width(8.dp)
+                    )
+                    if (sexButtonVisible) {
+                        SexIconButton(
+                            onClick = {
+                                onSexViewed(person.sex)
+                            },
+                            icon = {
+                                Icon(
+                                    modifier = Modifier.wrapContentWidth().heightIn(14.dp),
+                                    imageVector = Icons.Default.Man,
+                                    contentDescription = null,
+                                )
+                            },
+                            text = {
+                                Text(
+                                    person.sex,
+                                    fontFamily = FontFamily.SansSerif,
+                                    fontSize = 8.sp,
+                                    fontStyle = FontStyle.Italic
+                                )
+                            }
+                        )
+                    }
+                }
             }
+
             Spacer(modifier = Modifier
                 .fillMaxWidth()
                 .weight(1f))
@@ -277,17 +319,53 @@ fun PersonItemPreview() {
                         style = MaterialTheme.typography.titleMedium
                     )
                     Spacer(modifier = Modifier.height(4.dp))
-                    Text(
-                        "남성",
+                    Row(
                         modifier = Modifier
-                            .paddingFromBaseline(4.dp)
-                            .offset(x = 0.dp, y = (-2).dp),
-                        fontFamily = FontFamily.SansSerif,
-                        fontSize = 13.sp,
-                        fontStyle = FontStyle.Normal,
-                        color = ColorText2,
-                        style = MaterialTheme.typography.titleSmall
-                    )
+                            .wrapContentWidth()
+                            .animateContentSize()
+                        ) {
+                        Surface(
+                            modifier = Modifier.align(Alignment.CenterVertically),
+                            shape = MaterialTheme.shapes.small,
+                            shadowElevation = 1.dp
+                        ) {
+                            Text(
+                                "남성",
+                                modifier = Modifier
+                                    .paddingFromBaseline(4.dp)
+                                    .offset(x = 0.dp, y = (-2).dp),
+                                fontFamily = FontFamily.SansSerif,
+                                fontSize = 13.sp,
+                                fontStyle = FontStyle.Normal,
+                                color = ColorText2,
+                                style = MaterialTheme.typography.titleSmall
+                            )
+                        }
+                        Spacer(
+                            modifier = Modifier
+                                .height(4.dp)
+                                .width(8.dp)
+                        )
+                        SexIconButton(
+                            onClick = {
+                            },
+                            icon = {
+                                Icon(
+                                    modifier = Modifier.wrapContentWidth().heightIn(14.dp),
+                                    imageVector = Icons.Default.Man,
+                                    contentDescription = null,
+                                )
+                            },
+                            text = {
+                                Text(
+                                    "남성",
+                                    fontFamily = FontFamily.SansSerif,
+                                    fontSize = 8.sp,
+                                    fontStyle = FontStyle.Italic
+                                )
+                            }
+                        )
+                    }
                 }
                 Spacer(
                     modifier = Modifier

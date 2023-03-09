@@ -35,7 +35,7 @@ fun MyNetworkContent(
      profileViewModel.trigger(2, Params("uud1234213"))
      */
 
-    replyCount = 5
+    replyCount = 2
     LaunchedEffect(state.selectedIndex, state.lifecycle) {
         if (state.selectedIndex.value != -1)
             Toast.makeText(state.context, "Show the detailed profile!", Toast.LENGTH_SHORT).show()
@@ -47,7 +47,7 @@ fun MyNetworkContent(
                 modifier = modifier,
                 contentPadding = contentPadding,
                 myNetworksState = state.data.collectAsStateWithLifecycle(),
-                followed = state.followed,
+                followedState = state.followedState,
                 onItemClicked = { _, index ->
                     state.selectedIndex.value = index
                 },

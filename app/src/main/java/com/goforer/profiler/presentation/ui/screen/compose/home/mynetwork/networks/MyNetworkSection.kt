@@ -42,7 +42,7 @@ fun MyNetworkSection(
     contentPadding: PaddingValues,
     myNetworksState: State<List<Person>>,
     state: MyNetworkSectionState = rememberMyNetworkSectionState(),
-    followed: MutableState<Boolean>,
+    followedState: MutableState<Boolean>,
     onItemClicked: (item: Person, index: Int) -> Unit,
     @SuppressLint("ModifierParameter")
     onFollowed: (Person, Boolean) -> Unit,
@@ -85,11 +85,13 @@ fun MyNetworkSection(
             )
             ListSection(
                 modifier = Modifier.weight(1f),
+                sexButtonVisible = false,
                 persons = state.currentNetworksState.value,
-                followed = followed,
+                followedState = followedState,
                 lazyListState = state.lazyListState,
                 onItemClicked = onItemClicked,
                 onFollowed = onFollowed,
+                onSexViewed = {},
                 onNavigateToDetailInfo = onNavigateToDetailInfo
             )
         }
@@ -144,7 +146,7 @@ fun MyNetworkSectionPreview(modifier: Modifier = Modifier) {
                     .noRippleClickable { }
             ) {
                 val editableInputState = rememberEditableInputState(hint = "Search")
-                val followed = rememberSaveable { mutableStateOf(true) }
+                val followedState = rememberSaveable { mutableStateOf(true) }
                 val lazyListState: LazyListState = rememberLazyListState()
                 val myNetworks = mutableListOf(
                     Person(0,"LLyyiok", "남성", true,"https://avatars.githubusercontent.com/u/18302717?v=4", "sociable & gregarious", "+820101111-1111","", "Mar, 04, 1999","Lukoh is a tremendously capable and dedicated mobile SW professional. He has strong analytical and innovative skills which are further boosted by his solid technical background and his enthusiasm for technology. Lukoh works extremely well with colleagues, associates, and executives, adapting the analysis and communication techniques in order to accomplish the business objective."),
@@ -167,11 +169,13 @@ fun MyNetworkSectionPreview(modifier: Modifier = Modifier) {
                 )
                 ListSection(
                     modifier = Modifier.weight(1f),
+                    sexButtonVisible = true,
                     myNetworks,
-                    followed = followed,
+                    followedState = followedState,
                     lazyListState = lazyListState,
                     onItemClicked = { _, _ -> },
                     onFollowed = { _, _ -> },
+                    onSexViewed = {},
                     onNavigateToDetailInfo = {}
                 )
             }
