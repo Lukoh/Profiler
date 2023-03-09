@@ -19,7 +19,7 @@ package com.goforer.profiler
 import android.app.Application
 import coil.ImageLoader
 import coil.ImageLoaderFactory
-import com.goforer.base.utils.UnsplashSizingInterceptor
+import com.goforer.base.utils.connect.UnsplashSizingInterceptor
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp

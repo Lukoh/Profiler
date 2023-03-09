@@ -14,7 +14,7 @@
  * If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.goforer.base.utils
+package com.goforer.base.utils.connect
 
 import coil.intercept.Interceptor
 import coil.request.ImageResult
