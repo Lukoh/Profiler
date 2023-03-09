@@ -117,8 +117,7 @@ The following diagram represents the dependencies between the UI and different s
 
 UI depending on both UI logic state holder and screen level state holder
 
-![UI depending on both UI logic state holder and screen level state holder]
-(https://developer.android.com/static/images/topic/architecture/ui-layer/stateholder-dependencies.png))
+![alt mad-arch-overview-UI depending](https://developer.android.com/static/images/topic/architecture/ui-layer/stateholder-dependencies.png))
 Figure 7: UI depending on different state holders. Arrows mean dependencies.
 
 To learn more about this layer, see the [domain layer](https://developer.android.com/topic/architecture/domain-layer) page.
