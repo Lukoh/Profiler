@@ -40,5 +40,11 @@ fun rememberMembersContentState(
         value = ResourceState(uiState)
     }.value
 ): MembersContentState = remember(uiState, lazyListState, sexState, followedState, resourceState) {
-    MembersContentState(uiState, lazyListState, sexState, followedState, resourceState)
+    MembersContentState(
+        uiState = uiState,
+        lazyListState = lazyListState,
+        sexState = sexState,
+        followedState = followedState,
+        resourceState = resourceState
+    )
 }

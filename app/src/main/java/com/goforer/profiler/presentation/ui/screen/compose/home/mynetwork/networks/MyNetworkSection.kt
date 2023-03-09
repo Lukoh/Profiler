@@ -30,6 +30,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.goforer.profiler.data.model.datum.response.mynetwork.Person
 import com.goforer.profiler.presentation.stateholder.ui.mynetwork.networks.*
 import com.goforer.profiler.presentation.ui.ext.noRippleClickable
@@ -40,25 +41,28 @@ import com.goforer.profiler.presentation.ui.theme.ProfilerTheme
 fun MyNetworkSection(
     modifier: Modifier = Modifier,
     contentPadding: PaddingValues,
-    myNetworksState: State<List<Person>>,
-    state: MyNetworkSectionState = rememberMyNetworkSectionState(),
-    followedState: MutableState<Boolean>,
+    myNetworkContentState: MyNetworkContentState,
+    myNetworkSectionState: MyNetworkSectionState = rememberMyNetworkSectionState(),
     onItemClicked: (item: Person, index: Int) -> Unit,
     @SuppressLint("ModifierParameter")
     onFollowed: (Person, Boolean) -> Unit,
     onSearched: (String, Boolean) -> Unit,
     onNavigateToDetailInfo: (Int) -> Unit
 ) {
-    state.currentNetworksState = remember(myNetworksState.value) {
-        derivedStateOf {
-            myNetworksState.value.filter {
-                it.name.contains(state.searchedKeywordState.value)
+    val myNetworksState = myNetworkContentState.data?.collectAsStateWithLifecycle()
+
+    myNetworksState?.let {
+        myNetworkSectionState.currentNetworksState = remember(it.value) {
+            derivedStateOf {
+                it.value.filter { person ->
+                    person.name.contains(myNetworkSectionState.searchedKeywordState.value)
+                }
             }
         }
     }
 
-    if (!state.editableInputState.isHint)
-        onSearched(state.editableInputState.text, false)
+    if (!myNetworkSectionState.editableInputState.isHint)
+        onSearched(myNetworkSectionState.editableInputState.text, false)
 
     BoxWithConstraints(modifier = modifier) {
         Column(
@@ -74,10 +78,10 @@ fun MyNetworkSection(
         ) {
             SearchSection(
                 modifier = Modifier.padding(8.dp),
-                state = state.editableInputState,
+                state = myNetworkSectionState.editableInputState,
                 onSearched = { keyword ->
-                    myNetworksState.value.find { it.name.contains(keyword)}?.let {
-                        state.searchedKeywordState.value = keyword
+                    myNetworksState?.value?.find { it.name.contains(keyword)}?.let {
+                        myNetworkSectionState.searchedKeywordState.value = keyword
                     }
 
                     onSearched(keyword, true)
@@ -86,9 +90,9 @@ fun MyNetworkSection(
             ListSection(
                 modifier = Modifier.weight(1f),
                 sexButtonVisible = false,
-                persons = state.currentNetworksState.value,
-                followedState = followedState,
-                lazyListState = state.lazyListState,
+                persons = myNetworkSectionState.currentNetworksState.value,
+                followedState = myNetworkContentState.followedState,
+                lazyListState = myNetworkSectionState.lazyListState,
                 onItemClicked = onItemClicked,
                 onFollowed = onFollowed,
                 onSexViewed = {},
@@ -97,7 +101,7 @@ fun MyNetworkSection(
         }
 
         AnimatedVisibility(
-            visible = state.showButtonState.value,
+            visible = myNetworkSectionState.showButtonState.value,
             modifier = Modifier.align(Alignment.BottomEnd)
         ) {
             FloatingActionButton(
@@ -107,17 +111,17 @@ fun MyNetworkSection(
                     .padding(bottom = 4.dp, end = 8.dp),
                 backgroundColor = MaterialTheme.colorScheme.primary,
                 onClick = {
-                    state.clickedState.value = true
+                    myNetworkSectionState.clickedState.value = true
                 }
             ) {
                 Text("Back!")
             }
         }
 
-        if (state.showButtonState.value && state.clickedState.value) {
-            LaunchedEffect(state.lazyListState) {
-                state.searchedKeywordState.value = ""
-                state.clickedState.value = false
+        if (myNetworkSectionState.showButtonState.value && myNetworkSectionState.clickedState.value) {
+            LaunchedEffect(myNetworkSectionState.lazyListState) {
+                myNetworkSectionState.searchedKeywordState.value = ""
+                myNetworkSectionState.clickedState.value = false
             }
         }
     }

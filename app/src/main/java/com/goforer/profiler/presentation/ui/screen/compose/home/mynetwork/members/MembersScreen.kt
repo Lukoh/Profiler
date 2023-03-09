@@ -77,7 +77,7 @@ fun MembersScreen(
                     }
                 },
                 actions = {
-                    IconButton(onClick = { /* doSomething() */ }) {
+                    IconButton(onClick = { state.sexState.value = "" }) {
                         Icon(
                             imageVector = Icons.Filled.Refresh,
                             contentDescription = "Localized description"

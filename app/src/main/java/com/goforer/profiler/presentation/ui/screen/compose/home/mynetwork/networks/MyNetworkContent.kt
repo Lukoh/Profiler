@@ -46,8 +46,7 @@ fun MyNetworkContent(
             MyNetworkSection(
                 modifier = modifier,
                 contentPadding = contentPadding,
-                myNetworksState = state.data.collectAsStateWithLifecycle(),
-                followedState = state.followedState,
+                myNetworkContentState = state,
                 onItemClicked = { _, index ->
                     state.selectedIndex.value = index
                 },

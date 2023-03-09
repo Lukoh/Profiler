@@ -42,9 +42,9 @@ fun MembersContent(
     val uiState = state.uiState.collectAsStateWithLifecycle()
     state.membersState = remember(uiState.value) {
         derivedStateOf {
-            if (state.sexState.value.isEmpty())
+            if (state.sexState.value.isEmpty()) {
                 uiState.value
-            else {
+            } else {
                 uiState.value.filter {
                     it.sex == state.sexState.value
                 }
