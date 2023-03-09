@@ -55,6 +55,14 @@ class MyNetworkViewModel
 
         return null
     }
+
+    internal fun getPerson(keyword: String): Person? {
+        uiState.value.find { it.name.contains(keyword) }?.let {
+            return it
+        }
+
+        return null
+    }
 }
 
 /*

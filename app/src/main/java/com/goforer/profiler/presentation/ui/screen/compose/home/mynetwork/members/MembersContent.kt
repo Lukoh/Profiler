@@ -45,9 +45,7 @@ fun MembersContent(
             if (state.sexState.value.isEmpty()) {
                 uiState.value
             } else {
-                uiState.value.filter {
-                    it.sex == state.sexState.value
-                }
+                state.onGetMembers(state.sexState.value)
             }
         }
     }
@@ -69,7 +67,7 @@ fun MembersContent(
                     onItemClicked = onItemClicked,
                     onFollowed = onFollowed,
                     onSexViewed = { sex ->
-                        uiState.value.find { it.sex == sex }?.let { state.sexState.value = sex }
+                        state.onGetPerson(sex)?.let { state.sexState.value = sex }
                     },
                     onNavigateToDetailInfo = {
                     }

@@ -54,7 +54,8 @@ object MyNetworks : ProfilerDestination {
             MyNetworkScreen(
                 state = rememberMyNetworkContentState(
                     uiState = viewModel.uiState,
-                    onFollowStatusChanged = viewModel::changeFollowStatus
+                    onFollowStatusChanged = viewModel::changeFollowStatus,
+                    onGetPerson = viewModel::getPerson
                 ),
                 onNavigateToDetailInfo = { userId ->
                     navController.navigateSingleTopTo("${DetailInfo.route}/$userId")
@@ -107,7 +108,11 @@ object Members : ProfilerDestination {
             val viewModel: MembersViewModel =  hiltViewModel(it)
 
             MembersScreen(
-                state = rememberMembersContentState(uiState = viewModel.uiState),
+                state = rememberMembersContentState(
+                    uiState = viewModel.uiState,
+                    onGetMembers = viewModel::getMembers,
+                    onGetPerson = viewModel::getPerson
+                ),
                 onBackPressed = {
                     navController.navigateUp()
                 }

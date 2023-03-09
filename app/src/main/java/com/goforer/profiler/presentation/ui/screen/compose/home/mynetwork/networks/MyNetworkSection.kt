@@ -80,7 +80,7 @@ fun MyNetworkSection(
                 modifier = Modifier.padding(8.dp),
                 state = myNetworkSectionState.editableInputState,
                 onSearched = { keyword ->
-                    myNetworksState?.value?.find { it.name.contains(keyword)}?.let {
+                    myNetworkContentState.onGetPerson(keyword)?.let {
                         myNetworkSectionState.searchedKeywordState.value = keyword
                     }
 
