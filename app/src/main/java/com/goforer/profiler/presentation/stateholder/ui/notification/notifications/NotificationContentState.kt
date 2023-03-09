@@ -1,4 +1,4 @@
-package com.goforer.profiler.presentation.stateholder.ui.notification
+package com.goforer.profiler.presentation.stateholder.ui.notification.notifications
 
 import androidx.compose.runtime.*
 import com.goforer.profiler.data.model.datum.response.notification.Notification

@@ -24,7 +24,8 @@ class MyNetworkContentState(
     val followed: MutableState<Boolean>,
     var selectedIndex: MutableState<Int>,
     val keyboardController: SoftwareKeyboardController?,
-    resourceState: ResourceState<StateFlow<List<Person>>>
+    val onFollowStatusChanged: (id: Int, name: String, followed: Boolean) -> Unit,
+    resourceState: ResourceState<StateFlow<List<Person>>>,
 ) {
     val data: StateFlow<List<Person>>? = resourceState.data
     val isLoading: Boolean = resourceState.isLoading
@@ -50,7 +51,21 @@ fun rememberMyNetworkContentState(
             Status.LOADING -> { ResourceState(isLoading = true) }
         */
         value = ResourceState(uiState)
-    }.value
-): MyNetworkContentState = remember(uiState, context, scope, lifecycle, followed, selectedIndex, keyboardController, resourceState) {
-    MyNetworkContentState(uiState, context, scope, lifecycle, followed, selectedIndex, keyboardController, resourceState)
+    }.value,
+    onFollowStatusChanged: (id: Int, name: String, followed: Boolean) -> Unit
+): MyNetworkContentState = remember(
+    uiState, context, scope, lifecycle, followed, selectedIndex,
+    keyboardController, resourceState, onFollowStatusChanged
+) {
+    MyNetworkContentState(
+        uiState = uiState,
+        context = context,
+        scope = scope,
+        lifecycle = lifecycle,
+        followed = followed,
+        selectedIndex = selectedIndex,
+        keyboardController = keyboardController,
+        resourceState = resourceState,
+        onFollowStatusChanged = onFollowStatusChanged
+    )
 }

@@ -35,6 +35,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import com.goforer.profiler.R
 import com.goforer.profiler.presentation.stateholder.business.mynetwork.MembersViewModel
+import com.goforer.profiler.presentation.stateholder.ui.mynetwork.members.MembersContentState
+import com.goforer.profiler.presentation.stateholder.ui.mynetwork.members.rememberMembersContentState
 import com.goforer.profiler.presentation.ui.screen.compose.home.mynetwork.networks.CardSnackBar
 import com.goforer.profiler.presentation.ui.theme.ProfilerTheme
 import timber.log.Timber
@@ -44,6 +46,7 @@ import timber.log.Timber
 fun MembersScreen(
     modifier: Modifier = Modifier,
     viewModel: MembersViewModel,
+    state: MembersContentState = rememberMembersContentState(uiState = viewModel.uiState),
     onBackPressed: () -> Unit)
 {
     val snackbarHostState = remember { SnackbarHostState() }
@@ -88,7 +91,7 @@ fun MembersScreen(
         }, content = { paddingValues ->
             MembersContent(
                 modifier = modifier,
-                viewModel = viewModel,
+                state = state,
                 contentPadding = paddingValues,
                 onItemClicked = { _, _ ->
                 },

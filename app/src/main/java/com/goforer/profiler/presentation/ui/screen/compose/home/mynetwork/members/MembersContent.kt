@@ -27,17 +27,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.goforer.profiler.data.model.datum.response.mynetwork.Person
-import com.goforer.profiler.presentation.stateholder.business.mynetwork.MembersViewModel
 import com.goforer.profiler.presentation.stateholder.ui.mynetwork.members.MembersContentState
-import com.goforer.profiler.presentation.stateholder.ui.mynetwork.members.rememberMembersContentState
 import com.goforer.profiler.presentation.ui.screen.compose.home.mynetwork.common.ListSection
 import com.goforer.profiler.presentation.ui.theme.ProfilerTheme
 
 @Composable
 fun MembersContent(
     modifier: Modifier = Modifier,
-    viewModel: MembersViewModel,
-    state: MembersContentState = rememberMembersContentState(uiState = viewModel.uiState),
+    state: MembersContentState,
     contentPadding: PaddingValues = PaddingValues(4.dp),
     onItemClicked: (item: Person, index: Int) -> Unit,
     onFollowed: (Person, Boolean) -> Unit

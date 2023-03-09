@@ -49,12 +49,10 @@ fun MyNetworkSection(
     onSearched: (String, Boolean) -> Unit,
     onNavigateToDetailInfo: (Int) -> Unit
 ) {
-    state.myNetworksState = remember(myNetworksState.value) {
+    state.currentNetworksState = remember(myNetworksState.value) {
         derivedStateOf {
             myNetworksState.value.filter {
-                it.name.contains(
-                    state.searchedKeyword
-                )
+                it.name.contains(state.searchedKeywordState.value)
             }
         }
     }
@@ -78,8 +76,8 @@ fun MyNetworkSection(
                 modifier = Modifier.padding(8.dp),
                 state = state.editableInputState,
                 onSearched = { keyword ->
-                    state.myNetworksState.value.find { it.name.contains(keyword)}?.let {
-                        state.searchedKeyword = keyword
+                    myNetworksState.value.find { it.name.contains(keyword)}?.let {
+                        state.searchedKeywordState.value = keyword
                     }
 
                     onSearched(keyword, true)
@@ -87,7 +85,7 @@ fun MyNetworkSection(
             )
             ListSection(
                 modifier = Modifier.weight(1f),
-                persons = state.myNetworksState.value,
+                persons = state.currentNetworksState.value,
                 followed = followed,
                 lazyListState = state.lazyListState,
                 onItemClicked = onItemClicked,
@@ -97,7 +95,7 @@ fun MyNetworkSection(
         }
 
         AnimatedVisibility(
-            visible = state.showButton,
+            visible = state.showButtonState.value,
             modifier = Modifier.align(Alignment.BottomEnd)
         ) {
             FloatingActionButton(
@@ -107,17 +105,17 @@ fun MyNetworkSection(
                     .padding(bottom = 4.dp, end = 8.dp),
                 backgroundColor = MaterialTheme.colorScheme.primary,
                 onClick = {
-                    state.clicked = true
+                    state.clickedState.value = true
                 }
             ) {
                 Text("Back!")
             }
         }
 
-        if (state.showButton && state.clicked) {
+        if (state.showButtonState.value && state.clickedState.value) {
             LaunchedEffect(state.lazyListState) {
-                state.searchedKeyword = ""
-                state.clicked = false
+                state.searchedKeywordState.value = ""
+                state.clickedState.value = false
             }
         }
     }

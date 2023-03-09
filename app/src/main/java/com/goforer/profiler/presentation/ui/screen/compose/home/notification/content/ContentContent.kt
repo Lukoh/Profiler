@@ -26,18 +26,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.goforer.profiler.data.model.datum.response.notification.Notification
-import com.goforer.profiler.presentation.stateholder.business.notification.NotificationViewModel
+import com.goforer.profiler.presentation.stateholder.ui.notification.content.ContentContentState
 import com.goforer.profiler.presentation.ui.ext.noRippleClickable
 import com.goforer.profiler.presentation.ui.theme.ProfilerTheme
 
 @Composable
 fun ContentContent(
     modifier: Modifier = Modifier,
+    state: ContentContentState,
     contentPadding: PaddingValues = PaddingValues(4.dp),
-    viewModel: NotificationViewModel,
     userId: Int
 ) {
-    val notification = viewModel.getNotification(userId)
+    val notification = state.onGetNotification(userId)
     val scrollState = rememberScrollState()
 
     notification?.let {

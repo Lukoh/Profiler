@@ -26,7 +26,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.goforer.profiler.data.model.datum.response.mynetwork.Person
-import com.goforer.profiler.presentation.stateholder.business.mynetwork.MyNetworkViewModel
+import com.goforer.profiler.presentation.stateholder.ui.mynetwork.detail.DetailContentState
 import com.goforer.profiler.presentation.ui.ext.noRippleClickable
 import com.goforer.profiler.presentation.ui.theme.ProfilerTheme
 
@@ -34,11 +34,11 @@ import com.goforer.profiler.presentation.ui.theme.ProfilerTheme
 fun DetailContent(
     modifier: Modifier = Modifier,
     contentPadding: PaddingValues = PaddingValues(4.dp),
-    viewModel: MyNetworkViewModel,
+    state: DetailContentState,
     userId: Int,
     onMembersClicked: () -> Unit
 ) {
-    val person = viewModel.getPerson(userId)
+    val person = state.onGetPerson(userId)
     val scrollState = rememberScrollState()
 
     person?.let {

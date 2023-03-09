@@ -9,20 +9,26 @@ import com.goforer.profiler.data.model.datum.response.mynetwork.Person
 class MyNetworkSectionState(
     val lazyListState: LazyListState,
     val editableInputState: EditableInputState,
-    var searchedKeyword: String,
-    val showButton: Boolean,
-    var clicked: Boolean
+    var searchedKeywordState: MutableState<String>,
+    val showButtonState: State<Boolean>,
+    var clickedState: MutableState<Boolean>
 ) {
-    lateinit var myNetworksState: State<List<Person>>
+    lateinit var currentNetworksState: State<List<Person>>
 }
 
 @Composable
 fun rememberMyNetworkSectionState(
     lazyListState: LazyListState = rememberLazyListState(),
     editableInputState: EditableInputState = rememberEditableInputState(hint = "Search"),
-    searchedKeyword: String = remember { mutableStateOf("") }.value,
-    showButton: Boolean = remember { derivedStateOf { searchedKeyword.isNotEmpty() } }.value,
-    clicked: Boolean = remember { mutableStateOf(false) }.value,
-): MyNetworkSectionState = remember(lazyListState, editableInputState, searchedKeyword, showButton, clicked) {
-    MyNetworkSectionState(lazyListState, editableInputState, searchedKeyword, showButton, clicked)
+    searchedKeywordState: MutableState<String> = remember { mutableStateOf("") },
+    showButtonState: State<Boolean> = remember { derivedStateOf { searchedKeywordState.value.isNotEmpty() } },
+    clickedState: MutableState<Boolean> = remember { mutableStateOf(false) },
+): MyNetworkSectionState = remember(
+    lazyListState, editableInputState, searchedKeywordState, showButtonState, clickedState) {
+    MyNetworkSectionState(
+        lazyListState = lazyListState,
+        editableInputState =  editableInputState,
+        searchedKeywordState = searchedKeywordState,
+        showButtonState = showButtonState,
+        clickedState = clickedState)
 }

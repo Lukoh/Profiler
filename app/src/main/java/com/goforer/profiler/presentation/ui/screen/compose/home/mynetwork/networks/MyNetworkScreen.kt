@@ -23,6 +23,7 @@ import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
@@ -34,13 +35,19 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import com.goforer.profiler.R
 import com.goforer.profiler.presentation.stateholder.business.mynetwork.MyNetworkViewModel
+import com.goforer.profiler.presentation.stateholder.ui.mynetwork.networks.MyNetworkContentState
+import com.goforer.profiler.presentation.stateholder.ui.mynetwork.networks.rememberMyNetworkContentState
 import com.goforer.profiler.presentation.ui.theme.ProfilerTheme
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class)
 @Composable
 fun MyNetworkScreen(
     modifier: Modifier = Modifier,
     viewModel: MyNetworkViewModel,
+    state: MyNetworkContentState = rememberMyNetworkContentState(
+        uiState = viewModel.uiState,
+        onFollowStatusChanged = viewModel::changeFollowStatus
+    ),
     onNavigateToDetailInfo: (Int) -> Unit)
 {
     val snackbarHostState = remember { SnackbarHostState() }
@@ -85,7 +92,7 @@ fun MyNetworkScreen(
         }, content = { paddingValues ->
             MyNetworkContent(
                 modifier = modifier,
-                viewModel = viewModel,
+                state = state,
                 snackbarHostState = snackbarHostState,
                 contentPadding = paddingValues,
                 onNavigateToDetailInfo = onNavigateToDetailInfo

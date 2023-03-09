@@ -11,10 +11,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.goforer.profiler.data.repository.Repository.Companion.replyCount
-import com.goforer.profiler.presentation.stateholder.business.mynetwork.MyNetworkViewModel
 import com.goforer.profiler.R
 import com.goforer.profiler.presentation.stateholder.ui.mynetwork.networks.MyNetworkContentState
-import com.goforer.profiler.presentation.stateholder.ui.mynetwork.networks.rememberMyNetworkContentState
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
@@ -22,8 +20,7 @@ import timber.log.Timber
 @Composable
 fun MyNetworkContent(
     modifier: Modifier = Modifier,
-    viewModel: MyNetworkViewModel,
-    state: MyNetworkContentState = rememberMyNetworkContentState(uiState = viewModel.uiState),
+    state: MyNetworkContentState,
     snackbarHostState: SnackbarHostState,
     contentPadding: PaddingValues = PaddingValues(4.dp),
     onNavigateToDetailInfo: (Int) -> Unit
@@ -56,7 +53,7 @@ fun MyNetworkContent(
                 },
                 onFollowed =  { person, changed ->
                     state.scope.launch {
-                        viewModel.changeFollowStatus(person.id, person.name, changed)
+                        state.onFollowStatusChanged(person.id, person.name, changed)
                         if (changed) {
                             state.keyboardController?.hide()
                             snackbarHostState.showSnackbar("${person.name} has been our member")

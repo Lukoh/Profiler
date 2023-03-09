@@ -31,12 +31,18 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.sp
 import com.goforer.profiler.R
 import com.goforer.profiler.presentation.stateholder.business.mynetwork.MyNetworkViewModel
+import com.goforer.profiler.presentation.stateholder.ui.mynetwork.detail.DetailContentState
+import com.goforer.profiler.presentation.stateholder.ui.mynetwork.detail.rememberDetailContentState
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DetailScreen(
     modifier: Modifier = Modifier,
     viewModel: MyNetworkViewModel,
+    state: DetailContentState = rememberDetailContentState(
+        uiState = viewModel.uiState,
+        onGetPerson =  viewModel::getPerson
+    ),
     userId: Int,
     onMembersClicked: () -> Unit,
     onBackPressed: () -> Unit,
@@ -77,7 +83,7 @@ fun DetailScreen(
             DetailContent(
                 modifier = modifier,
                 contentPadding = paddingValues,
-                viewModel = viewModel,
+                state = state,
                 userId = userId,
                 onMembersClicked = onMembersClicked
             )

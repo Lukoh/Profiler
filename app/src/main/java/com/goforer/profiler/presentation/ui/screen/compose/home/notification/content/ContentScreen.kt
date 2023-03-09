@@ -32,11 +32,22 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.sp
 import com.goforer.profiler.R
 import com.goforer.profiler.presentation.stateholder.business.notification.NotificationViewModel
+import com.goforer.profiler.presentation.stateholder.ui.notification.content.ContentContentState
+import com.goforer.profiler.presentation.stateholder.ui.notification.content.rememberContentContentState
 import com.goforer.profiler.presentation.ui.screen.compose.home.mynetwork.networks.CardSnackBar
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ContentScreen(modifier: Modifier = Modifier, viewModel: NotificationViewModel, userId: Int, onBackPressed: () -> Unit) {
+fun ContentScreen(
+    modifier: Modifier = Modifier,
+    viewModel: NotificationViewModel,
+    state: ContentContentState = rememberContentContentState(
+        uiState = viewModel.uiState,
+        onGetNotification =  viewModel::getNotification
+    ),
+    userId: Int,
+    onBackPressed: () -> Unit
+) {
     val snackbarHostState = remember { SnackbarHostState() }
 
     Scaffold(
@@ -77,7 +88,11 @@ fun ContentScreen(modifier: Modifier = Modifier, viewModel: NotificationViewMode
                 }
             )
         }, content = { paddingValues ->
-            ContentContent(modifier = modifier, contentPadding = paddingValues, viewModel = viewModel, userId = userId)
+            ContentContent(
+                modifier = modifier,
+                state = state,
+                contentPadding = paddingValues,
+                userId = userId)
         }
     )
 }

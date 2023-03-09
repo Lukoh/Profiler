@@ -21,16 +21,13 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.goforer.profiler.presentation.stateholder.business.notification.NotificationViewModel
-import com.goforer.profiler.presentation.stateholder.ui.notification.NotificationContentState
-import com.goforer.profiler.presentation.stateholder.ui.notification.rememberNotificationContentState
+import com.goforer.profiler.presentation.stateholder.ui.notification.notifications.NotificationContentState
 import timber.log.Timber
 
 @Composable
 fun NotificationContent(
     modifier: Modifier = Modifier,
-    viewModel: NotificationViewModel,
-    state: NotificationContentState = rememberNotificationContentState(uiState = viewModel.uiState),
+    state: NotificationContentState,
     contentPadding: PaddingValues = PaddingValues(4.dp),
     onNavigateToDetailInfo: (Int) -> Unit
 ) {
