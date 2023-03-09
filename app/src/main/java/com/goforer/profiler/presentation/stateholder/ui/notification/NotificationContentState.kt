@@ -10,9 +10,9 @@ class NotificationContentState(
     val uiState: StateFlow<List<Notification>>,
     resourceState: ResourceState<StateFlow<List<Notification>>>
 ) {
-    val data = resourceState.data
-    val isLoading = resourceState.isLoading
-    val throwError = resourceState.throwError
+    val data: StateFlow<List<Notification>>? = resourceState.data
+    val isLoading: Boolean = resourceState.isLoading
+    val throwError: Boolean = resourceState.throwError
 }
 
 @Composable

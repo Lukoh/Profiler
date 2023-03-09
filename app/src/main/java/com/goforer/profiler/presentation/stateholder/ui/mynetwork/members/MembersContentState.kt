@@ -15,9 +15,9 @@ class MembersContentState(
     val followed: MutableState<Boolean>,
     resourceState: ResourceState<StateFlow<List<Person>>>
 ) {
-    val data = resourceState.data
-    val isLoading = resourceState.isLoading
-    val throwError = resourceState.throwError
+    val data: StateFlow<List<Person>>? = resourceState.data
+    val isLoading: Boolean = resourceState.isLoading
+    val throwError: Boolean = resourceState.throwError
 }
 
 @Composable
