@@ -49,9 +49,7 @@ fun MyNetworkSection(
     onSearched: (String, Boolean) -> Unit,
     onNavigateToDetailInfo: (Int) -> Unit
 ) {
-    val myNetworksState = myNetworkContentState.data?.collectAsStateWithLifecycle()
-
-    myNetworksState?.let {
+    myNetworkContentState.data?.collectAsStateWithLifecycle()?.let {
         myNetworkSectionState.currentNetworksState = remember(it.value) {
             derivedStateOf {
                 it.value.filter { person ->
