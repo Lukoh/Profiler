@@ -34,9 +34,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import com.goforer.profiler.R
-import com.goforer.profiler.presentation.stateholder.business.mynetwork.MembersViewModel
 import com.goforer.profiler.presentation.stateholder.ui.mynetwork.members.MembersContentState
-import com.goforer.profiler.presentation.stateholder.ui.mynetwork.members.rememberMembersContentState
 import com.goforer.profiler.presentation.ui.screen.compose.home.mynetwork.networks.CardSnackBar
 import com.goforer.profiler.presentation.ui.theme.ProfilerTheme
 import timber.log.Timber
@@ -45,8 +43,7 @@ import timber.log.Timber
 @Composable
 fun MembersScreen(
     modifier: Modifier = Modifier,
-    viewModel: MembersViewModel,
-    state: MembersContentState = rememberMembersContentState(uiState = viewModel.uiState),
+    state: MembersContentState,
     onBackPressed: () -> Unit)
 {
     val snackbarHostState = remember { SnackbarHostState() }

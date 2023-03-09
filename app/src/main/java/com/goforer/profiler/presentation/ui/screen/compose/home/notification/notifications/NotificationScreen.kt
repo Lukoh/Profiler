@@ -29,16 +29,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.sp
 import com.goforer.profiler.R
-import com.goforer.profiler.presentation.stateholder.business.notification.NotificationViewModel
 import com.goforer.profiler.presentation.stateholder.ui.notification.notifications.NotificationContentState
-import com.goforer.profiler.presentation.stateholder.ui.notification.notifications.rememberNotificationContentState
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun NotificationScreen(
     modifier: Modifier = Modifier,
-    viewModel: NotificationViewModel,
-    state: NotificationContentState = rememberNotificationContentState(uiState = viewModel.uiState),
+    state: NotificationContentState,
     onNavigateToDetailInfo: (Int) -> Unit)
 {
     Scaffold(

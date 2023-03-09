@@ -25,12 +25,16 @@ import androidx.compose.material.icons.sharp.People
 import androidx.compose.material.icons.sharp.Person
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.navArgument
 import com.goforer.profiler.presentation.stateholder.business.mynetwork.MembersViewModel
 import com.goforer.profiler.presentation.stateholder.business.mynetwork.MyNetworkViewModel
+import com.goforer.profiler.presentation.stateholder.ui.mynetwork.detail.rememberDetailContentState
+import com.goforer.profiler.presentation.stateholder.ui.mynetwork.members.rememberMembersContentState
+import com.goforer.profiler.presentation.stateholder.ui.mynetwork.networks.rememberMyNetworkContentState
 import com.goforer.profiler.presentation.ui.screen.compose.home.mynetwork.detail.DetailScreen
 import com.goforer.profiler.presentation.ui.screen.compose.home.mynetwork.members.MembersScreen
 import com.goforer.profiler.presentation.ui.screen.compose.home.mynetwork.networks.MyNetworkScreen
@@ -42,12 +46,16 @@ import com.goforer.profiler.presentation.ui.screen.navigation.ext.navigateSingle
 object MyNetworks : ProfilerDestination {
     override val icon = Icons.Sharp.Person
     override val route = myNetworksStartRoute
+    @OptIn(ExperimentalComposeUiApi::class)
     override val screen: @Composable (navController: NavHostController, bundle: Bundle?) -> Unit = { navController, _ ->
         navController.currentBackStackEntry?.let {
             val viewModel: MyNetworkViewModel =  hiltViewModel(it)
 
             MyNetworkScreen(
-                viewModel  = viewModel,
+                state = rememberMyNetworkContentState(
+                    uiState = viewModel.uiState,
+                    onFollowStatusChanged = viewModel::changeFollowStatus
+                ),
                 onNavigateToDetailInfo = { userId ->
                     navController.navigateSingleTopTo("${DetailInfo.route}/$userId")
                 }
@@ -74,7 +82,10 @@ object DetailInfo : ProfilerDestination {
 
             id?.let { userId ->
                 DetailScreen(
-                    viewModel = viewModel,
+                    state = rememberDetailContentState(
+                        uiState = viewModel.uiState,
+                        onGetPerson =  viewModel::getPerson
+                    ),
                     userId = userId,
                     onMembersClicked = {
                         navController.navigateSingleTopTo(Members.route)
@@ -95,9 +106,12 @@ object Members : ProfilerDestination {
         navController.previousBackStackEntry?.let {
             val viewModel: MembersViewModel =  hiltViewModel(it)
 
-            MembersScreen(viewModel = viewModel, onBackPressed = {
-                navController.navigateUp()
-            })
+            MembersScreen(
+                state = rememberMembersContentState(uiState = viewModel.uiState),
+                onBackPressed = {
+                    navController.navigateUp()
+                }
+            )
         }
     }
 }

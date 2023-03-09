@@ -28,6 +28,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.navArgument
 import com.goforer.profiler.presentation.stateholder.business.notification.NotificationViewModel
+import com.goforer.profiler.presentation.stateholder.ui.notification.content.rememberContentContentState
+import com.goforer.profiler.presentation.stateholder.ui.notification.notifications.rememberNotificationContentState
 import com.goforer.profiler.presentation.ui.screen.compose.home.notification.content.ContentScreen
 import com.goforer.profiler.presentation.ui.screen.compose.home.notification.notifications.NotificationScreen
 import com.goforer.profiler.presentation.ui.screen.navigation.destination.ProfilerDestination.Companion.contentRoute
@@ -40,10 +42,10 @@ object Notifications : ProfilerDestination {
     @RequiresApi(Build.VERSION_CODES.N)
     override val screen: @Composable (navController: NavHostController, arguments: Bundle?) -> Unit = { navController, _ ->
         navController.currentBackStackEntry?.let {
-            val notificationViewModel: NotificationViewModel =  hiltViewModel(it)
+            val viewModel: NotificationViewModel =  hiltViewModel(it)
 
             NotificationScreen(
-                viewModel = notificationViewModel,
+                state = rememberNotificationContentState(uiState = viewModel.uiState),
                 onNavigateToDetailInfo = { userId ->
                     navController.navigateSingleTopTo("${Content.route}/$userId")
                 }
@@ -68,9 +70,16 @@ object Content : ProfilerDestination {
             val id = bundle?.getInt(idTypeArg)
 
             id?.let { userId ->
-                ContentScreen(viewModel = viewModel, userId = userId, onBackPressed = {
-                    navController.navigateUp()
-                })
+                ContentScreen(
+                    state  = rememberContentContentState(
+                        uiState = viewModel.uiState,
+                        onGetNotification =  viewModel::getNotification
+                    ),
+                    userId = userId,
+                    onBackPressed = {
+                        navController.navigateUp()
+                    }
+                )
             }
         }
     }
