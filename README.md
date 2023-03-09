@@ -38,7 +38,12 @@ Now let’s dive into my open-source project, Profiler, which is based on the An
 
 
 An app for keeping up to date with the latest techs and developments in Android.
- * Jetpack Compose app.
+ * Entirely written in Kotlin.
+ * UI completely written in Jetpack Compose.
+ * Uses Kotlin Coroutines & Flow
+ * Uses many of the Architecture Components, including: ViewModel, Lifecycle, Navigation.
+ * Use Material Design 3
+ * Uses Hilt for dependency injection
  * Implements the recommended [Android Architecture Guidelines](https://developer.android.com/jetpack/compose/architecture)
  * Implements the recommended [Navigation(Navigating with Compose)](https://developer.android.com/jetpack/compose/navigation) Guidelines
  * Implements the recommended [Android Dependency injection with Hilt Guidelines](https://developer.android.com/training/dependency-injection/hilt-android)
