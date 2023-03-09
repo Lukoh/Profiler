@@ -35,7 +35,7 @@ import com.goforer.profiler.presentation.stateholder.business.notification.Notif
 @Composable
 fun NotificationScreen(
     modifier: Modifier = Modifier,
-    notificationViewModel: NotificationViewModel,
+    viewModel: NotificationViewModel,
     onNavigateToDetailInfo: (Int) -> Unit)
 {
     Scaffold(
@@ -65,7 +65,7 @@ fun NotificationScreen(
         }, content = { paddingValues ->
             NotificationContent(
                 modifier = modifier,
-                notificationViewModel = notificationViewModel,
+                viewModel = viewModel,
                 contentPadding = paddingValues,
                 onNavigateToDetailInfo = onNavigateToDetailInfo
             )

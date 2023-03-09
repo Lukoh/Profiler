@@ -27,8 +27,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.goforer.profiler.data.model.datum.response.mynetwork.Person
-import com.goforer.profiler.data.model.state.ResourceState
 import com.goforer.profiler.presentation.stateholder.business.mynetwork.MembersViewModel
+import com.goforer.profiler.presentation.stateholder.ui.mynetwork.members.MembersContentState
+import com.goforer.profiler.presentation.stateholder.ui.mynetwork.members.rememberMembersContentState
 import com.goforer.profiler.presentation.ui.screen.compose.home.mynetwork.common.ListSection
 import com.goforer.profiler.presentation.ui.theme.ProfilerTheme
 
@@ -36,26 +37,15 @@ import com.goforer.profiler.presentation.ui.theme.ProfilerTheme
 fun MembersContent(
     modifier: Modifier = Modifier,
     viewModel: MembersViewModel,
+    state: MembersContentState = rememberMembersContentState(uiState = viewModel.uiState),
     contentPadding: PaddingValues = PaddingValues(4.dp),
     onItemClicked: (item: Person, index: Int) -> Unit,
     onFollowed: (Person, Boolean) -> Unit
 ) {
-    val uiState = viewModel.uiState.collectAsStateWithLifecycle()
-    val lazyListState: LazyListState = rememberLazyListState()
-    val followed = rememberSaveable { mutableStateOf(false) }
-    val resourceState by produceState(initialValue = ResourceState()) {
-        // will be changed if the data come from Backend Server like below:
-        /*
-        when (profilesState.resource.status) {
-            Status.SUCCESS -> { ResourceState(profilesState.resource.data) }
-            Status.ERROR -> { ResourceState(throwError = true) }
-            Status.LOADING -> { ResourceState(isLoading = true) }
-         */
-        value = ResourceState(uiState)
-    }
+    val uiState = state.uiState.collectAsStateWithLifecycle()
 
     when {
-        resourceState.data != null -> {
+        state.data != null -> {
             BoxWithConstraints(modifier = modifier.padding(
                 0.dp,
                 contentPadding.calculateTopPadding(),
@@ -65,8 +55,8 @@ fun MembersContent(
                 ListSection(
                     modifier = Modifier,
                     uiState.value,
-                    followed = followed,
-                    lazyListState = lazyListState,
+                    followed = state.followed,
+                    lazyListState = state.lazyListState,
                     onItemClicked = onItemClicked,
                     onFollowed = onFollowed,
                     onNavigateToDetailInfo = {
@@ -74,8 +64,8 @@ fun MembersContent(
                 )
             }
         }
-        resourceState.isLoading -> { }
-        resourceState.throwError -> { }
+        state.isLoading -> { }
+        state.throwError -> { }
     }
 }
 

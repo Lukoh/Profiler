@@ -14,7 +14,7 @@
  * If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.goforer.profiler.presentation.stateholder.ui
+package com.goforer.profiler.presentation.stateholder.ui.mynetwork.networks
 
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.Saver

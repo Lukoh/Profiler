@@ -21,41 +21,35 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.goforer.profiler.data.model.datum.response.notification.Notification
-import com.goforer.profiler.data.model.state.ResourceState
 import com.goforer.profiler.presentation.stateholder.business.notification.NotificationViewModel
+import com.goforer.profiler.presentation.stateholder.ui.notification.NotificationContentState
+import com.goforer.profiler.presentation.stateholder.ui.notification.rememberNotificationContentState
+import timber.log.Timber
 
 @Composable
 fun NotificationContent(
     modifier: Modifier = Modifier,
-    notificationViewModel: NotificationViewModel,
+    viewModel: NotificationViewModel,
+    state: NotificationContentState = rememberNotificationContentState(uiState = viewModel.uiState),
     contentPadding: PaddingValues = PaddingValues(4.dp),
     onNavigateToDetailInfo: (Int) -> Unit
 ) {
-    val uiState = notificationViewModel.uiState.collectAsStateWithLifecycle()
-    val resourceState by produceState(initialValue = ResourceState()) {
-        // will be changed if the data come from Backend Server like below:
-        /*
-        when (uiState.resource.status) {
-            Status.SUCCESS -> { ResourceState(uiState.resource.data) }
-            Status.ERROR -> { ResourceState(throwError = true) }
-            Status.LOADING -> { ResourceState(isLoading = true) }
-         */
-        value = ResourceState(uiState)
-    }
+    val uiState = state.uiState.collectAsStateWithLifecycle()
 
     when {
-        resourceState.data != null -> {
+        state.data != null -> {
             NotificationSection(
                 modifier = modifier, contentPadding,
                 onItemClicked = { _, _ ->
 
                 },
-                state = resourceState.data as State<List<Notification>>,
+                state = state.data.collectAsStateWithLifecycle(),
                 onNavigateToDetailInfo = onNavigateToDetailInfo
             )
         }
-        resourceState.isLoading -> { }
-        resourceState.throwError -> { }
+        state.isLoading -> {}
+        state.throwError -> {}
     }
+
+    Timber.d("size: %d", uiState.value.size)
 }

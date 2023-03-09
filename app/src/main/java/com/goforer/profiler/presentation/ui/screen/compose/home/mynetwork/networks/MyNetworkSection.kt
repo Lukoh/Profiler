@@ -31,7 +31,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.goforer.profiler.data.model.datum.response.mynetwork.Person
-import com.goforer.profiler.presentation.stateholder.ui.rememberEditableInputState
+import com.goforer.profiler.presentation.stateholder.ui.mynetwork.networks.*
 import com.goforer.profiler.presentation.ui.ext.noRippleClickable
 import com.goforer.profiler.presentation.ui.screen.compose.home.mynetwork.common.ListSection
 import com.goforer.profiler.presentation.ui.theme.ProfilerTheme
@@ -40,7 +40,8 @@ import com.goforer.profiler.presentation.ui.theme.ProfilerTheme
 fun MyNetworkSection(
     modifier: Modifier = Modifier,
     contentPadding: PaddingValues,
-    state: State<List<Person>>,
+    myNetworksState: State<List<Person>>,
+    state: MyNetworkSectionState = rememberMyNetworkSectionState(),
     followed: MutableState<Boolean>,
     onItemClicked: (item: Person, index: Int) -> Unit,
     @SuppressLint("ModifierParameter")
@@ -48,17 +49,18 @@ fun MyNetworkSection(
     onSearched: (String, Boolean) -> Unit,
     onNavigateToDetailInfo: (Int) -> Unit
 ) {
-    val lazyListState: LazyListState = rememberLazyListState()
-    val editableInputState = rememberEditableInputState(hint = "Search")
-    var searchedKeyword by remember { mutableStateOf("") }
-    val showButton by remember { derivedStateOf { searchedKeyword.isNotEmpty() } }
-    var clicked by remember { mutableStateOf(false) }
-    val myNetworks by remember(state.value) {
-        derivedStateOf { state.value.filter { it.name.contains(searchedKeyword) } }
+    state.myNetworksState = remember(myNetworksState.value) {
+        derivedStateOf {
+            myNetworksState.value.filter {
+                it.name.contains(
+                    state.searchedKeyword
+                )
+            }
+        }
     }
 
-    if (!editableInputState.isHint)
-        onSearched(editableInputState.text, false)
+    if (!state.editableInputState.isHint)
+        onSearched(state.editableInputState.text, false)
 
     BoxWithConstraints(modifier = modifier) {
         Column(
@@ -74,10 +76,10 @@ fun MyNetworkSection(
         ) {
             SearchSection(
                 modifier = Modifier.padding(8.dp),
-                state = editableInputState,
+                state = state.editableInputState,
                 onSearched = { keyword ->
-                    state.value.find { it.name.contains(keyword)}?.let {
-                        searchedKeyword = keyword
+                    state.myNetworksState.value.find { it.name.contains(keyword)}?.let {
+                        state.searchedKeyword = keyword
                     }
 
                     onSearched(keyword, true)
@@ -85,9 +87,9 @@ fun MyNetworkSection(
             )
             ListSection(
                 modifier = Modifier.weight(1f),
-                myNetworks,
+                persons = state.myNetworksState.value,
                 followed = followed,
-                lazyListState = lazyListState,
+                lazyListState = state.lazyListState,
                 onItemClicked = onItemClicked,
                 onFollowed = onFollowed,
                 onNavigateToDetailInfo = onNavigateToDetailInfo
@@ -95,7 +97,7 @@ fun MyNetworkSection(
         }
 
         AnimatedVisibility(
-            visible = showButton,
+            visible = state.showButton,
             modifier = Modifier.align(Alignment.BottomEnd)
         ) {
             FloatingActionButton(
@@ -105,17 +107,17 @@ fun MyNetworkSection(
                     .padding(bottom = 4.dp, end = 8.dp),
                 backgroundColor = MaterialTheme.colorScheme.primary,
                 onClick = {
-                    clicked = true
+                    state.clicked = true
                 }
             ) {
                 Text("Back!")
             }
         }
 
-        if (showButton && clicked) {
-            LaunchedEffect(lazyListState) {
-                searchedKeyword = ""
-                clicked = false
+        if (state.showButton && state.clicked) {
+            LaunchedEffect(state.lazyListState) {
+                state.searchedKeyword = ""
+                state.clicked = false
             }
         }
     }

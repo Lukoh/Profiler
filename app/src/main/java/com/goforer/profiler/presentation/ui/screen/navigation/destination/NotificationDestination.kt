@@ -43,7 +43,7 @@ object Notifications : ProfilerDestination {
             val notificationViewModel: NotificationViewModel =  hiltViewModel(it)
 
             NotificationScreen(
-                notificationViewModel = notificationViewModel,
+                viewModel = notificationViewModel,
                 onNavigateToDetailInfo = { userId ->
                     navController.navigateSingleTopTo("${Content.route}/$userId")
                 }

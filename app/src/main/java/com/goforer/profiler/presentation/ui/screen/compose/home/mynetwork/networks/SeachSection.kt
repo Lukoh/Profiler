@@ -34,8 +34,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import com.goforer.profiler.R
-import com.goforer.profiler.presentation.stateholder.ui.EditableInputState
-import com.goforer.profiler.presentation.stateholder.ui.rememberEditableInputState
+import com.goforer.profiler.presentation.stateholder.ui.mynetwork.networks.EditableInputState
+import com.goforer.profiler.presentation.stateholder.ui.mynetwork.networks.rememberEditableInputState
 import com.goforer.profiler.presentation.ui.theme.ColorBgSecondary
 import com.goforer.profiler.presentation.ui.theme.ProfilerTheme
 

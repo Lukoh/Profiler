@@ -86,9 +86,9 @@ fun MyNetworkScreen(
             MyNetworkContent(
                 modifier = modifier,
                 viewModel = viewModel,
-                snackbarHostState,
-                paddingValues,
-                onNavigateToDetailInfo
+                snackbarHostState = snackbarHostState,
+                contentPadding = paddingValues,
+                onNavigateToDetailInfo = onNavigateToDetailInfo
             )
         }
     )
