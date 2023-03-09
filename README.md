@@ -113,6 +113,13 @@ Figure 4. The domain layer's role in app architecture.
 
 Classes in this layer are commonly called use cases or interactors. Each use case should have responsibility over a single functionality. For example, your app could have a GetTimeZoneUseCase class if multiple ViewModels rely on time zones to display the proper message on the screen.
 
+The following diagram represents the dependencies between the UI and different state holders of the previous code snippet:
+
+UI depending on both UI logic state holder and screen level state holder
+
+![alt mad-arch-overview-UI depending](https://developer.android.com/static/images/topic/architecture/ui-layer/stateholder-dependencies.png)
+Figure 7: UI depending on different state holders. Arrows mean dependencies.
+
 To learn more about this layer, see the [domain layer](https://developer.android.com/topic/architecture/domain-layer) page.
 
 ### Manage dependencies between components
