@@ -81,7 +81,11 @@ fun MyNetworkContent(
                 onNavigateToDetailInfo = onNavigateToDetailInfo
             )
         }
-        state.isLoading -> { }
-        state.throwError -> { }
+        state.isLoading -> {
+            // To Do : run the loading animation or shimmer
+        }
+        state.throwError -> {
+            // To Do : handle the error
+        }
     }
 }

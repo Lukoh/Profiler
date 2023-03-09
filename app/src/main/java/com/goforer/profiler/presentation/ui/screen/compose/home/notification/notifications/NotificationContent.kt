@@ -44,8 +44,12 @@ fun NotificationContent(
                 onNavigateToDetailInfo = onNavigateToDetailInfo
             )
         }
-        state.isLoading -> {}
-        state.throwError -> {}
+        state.isLoading -> {
+            // To Do : run the loading animation or shimmer
+        }
+        state.throwError -> {
+            // To Do : handle the error
+        }
     }
 
     Timber.d("size: %d", uiState.value.size)
