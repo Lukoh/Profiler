@@ -22,7 +22,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.goforer.profiler.presentation.stateholder.ui.notification.notifications.NotificationContentState
-import timber.log.Timber
 
 @Composable
 fun NotificationContent(
@@ -31,8 +30,6 @@ fun NotificationContent(
     contentPadding: PaddingValues = PaddingValues(4.dp),
     onNavigateToDetailInfo: (Int) -> Unit
 ) {
-    val uiState = state.uiState.collectAsStateWithLifecycle()
-
     when {
         state.data != null -> {
             NotificationSection(
@@ -51,6 +48,4 @@ fun NotificationContent(
             // To Do : handle the error
         }
     }
-
-    Timber.d("size: %d", uiState.value.size)
 }
