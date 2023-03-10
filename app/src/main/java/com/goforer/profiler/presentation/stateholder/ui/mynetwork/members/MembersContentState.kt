@@ -1,7 +1,5 @@
 package com.goforer.profiler.presentation.stateholder.ui.mynetwork.members
 
-import androidx.compose.foundation.lazy.LazyListState
-import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import com.goforer.profiler.data.model.datum.response.mynetwork.Person
@@ -11,7 +9,6 @@ import kotlinx.coroutines.flow.StateFlow
 @Stable
 class MembersContentState(
     val uiState: StateFlow<List<Person>>,
-    val lazyListState: LazyListState,
     val sexState: MutableState<String>,
     val followedState: MutableState<Boolean>,
     val onGetMembers: (sex: String) -> List<Person>,
@@ -28,7 +25,6 @@ class MembersContentState(
 @Composable
 fun rememberMembersContentState(
     uiState: StateFlow<List<Person>>,
-    lazyListState: LazyListState = rememberLazyListState(),
     sexState: MutableState<String> = rememberSaveable { mutableStateOf("") },
     followedState: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
     onGetMembers: (sex: String) -> List<Person>,
@@ -43,10 +39,9 @@ fun rememberMembersContentState(
         */
         value = ResourceState(uiState)
     }.value
-): MembersContentState = remember(uiState, lazyListState, sexState, followedState, onGetMembers, onGetPerson, resourceState) {
+): MembersContentState = remember(uiState, sexState, followedState, onGetMembers, onGetPerson, resourceState) {
     MembersContentState(
         uiState = uiState,
-        lazyListState = lazyListState,
         sexState = sexState,
         followedState = followedState,
         onGetMembers = onGetMembers,

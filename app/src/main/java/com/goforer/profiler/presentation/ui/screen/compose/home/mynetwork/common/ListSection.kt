@@ -34,28 +34,27 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.goforer.profiler.data.model.datum.response.mynetwork.Person
+import com.goforer.profiler.presentation.stateholder.ui.mynetwork.common.ListSectionState
+import com.goforer.profiler.presentation.stateholder.ui.mynetwork.common.rememberListSectionState
 import com.goforer.profiler.presentation.ui.theme.ProfilerTheme
 
 @Composable
 fun ListSection(
     modifier: Modifier = Modifier,
     sexButtonVisible: Boolean,
+    state: ListSectionState = rememberListSectionState(),
     persons: List<Person>,
     followedState: MutableState<Boolean>,
-    lazyListState: LazyListState = rememberLazyListState(),
     onItemClicked: (item: Person, index: Int) -> Unit,
     @SuppressLint("ModifierParameter")
     onFollowed: (Person, Boolean) -> Unit,
     onSexViewed: (String) -> Unit,
     onNavigateToDetailInfo: (Int) -> Unit
 ) {
-    val showButton by remember { derivedStateOf { lazyListState.firstVisibleItemIndex > 0 } }
-    var clicked by remember { mutableStateOf(false) }
-
     BoxWithConstraints(modifier = modifier) {
         LazyColumn(
             modifier = Modifier,
-            state = lazyListState,
+            state = state.lazyListState,
             verticalArrangement = Arrangement.spacedBy(4.dp)
         ) {
             itemsIndexed(persons, key = { _, item -> item.id }, itemContent = { index, item ->
@@ -75,7 +74,7 @@ fun ListSection(
         }
 
         AnimatedVisibility(
-            visible = showButton,
+            visible = state.showButton.value,
             modifier = Modifier.align(Alignment.BottomEnd)
         ) {
             FloatingActionButton(
@@ -85,18 +84,18 @@ fun ListSection(
                     .padding(bottom = 4.dp, end = 8.dp),
                 backgroundColor = MaterialTheme.colorScheme.primary,
                 onClick = {
-                    clicked = true
+                    state.clicked.value = true
                 }
             ) {
                 Text("Up!")
             }
         }
 
-        LaunchedEffect(lazyListState, showButton, clicked) {
-            if (showButton && clicked)
-                lazyListState.scrollToItem (0)
+        LaunchedEffect(state.lazyListState, state.showButton, state.clicked) {
+            if (state.showButton.value && state.clicked.value)
+                state.lazyListState.scrollToItem (0)
 
-            clicked = false
+            state.clicked.value = false
         }
 
         /*

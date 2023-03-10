@@ -90,7 +90,6 @@ fun MyNetworkSection(
                 sexButtonVisible = false,
                 persons = myNetworkSectionState.currentNetworksState.value,
                 followedState = myNetworkContentState.followedState,
-                lazyListState = myNetworkSectionState.lazyListState,
                 onItemClicked = onItemClicked,
                 onFollowed = onFollowed,
                 onSexViewed = {},
@@ -149,7 +148,6 @@ fun MyNetworkSectionPreview(modifier: Modifier = Modifier) {
             ) {
                 val editableInputState = rememberEditableInputState(hint = "Search")
                 val followedState = rememberSaveable { mutableStateOf(true) }
-                val lazyListState: LazyListState = rememberLazyListState()
                 val myNetworks = mutableListOf(
                     Person(0,"LLyyiok", "남성", true,"https://avatars.githubusercontent.com/u/18302717?v=4", "sociable & gregarious", "+820101111-1111","", "Mar, 04, 1999","Lukoh is a tremendously capable and dedicated mobile SW professional. He has strong analytical and innovative skills which are further boosted by his solid technical background and his enthusiasm for technology. Lukoh works extremely well with colleagues, associates, and executives, adapting the analysis and communication techniques in order to accomplish the business objective."),
                     Person(1,"Afredo", "남성", true,"https://avatars.githubusercontent.com/u/18302717?v=4", "gregarious & friendly", "+820101111-1111","", "Mar, 04, 1999","Lukoh is a tremendously capable and dedicated mobile SW professional. He has strong analytical and innovative skills which are further boosted by his solid technical background and his enthusiasm for technology. Lukoh works extremely well with colleagues, associates, and executives, adapting the analysis and communication techniques in order to accomplish the business objective."),
@@ -172,9 +170,8 @@ fun MyNetworkSectionPreview(modifier: Modifier = Modifier) {
                 ListSection(
                     modifier = Modifier.weight(1f),
                     sexButtonVisible = true,
-                    myNetworks,
+                    persons = myNetworks,
                     followedState = followedState,
-                    lazyListState = lazyListState,
                     onItemClicked = { _, _ -> },
                     onFollowed = { _, _ -> },
                     onSexViewed = {},
