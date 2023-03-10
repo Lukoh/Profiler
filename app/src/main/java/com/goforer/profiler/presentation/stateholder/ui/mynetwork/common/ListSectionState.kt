@@ -9,7 +9,7 @@ class ListSectionState(
     val lazyListState: LazyListState,
     val showButton: State<Boolean>,
     var clicked: MutableState<Boolean>
-) {}
+)
 
 @Composable
 fun rememberListSectionState(

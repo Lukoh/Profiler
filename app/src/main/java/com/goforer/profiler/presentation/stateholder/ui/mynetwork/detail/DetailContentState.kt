@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.StateFlow
 class DetailContentState(
     val uiState: StateFlow<List<Person>>,
     val onGetPerson: (id: Int) -> Person?
-) {}
+)
 
 @Composable
 fun rememberDetailContentState(
