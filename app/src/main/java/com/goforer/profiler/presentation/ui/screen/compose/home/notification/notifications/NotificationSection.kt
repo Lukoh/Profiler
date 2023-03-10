@@ -19,8 +19,6 @@ package com.goforer.profiler.presentation.ui.screen.compose.home.notification.no
 import android.content.res.Configuration
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyListState
-import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -37,8 +35,6 @@ fun NotificationSection(
     onItemClicked: (item: Notification, index: Int) -> Unit,
     onNavigateToDetailInfo: (Int) -> Unit,
 ) {
-    val lazyListState: LazyListState = rememberLazyListState()
-
     BoxWithConstraints(modifier = modifier) {
         Column(
             modifier = modifier
@@ -54,7 +50,6 @@ fun NotificationSection(
             ListSection(
                 modifier = Modifier.weight(1f),
                 notifications = state.value,
-                lazyListState = lazyListState,
                 onItemClicked = onItemClicked,
                 onNavigateToDetailInfo = onNavigateToDetailInfo
             )
@@ -72,8 +67,6 @@ fun NotificationSection(
 @Composable
 fun MyNetworkSectionPreview(modifier: Modifier = Modifier) {
     ProfilerTheme {
-        val lazyListState: LazyListState = rememberLazyListState()
-
         BoxWithConstraints(modifier = modifier) {
             Column(
                 modifier = modifier
@@ -103,7 +96,6 @@ fun MyNetworkSectionPreview(modifier: Modifier = Modifier) {
                 ListSection(
                     modifier = Modifier.weight(1f),
                     notifications = notifications,
-                    lazyListState = lazyListState,
                     onItemClicked = { _, _ -> },
                     onNavigateToDetailInfo = { }
                 )
