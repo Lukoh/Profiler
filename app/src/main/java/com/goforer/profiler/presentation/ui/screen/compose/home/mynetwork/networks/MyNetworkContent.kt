@@ -9,7 +9,6 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.goforer.profiler.data.repository.Repository.Companion.replyCount
 import com.goforer.profiler.R
 import com.goforer.profiler.presentation.stateholder.ui.mynetwork.networks.MyNetworkContentState
@@ -25,7 +24,6 @@ fun MyNetworkContent(
     contentPadding: PaddingValues = PaddingValues(4.dp),
     onNavigateToDetailInfo: (Int) -> Unit
 ) {
-    val uiState = state.uiState.collectAsStateWithLifecycle()
     val hint =  stringResource(id = R.string.placeholder_search)
 
     /*
@@ -61,11 +59,11 @@ fun MyNetworkContent(
                     }
                 },
                 onSearched = { name, byClicked ->
-                    uiState.value.find { it.name == name }?.let {
+                    state.onGetPerson(name)?.let {
                         state.keyboardController?.hide()
                     }
 
-                    uiState.value.find { it.name == name } ?: if (byClicked) {
+                    state.onGetPerson(name) ?: if (byClicked) {
                         state.keyboardController?.hide()
                         if (name != hint)
                             Toast.makeText(
