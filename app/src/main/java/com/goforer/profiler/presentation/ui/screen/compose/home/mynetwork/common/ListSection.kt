@@ -91,7 +91,7 @@ fun ListSection(
             }
         }
 
-        LaunchedEffect(state.lazyListState, state.showButton, state.clicked) {
+        LaunchedEffect(state.lazyListState, state.showButton.value, state.clicked.value) {
             if (state.showButton.value && state.clicked.value)
                 state.lazyListState.scrollToItem (0)
 
