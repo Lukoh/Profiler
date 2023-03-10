@@ -37,19 +37,19 @@ fun MembersContent(
     onItemClicked: (item: Person, index: Int) -> Unit,
     onFollowed: (Person, Boolean) -> Unit
 ) {
-    val uiState = state.uiState.collectAsStateWithLifecycle()
-    state.membersState = remember(uiState.value) {
-        derivedStateOf {
-            if (state.sexState.value.isEmpty()) {
-                uiState.value
-            } else {
-                state.onGetMembers(state.sexState.value)
-            }
-        }
-    }
-
     when {
         state.data != null -> {
+            val numbersState = state.data.collectAsStateWithLifecycle()
+            state.membersState = remember(numbersState.value) {
+                derivedStateOf {
+                    if (state.sexState.value.isEmpty()) {
+                        numbersState.value
+                    } else {
+                        state.onGetMembers(state.sexState.value)
+                    }
+                }
+            }
+
             BoxWithConstraints(modifier = modifier.padding(
                 0.dp,
                 contentPadding.calculateTopPadding(),
