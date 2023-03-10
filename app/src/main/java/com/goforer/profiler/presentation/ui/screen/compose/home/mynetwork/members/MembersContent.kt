@@ -40,6 +40,7 @@ fun MembersContent(
     when {
         state.data != null -> {
             val numbersState = state.data.collectAsStateWithLifecycle()
+
             state.membersState = remember(numbersState.value) {
                 derivedStateOf {
                     if (state.sexState.value.isEmpty()) {
