@@ -31,5 +31,6 @@ data class Person(
     val cellphone: String,
     val address: String,
     val birthday: String,
-    val repuation: String
+    val reputation: String,
+    var deleted: Boolean
 ) : BaseModel(), Parcelable

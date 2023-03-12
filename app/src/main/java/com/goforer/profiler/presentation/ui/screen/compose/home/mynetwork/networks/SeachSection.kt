@@ -58,9 +58,9 @@ fun SearchSection(
             value = if (state.isHint)
                 ""
             else
-                state.text,
+                state.textState,
             onValueChange = {
-                state.text = it
+                state.textState = it
             },
             leadingIcon = {
                 Icon(
@@ -92,7 +92,7 @@ fun SearchSection(
         )
         SearchIconButton(
             onClick = {
-                onSearched(state.text)
+                onSearched(state.textState)
             },
             icon = {
                 Icon(
@@ -136,9 +136,9 @@ fun SearchSectionPreview(modifier: Modifier = Modifier) {
                 value = if (state.isHint)
                     ""
                 else
-                    state.text,
+                    state.textState,
                 onValueChange = {
-                    state.text = it
+                    state.textState = it
                 },
                 leadingIcon = {
                     Icon(

@@ -25,6 +25,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Man
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -48,6 +49,8 @@ import coil.request.ImageRequest.Builder
 import coil.compose.rememberAsyncImagePainter
 import com.goforer.profiler.R
 import com.goforer.profiler.data.model.datum.response.mynetwork.Person
+import com.goforer.profiler.presentation.stateholder.ui.mynetwork.common.PersonItemState
+import com.goforer.profiler.presentation.stateholder.ui.mynetwork.common.rememberPersonItemState
 import com.goforer.profiler.presentation.ui.screen.compose.home.mynetwork.members.SexIconButton
 import com.goforer.profiler.presentation.ui.theme.ColorBgSecondary
 import com.goforer.profiler.presentation.ui.theme.ColorText2
@@ -56,13 +59,15 @@ import com.goforer.profiler.presentation.ui.theme.ProfilerTheme
 @Composable
 fun PersonItem(
     modifier: Modifier = Modifier,
+    state: PersonItemState = rememberPersonItemState(),
     sexButtonVisible: Boolean,
     person: Person,
     index: Int,
-    followed: MutableState<Boolean>,
+    followedState: MutableState<Boolean>,
     onItemClicked: (item: Person, index: Int) -> Unit,
     onFollowed: (Person, Boolean) -> Unit,
     onSexViewed: (String) -> Unit,
+    onPersonDeleted: (Int) -> Unit,
     onNavigateToDetailInfo: (Int) -> Unit
 ) {
     /*
@@ -88,150 +93,244 @@ fun PersonItem(
      */
 
     Surface(
-        shape = MaterialTheme.shapes.small,
         modifier = modifier.padding(8.dp, 0.dp)
     ) {
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = modifier
-                .height(IntrinsicSize.Min)
-                .background(ColorBgSecondary)
-                .wrapContentHeight(Alignment.Top)
-                .fillMaxWidth()
-                .heightIn(min = 56.dp)
-                .clickable {
-                    //clikced = true
-                    onNavigateToDetailInfo(person.id)
-                    onItemClicked(person, index)
-                },
-        ) {
-            IconContainer {
-                BoxWithConstraints {
-                    val painter = rememberAsyncImagePainter(
-                        model = Builder(LocalContext.current)
-                            .data(person.profileImage)
-                            .crossfade(true)
-                            .build()
-                    )
-
-                    Image(
-                        painter = painter,
-                        contentDescription = "ComposeTest",
-                        modifier = Modifier
-                            .padding(4.dp)
-                            .fillMaxSize()
-                            .clip(CircleShape)
-                            .border(1.dp, MaterialTheme.colorScheme.secondary, CircleShape),
-                        Alignment.CenterStart,
-                        contentScale = ContentScale.Crop
-                    )
-
-                    if (painter.state is AsyncImagePainter.State.Loading) {
-                        Image(
-                            painter = painterResource(id = R.drawable.ic_profile_logo),
-                            contentDescription = null,
-                            modifier = Modifier
-                                .size(36.dp)
-                                .align(Alignment.Center),
-                        )
-                    }
-                }
-            }
-            Spacer(modifier = Modifier.width(12.dp))
+        if (!person.deleted) {
             Column(modifier = Modifier
-                .wrapContentWidth()
                 .animateContentSize()
             ) {
-                Text(
-                    person.name,
-                    modifier = Modifier.padding(0.dp, 4.dp, 0.dp, 0.dp),
-                    fontFamily = FontFamily.SansSerif,
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 15.sp,
-                    fontStyle = FontStyle.Normal,
-                    style = MaterialTheme.typography.titleMedium
-                )
-                Spacer(modifier = Modifier.height(4.dp))
-                Row(
-                    modifier = Modifier
-                        .wrapContentWidth()
-                        .animateContentSize()
+                Column(modifier = Modifier
+                    .animateContentSize()
                 ) {
-                    Surface(
-                        modifier = Modifier.align(Alignment.CenterVertically),
-                        shape = MaterialTheme.shapes.small,
-                        shadowElevation = 1.dp
-                    ) {
-                        Text(
-                            person.sex,
-                            modifier = Modifier
-                                .paddingFromBaseline(4.dp)
-                                .offset(x = 0.dp, y = (-2).dp),
-                            fontFamily = FontFamily.SansSerif,
-                            fontSize = 13.sp,
-                            fontStyle = FontStyle.Normal,
-                            color = ColorText2,
-                            style = MaterialTheme.typography.titleSmall
-                        )
-                    }
-                    Spacer(
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
                         modifier = Modifier
-                            .height(4.dp)
-                            .width(8.dp)
-                    )
-                    if (sexButtonVisible) {
-                        SexIconButton(
-                            onClick = {
-                                onSexViewed(person.sex)
+                            .background(ColorBgSecondary)
+                            .wrapContentHeight(Alignment.Top)
+                            .fillMaxWidth()
+                            .heightIn(min = 56.dp)
+                            .animateContentSize()
+                            .clickable {
+                                //clikced = true
+                                onNavigateToDetailInfo(person.id)
+                                onItemClicked(person, index)
                             },
-                            icon = {
-                                Icon(
-                                    modifier = Modifier.wrapContentWidth().heightIn(14.dp),
-                                    imageVector = Icons.Default.Man,
-                                    contentDescription = null,
+                    ) {
+                        IconContainer {
+                            Box {
+                                val painter = rememberAsyncImagePainter(
+                                    model = Builder(LocalContext.current)
+                                        .data(person.profileImage)
+                                        .crossfade(true)
+                                        .build()
                                 )
-                            },
-                            text = {
+
+                                Image(
+                                    painter = painter,
+                                    contentDescription = "ComposeTest",
+                                    modifier = Modifier
+                                        .padding(4.dp)
+                                        .fillMaxSize()
+                                        .clip(CircleShape)
+                                        .border(1.dp, MaterialTheme.colorScheme.secondary, CircleShape),
+                                    Alignment.CenterStart,
+                                    contentScale = ContentScale.Crop
+                                )
+
+                                if (painter.state is AsyncImagePainter.State.Loading) {
+                                    Image(
+                                        painter = painterResource(id = R.drawable.ic_profile_logo),
+                                        contentDescription = null,
+                                        modifier = Modifier
+                                            .size(36.dp)
+                                            .align(Alignment.Center),
+                                    )
+                                }
+                            }
+                        }
+                        Spacer(modifier = Modifier.width(12.dp))
+                        Column(
+                            modifier = Modifier
+                                .wrapContentWidth()
+                                .animateContentSize()
+                        ) {
+                            Text(
+                                person.name,
+                                modifier = Modifier.padding(0.dp, 4.dp, 0.dp, 0.dp),
+                                fontFamily = FontFamily.SansSerif,
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 15.sp,
+                                fontStyle = FontStyle.Normal,
+                                style = MaterialTheme.typography.titleMedium
+                            )
+                            Spacer(modifier = Modifier.height(4.dp))
+                            Row(
+                                modifier = Modifier
+                                    .wrapContentWidth()
+                                    .animateContentSize()
+                            ) {
+                                Surface(
+                                    modifier = Modifier.align(Alignment.CenterVertically),
+                                    shape = MaterialTheme.shapes.small,
+                                    shadowElevation = 1.dp
+                                ) {
+                                    Text(
+                                        person.sex,
+                                        modifier = Modifier
+                                            .paddingFromBaseline(4.dp)
+                                            .offset(x = 0.dp, y = (-2).dp),
+                                        fontFamily = FontFamily.SansSerif,
+                                        fontSize = 13.sp,
+                                        fontStyle = FontStyle.Normal,
+                                        color = ColorText2,
+                                        style = MaterialTheme.typography.titleSmall
+                                    )
+                                }
+                                Spacer(
+                                    modifier = Modifier
+                                        .height(4.dp)
+                                        .width(8.dp)
+                                )
+                                if (sexButtonVisible) {
+                                    SexIconButton(
+                                        onClick = {
+                                            onSexViewed(person.sex)
+                                        },
+                                        icon = {
+                                            Icon(
+                                                modifier = Modifier.wrapContentWidth().heightIn(14.dp),
+                                                imageVector = Icons.Default.Man,
+                                                contentDescription = null,
+                                            )
+                                        },
+                                        text = {
+                                            Text(
+                                                person.sex,
+                                                fontFamily = FontFamily.SansSerif,
+                                                fontSize = 8.sp,
+                                                fontStyle = FontStyle.Italic
+                                            )
+                                        }
+                                    )
+                                }
+                            }
+                        }
+                        Spacer(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .weight(1f)
+                        )
+                        Row(modifier = Modifier
+                            .wrapContentWidth()
+                            .animateContentSize()) {
+                            followedState.value = person.followed
+                            Surface(
+                                modifier = Modifier.align(Alignment.CenterVertically),
+                                shape = MaterialTheme.shapes.small,
+                                shadowElevation = 1.dp
+                            ) {
                                 Text(
-                                    person.sex,
+                                    stringResource(id = R.string.follower_check),
+                                    modifier = Modifier
+                                        .align(Alignment.CenterVertically)
+                                        .padding(6.dp, 2.dp, 6.dp, 2.dp),
                                     fontFamily = FontFamily.SansSerif,
-                                    fontSize = 8.sp,
-                                    fontStyle = FontStyle.Italic
+                                    fontWeight = FontWeight.Normal,
+                                    fontSize = 13.sp,
+                                    color = ColorText2,
+                                    fontStyle = FontStyle.Normal
                                 )
                             }
-                        )
+                            Spacer(
+                                modifier = Modifier
+                                    .height(4.dp)
+                                    .width(4.dp)
+                            )
+                            Checkbox(
+                                checked = followedState.value,
+                                onCheckedChange = {
+                                    followedState.value = it
+                                    onFollowed(person, it)
+                                }
+                            )
+                        }
+                        if (!sexButtonVisible) {
+                            Image(
+                                painter = painterResource(id = R.drawable.ic_delete),
+                                contentDescription = "delete the profile",
+                                modifier = Modifier
+                                    .padding(4.dp)
+                                    .wrapContentSize()
+                                    .clickable { state.visibleDeleteBoxState.value = true },
+                                Alignment.CenterStart
+                            )
+                        }
                     }
-                }
-            }
 
-            Spacer(modifier = Modifier
-                .fillMaxWidth()
-                .weight(1f))
-            Row(modifier = Modifier.wrapContentWidth()) {
-                followed.value = person.followed
-                Surface(modifier = Modifier.align(Alignment.CenterVertically), shape = MaterialTheme.shapes.small, shadowElevation = 1.dp) {
-                    Text(
-                        stringResource(id = R.string.follower_check),
-                        modifier = Modifier
-                            .align(Alignment.CenterVertically)
-                            .padding(6.dp, 2.dp, 6.dp, 2.dp),
-                        fontFamily = FontFamily.SansSerif,
-                        fontWeight = FontWeight.Normal,
-                        fontSize = 13.sp,
-                        color = ColorText2,
-                        fontStyle = FontStyle.Normal
-                    )
-                }
-                Spacer(modifier = Modifier
-                    .height(4.dp)
-                    .width(4.dp))
-                Checkbox(
-                    checked = followed.value,
-                    onCheckedChange = {
-                        followed.value = it
-                        onFollowed(person, it)
+                    if (state.visibleDeleteBoxState.value) {
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            modifier = Modifier
+                                .height(IntrinsicSize.Min)
+                                .background(ColorBgSecondary)
+                                .wrapContentHeight(Alignment.Top)
+                                .fillMaxWidth()
+                                .heightIn(min = 36.dp)
+                        ) {
+                            Text(
+                                stringResource(id = R.string.profile_list_item_delete, person.name),
+                                modifier = Modifier.padding(16.dp, 0.dp, 0.dp, 0.dp),
+                                fontFamily = FontFamily.SansSerif,
+                                fontWeight = FontWeight.Normal,
+                                fontSize = 15.sp,
+                                fontStyle = FontStyle.Normal,
+                                style = MaterialTheme.typography.displaySmall
+                            )
+                            Spacer(modifier = Modifier.width(8.dp))
+                            DeleteIconButton(
+                                onClick = {
+                                    state.visibleDeleteBoxState.value = false
+                                    onPersonDeleted(person.id)
+                                },
+                                icon = {
+                                    Icon(
+                                        imageVector = Icons.Default.Delete,
+                                        contentDescription = null,
+                                    )
+                                },
+                                text = {
+                                    Text(
+                                        stringResource(id = R.string.placeholder_delete_yes),
+                                        fontFamily = FontFamily.SansSerif,
+                                        fontSize = 15.sp,
+                                        fontStyle = FontStyle.Italic
+                                    )
+                                }
+                            )
+
+                            Spacer(modifier = Modifier.width(4.dp))
+                            DeleteIconButton(
+                                onClick = {
+                                    state.visibleDeleteBoxState.value = false
+                                },
+                                icon = {
+                                    Icon(
+                                        imageVector = Icons.Default.Delete,
+                                        contentDescription = null,
+                                    )
+                                },
+                                text = {
+                                    Text(
+                                        stringResource(id = R.string.placeholder_delete_no),
+                                        fontFamily = FontFamily.SansSerif,
+                                        fontSize = 15.sp,
+                                        fontStyle = FontStyle.Italic
+                                    )
+                                }
+                            )
+                        }
                     }
-                )
+                }
             }
         }
     }
@@ -261,145 +360,220 @@ fun PersonItemPreview() {
             shape = MaterialTheme.shapes.small,
             modifier = Modifier.padding(8.dp, 0.dp)
         ) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier
-                    .background(ColorBgSecondary)
-                    .wrapContentHeight(Alignment.Top)
-                    .fillMaxWidth()
-                    .heightIn(min = 56.dp)
-                    .animateContentSize()
-                    .clickable {},
+            Column(modifier = Modifier
+                .animateContentSize()
             ) {
-                IconContainer {
-                    Box {
-                        val painter = rememberAsyncImagePainter(
-                            model = Builder(LocalContext.current)
-                                .data("https://avatars.githubusercontent.com/u/18302717?v=4")
-                                .crossfade(true)
-                                .build()
-                        )
-
-                        Image(
-                            painter = painter,
-                            contentDescription = "ComposeTest",
-                            modifier = Modifier
-                                .padding(4.dp)
-                                .fillMaxSize()
-                                .clip(CircleShape)
-                                .border(1.dp, MaterialTheme.colorScheme.secondary, CircleShape),
-                            Alignment.CenterStart,
-                            contentScale = ContentScale.Crop
-                        )
-
-                        if (painter.state is AsyncImagePainter.State.Loading) {
-                            Image(
-                                painter = painterResource(id = R.drawable.ic_profile_logo),
-                                contentDescription = null,
-                                modifier = Modifier
-                                    .size(36.dp)
-                                    .align(Alignment.Center),
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier
+                        .background(ColorBgSecondary)
+                        .wrapContentHeight(Alignment.Top)
+                        .fillMaxWidth()
+                        .heightIn(min = 56.dp)
+                        .animateContentSize()
+                        .clickable {},
+                ) {
+                    IconContainer {
+                        Box {
+                            val painter = rememberAsyncImagePainter(
+                                model = Builder(LocalContext.current)
+                                    .data("https://avatars.githubusercontent.com/u/18302717?v=4")
+                                    .crossfade(true)
+                                    .build()
                             )
+
+                            Image(
+                                painter = painter,
+                                contentDescription = "ComposeTest",
+                                modifier = Modifier
+                                    .padding(4.dp)
+                                    .fillMaxSize()
+                                    .clip(CircleShape)
+                                    .border(1.dp, MaterialTheme.colorScheme.secondary, CircleShape),
+                                Alignment.CenterStart,
+                                contentScale = ContentScale.Crop
+                            )
+
+                            if (painter.state is AsyncImagePainter.State.Loading) {
+                                Image(
+                                    painter = painterResource(id = R.drawable.ic_profile_logo),
+                                    contentDescription = null,
+                                    modifier = Modifier
+                                        .size(36.dp)
+                                        .align(Alignment.Center),
+                                )
+                            }
                         }
                     }
-                }
-                Spacer(modifier = Modifier.width(12.dp))
-                Column(
-                    modifier = Modifier
-                        .wrapContentWidth()
-                        .animateContentSize()
-                ) {
-                    Text(
-                        "Lukoh",
-                        modifier = Modifier.padding(0.dp, 4.dp, 0.dp, 0.dp),
-                        fontFamily = FontFamily.SansSerif,
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 15.sp,
-                        fontStyle = FontStyle.Normal,
-                        style = MaterialTheme.typography.titleMedium
-                    )
-                    Spacer(modifier = Modifier.height(4.dp))
-                    Row(
+                    Spacer(modifier = Modifier.width(12.dp))
+                    Column(
                         modifier = Modifier
                             .wrapContentWidth()
                             .animateContentSize()
+                    ) {
+                        Text(
+                            "Lukoh",
+                            modifier = Modifier.padding(0.dp, 4.dp, 0.dp, 0.dp),
+                            fontFamily = FontFamily.SansSerif,
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 15.sp,
+                            fontStyle = FontStyle.Normal,
+                            style = MaterialTheme.typography.titleMedium
+                        )
+                        Spacer(modifier = Modifier.height(4.dp))
+                        Row(
+                            modifier = Modifier
+                                .wrapContentWidth()
+                                .animateContentSize()
                         ) {
+                            Surface(
+                                modifier = Modifier.align(Alignment.CenterVertically),
+                                shape = MaterialTheme.shapes.small,
+                                shadowElevation = 1.dp
+                            ) {
+                                Text(
+                                    "남성",
+                                    modifier = Modifier
+                                        .paddingFromBaseline(4.dp)
+                                        .offset(x = 0.dp, y = (-2).dp),
+                                    fontFamily = FontFamily.SansSerif,
+                                    fontSize = 13.sp,
+                                    fontStyle = FontStyle.Normal,
+                                    color = ColorText2,
+                                    style = MaterialTheme.typography.titleSmall
+                                )
+                            }
+                            Spacer(
+                                modifier = Modifier
+                                    .height(4.dp)
+                                    .width(8.dp)
+                            )
+                            SexIconButton(
+                                onClick = {
+                                },
+                                icon = {
+                                    Icon(
+                                        modifier = Modifier
+                                            .wrapContentWidth()
+                                            .heightIn(14.dp),
+                                        imageVector = Icons.Default.Man,
+                                        contentDescription = null,
+                                    )
+                                },
+                                text = {
+                                    Text(
+                                        "남성",
+                                        fontFamily = FontFamily.SansSerif,
+                                        fontSize = 8.sp,
+                                        fontStyle = FontStyle.Italic
+                                    )
+                                }
+                            )
+                        }
+                    }
+                    Spacer(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .weight(1f)
+                    )
+                    Row(modifier = Modifier
+                        .wrapContentWidth()
+                        .animateContentSize()) {
                         Surface(
                             modifier = Modifier.align(Alignment.CenterVertically),
                             shape = MaterialTheme.shapes.small,
                             shadowElevation = 1.dp
                         ) {
                             Text(
-                                "남성",
+                                stringResource(id = R.string.follower_check),
                                 modifier = Modifier
-                                    .paddingFromBaseline(4.dp)
-                                    .offset(x = 0.dp, y = (-2).dp),
+                                    .align(Alignment.CenterVertically)
+                                    .padding(6.dp, 2.dp, 6.dp, 2.dp),
                                 fontFamily = FontFamily.SansSerif,
+                                fontWeight = FontWeight.Normal,
                                 fontSize = 13.sp,
-                                fontStyle = FontStyle.Normal,
                                 color = ColorText2,
-                                style = MaterialTheme.typography.titleSmall
+                                fontStyle = FontStyle.Normal
                             )
                         }
                         Spacer(
                             modifier = Modifier
                                 .height(4.dp)
-                                .width(8.dp)
+                                .width(4.dp)
                         )
-                        SexIconButton(
-                            onClick = {
-                            },
-                            icon = {
-                                Icon(
-                                    modifier = Modifier.wrapContentWidth().heightIn(14.dp),
-                                    imageVector = Icons.Default.Man,
-                                    contentDescription = null,
-                                )
-                            },
-                            text = {
-                                Text(
-                                    "남성",
-                                    fontFamily = FontFamily.SansSerif,
-                                    fontSize = 8.sp,
-                                    fontStyle = FontStyle.Italic
-                                )
-                            }
+                        Checkbox(
+                            checked = true,
+                            onCheckedChange = {}
                         )
                     }
-                }
-                Spacer(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .weight(1f)
-                )
-                Row(modifier = Modifier
-                    .wrapContentWidth()
-                    .animateContentSize()) {
-                    Surface(
-                        modifier = Modifier.align(Alignment.CenterVertically),
-                        shape = MaterialTheme.shapes.small,
-                        shadowElevation = 1.dp
-                    ) {
-                        Text(
-                            stringResource(id = R.string.follower_check),
-                            modifier = Modifier
-                                .align(Alignment.CenterVertically)
-                                .padding(6.dp, 2.dp, 6.dp, 2.dp),
-                            fontFamily = FontFamily.SansSerif,
-                            fontWeight = FontWeight.Normal,
-                            fontSize = 13.sp,
-                            color = ColorText2,
-                            fontStyle = FontStyle.Normal
-                        )
-                    }
-                    Spacer(
+                    Image(
+                        painter = painterResource(id = R.drawable.ic_delete),
+                        contentDescription = "delete the profile",
                         modifier = Modifier
-                            .height(4.dp)
-                            .width(4.dp)
+                            .padding(4.dp)
+                            .wrapContentSize()
+                            .clickable { },
+                        Alignment.CenterStart
                     )
-                    Checkbox(
-                        checked = true,
-                        onCheckedChange = {}
+                }
+
+                Spacer(modifier = Modifier.height(4.dp))
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier
+                        .height(IntrinsicSize.Min)
+                        .background(ColorBgSecondary)
+                        .wrapContentHeight(Alignment.Top)
+                        .fillMaxWidth()
+                        .heightIn(min = 36.dp)
+                ) {
+                    Text(
+                        stringResource(id = R.string.profile_list_item_delete, "Lukoh"),
+                        modifier = Modifier.padding(16.dp, 0.dp, 0.dp, 0.dp),
+                        fontFamily = FontFamily.SansSerif,
+                        fontWeight = FontWeight.Normal,
+                        fontSize = 13.sp,
+                        fontStyle = FontStyle.Normal,
+                        style = MaterialTheme.typography.displaySmall
+                    )
+                    Spacer(modifier = Modifier.width(10.dp))
+                    DeleteIconButton(
+                        onClick = {
+                        },
+                        icon = {
+                            Icon(
+                                imageVector = Icons.Default.Delete,
+                                contentDescription = null,
+                            )
+                        },
+                        text = {
+                            Text(
+                                stringResource(id = R.string.placeholder_delete_yes),
+                                fontFamily = FontFamily.SansSerif,
+                                fontSize = 15.sp,
+                                fontStyle = FontStyle.Italic
+                            )
+                        }
+                    )
+
+                    Spacer(modifier = Modifier.width(4.dp))
+                    DeleteIconButton(
+                        onClick = {
+                        },
+                        icon = {
+                            Icon(
+                                imageVector = Icons.Default.Delete,
+                                contentDescription = null,
+                            )
+                        },
+                        text = {
+                            Text(
+                                stringResource(id = R.string.placeholder_delete_no),
+                                fontFamily = FontFamily.SansSerif,
+                                fontSize = 15.sp,
+                                fontStyle = FontStyle.Italic
+                            )
+                        }
                     )
                 }
             }

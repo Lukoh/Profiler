@@ -6,6 +6,8 @@
     <string name="notification">Notice</string>
     <string name="setting">Setting</string>
     <string name="placeholder_search">Search</string>
+    <string name="placeholder_delete_yes">Yes</string>
+    <string name="placeholder_delete_no">No</string>
 
     <string name="profile_detail">Profile Detail</string>
     <string name="profile_detail_picture">Picture : </string>
@@ -20,6 +22,8 @@
 
     <string name="profile_members">Members</string>
     <string name="profile_member_view">View</string>
+
+    <string name="profile_list_item_delete">Sure care to delete %s?</string>
 
     <string name="notification_posted">posted </string>
     <string name="notification_content">Notification Content</string>

@@ -55,7 +55,7 @@ object MyNetworks : ProfilerDestination {
                 state = rememberMyNetworkContentState(
                     uiState = viewModel.uiState,
                     onFollowStatusChanged = viewModel::changeFollowStatus,
-                    onGetPerson = viewModel::getPerson
+                    onGetPerson = viewModel::getPerson,
                 ),
                 onNavigateToDetailInfo = { userId ->
                     navController.navigateSingleTopTo("${DetailInfo.route}/$userId")

@@ -23,14 +23,14 @@ import androidx.compose.runtime.saveable.rememberSaveable
 
 @Stable
 class EditableInputState(private val hint: String, initialText: String) {
-    var text by mutableStateOf(initialText)
+    var textState by mutableStateOf(initialText)
 
     val isHint: Boolean
-        get() = text == hint
+        get() = textState == hint
 
     companion object {
         val Saver: Saver<EditableInputState, *> = listSaver(
-            save = { listOf(it.hint, it.text) },
+            save = { listOf(it.hint, it.textState) },
             restore = {
                 EditableInputState(
                     hint = it[0],
