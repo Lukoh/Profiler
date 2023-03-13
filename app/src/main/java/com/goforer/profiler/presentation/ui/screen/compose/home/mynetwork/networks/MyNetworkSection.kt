@@ -102,7 +102,7 @@ fun MyNetworkSection(
                 state = myNetworkSectionState.editableInputState,
                 onSearched = { keyword ->
                     myNetworkSectionState.refreshActionState.value = searchAction
-                    myNetworkContentState.onGetPerson(keyword)?.let {
+                    myNetworkContentState.onGetMember(keyword)?.let {
                         myNetworkSectionState.searchedKeywordState.value = keyword
                     }
 
@@ -122,7 +122,7 @@ fun MyNetworkSection(
                 onFollowed = onFollowed,
                 onSexViewed = {},
                 onPersonDeleted = {
-                    myNetworkContentState.onDeletePerson(it)
+                    myNetworkContentState.onDeleteMember(it)
                     myNetworkSectionState.refreshActionState.value = deleteAction
                 },
                 onNavigateToDetailInfo = onNavigateToDetailInfo

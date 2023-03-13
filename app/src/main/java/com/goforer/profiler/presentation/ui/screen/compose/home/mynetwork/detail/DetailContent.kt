@@ -38,7 +38,7 @@ fun DetailContent(
     userId: Int,
     onMembersClicked: () -> Unit
 ) {
-    val person = state.onGetPerson(userId)
+    val person = state.onGetMember(userId)
     val scrollState = rememberScrollState()
 
     person?.let {

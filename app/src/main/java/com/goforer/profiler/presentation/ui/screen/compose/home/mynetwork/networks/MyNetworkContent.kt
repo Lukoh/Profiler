@@ -62,7 +62,7 @@ fun MyNetworkContent(
                     if (byClicked)
                         state.keyboardController?.hide()
 
-                    state.onGetPerson(name) ?: if (byClicked) {
+                    state.onGetMember(name) ?: if (byClicked) {
                         if (name != hint)
                             Toast.makeText(
                                 state.context,

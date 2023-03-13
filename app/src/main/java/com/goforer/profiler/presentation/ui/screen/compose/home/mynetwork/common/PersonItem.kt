@@ -193,6 +193,7 @@ fun PersonItem(
                                 )
                                 if (sexButtonVisible) {
                                     SexIconButton(
+                                        modifier = Modifier.align(Alignment.CenterVertically),
                                         onClick = {
                                             onSexViewed(person.sex)
                                         },
@@ -207,7 +208,7 @@ fun PersonItem(
                                             Text(
                                                 person.sex,
                                                 fontFamily = FontFamily.SansSerif,
-                                                fontSize = 8.sp,
+                                                fontSize = 10.sp,
                                                 fontStyle = FontStyle.Italic
                                             )
                                         }
@@ -448,6 +449,7 @@ fun PersonItemPreview() {
                                     .width(8.dp)
                             )
                             SexIconButton(
+                                modifier = Modifier.align(Alignment.CenterVertically),
                                 onClick = {
                                 },
                                 icon = {
@@ -463,7 +465,7 @@ fun PersonItemPreview() {
                                     Text(
                                         "남성",
                                         fontFamily = FontFamily.SansSerif,
-                                        fontSize = 8.sp,
+                                        fontSize = 10.sp,
                                         fontStyle = FontStyle.Italic
                                     )
                                 }

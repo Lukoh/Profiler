@@ -25,8 +25,8 @@ class MyNetworkContentState(
     var selectedIndex: MutableState<Int>,
     val keyboardController: SoftwareKeyboardController?,
     val onFollowStatusChanged: (id: Int, name: String, followed: Boolean) -> Unit,
-    val onGetPerson: (keyword: String) -> Person?,
-    val onDeletePerson: (id: Int) -> Person?,
+    val onGetMember: (keyword: String) -> Person?,
+    val onDeleteMember: (id: Int) -> Person?,
     resourceState: ResourceState<StateFlow<List<Person>>>,
 ) {
     val data: StateFlow<List<Person>>? = resourceState.data
@@ -55,11 +55,11 @@ fun rememberMyNetworkContentState(
         value = ResourceState(uiState)
     }.value,
     onFollowStatusChanged: (id: Int, name: String, followed: Boolean) -> Unit,
-    onGetPerson: (keyword: String) -> Person?,
-    onDeletePerson: (id: Int) -> Person?
+    onGetMember: (keyword: String) -> Person?,
+    onDeleteMember: (id: Int) -> Person?
 ): MyNetworkContentState = remember(
     uiState, context, scope, lifecycle, followedState, selectedIndex,
-    keyboardController, resourceState, onFollowStatusChanged, onGetPerson, onDeletePerson
+    keyboardController, resourceState, onFollowStatusChanged, onGetMember, onDeleteMember
 ) {
     MyNetworkContentState(
         uiState = uiState,
@@ -71,7 +71,7 @@ fun rememberMyNetworkContentState(
         keyboardController = keyboardController,
         resourceState = resourceState,
         onFollowStatusChanged = onFollowStatusChanged,
-        onGetPerson = onGetPerson,
-        onDeletePerson = onDeletePerson
+        onGetMember = onGetMember,
+        onDeleteMember = onDeleteMember
     )
 }

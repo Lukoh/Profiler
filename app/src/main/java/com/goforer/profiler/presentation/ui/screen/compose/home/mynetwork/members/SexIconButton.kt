@@ -34,7 +34,7 @@ fun SexIconButton(
 
     Button(
         onClick = onClick,
-        modifier = modifier.wrapContentWidth().heightIn(14.dp),
+        modifier = modifier.wrapContentWidth().heightIn(13.dp),
         shape = MaterialTheme.shapes.small,
         interactionSource = interactionSource
     ) {

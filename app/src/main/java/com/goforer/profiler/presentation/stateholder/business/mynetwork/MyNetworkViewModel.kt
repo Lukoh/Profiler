@@ -48,7 +48,7 @@ class MyNetworkViewModel
         }
     }
 
-    internal fun getPerson(id: Int): Person? {
+    internal fun getMember(id: Int): Person? {
         uiState.value.find { it.id == id }?.let {
             return it
         }
@@ -56,7 +56,7 @@ class MyNetworkViewModel
         return null
     }
 
-    internal fun getPerson(keyword: String): Person? {
+    internal fun getMember(keyword: String): Person? {
         uiState.value.find { it.name.contains(keyword) }?.let {
             return it
         }
@@ -64,7 +64,7 @@ class MyNetworkViewModel
         return null
     }
 
-    internal fun deletePerson(id: Int): Person? {
+    internal fun deleteMember(id: Int): Person? {
         uiState.value.find { it.id == id }?.let {
             it.deleted = true
 

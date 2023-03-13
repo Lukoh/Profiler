@@ -55,8 +55,8 @@ object MyNetworks : ProfilerDestination {
                 state = rememberMyNetworkContentState(
                     uiState = viewModel.uiState,
                     onFollowStatusChanged = viewModel::changeFollowStatus,
-                    onGetPerson = viewModel::getPerson,
-                    onDeletePerson = viewModel::deletePerson
+                    onGetMember = viewModel::getMember,
+                    onDeleteMember = viewModel::deleteMember
                 ),
                 onNavigateToDetailInfo = { userId ->
                     navController.navigateSingleTopTo("${DetailInfo.route}/$userId")
@@ -86,7 +86,7 @@ object DetailInfo : ProfilerDestination {
                 DetailScreen(
                     state = rememberDetailContentState(
                         uiState = viewModel.uiState,
-                        onGetPerson =  viewModel::getPerson
+                        onGetMember =  viewModel::getMember
                     ),
                     userId = userId,
                     onMembersClicked = {
@@ -112,7 +112,7 @@ object Members : ProfilerDestination {
                 state = rememberMembersContentState(
                     uiState = viewModel.uiState,
                     onGetMembers = viewModel::getMembers,
-                    onGetPerson = viewModel::getPerson
+                    onGetMember = viewModel::getMember
                 ),
                 onBackPressed = {
                     navController.navigateUp()

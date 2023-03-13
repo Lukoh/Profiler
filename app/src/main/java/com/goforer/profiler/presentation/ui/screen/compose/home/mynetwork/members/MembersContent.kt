@@ -70,7 +70,7 @@ fun MembersContent(
                     onItemClicked = onItemClicked,
                     onFollowed = onFollowed,
                     onSexViewed = { sex ->
-                        state.onGetPerson(sex)?.let { state.sexState.value = sex }
+                        state.onGetMember(sex)?.let { state.sexState.value = sex }
                     },
                     onPersonDeleted = {
                     },

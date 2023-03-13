@@ -47,7 +47,7 @@ class MembersViewModel
         return uiState.value.filter { it.sex == sex }
     }
 
-    internal fun getPerson(sex: String): Person? {
+    internal fun getMember(sex: String): Person? {
         return uiState.value.find { it.sex == sex }
     }
 }
