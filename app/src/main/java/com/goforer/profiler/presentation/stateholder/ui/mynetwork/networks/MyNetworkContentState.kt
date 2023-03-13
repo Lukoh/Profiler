@@ -42,7 +42,7 @@ fun rememberMyNetworkContentState(
     scope: CoroutineScope = rememberCoroutineScope(),
     lifecycle: Lifecycle = LocalLifecycleOwner.current.lifecycle,
     followedState: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
-    selectedIndex: MutableState<Int> = remember { mutableStateOf(-1) },
+    selectedIndex: MutableState<Int> = rememberSaveable { mutableStateOf(-1) },
     keyboardController: SoftwareKeyboardController? = LocalSoftwareKeyboardController.current,
     resourceState: ResourceState<StateFlow<List<Person>>> = produceState(initialValue = ResourceState()) {
         // will be changed if the data come from Backend Server like below:

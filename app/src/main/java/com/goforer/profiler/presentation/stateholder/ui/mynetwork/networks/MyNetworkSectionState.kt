@@ -3,6 +3,7 @@ package com.goforer.profiler.presentation.stateholder.ui.mynetwork.networks
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import com.goforer.profiler.data.model.datum.response.mynetwork.Person
 import com.goforer.profiler.presentation.stateholder.ui.mynetwork.networks.MyNetworkSectionState.Companion.noneAction
 
@@ -28,10 +29,10 @@ class MyNetworkSectionState(
 fun rememberMyNetworkSectionState(
     lazyListState: LazyListState = rememberLazyListState(),
     editableInputState: EditableInputState = rememberEditableInputState(hint = "Search"),
-    searchedKeywordState: MutableState<String> = remember { mutableStateOf("") },
+    searchedKeywordState: MutableState<String> = rememberSaveable { mutableStateOf("") },
     showButtonState: State<Boolean> = remember { derivedStateOf { searchedKeywordState.value.isNotEmpty() } },
-    clickedState: MutableState<Boolean> = remember { mutableStateOf(false) },
-    refreshActionState: MutableState<Int> = remember { mutableStateOf(noneAction)}
+    clickedState: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
+    refreshActionState: MutableState<Int> = rememberSaveable { mutableStateOf(noneAction)}
 ): MyNetworkSectionState = remember(
     lazyListState, editableInputState, searchedKeywordState, showButtonState, clickedState, refreshActionState) {
     MyNetworkSectionState(

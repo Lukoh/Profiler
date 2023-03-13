@@ -3,6 +3,7 @@ package com.goforer.profiler.presentation.stateholder.ui.mynetwork.common
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import com.goforer.profiler.data.model.datum.response.mynetwork.Person
 
 @Stable
@@ -19,10 +20,10 @@ class ListSectionState(
 fun rememberListSectionState(
     lazyListState: LazyListState = rememberLazyListState(),
     visibleUpButtonState: State<Boolean> = remember { derivedStateOf { lazyListState.firstVisibleItemIndex > 0 } },
-    visibleSexButtonState: MutableState<Boolean> = remember { mutableStateOf(false) },
-    clickedState: MutableState<Boolean> = remember { mutableStateOf(false) },
-    personsState: State<List<Person>> = remember { mutableStateOf(listOf()) },
-    followedState: MutableState<Boolean> = remember { mutableStateOf(false) }
+    visibleSexButtonState: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
+    clickedState: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
+    personsState: State<List<Person>> = rememberSaveable { mutableStateOf(listOf()) },
+    followedState: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) }
 ): ListSectionState = remember(lazyListState, visibleUpButtonState, visibleSexButtonState, clickedState) {
     ListSectionState(
         lazyListState = lazyListState,

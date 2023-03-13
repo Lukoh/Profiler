@@ -3,6 +3,7 @@ package com.goforer.profiler.presentation.stateholder.ui.notification.notificati
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 
 @Stable
 class ListSectionState(
@@ -15,7 +16,7 @@ class ListSectionState(
 fun rememberListSectionState(
     lazyListState: LazyListState = rememberLazyListState(),
     showButton: State<Boolean> = remember { derivedStateOf { lazyListState.firstVisibleItemIndex > 0 } },
-    clicked: MutableState<Boolean> = remember { mutableStateOf(false) }
+    clicked: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) }
 ): ListSectionState = remember(lazyListState, showButton, clicked) {
     ListSectionState(
         lazyListState = lazyListState,
