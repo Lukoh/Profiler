@@ -23,7 +23,7 @@
     <string name="profile_members">Members</string>
     <string name="profile_member_view">View</string>
 
-    <string name="profile_list_item_delete">Sure care to delete %s?</string>
+    <string name="profile_list_item_delete">Are you sure care to delete %s?</string>
 
     <string name="notification_posted">posted </string>
     <string name="notification_content">Notification Content</string>

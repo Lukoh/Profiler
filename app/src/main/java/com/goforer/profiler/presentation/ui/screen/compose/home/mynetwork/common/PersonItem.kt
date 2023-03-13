@@ -222,18 +222,20 @@ fun PersonItem(
                         )
                         Row(modifier = Modifier
                             .wrapContentWidth()
-                            .animateContentSize()) {
+                            .animateContentSize()
+                            .background(ColorBgSecondary)) {
                             followedState.value = person.followed
                             Surface(
                                 modifier = Modifier.align(Alignment.CenterVertically),
                                 shape = MaterialTheme.shapes.small,
+                                color = ColorBgSecondary,
                                 shadowElevation = 1.dp
                             ) {
                                 Text(
                                     stringResource(id = R.string.follower_check),
                                     modifier = Modifier
                                         .align(Alignment.CenterVertically)
-                                        .padding(6.dp, 2.dp, 6.dp, 2.dp),
+                                        .padding(4.dp, 2.dp, 4.dp, 2.dp),
                                     fontFamily = FontFamily.SansSerif,
                                     fontWeight = FontWeight.Normal,
                                     fontSize = 13.sp,
@@ -241,11 +243,7 @@ fun PersonItem(
                                     fontStyle = FontStyle.Normal
                                 )
                             }
-                            Spacer(
-                                modifier = Modifier
-                                    .height(4.dp)
-                                    .width(4.dp)
-                            )
+
                             Checkbox(
                                 checked = followedState.value,
                                 onCheckedChange = {
@@ -259,7 +257,8 @@ fun PersonItem(
                                 painter = painterResource(id = R.drawable.ic_delete),
                                 contentDescription = "delete the profile",
                                 modifier = Modifier
-                                    .padding(4.dp)
+                                    .align(Alignment.Top)
+                                    .padding(0.dp, 0.dp, 0.dp, 0.dp)
                                     .wrapContentSize()
                                     .clickable { state.visibleDeleteBoxState.value = true },
                                 Alignment.CenterStart
@@ -279,14 +278,14 @@ fun PersonItem(
                         ) {
                             Text(
                                 stringResource(id = R.string.profile_list_item_delete, person.name),
-                                modifier = Modifier.padding(16.dp, 0.dp, 0.dp, 0.dp),
+                                modifier = Modifier.padding(8.dp, 0.dp, 0.dp, 0.dp),
                                 fontFamily = FontFamily.SansSerif,
                                 fontWeight = FontWeight.Normal,
-                                fontSize = 15.sp,
+                                fontSize = 13.sp,
                                 fontStyle = FontStyle.Normal,
                                 style = MaterialTheme.typography.displaySmall
                             )
-                            Spacer(modifier = Modifier.width(8.dp))
+                            Spacer(modifier = Modifier.width(12.dp))
                             DeleteIconButton(
                                 onClick = {
                                     state.visibleDeleteBoxState.value = false
@@ -302,7 +301,7 @@ fun PersonItem(
                                     Text(
                                         stringResource(id = R.string.placeholder_delete_yes),
                                         fontFamily = FontFamily.SansSerif,
-                                        fontSize = 15.sp,
+                                        fontSize = 13.sp,
                                         fontStyle = FontStyle.Italic
                                     )
                                 }
@@ -323,7 +322,7 @@ fun PersonItem(
                                     Text(
                                         stringResource(id = R.string.placeholder_delete_no),
                                         fontFamily = FontFamily.SansSerif,
-                                        fontSize = 15.sp,
+                                        fontSize = 13.sp,
                                         fontStyle = FontStyle.Italic
                                     )
                                 }
@@ -478,17 +477,19 @@ fun PersonItemPreview() {
                     )
                     Row(modifier = Modifier
                         .wrapContentWidth()
-                        .animateContentSize()) {
+                        .animateContentSize()
+                        .background(ColorBgSecondary)) {
                         Surface(
                             modifier = Modifier.align(Alignment.CenterVertically),
                             shape = MaterialTheme.shapes.small,
+                            color = ColorBgSecondary,
                             shadowElevation = 1.dp
                         ) {
                             Text(
                                 stringResource(id = R.string.follower_check),
                                 modifier = Modifier
                                     .align(Alignment.CenterVertically)
-                                    .padding(6.dp, 2.dp, 6.dp, 2.dp),
+                                    .padding(4.dp, 2.dp, 4.dp, 2.dp),
                                 fontFamily = FontFamily.SansSerif,
                                 fontWeight = FontWeight.Normal,
                                 fontSize = 13.sp,
@@ -496,11 +497,7 @@ fun PersonItemPreview() {
                                 fontStyle = FontStyle.Normal
                             )
                         }
-                        Spacer(
-                            modifier = Modifier
-                                .height(4.dp)
-                                .width(4.dp)
-                        )
+
                         Checkbox(
                             checked = true,
                             onCheckedChange = {}
@@ -510,7 +507,8 @@ fun PersonItemPreview() {
                         painter = painterResource(id = R.drawable.ic_delete),
                         contentDescription = "delete the profile",
                         modifier = Modifier
-                            .padding(4.dp)
+                            .align(Alignment.Top)
+                            .padding(0.dp, 0.dp, 0.dp, 0.dp)
                             .wrapContentSize()
                             .clickable { },
                         Alignment.CenterStart
@@ -536,7 +534,7 @@ fun PersonItemPreview() {
                         fontStyle = FontStyle.Normal,
                         style = MaterialTheme.typography.displaySmall
                     )
-                    Spacer(modifier = Modifier.width(10.dp))
+                    Spacer(modifier = Modifier.width(12.dp))
                     DeleteIconButton(
                         onClick = {
                         },
@@ -550,7 +548,7 @@ fun PersonItemPreview() {
                             Text(
                                 stringResource(id = R.string.placeholder_delete_yes),
                                 fontFamily = FontFamily.SansSerif,
-                                fontSize = 15.sp,
+                                fontSize = 13.sp,
                                 fontStyle = FontStyle.Italic
                             )
                         }
@@ -570,7 +568,7 @@ fun PersonItemPreview() {
                             Text(
                                 stringResource(id = R.string.placeholder_delete_no),
                                 fontFamily = FontFamily.SansSerif,
-                                fontSize = 15.sp,
+                                fontSize = 13.sp,
                                 fontStyle = FontStyle.Italic
                             )
                         }
