@@ -63,6 +63,16 @@ class MyNetworkViewModel
 
         return null
     }
+
+    internal fun deletePerson(id: Int): Person? {
+        uiState.value.find { it.id == id }?.let {
+            it.deleted = true
+
+            return it
+        }
+
+        return null
+    }
 }
 
 /*

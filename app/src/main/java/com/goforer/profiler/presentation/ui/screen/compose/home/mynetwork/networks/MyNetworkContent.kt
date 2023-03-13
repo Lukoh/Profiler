@@ -73,16 +73,6 @@ fun MyNetworkContent(
                             Timber.d("is texted by typing")
                         }
                 },
-                onPersonDeleted = {
-                   // Will be implemented...
-                   state.scope.launch {
-                       Toast.makeText(
-                           state.context,
-                           "Will be implemented....",
-                           Toast.LENGTH_SHORT
-                       ).show()
-                   }
-                },
                 onNavigateToDetailInfo = onNavigateToDetailInfo
             )
         }

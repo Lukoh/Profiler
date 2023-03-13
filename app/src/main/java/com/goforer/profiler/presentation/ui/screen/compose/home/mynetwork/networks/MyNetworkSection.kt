@@ -34,6 +34,8 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.goforer.profiler.data.model.datum.response.mynetwork.Person
 import com.goforer.profiler.presentation.stateholder.ui.mynetwork.common.rememberListSectionState
 import com.goforer.profiler.presentation.stateholder.ui.mynetwork.networks.*
+import com.goforer.profiler.presentation.stateholder.ui.mynetwork.networks.MyNetworkSectionState.Companion.deleteAction
+import com.goforer.profiler.presentation.stateholder.ui.mynetwork.networks.MyNetworkSectionState.Companion.searchAction
 import com.goforer.profiler.presentation.ui.ext.noRippleClickable
 import com.goforer.profiler.presentation.ui.screen.compose.home.mynetwork.common.ListSection
 import com.goforer.profiler.presentation.ui.theme.ProfilerTheme
@@ -48,14 +50,33 @@ fun MyNetworkSection(
     @SuppressLint("ModifierParameter")
     onFollowed: (Person, Boolean) -> Unit,
     onSearched: (String, Boolean) -> Unit,
-    onPersonDeleted : (Int) -> Unit,
     onNavigateToDetailInfo: (Int) -> Unit
 ) {
     myNetworkContentState.data?.collectAsStateWithLifecycle()?.let {
         myNetworkSectionState.currentNetworksState = remember(it.value) {
-            derivedStateOf {
-                it.value.filter { person ->
-                    person.name.contains(myNetworkSectionState.searchedKeywordState.value)
+            when(myNetworkSectionState.refreshActionState.value) {
+                searchAction -> {
+                    derivedStateOf {
+                        it.value.filter { person ->
+                            person.name.contains(myNetworkSectionState.searchedKeywordState.value)
+                        }
+                    }
+                }
+
+                deleteAction -> {
+                    derivedStateOf {
+                        it.value.filter { person ->
+                            person.deleted
+                        }
+                    }
+                }
+
+                else -> {
+                    derivedStateOf {
+                        it.value.filter { person ->
+                            person.id >= 0
+                        }
+                    }
                 }
             }
         }
@@ -80,6 +101,7 @@ fun MyNetworkSection(
                 modifier = Modifier.padding(8.dp),
                 state = myNetworkSectionState.editableInputState,
                 onSearched = { keyword ->
+                    myNetworkSectionState.refreshActionState.value = searchAction
                     myNetworkContentState.onGetPerson(keyword)?.let {
                         myNetworkSectionState.searchedKeywordState.value = keyword
                     }
@@ -99,7 +121,10 @@ fun MyNetworkSection(
                 onItemClicked = onItemClicked,
                 onFollowed = onFollowed,
                 onSexViewed = {},
-                onPersonDeleted = onPersonDeleted,
+                onPersonDeleted = {
+                    myNetworkContentState.onDeletePerson(it)
+                    myNetworkSectionState.refreshActionState.value = deleteAction
+                },
                 onNavigateToDetailInfo = onNavigateToDetailInfo
             )
         }
