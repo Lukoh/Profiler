@@ -73,6 +73,9 @@ fun MyNetworkContent(
                             Timber.d("is texted by typing")
                         }
                 },
+                onEstimated = { id, favor ->
+                    state.onEstimated(id, favor)
+                },
                 onNavigateToDetailInfo = onNavigateToDetailInfo
             )
         }

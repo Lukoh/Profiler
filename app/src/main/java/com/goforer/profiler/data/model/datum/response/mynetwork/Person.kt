@@ -25,6 +25,7 @@ data class Person(
     val id: Int,
     val name: String,
     val sex: String,
+    var favor: Boolean,
     var followed : Boolean = false,
     val profileImage: String,
     val personality: String,

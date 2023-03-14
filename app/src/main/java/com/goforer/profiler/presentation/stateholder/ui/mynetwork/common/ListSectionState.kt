@@ -12,7 +12,7 @@ class ListSectionState(
     val visibleUpButtonState: State<Boolean>,
     val visibleSexButtonState: State<Boolean>,
     var clickedState: MutableState<Boolean>,
-    val personsState: State<List<Person>>,
+    val membersState: State<List<Person>>,
     val followedState: MutableState<Boolean>,
 )
 
@@ -22,15 +22,22 @@ fun rememberListSectionState(
     visibleUpButtonState: State<Boolean> = remember { derivedStateOf { lazyListState.firstVisibleItemIndex > 0 } },
     visibleSexButtonState: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
     clickedState: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
-    personsState: State<List<Person>> = rememberSaveable { mutableStateOf(listOf()) },
+    membersState: State<List<Person>> = rememberSaveable { mutableStateOf(listOf()) },
     followedState: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) }
-): ListSectionState = remember(lazyListState, visibleUpButtonState, visibleSexButtonState, clickedState) {
+): ListSectionState = remember(
+    lazyListState,
+    visibleUpButtonState,
+    visibleSexButtonState,
+    clickedState,
+    membersState,
+    followedState
+) {
     ListSectionState(
         lazyListState = lazyListState,
         visibleUpButtonState = visibleUpButtonState,
         visibleSexButtonState = visibleSexButtonState,
         clickedState = clickedState,
-        personsState = personsState,
+        membersState = membersState,
         followedState = followedState
     )
 }

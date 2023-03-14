@@ -64,6 +64,16 @@ class MyNetworkViewModel
         return null
     }
 
+    internal fun setEstimation(id: Int, favor: Boolean): Person? {
+        uiState.value.find { it.id == id }?.let {
+            it.favor = favor
+
+            return it
+        }
+
+        return null
+    }
+
     internal fun deleteMember(id: Int): Person? {
         uiState.value.find { it.id == id }?.let {
             it.deleted = true

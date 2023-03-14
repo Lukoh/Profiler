@@ -13,6 +13,7 @@ class MembersContentState(
     val followedState: MutableState<Boolean>,
     val onGetMembers: (sex: String) -> List<Person>,
     val onGetMember: (sex: String) -> Person?,
+    val onEstimated: (id: Int, favor: Boolean) -> Person?,
     resourceState: ResourceState<StateFlow<List<Person>>>
 ) {
     val data: StateFlow<List<Person>>? = resourceState.data
@@ -29,6 +30,7 @@ fun rememberMembersContentState(
     followedState: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
     onGetMembers: (sex: String) -> List<Person>,
     onGetMember: (sex: String) -> Person?,
+    onEstimated: (id: Int, favor: Boolean) -> Person?,
     resourceState: ResourceState<StateFlow<List<Person>>> = produceState(initialValue = ResourceState()) {
         // will be changed if the data come from Backend Server like below:
         /*
@@ -39,13 +41,14 @@ fun rememberMembersContentState(
         */
         value = ResourceState(uiState)
     }.value
-): MembersContentState = remember(uiState, sexState, followedState, onGetMembers, onGetMember, resourceState) {
+): MembersContentState = remember(uiState, sexState, followedState, onGetMembers, onGetMember, onEstimated, resourceState) {
     MembersContentState(
         uiState = uiState,
         sexState = sexState,
         followedState = followedState,
         onGetMembers = onGetMembers,
         onGetMember = onGetMember,
+        onEstimated = onEstimated,
         resourceState = resourceState
     )
 }

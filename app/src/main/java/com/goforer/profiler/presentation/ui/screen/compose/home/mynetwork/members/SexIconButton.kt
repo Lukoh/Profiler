@@ -12,7 +12,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 
 @Composable
 fun SexIconButton(
@@ -34,7 +33,7 @@ fun SexIconButton(
 
     Button(
         onClick = onClick,
-        modifier = modifier.wrapContentWidth().heightIn(13.dp),
+        modifier = Modifier.wrapContentSize(),
         shape = MaterialTheme.shapes.small,
         interactionSource = interactionSource
     ) {

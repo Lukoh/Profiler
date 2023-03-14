@@ -56,6 +56,7 @@ object MyNetworks : ProfilerDestination {
                     uiState = viewModel.uiState,
                     onFollowStatusChanged = viewModel::changeFollowStatus,
                     onGetMember = viewModel::getMember,
+                    onEstimated = viewModel::setEstimation,
                     onDeleteMember = viewModel::deleteMember
                 ),
                 onNavigateToDetailInfo = { userId ->
@@ -112,7 +113,8 @@ object Members : ProfilerDestination {
                 state = rememberMembersContentState(
                     uiState = viewModel.uiState,
                     onGetMembers = viewModel::getMembers,
-                    onGetMember = viewModel::getMember
+                    onGetMember = viewModel::getMember,
+                    onEstimated = viewModel::setEstimation
                 ),
                 onBackPressed = {
                     navController.navigateUp()
