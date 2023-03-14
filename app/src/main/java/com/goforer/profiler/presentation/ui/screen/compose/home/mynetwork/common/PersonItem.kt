@@ -135,9 +135,8 @@ fun PersonItem(
                                 verticalAlignment = Alignment.CenterVertically,
                                 modifier = Modifier
                                     .background(ColorBgSecondary)
-                                    .wrapContentHeight(Alignment.Top)
                                     .fillMaxWidth()
-                                    .heightIn(62.dp)
+                                    .heightIn(56.dp, 122.dp)
                                     .clickable {
                                         //clikced = true
                                         onNavigateToDetailInfo(person.id)
@@ -192,10 +191,7 @@ fun PersonItem(
                                         style = MaterialTheme.typography.titleMedium
                                     )
                                     Spacer(modifier = Modifier.height(4.dp))
-                                    Row(
-                                        modifier = Modifier
-                                            .wrapContentWidth()
-                                    ) {
+                                    Row(modifier = Modifier.wrapContentWidth()) {
                                         Surface(
                                             modifier = Modifier
                                                 .widthIn(36.dp)
@@ -215,11 +211,7 @@ fun PersonItem(
                                                 style = MaterialTheme.typography.titleSmall
                                             )
                                         }
-                                        Spacer(
-                                            modifier = Modifier
-                                                .height(4.dp)
-                                                .width(8.dp)
-                                        )
+                                        Spacer(modifier = Modifier.height(4.dp).width(8.dp))
                                         if (sexButtonVisible) {
                                             SexIconButton(
                                                 onClick = {
@@ -227,16 +219,12 @@ fun PersonItem(
                                                 },
                                                 icon = {
                                                     Icon(
-                                                        modifier = Modifier.wrapContentSize(),
                                                         imageVector = Icons.Default.Man,
                                                         contentDescription = null,
                                                     )
                                                 },
                                                 text = {
                                                     Text(
-                                                        modifier = Modifier
-                                                            .align(Alignment.CenterVertically)
-                                                            .wrapContentSize(),
                                                         text = person.sex,
                                                         fontFamily = FontFamily.SansSerif,
                                                         fontSize = 6.sp,
@@ -538,7 +526,7 @@ fun PersonItemPreview() {
                         .background(ColorBgSecondary)
                         .wrapContentHeight(Alignment.Top)
                         .fillMaxWidth()
-                        .heightIn(62.dp)
+                        .heightIn(56.dp, 122.dp)
                         .clickable {},
                 ) {
                     IconContainer {
@@ -574,10 +562,7 @@ fun PersonItemPreview() {
                         }
                     }
                     Spacer(modifier = Modifier.width(12.dp))
-                    Column(
-                        modifier = Modifier
-                            .wrapContentWidth()
-                    ) {
+                    Column(modifier = Modifier.wrapContentWidth()) {
                         Text(
                             "Lukoh",
                             modifier = Modifier.padding(0.dp, 4.dp, 0.dp, 0.dp),
@@ -588,10 +573,7 @@ fun PersonItemPreview() {
                             style = MaterialTheme.typography.titleMedium
                         )
                         Spacer(modifier = Modifier.height(4.dp))
-                        Row(
-                            modifier = Modifier
-                                .wrapContentWidth()
-                        ) {
+                        Row(modifier = Modifier.wrapContentWidth()) {
                             Surface(
                                 modifier = Modifier
                                     .widthIn(36.dp)
@@ -602,8 +584,8 @@ fun PersonItemPreview() {
                                 Text(
                                     "남성",
                                     modifier = Modifier
-                                        .paddingFromBaseline(4.dp)
-                                        .offset(x = 0.dp, y = (-2).dp),
+                                        .padding(6.dp, 0.dp)
+                                        .align(Alignment.CenterVertically),
                                     fontFamily = FontFamily.SansSerif,
                                     fontSize = 13.sp,
                                     fontStyle = FontStyle.Normal,
@@ -611,30 +593,21 @@ fun PersonItemPreview() {
                                     style = MaterialTheme.typography.titleSmall
                                 )
                             }
-                            Spacer(
-                                modifier = Modifier
-                                    .height(4.dp)
-                                    .width(8.dp)
-                            )
+                            Spacer(modifier = Modifier.height(4.dp).width(8.dp))
                             SexIconButton(
-                                modifier = Modifier.align(Alignment.CenterVertically),
                                 onClick = {
                                 },
                                 icon = {
                                     Icon(
-                                        modifier = Modifier.wrapContentSize(),
                                         imageVector = Icons.Default.Man,
                                         contentDescription = null,
                                     )
                                 },
                                 text = {
                                     Text(
-                                        modifier = Modifier
-                                            .align(Alignment.CenterVertically)
-                                            .wrapContentSize(),
                                         text = "남성",
                                         fontFamily = FontFamily.SansSerif,
-                                        fontSize = 6.sp,
+                                        fontSize = 8.sp,
                                         fontStyle = FontStyle.Italic
                                     )
                                 }

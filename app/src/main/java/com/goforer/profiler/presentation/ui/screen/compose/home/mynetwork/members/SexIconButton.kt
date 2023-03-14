@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 
 @Composable
 fun SexIconButton(
@@ -33,8 +34,8 @@ fun SexIconButton(
 
     Button(
         onClick = onClick,
-        modifier = Modifier.wrapContentSize(),
-        shape = MaterialTheme.shapes.small,
+        modifier = modifier.wrapContentWidth().heightIn(32.dp),
+        shape = MaterialTheme.shapes.medium,
         interactionSource = interactionSource
     ) {
         AnimatedVisibility(visible = isPressed) {

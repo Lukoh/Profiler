@@ -28,8 +28,7 @@ internal inline fun DeleteIconButton(
     crossinline icon: @Composable () -> Unit,
     crossinline text: @Composable () -> Unit,
     modifier: Modifier = Modifier,
-    interactionSource: MutableInteractionSource =
-        remember { MutableInteractionSource() },
+    interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
 ) {
     val isPressed by interactionSource.collectIsPressedAsState()
     /*
