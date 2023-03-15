@@ -75,7 +75,7 @@ fun PersonItem(
 
     if (!person.deleted) {
         if (state.visibleDeleteBoxState.value)
-            state.heightDpState.value = 92.dp
+            state.heightDpState.value = 104.dp
         else
             state.heightDpState.value = 68.dp
 
