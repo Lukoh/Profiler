@@ -93,7 +93,6 @@ fun MyNetworkSectionPreview(modifier: Modifier = Modifier) {
                     0.dp,
                     0.dp
                 )
-                .animateContentSize()
                 .noRippleClickable { }
                 .verticalScroll(scrollState)
         ) {

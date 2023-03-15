@@ -49,7 +49,6 @@ fun ContentContent(
                     0.dp,
                     16.dp
                 )
-                .animateContentSize()
                 .noRippleClickable { }
                 .verticalScroll(scrollState)
         ) {

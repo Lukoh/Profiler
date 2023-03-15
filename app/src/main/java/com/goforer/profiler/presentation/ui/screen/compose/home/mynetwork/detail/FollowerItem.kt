@@ -81,8 +81,6 @@ fun FollowerItem(
                 .background(ColorBgSecondary)
                 .wrapContentHeight(Alignment.Top)
                 .fillMaxWidth()
-                .heightIn(min = 56.dp)
-                .animateContentSize()
         ) {
             Text(
                 stringResource(id = R.string.profile_detail_member),

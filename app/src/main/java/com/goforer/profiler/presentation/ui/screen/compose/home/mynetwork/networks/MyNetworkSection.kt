@@ -19,7 +19,6 @@ package com.goforer.profiler.presentation.ui.screen.compose.home.mynetwork.netwo
 import android.annotation.SuppressLint
 import android.content.res.Configuration
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.*
 import androidx.compose.material.FloatingActionButton
@@ -96,7 +95,6 @@ fun MyNetworkSection(
                     0.dp,
                     0.dp
                 )
-                .animateContentSize()
                 .noRippleClickable { }
         ) {
             myNetworkSectionState.refreshActionState.value = noneAction
@@ -179,7 +177,6 @@ fun MyNetworkSectionPreview(modifier: Modifier = Modifier) {
                         0.dp,
                         0.dp
                     )
-                    .animateContentSize()
                     .noRippleClickable { }
             ) {
                 val editableInputState = rememberEditableInputState(hint = "Search")

@@ -17,7 +17,6 @@
 package com.goforer.profiler.presentation.ui.screen.compose.home.mynetwork.detail
 
 import android.content.res.Configuration
-import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.MaterialTheme
@@ -55,7 +54,6 @@ fun CellphoneItem(
                 .wrapContentHeight(Alignment.Top)
                 .fillMaxWidth()
                 .heightIn(min = 56.dp)
-                .animateContentSize()
         ) {
             Text(
                 stringResource(id = R.string.profile_detail_cellphone),
@@ -102,7 +100,6 @@ fun CellphoneItemPreview(modifier: Modifier = Modifier) {
                     .wrapContentHeight(Alignment.Top)
                     .fillMaxWidth()
                     .heightIn(min = 56.dp)
-                    .animateContentSize()
             ) {
                 val person = Person(0,"LLyyiok", "남성", true,true,"https://avatars.githubusercontent.com/u/18302717?v=4", "sociable & gregarious", "+820101111-1111","", "Mar, 04, 1999","Lukoh is a tremendously capable and dedicated mobile SW professional. He has strong analytical and innovative skills which are further boosted by his solid technical background and his enthusiasm for technology. Lukoh works extremely well with colleagues, associates, and executives, adapting the analysis and communication techniques in order to accomplish the business objective. He is proficient in managing projects with consistent and successful results.\n" +
                         "I am confident that his leadership experience and expertise in SW development will make him a good SW engineer who works with many colleagues, and should come up with creative awesome ideas.\n" +

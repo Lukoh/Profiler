@@ -33,8 +33,6 @@ import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
@@ -43,8 +41,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImagePainter
-import coil.compose.rememberAsyncImagePainter
-import coil.request.ImageRequest
+import coil.size.Size
+import com.goforer.base.ui.compose.ImageCrossFade
+import com.goforer.base.ui.compose.loadImagePainter
 import com.goforer.profiler.R
 import com.goforer.profiler.data.model.datum.response.notification.Notification
 import com.goforer.profiler.presentation.ui.theme.*
@@ -76,13 +75,12 @@ fun NotificationItem(
         ) {
             IconContainer {
                 BoxWithConstraints {
-                    val painter = rememberAsyncImagePainter(
-                        model = ImageRequest.Builder(LocalContext.current)
-                            .data(notification.sender)
-                            .crossfade(true)
-                            .build()
+                    val painter = loadImagePainter(
+                        data = notification.sender,
+                        size = Size.ORIGINAL
                     )
 
+                    ImageCrossFade(painter = painter, durationMillis = null)
                     Image(
                         painter = painter,
                         contentDescription = "ComposeTest",
@@ -96,8 +94,13 @@ fun NotificationItem(
                     )
 
                     if (painter.state is AsyncImagePainter.State.Loading) {
+                        val preloadPainter = loadImagePainter(
+                            data = R.drawable.ic_profile_logo,
+                            size = Size.ORIGINAL
+                        )
+
                         Image(
-                            painter = painterResource(id = R.drawable.ic_profile_logo),
+                            painter = preloadPainter,
                             contentDescription = null,
                             modifier = Modifier
                                 .size(36.dp)
@@ -109,7 +112,6 @@ fun NotificationItem(
             Spacer(modifier = Modifier.width(12.dp))
             Column(modifier = Modifier
                 .wrapContentWidth()
-                .animateContentSize()
             ) {
                 Row(modifier = Modifier
                     .height(IntrinsicSize.Min)
@@ -147,13 +149,18 @@ fun NotificationItem(
             Spacer(modifier = Modifier.weight(1f))
             IconContainer {
                 BoxWithConstraints {
-                    Image(
-                        painter = when(notification.importance) {
-                            0 -> painterResource(id = R.drawable.ic_check)
-                            1 -> painterResource(id = R.drawable.ic_inportant)
-                            2 -> painterResource(id = R.drawable.ic_info)
-                            else -> painterResource(id = R.drawable.ic_common)
+                    val painter = loadImagePainter(
+                        data = when(notification.importance) {
+                            0 -> R.drawable.ic_check
+                            1 -> R.drawable.ic_inportant
+                            2 -> R.drawable.ic_info
+                            else -> R.drawable.ic_common
                         },
+                        size = Size.ORIGINAL
+                    )
+
+                    Image(
+                        painter = painter,
                         contentDescription = "ComposeTest",
                         modifier = Modifier
                             .padding(0.dp, 0.dp, 4.dp, 0.dp)
@@ -202,13 +209,12 @@ fun MyNetworkSectionPreview() {
             ) {
                 IconContainer {
                     Box {
-                        val painter = rememberAsyncImagePainter(
-                            model = ImageRequest.Builder(LocalContext.current)
-                                .data("https://avatars.githubusercontent.com/u/18302717?v=4")
-                                .crossfade(true)
-                                .build()
+                        val painter = loadImagePainter(
+                            data = "https://avatars.githubusercontent.com/u/18302717?v=4",
+                            size = Size.ORIGINAL
                         )
 
+                        ImageCrossFade(painter = painter, durationMillis = null)
                         Image(
                             painter = painter,
                             contentDescription = "ComposeTest",
@@ -222,8 +228,13 @@ fun MyNetworkSectionPreview() {
                         )
 
                         if (painter.state is AsyncImagePainter.State.Loading) {
+                            val preloadPainter = loadImagePainter(
+                                data = R.drawable.ic_profile_logo,
+                                size = Size.ORIGINAL
+                            )
+
                             Image(
-                                painter = painterResource(id = R.drawable.ic_profile_logo),
+                                painter = preloadPainter,
                                 contentDescription = null,
                                 modifier = Modifier
                                     .size(36.dp)
@@ -237,7 +248,6 @@ fun MyNetworkSectionPreview() {
                     modifier = Modifier
                         .wrapContentWidth()
                         .wrapContentHeight()
-                        .animateContentSize()
                 ) {
                     Row(modifier = Modifier.wrapContentWidth()) {
                         Text(
@@ -271,8 +281,13 @@ fun MyNetworkSectionPreview() {
                 Spacer(modifier = Modifier.weight(1f))
                 IconContainer {
                     BoxWithConstraints {
+                        val painter = loadImagePainter(
+                            data = R.drawable.ic_common,
+                            size = Size.ORIGINAL
+                        )
+
                         Image(
-                            painter = painterResource(id = R.drawable.ic_common),
+                            painter = painter,
                             contentDescription = "ComposeTest",
                             modifier = Modifier
                                 .padding(0.dp, 0.dp, 4.dp, 0.dp)

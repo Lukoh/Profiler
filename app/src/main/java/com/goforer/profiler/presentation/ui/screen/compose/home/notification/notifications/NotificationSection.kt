@@ -17,7 +17,6 @@
 package com.goforer.profiler.presentation.ui.screen.compose.home.notification.notifications
 
 import android.content.res.Configuration
-import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -44,7 +43,6 @@ fun NotificationSection(
                     0.dp,
                     0.dp
                 )
-                .animateContentSize()
                 .noRippleClickable { }
         ) {
             ListSection(
@@ -76,7 +74,6 @@ fun MyNetworkSectionPreview(modifier: Modifier = Modifier) {
                         0.dp,
                         0.dp
                     )
-                    .animateContentSize()
                     .noRippleClickable { }
             ) {
                 val notifications = mutableListOf(
