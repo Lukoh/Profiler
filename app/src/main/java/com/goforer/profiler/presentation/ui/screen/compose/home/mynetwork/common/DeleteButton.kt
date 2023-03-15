@@ -84,9 +84,7 @@ fun DeleteIconButtonPreview(modifier: Modifier = Modifier) {
             onClick = {},
             modifier = modifier
                 .height(IntrinsicSize.Min)
-                .wrapContentHeight()
-                .wrapContentWidth()
-                .heightIn(36.dp),
+                .wrapContentSize(),
             shape = MaterialTheme.shapes.small,
             interactionSource = interactionSource
         ) {

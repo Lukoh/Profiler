@@ -34,8 +34,8 @@ fun SexIconButton(
 
     Button(
         onClick = onClick,
-        modifier = modifier.wrapContentWidth().heightIn(32.dp),
-        shape = MaterialTheme.shapes.medium,
+        modifier = modifier.wrapContentWidth().height(30.dp),
+        shape = MaterialTheme.shapes.small,
         interactionSource = interactionSource
     ) {
         AnimatedVisibility(visible = isPressed) {

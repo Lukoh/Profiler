@@ -108,7 +108,7 @@ fun TopContainer(
         modifier = Modifier
             .background(ColorBgSecondary)
             .fillMaxWidth()
-            .heightIn(56.dp, 122.dp)
+            .heightIn(68.dp, 122.dp)
             .clickable {
                 //clikced = true
                 onNavigateToDetailInfo(person.id)
@@ -187,10 +187,9 @@ fun TopContainer(
                         style = MaterialTheme.typography.titleSmall
                     )
                 }
-                Spacer(modifier = Modifier
-                    .height(4.dp)
-                    .width(8.dp))
+
                 if (sexButtonVisible) {
+                    Spacer(modifier = Modifier.width(8.dp))
                     SexIconButton(
                         onClick = {
                             onSexViewed(person.sex)
@@ -203,9 +202,11 @@ fun TopContainer(
                         },
                         text = {
                             Text(
+                                modifier = Modifier
+                                    .align(Alignment.CenterVertically),
                                 text = person.sex,
                                 fontFamily = FontFamily.SansSerif,
-                                fontSize = 6.sp,
+                                fontSize = 10.sp,
                                 fontStyle = FontStyle.Italic
                             )
                         }
@@ -388,7 +389,7 @@ fun DismissContentPreview() {
                         .background(ColorBgSecondary)
                         .wrapContentHeight(Alignment.Top)
                         .fillMaxWidth()
-                        .heightIn(56.dp, 122.dp)
+                        .heightIn(68.dp, 122.dp)
                         .clickable {},
                 ) {
                     IconContainer {
@@ -459,9 +460,7 @@ fun DismissContentPreview() {
                                     style = MaterialTheme.typography.titleSmall
                                 )
                             }
-                            Spacer(modifier = Modifier
-                                .height(4.dp)
-                                .width(8.dp))
+                            Spacer(modifier = Modifier.width(8.dp))
                             SexIconButton(
                                 onClick = {
                                 },
@@ -473,9 +472,10 @@ fun DismissContentPreview() {
                                 },
                                 text = {
                                     Text(
+                                        modifier = Modifier.align(Alignment.CenterVertically),
                                         text = "남성",
                                         fontFamily = FontFamily.SansSerif,
-                                        fontSize = 8.sp,
+                                        fontSize = 10.sp,
                                         fontStyle = FontStyle.Italic
                                     )
                                 }

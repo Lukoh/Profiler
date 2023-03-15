@@ -77,7 +77,7 @@ fun PersonItem(
         if (state.visibleDeleteBoxState.value)
             state.heightDpState.value = 92.dp
         else
-            state.heightDpState.value = 56.dp
+            state.heightDpState.value = 68.dp
 
         val verticalPadding = if (index == 0)
             0.dp
