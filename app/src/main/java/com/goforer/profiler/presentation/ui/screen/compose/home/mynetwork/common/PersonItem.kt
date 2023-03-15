@@ -17,6 +17,7 @@
 package com.goforer.profiler.presentation.ui.screen.compose.home.mynetwork.common
 
 import androidx.compose.animation.*
+import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
@@ -74,16 +75,14 @@ fun PersonItem(
      */
 
     if (!person.deleted) {
-        if (state.visibleDeleteBoxState.value)
-            state.heightDpState.value = 104.dp
-        else
-            state.heightDpState.value = 68.dp
-
         val verticalPadding = if (index == 0)
             0.dp
         else
             2.dp
 
+        state.heightDpState.value = animateDpAsState(
+            targetValue = if (state.visibleDeleteBoxState.value) 104.dp else 68.dp,
+        ).value
         state.favorState.value = person.favor
         SwipeToDismiss(
             state = state.dismissState,

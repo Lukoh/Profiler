@@ -1,6 +1,7 @@
 package com.goforer.profiler.presentation.ui.screen.compose.home.mynetwork.common.item
 
 import android.content.res.Configuration
+import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -60,28 +61,26 @@ fun DismissContent(
     Surface(
         modifier = modifier.padding(8.dp, 0.dp)
     ) {
-        Column {
-            Column {
-                TopContainer(
-                    sexButtonVisible = sexButtonVisible,
-                    person = person,
-                    index = index,
-                    followedState = followedState,
-                    onItemClicked = onItemClicked,
-                    onFollowed = onFollowed,
-                    onSexViewed = onSexViewed,
-                    onEstimated = onEstimated,
-                    state = state,
-                    onNavigateToDetailInfo = onNavigateToDetailInfo
-                )
+        Column(modifier = Modifier.animateContentSize()) {
+            TopContainer(
+                sexButtonVisible = sexButtonVisible,
+                person = person,
+                index = index,
+                followedState = followedState,
+                onItemClicked = onItemClicked,
+                onFollowed = onFollowed,
+                onSexViewed = onSexViewed,
+                onEstimated = onEstimated,
+                state = state,
+                onNavigateToDetailInfo = onNavigateToDetailInfo
+            )
 
-                if (state.visibleDeleteBoxState.value) {
-                    BottomContainer(
-                        person = person,
-                        onMemberDeleted = onMemberDeleted,
-                        state = state
-                    )
-                }
+            if (state.visibleDeleteBoxState.value) {
+                BottomContainer(
+                    person = person,
+                    onMemberDeleted = onMemberDeleted,
+                    state = state
+                )
             }
         }
     }
@@ -303,6 +302,7 @@ fun BottomContainer(
             .wrapContentHeight(Alignment.Top)
             .fillMaxWidth()
             .heightIn(min = 36.dp)
+            .animateContentSize()
     ) {
         Text(
             stringResource(id = R.string.profile_list_item_delete, person.name),
