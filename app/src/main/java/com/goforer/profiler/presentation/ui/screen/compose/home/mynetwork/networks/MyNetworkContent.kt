@@ -34,7 +34,7 @@ fun MyNetworkContent(
      */
 
     replyCount = 2
-    LaunchedEffect(state.selectedIndex, state.lifecycle) {
+    LaunchedEffect(state.selectedIndex.value, state.lifecycle) {
         if (state.selectedIndex.value != -1)
             Toast.makeText(state.context, "Show the detailed profile!", Toast.LENGTH_SHORT).show()
     }
