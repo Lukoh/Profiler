@@ -213,9 +213,8 @@ fun TopContainer(
                 }
             }
         }
-        Spacer(
-            modifier = Modifier.weight(1f)
-        )
+
+        Spacer(modifier = Modifier.align(Alignment.CenterVertically).weight(1f))
         Row(modifier = Modifier
             .wrapContentWidth()
             .padding(0.dp, 0.dp, 16.dp, 0.dp)
@@ -483,11 +482,13 @@ fun DismissContentPreview() {
                         }
                     }
 
-                    Spacer(modifier = Modifier.weight(1f))
+                    Spacer(modifier = Modifier.align(Alignment.CenterVertically).weight(1f))
                     Row(modifier = Modifier
+                        .align(Alignment.CenterVertically)
                         .wrapContentWidth()
                         .padding(0.dp, 0.dp, 16.dp, 0.dp)
                         .background(ColorBgSecondary)
+                        .weight(1f)
                     ) {
                         Surface(
                             modifier = Modifier.align(Alignment.CenterVertically),

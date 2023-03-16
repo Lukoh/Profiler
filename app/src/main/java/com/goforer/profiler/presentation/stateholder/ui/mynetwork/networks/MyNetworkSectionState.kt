@@ -31,7 +31,7 @@ fun rememberMyNetworkSectionState(
     editableInputState: EditableInputState = rememberEditableInputState(hint = "Search"),
     searchedKeywordState: MutableState<String> = rememberSaveable { mutableStateOf("") },
     showButtonState: State<Boolean> = remember { derivedStateOf { searchedKeywordState.value.isNotEmpty() } },
-    clickedState: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
+    clickedState: MutableState<Boolean> = remember { mutableStateOf(false) },
     refreshActionState: MutableState<Int> = rememberSaveable { mutableStateOf(noneAction)}
 ): MyNetworkSectionState = remember(
     lazyListState, editableInputState, searchedKeywordState, showButtonState, clickedState, refreshActionState) {

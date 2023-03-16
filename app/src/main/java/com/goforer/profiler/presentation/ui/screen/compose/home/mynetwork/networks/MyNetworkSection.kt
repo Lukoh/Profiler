@@ -54,7 +54,7 @@ fun MyNetworkSection(
     onNavigateToDetailInfo: (Int) -> Unit
 ) {
     myNetworkContentState.data?.collectAsStateWithLifecycle()?.let {
-        myNetworkSectionState.currentNetworksState = remember(it.value) {
+        myNetworkSectionState.currentNetworksState = remember(myNetworkSectionState.refreshActionState.value) {
             when(myNetworkSectionState.refreshActionState.value) {
                 searchAction -> {
                     derivedStateOf {
@@ -97,7 +97,6 @@ fun MyNetworkSection(
                 )
                 .noRippleClickable { }
         ) {
-            myNetworkSectionState.refreshActionState.value = noneAction
             SearchSection(
                 modifier = Modifier.padding(8.dp),
                 state = myNetworkSectionState.editableInputState,
@@ -143,6 +142,7 @@ fun MyNetworkSection(
                 backgroundColor = MaterialTheme.colorScheme.primary,
                 onClick = {
                     myNetworkSectionState.clickedState.value = true
+                    myNetworkSectionState.refreshActionState.value = noneAction
                 }
             ) {
                 Text("Back!")
