@@ -58,11 +58,10 @@ fun DismissContent(
     }),
     onNavigateToDetailInfo: (Int) -> Unit
 ) {
-    Surface(
-        modifier = modifier.padding(8.dp, 0.dp)
-    ) {
-        Column(modifier = Modifier.animateContentSize()) {
+    Surface(modifier = modifier.fillMaxWidth()) {
+        Column(modifier = Modifier.fillMaxWidth()) {
             TopContainer(
+                modifier = modifier,
                 sexButtonVisible = sexButtonVisible,
                 person = person,
                 index = index,
@@ -89,6 +88,7 @@ fun DismissContent(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TopContainer(
+    modifier: Modifier,
     sexButtonVisible: Boolean,
     person: Person,
     index: Int,
@@ -102,10 +102,13 @@ fun TopContainer(
     }),
     onNavigateToDetailInfo: (Int) -> Unit
 ) {
+    followedState.value = person.followed
     Row(
         verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier
+        horizontalArrangement = Arrangement.Start,
+        modifier = modifier
             .background(ColorBgSecondary)
+            .wrapContentHeight(Alignment.CenterVertically)
             .fillMaxWidth()
             .heightIn(68.dp, 122.dp)
             .clickable {
@@ -155,7 +158,7 @@ fun TopContainer(
             }
         }
         Spacer(modifier = Modifier.width(12.dp))
-        Column(modifier = Modifier.wrapContentWidth()) {
+        Column {
             Text(
                 person.name,
                 modifier = Modifier.padding(0.dp, 4.dp, 0.dp, 0.dp),
@@ -214,75 +217,66 @@ fun TopContainer(
             }
         }
 
-        Spacer(modifier = Modifier.align(Alignment.CenterVertically).weight(1f))
-        Row(modifier = Modifier
-            .wrapContentWidth()
-            .padding(0.dp, 0.dp, 16.dp, 0.dp)
-            .background(ColorBgSecondary)
+        Spacer(modifier = Modifier.weight(1f))
+        Row(
+            modifier = Modifier
+                .align(Alignment.CenterVertically)
+                .wrapContentSize(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.End,
         ) {
-            followedState.value = person.followed
-            Surface(
+            Text(
+                stringResource(id = R.string.follower_check),
                 modifier = Modifier.align(Alignment.CenterVertically),
-                shape = MaterialTheme.shapes.small,
-                color = ColorBgSecondary,
-                shadowElevation = 1.dp
-            ) {
-                Text(
-                    stringResource(id = R.string.follower_check),
-                    modifier = Modifier
-                        .align(Alignment.CenterVertically)
-                        .padding(0.dp, 2.dp, 0.dp, 2.dp),
-                    fontFamily = FontFamily.SansSerif,
-                    fontWeight = FontWeight.Normal,
-                    fontSize = 11.sp,
-                    color = ColorText2,
-                    fontStyle = FontStyle.Normal
-                )
-            }
-
+                fontFamily = FontFamily.SansSerif,
+                fontWeight = FontWeight.Normal,
+                fontSize = 11.sp,
+                color = ColorText2,
+                fontStyle = FontStyle.Normal
+            )
             Checkbox(
-                checked = followedState.value,
+                modifier = Modifier.align(Alignment.CenterVertically),
+                checked = true,
                 onCheckedChange = {
                     followedState.value = it
                     onFollowed(person, it)
                 }
             )
 
-            val painter = loadImagePainter(
-                data = if (state.favorState.value)
-                    R.drawable.ic_member_like
-                else
-                    R.drawable.ic_member_dislike,
+            val likePainter = loadImagePainter(
+                data = R.drawable.ic_member_like,
                 size = Size.ORIGINAL
             )
 
             Image(
-                painter = painter,
+                painter = likePainter,
                 contentDescription = "favor",
                 modifier = Modifier
                     .align(Alignment.CenterVertically)
                     .wrapContentSize()
                     .clickable { },
-                Alignment.CenterStart
+                Alignment.Center
             )
-        }
-        if (!sexButtonVisible) {
-            val painter = loadImagePainter(
-                data = R.drawable.ic_delete,
-                factory = SvgDecoder.Factory(),
-                size = Size.ORIGINAL
-            )
+            if (!sexButtonVisible) {
+                val deletePainter = loadImagePainter(
+                    data = R.drawable.ic_delete,
+                    factory = SvgDecoder.Factory(),
+                    size = Size.ORIGINAL
+                )
 
-            Image(
-                painter = painter,
-                contentDescription = "delete the profile",
-                modifier = Modifier
-                    .align(Alignment.Top)
-                    .padding(0.dp, 0.dp, 0.dp, 0.dp)
-                    .wrapContentSize()
-                    .clickable { state.visibleDeleteBoxState.value = true },
-                Alignment.CenterStart
-            )
+                Spacer(modifier = Modifier.width(16.dp))
+                ImageCrossFade(painter = deletePainter, durationMillis = null)
+                Image(
+                    painter = deletePainter,
+                    contentDescription = "delete the profile",
+                    modifier = Modifier
+                        .align(Alignment.Top)
+                        .width(24.dp)
+                        .height(24.dp)
+                        .clickable { state.visibleDeleteBoxState.value = true },
+                    Alignment.TopEnd
+                )
+            }
         }
     }
 }
@@ -386,7 +380,7 @@ fun DismissContentPreview() {
                     verticalAlignment = Alignment.CenterVertically,
                     modifier = Modifier
                         .background(ColorBgSecondary)
-                        .wrapContentHeight(Alignment.Top)
+                        .wrapContentHeight(Alignment.CenterVertically)
                         .fillMaxWidth()
                         .heightIn(68.dp, 122.dp)
                         .clickable {},
@@ -482,70 +476,63 @@ fun DismissContentPreview() {
                         }
                     }
 
-                    Spacer(modifier = Modifier.align(Alignment.CenterVertically).weight(1f))
-                    Row(modifier = Modifier
-                        .align(Alignment.CenterVertically)
-                        .wrapContentWidth()
-                        .padding(0.dp, 0.dp, 16.dp, 0.dp)
-                        .background(ColorBgSecondary)
-                        .weight(1f)
+                    Spacer(modifier = Modifier.weight(1f))
+                    Row(
+                        modifier = Modifier
+                            .align(Alignment.CenterVertically)
+                            .wrapContentSize(),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.End,
                     ) {
-                        Surface(
+                        Text(
+                            stringResource(id = R.string.follower_check),
                             modifier = Modifier.align(Alignment.CenterVertically),
-                            shape = MaterialTheme.shapes.small,
-                            color = ColorBgSecondary,
-                            shadowElevation = 1.dp
-                        ) {
-                            Text(
-                                stringResource(id = R.string.follower_check),
-                                modifier = Modifier
-                                    .align(Alignment.CenterVertically)
-                                    .padding(0.dp, 2.dp, 0.dp, 2.dp),
-                                fontFamily = FontFamily.SansSerif,
-                                fontWeight = FontWeight.Normal,
-                                fontSize = 11.sp,
-                                color = ColorText2,
-                                fontStyle = FontStyle.Normal
-                            )
-                        }
-
+                            fontFamily = FontFamily.SansSerif,
+                            fontWeight = FontWeight.Normal,
+                            fontSize = 11.sp,
+                            color = ColorText2,
+                            fontStyle = FontStyle.Normal
+                        )
                         Checkbox(
+                            modifier = Modifier.align(Alignment.CenterVertically),
                             checked = true,
                             onCheckedChange = {}
                         )
 
-                        val painter = loadImagePainter(
+                        val likePainter = loadImagePainter(
                             data = R.drawable.ic_member_like,
                             size = Size.ORIGINAL
                         )
 
                         Image(
-                            painter = painter,
+                            painter = likePainter,
                             contentDescription = "favor",
                             modifier = Modifier
                                 .align(Alignment.CenterVertically)
                                 .wrapContentSize()
                                 .clickable { },
-                            Alignment.CenterStart
+                            Alignment.Center
+                        )
+                        val deletePainter = loadImagePainter(
+                            data = R.drawable.ic_delete,
+                            factory = SvgDecoder.Factory(),
+                            size = Size.ORIGINAL
+                        )
+
+                        Spacer(modifier = Modifier.width(16.dp))
+                        ImageCrossFade(painter = deletePainter, durationMillis = null)
+                        Image(
+                            painter = deletePainter,
+                            contentDescription = "delete the profile",
+                            modifier = Modifier
+                                .align(Alignment.Top)
+                                .width(24.dp)
+                                .height(24.dp)
+                                .clickable {  },
+                            Alignment.TopEnd
                         )
                     }
 
-                    val painter = loadImagePainter(
-                        data = R.drawable.ic_delete,
-                        size = Size.ORIGINAL
-                    )
-
-                    ImageCrossFade(painter = painter, durationMillis = null)
-                    Image(
-                        painter = painter,
-                        contentDescription = "delete the profile",
-                        modifier = Modifier
-                            .align(Alignment.Top)
-                            .padding(0.dp, 0.dp, 0.dp, 0.dp)
-                            .wrapContentSize()
-                            .clickable { },
-                        Alignment.CenterStart
-                    )
                 }
 
                 Spacer(modifier = Modifier.height(4.dp))
