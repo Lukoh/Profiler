@@ -34,9 +34,9 @@ fun MyNetworkContent(
      */
 
     replyCount = 2
-    LaunchedEffect(state.selectedIndex.value, state.lifecycle) {
+    LaunchedEffect(state.selectedIndex.value, state.baseUiState.lifecycle) {
         if (state.selectedIndex.value != -1)
-            Toast.makeText(state.context, "Show the detailed profile!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(state.baseUiState.context, "Show the detailed profile!", Toast.LENGTH_SHORT).show()
     }
 
     when {
@@ -49,10 +49,10 @@ fun MyNetworkContent(
                     state.selectedIndex.value = index
                 },
                 onFollowed =  { person, changed ->
-                    state.scope.launch {
+                    state.baseUiState.scope?.launch {
                         state.onFollowStatusChanged(person.id, person.name, changed)
                         if (changed) {
-                            state.keyboardController?.hide()
+                            state.baseUiState.keyboardController?.hide()
                             snackbarHostState.showSnackbar("${person.name} has been our member")
                         } else
                             snackbarHostState.showSnackbar("${person.name} is not our member")
@@ -60,12 +60,12 @@ fun MyNetworkContent(
                 },
                 onSearched = { name, byClicked ->
                     if (byClicked)
-                        state.keyboardController?.hide()
+                        state.baseUiState.keyboardController?.hide()
 
                     state.onGetMember(name) ?: if (byClicked) {
                         if (name != hint)
                             Toast.makeText(
-                                state.context,
+                                state.baseUiState.context,
                                 "$name is not our member.",
                                 Toast.LENGTH_SHORT
                             ).show()

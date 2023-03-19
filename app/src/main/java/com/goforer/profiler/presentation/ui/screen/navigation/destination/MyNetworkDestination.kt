@@ -35,6 +35,7 @@ import com.goforer.profiler.presentation.stateholder.business.mynetwork.MyNetwor
 import com.goforer.profiler.presentation.stateholder.ui.mynetwork.detail.rememberDetailContentState
 import com.goforer.profiler.presentation.stateholder.ui.mynetwork.members.rememberMembersContentState
 import com.goforer.profiler.presentation.stateholder.ui.mynetwork.networks.rememberMyNetworkContentState
+import com.goforer.profiler.presentation.stateholder.ui.rememberBaseUiState
 import com.goforer.profiler.presentation.ui.screen.compose.home.mynetwork.detail.DetailScreen
 import com.goforer.profiler.presentation.ui.screen.compose.home.mynetwork.members.MembersScreen
 import com.goforer.profiler.presentation.ui.screen.compose.home.mynetwork.networks.MyNetworkScreen
@@ -53,7 +54,7 @@ object MyNetworks : ProfilerDestination {
 
             MyNetworkScreen(
                 state = rememberMyNetworkContentState(
-                    uiState = viewModel.uiState,
+                    baseUiState = rememberBaseUiState(uiState = viewModel.uiState),
                     onFollowStatusChanged = viewModel::changeFollowStatus,
                     onGetMember = viewModel::getMember,
                     onEstimated = viewModel::setEstimation,

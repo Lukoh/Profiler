@@ -1,29 +1,19 @@
 package com.goforer.profiler.presentation.stateholder.ui.mynetwork.networks
 
-import android.content.Context
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.ExperimentalComposeUiApi
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalLifecycleOwner
-import androidx.compose.ui.platform.LocalSoftwareKeyboardController
-import androidx.compose.ui.platform.SoftwareKeyboardController
-import androidx.lifecycle.Lifecycle
 import com.goforer.profiler.data.model.datum.response.mynetwork.Person
 import com.goforer.profiler.data.model.state.ResourceState
-import kotlinx.coroutines.CoroutineScope
+import com.goforer.profiler.presentation.stateholder.ui.BaseUiState
 import kotlinx.coroutines.flow.StateFlow
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Stable
 class MyNetworkContentState(
-    val uiState: StateFlow<List<Person>>,
-    val context: Context,
-    val scope: CoroutineScope,
-    val lifecycle: Lifecycle,
+    val baseUiState: BaseUiState<List<Person>>,
     val followedState: MutableState<Boolean>,
     var selectedIndex: MutableState<Int>,
-    val keyboardController: SoftwareKeyboardController?,
     val onFollowStatusChanged: (id: Int, name: String, followed: Boolean) -> Unit,
     val onGetMember: (keyword: String) -> Person?,
     val onDeleteMember: (id: Int) -> Person?,
@@ -35,16 +25,11 @@ class MyNetworkContentState(
     val throwError: Boolean = resourceState.throwError
 }
 
-@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun rememberMyNetworkContentState(
-    uiState: StateFlow<List<Person>>,
-    context: Context = LocalContext.current,
-    scope: CoroutineScope = rememberCoroutineScope(),
-    lifecycle: Lifecycle = LocalLifecycleOwner.current.lifecycle,
+    baseUiState: BaseUiState<List<Person>>,
     followedState: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
     selectedIndex: MutableState<Int> = remember { mutableStateOf(-1) },
-    keyboardController: SoftwareKeyboardController? = LocalSoftwareKeyboardController.current,
     resourceState: ResourceState<StateFlow<List<Person>>> = produceState(initialValue = ResourceState()) {
         // will be changed if the data come from Backend Server like below:
         /*
@@ -53,24 +38,20 @@ fun rememberMyNetworkContentState(
             Status.ERROR -> { value = ResourceState(throwError = true) }
             Status.LOADING -> { value = ResourceState(isLoading = true) }
         */
-        value = ResourceState(uiState)
+        value = ResourceState(baseUiState.uiState)
     }.value,
     onFollowStatusChanged: (id: Int, name: String, followed: Boolean) -> Unit,
     onGetMember: (keyword: String) -> Person?,
     onEstimated: (id: Int, favor: Boolean) -> Person?,
     onDeleteMember: (id: Int) -> Person?
 ): MyNetworkContentState = remember(
-    uiState, context, scope, lifecycle, followedState, selectedIndex,
-    keyboardController, resourceState, onFollowStatusChanged, onGetMember, onEstimated, onDeleteMember
+    baseUiState, followedState, selectedIndex, resourceState, onFollowStatusChanged,
+    onGetMember, onEstimated, onDeleteMember
 ) {
     MyNetworkContentState(
-        uiState = uiState,
-        context = context,
-        scope = scope,
-        lifecycle = lifecycle,
+        baseUiState = baseUiState,
         followedState = followedState,
         selectedIndex = selectedIndex,
-        keyboardController = keyboardController,
         resourceState = resourceState,
         onFollowStatusChanged = onFollowStatusChanged,
         onGetMember = onGetMember,
