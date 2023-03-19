@@ -49,9 +49,9 @@ fun rememberMyNetworkContentState(
         // will be changed if the data come from Backend Server like below:
         /*
         when (profilesState.resource.status) {
-            Status.SUCCESS -> { ResourceState(profilesState.resource.data) }
-            Status.ERROR -> { ResourceState(throwError = true) }
-            Status.LOADING -> { ResourceState(isLoading = true) }
+            Status.SUCCESS -> { value = ResourceState(profilesState.resource.data) }
+            Status.ERROR -> { value = ResourceState(throwError = true) }
+            Status.LOADING -> { value = ResourceState(isLoading = true) }
         */
         value = ResourceState(uiState)
     }.value,
