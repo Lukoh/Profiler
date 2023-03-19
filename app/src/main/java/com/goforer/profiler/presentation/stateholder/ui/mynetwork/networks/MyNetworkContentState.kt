@@ -2,13 +2,11 @@ package com.goforer.profiler.presentation.stateholder.ui.mynetwork.networks
 
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.ui.ExperimentalComposeUiApi
 import com.goforer.profiler.data.model.datum.response.mynetwork.Person
 import com.goforer.profiler.data.model.state.ResourceState
 import com.goforer.profiler.presentation.stateholder.ui.BaseUiState
 import kotlinx.coroutines.flow.StateFlow
 
-@OptIn(ExperimentalComposeUiApi::class)
 @Stable
 class MyNetworkContentState(
     val baseUiState: BaseUiState<List<Person>>,
