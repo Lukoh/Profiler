@@ -40,44 +40,46 @@ fun MyNetworkContent(
     }
 
     when {
-        state.data != null -> {
-            MyNetworkSection(
-                modifier = modifier,
-                contentPadding = contentPadding,
-                myNetworkContentState = state,
-                onItemClicked = { _, index ->
-                    state.selectedIndex.value = index
-                },
-                onFollowed =  { person, changed ->
-                    state.baseUiState.scope?.launch {
-                        state.onFollowStatusChanged(person.id, person.name, changed)
-                        if (changed) {
+        state.isSuccess -> {
+            state.data?.let {
+                MyNetworkSection(
+                    modifier = modifier,
+                    contentPadding = contentPadding,
+                    myNetworkContentState = state,
+                    onItemClicked = { _, index ->
+                        state.selectedIndex.value = index
+                    },
+                    onFollowed =  { person, changed ->
+                        state.baseUiState.scope?.launch {
+                            state.onFollowStatusChanged(person.id, person.name, changed)
+                            if (changed) {
+                                state.baseUiState.keyboardController?.hide()
+                                snackbarHostState.showSnackbar("${person.name} has been our member")
+                            } else
+                                snackbarHostState.showSnackbar("${person.name} is not our member")
+                        }
+                    },
+                    onSearched = { name, byClicked ->
+                        if (byClicked)
                             state.baseUiState.keyboardController?.hide()
-                            snackbarHostState.showSnackbar("${person.name} has been our member")
-                        } else
-                            snackbarHostState.showSnackbar("${person.name} is not our member")
-                    }
-                },
-                onSearched = { name, byClicked ->
-                    if (byClicked)
-                        state.baseUiState.keyboardController?.hide()
 
-                    state.onGetMember(name) ?: if (byClicked) {
-                        if (name != hint)
-                            Toast.makeText(
-                                state.baseUiState.context,
-                                "$name is not our member.",
-                                Toast.LENGTH_SHORT
-                            ).show()
+                        state.onGetMember(name) ?: if (byClicked) {
+                            if (name != hint)
+                                Toast.makeText(
+                                    state.baseUiState.context,
+                                    "$name is not our member.",
+                                    Toast.LENGTH_SHORT
+                                ).show()
                         } else {
                             Timber.d("is texted by typing")
                         }
-                },
-                onEstimated = { id, favor ->
-                    state.onEstimated(id, favor)
-                },
-                onNavigateToDetailInfo = onNavigateToDetailInfo
-            )
+                    },
+                    onEstimated = { id, favor ->
+                        state.onEstimated(id, favor)
+                    },
+                    onNavigateToDetailInfo = onNavigateToDetailInfo
+                )
+            }
         }
         state.isLoading -> {
             // To Do : run the loading animation or shimmer

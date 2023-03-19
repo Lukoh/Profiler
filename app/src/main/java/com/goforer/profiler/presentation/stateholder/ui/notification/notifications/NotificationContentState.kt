@@ -12,6 +12,7 @@ class NotificationContentState(
     resourceState: ResourceState<StateFlow<List<Notification>>>
 ) {
     val data: StateFlow<List<Notification>>? = resourceState.data
+    val isSuccess: Boolean = resourceState.isSuccess
     val isLoading: Boolean = resourceState.isLoading
     val throwError: Boolean = resourceState.throwError
 }
@@ -23,11 +24,11 @@ fun rememberNotificationContentState(
         // will be changed if the data come from Backend Server like below:
         /*
         when (profilesState.resource.status) {
-            Status.SUCCESS -> { ResourceState(profilesState.resource.data) }
+            Status.SUCCESS -> { ResourceState(isSuccess = true, data = profilesState.resource.data) }
             Status.ERROR -> { ResourceState(throwError = true) }
             Status.LOADING -> { ResourceState(isLoading = true) }
         */
-        value = ResourceState(baseUiState.uiState)
+        value = ResourceState(isSuccess = true, data = baseUiState.uiState)
     }.value
 ): NotificationContentState = remember(baseUiState, resourceState) {
     NotificationContentState(baseUiState = baseUiState, resourceState)

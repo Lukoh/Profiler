@@ -24,6 +24,7 @@ import kotlinx.parcelize.RawValue
 @Parcelize
 data class ResourceState<T>(
     val data: @RawValue T? = null,
+    val isSuccess: Boolean = false,
     val isLoading: Boolean = false,
     val throwError: Boolean = false
 ) : BaseModel(), Parcelable

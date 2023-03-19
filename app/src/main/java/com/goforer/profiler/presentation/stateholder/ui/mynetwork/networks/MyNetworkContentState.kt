@@ -19,6 +19,7 @@ class MyNetworkContentState(
     resourceState: ResourceState<StateFlow<List<Person>>>,
 ) {
     val data: StateFlow<List<Person>>? = resourceState.data
+    val isSuccess: Boolean = resourceState.isSuccess
     val isLoading: Boolean = resourceState.isLoading
     val throwError: Boolean = resourceState.throwError
 }
@@ -32,11 +33,12 @@ fun rememberMyNetworkContentState(
         // will be changed if the data come from Backend Server like below:
         /*
         when (profilesState.resource.status) {
-            Status.SUCCESS -> { value = ResourceState(profilesState.resource.data) }
+            Status.SUCCESS -> { value = ResourceState(isSuccess= true, data = profilesState.resource.data) }
             Status.ERROR -> { value = ResourceState(throwError = true) }
             Status.LOADING -> { value = ResourceState(isLoading = true) }
-        */
-        value = ResourceState(baseUiState.uiState)
+
+         */
+        value = ResourceState(isSuccess = true, data = baseUiState.uiState)
     }.value,
     onFollowStatusChanged: (id: Int, name: String, followed: Boolean) -> Unit,
     onGetMember: (keyword: String) -> Person?,

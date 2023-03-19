@@ -31,15 +31,17 @@ fun NotificationContent(
     onNavigateToDetailInfo: (Int) -> Unit
 ) {
     when {
-        state.data != null -> {
-            NotificationSection(
-                modifier = modifier, contentPadding,
-                onItemClicked = { _, _ ->
+        state.isSuccess -> {
+            state.data?.let {
+                NotificationSection(
+                    modifier = modifier, contentPadding,
+                    onItemClicked = { _, _ ->
 
-                },
-                state = state.data.collectAsStateWithLifecycle(),
-                onNavigateToDetailInfo = onNavigateToDetailInfo
-            )
+                    },
+                    state = it.collectAsStateWithLifecycle(),
+                    onNavigateToDetailInfo = onNavigateToDetailInfo
+                )
+            }
         }
         state.isLoading -> {
             // To Do : run the loading animation or shimmer
