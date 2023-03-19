@@ -19,6 +19,7 @@ package com.goforer.profiler.presentation.ui.screen.compose.home.mynetwork.commo
 import android.annotation.SuppressLint
 import android.content.res.Configuration
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
@@ -33,6 +34,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.goforer.profiler.data.model.datum.local.notification.PersonItem
 import com.goforer.profiler.data.model.datum.response.mynetwork.Person
 import com.goforer.profiler.presentation.stateholder.ui.mynetwork.common.ListSectionState
 import com.goforer.profiler.presentation.stateholder.ui.mynetwork.common.rememberListSectionState
@@ -52,16 +54,18 @@ fun ListSection(
 ) {
     BoxWithConstraints(modifier = modifier) {
         LazyColumn(
-            modifier = Modifier,
+            modifier = Modifier.animateContentSize(),
             state = state.lazyListState,
         ) {
             itemsIndexed(state.membersState.value, key = { _, item -> item.id }, itemContent = { index, item ->
                 PersonItem(
                     modifier,
-                    sexButtonVisible = state.visibleSexButtonState.value,
-                    person = item,
-                    index = index,
-                    followedState = state.followedState,
+                    PersonItem(
+                        sexButtonVisible = state.visibleSexButtonState.value,
+                        person = item,
+                        index = index,
+                        followedState = state.followedState
+                    ),
                     onItemClicked = onItemClicked,
                     onFollowed = onFollowed,
                     onSexViewed = onSexViewed,
@@ -159,10 +163,12 @@ fun ListSectionPreview(modifier: Modifier = Modifier) {
                     itemContent = { index, item ->
                         PersonItem(
                             modifier,
-                            sexButtonVisible = true,
-                            person = item,
-                            index = index,
-                            followedState = followedState,
+                            PersonItem(
+                                sexButtonVisible = true,
+                                person = item,
+                                index = index,
+                                followedState = followedState
+                            ),
                             onItemClicked = { _, _ -> },
                             onFollowed = { _, _ -> },
                             onSexViewed = {},

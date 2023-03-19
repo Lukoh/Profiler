@@ -13,7 +13,6 @@ import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Man
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -31,6 +30,7 @@ import coil.size.Size
 import com.goforer.base.ui.compose.ImageCrossFade
 import com.goforer.base.ui.compose.loadImagePainter
 import com.goforer.profiler.R
+import com.goforer.profiler.data.model.datum.local.notification.PersonItem
 import com.goforer.profiler.data.model.datum.response.mynetwork.Person
 import com.goforer.profiler.presentation.stateholder.ui.mynetwork.common.PersonItemState
 import com.goforer.profiler.presentation.stateholder.ui.mynetwork.common.rememberPersonItemState
@@ -44,17 +44,14 @@ import com.goforer.profiler.presentation.ui.theme.ProfilerTheme
 @Composable
 fun DismissContent(
     modifier: Modifier = Modifier,
-    sexButtonVisible: Boolean,
-    person: Person,
-    index: Int,
-    followedState: MutableState<Boolean>,
+    personItem: PersonItem,
     onItemClicked: (item: Person, index: Int) -> Unit,
     onFollowed: (Person, Boolean) -> Unit,
     onSexViewed: (String) -> Unit,
     onMemberDeleted: (Int) -> Unit,
     onEstimated: (Int, Boolean) -> Unit,
     state: PersonItemState = rememberPersonItemState(onDismissedToEstimation = {
-        onEstimated(person.id, it)
+        onEstimated(personItem.person.id, it)
     }),
     onNavigateToDetailInfo: (Int) -> Unit
 ) {
@@ -62,10 +59,7 @@ fun DismissContent(
         Column(modifier = Modifier.fillMaxWidth()) {
             TopContainer(
                 modifier = modifier,
-                sexButtonVisible = sexButtonVisible,
-                person = person,
-                index = index,
-                followedState = followedState,
+                personItem,
                 onItemClicked = onItemClicked,
                 onFollowed = onFollowed,
                 onSexViewed = onSexViewed,
@@ -76,7 +70,7 @@ fun DismissContent(
 
             if (state.visibleDeleteBoxState.value) {
                 BottomContainer(
-                    person = person,
+                    person = personItem.person,
                     onMemberDeleted = onMemberDeleted,
                     state = state
                 )
@@ -89,20 +83,17 @@ fun DismissContent(
 @Composable
 fun TopContainer(
     modifier: Modifier,
-    sexButtonVisible: Boolean,
-    person: Person,
-    index: Int,
-    followedState: MutableState<Boolean>,
+    personItem: PersonItem,
     onItemClicked: (item: Person, index: Int) -> Unit,
     onFollowed: (Person, Boolean) -> Unit,
     onSexViewed: (String) -> Unit,
     onEstimated: (Int, Boolean) -> Unit,
     state: PersonItemState = rememberPersonItemState(onDismissedToEstimation = {
-        onEstimated(person.id, it)
+        onEstimated(personItem.person.id, it)
     }),
     onNavigateToDetailInfo: (Int) -> Unit
 ) {
-    followedState.value = person.followed
+    personItem.followedState.value = personItem.person.followed
     Row(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Start,
@@ -113,14 +104,14 @@ fun TopContainer(
             .heightIn(68.dp, 122.dp)
             .clickable {
                 //clikced = true
-                onNavigateToDetailInfo(person.id)
-                onItemClicked(person, index)
+                onNavigateToDetailInfo(personItem.person.id)
+                onItemClicked(personItem.person, personItem.index)
             },
     ) {
         IconContainer {
             Box {
                 val painter = loadImagePainter(
-                    data = person.profileImage,
+                    data = personItem.person.profileImage,
                     size = Size.ORIGINAL
                 )
 
@@ -160,7 +151,7 @@ fun TopContainer(
         Spacer(modifier = Modifier.width(12.dp))
         Column {
             Text(
-                person.name,
+                personItem.person.name,
                 modifier = Modifier.padding(0.dp, 4.dp, 0.dp, 0.dp),
                 fontFamily = FontFamily.SansSerif,
                 fontWeight = FontWeight.Bold,
@@ -178,7 +169,7 @@ fun TopContainer(
                     shadowElevation = 1.dp
                 ) {
                     Text(
-                        person.sex,
+                        personItem.person.sex,
                         modifier = Modifier
                             .padding(6.dp, 0.dp)
                             .align(Alignment.CenterVertically),
@@ -190,11 +181,11 @@ fun TopContainer(
                     )
                 }
 
-                if (sexButtonVisible) {
+                if (personItem.sexButtonVisible) {
                     Spacer(modifier = Modifier.width(8.dp))
                     SexIconButton(
                         onClick = {
-                            onSexViewed(person.sex)
+                            onSexViewed(personItem.person.sex)
                         },
                         icon = {
                             Icon(
@@ -206,7 +197,7 @@ fun TopContainer(
                             Text(
                                 modifier = Modifier
                                     .align(Alignment.CenterVertically),
-                                text = person.sex,
+                                text = personItem.person.sex,
                                 fontFamily = FontFamily.SansSerif,
                                 fontSize = 10.sp,
                                 fontStyle = FontStyle.Italic
@@ -238,8 +229,8 @@ fun TopContainer(
                 modifier = Modifier.align(Alignment.CenterVertically),
                 checked = true,
                 onCheckedChange = {
-                    followedState.value = it
-                    onFollowed(person, it)
+                    personItem.followedState.value = it
+                    onFollowed(personItem.person, it)
                 }
             )
 
@@ -257,7 +248,7 @@ fun TopContainer(
                     .clickable { },
                 Alignment.Center
             )
-            if (!sexButtonVisible) {
+            if (!personItem.sexButtonVisible) {
                 val deletePainter = loadImagePainter(
                     data = R.drawable.ic_delete,
                     factory = SvgDecoder.Factory(),

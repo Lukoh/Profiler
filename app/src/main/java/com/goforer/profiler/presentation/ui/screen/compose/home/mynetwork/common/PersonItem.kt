@@ -27,6 +27,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.*
 //import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.unit.*
+import com.goforer.profiler.data.model.datum.local.notification.PersonItem
 //import androidx.lifecycle.flowWithLifecycle
 import com.goforer.profiler.data.model.datum.response.mynetwork.Person
 import com.goforer.profiler.presentation.stateholder.ui.mynetwork.common.PersonItemState
@@ -38,17 +39,14 @@ import com.goforer.profiler.presentation.ui.screen.compose.home.mynetwork.common
 @Composable
 fun PersonItem(
     modifier: Modifier = Modifier,
-    sexButtonVisible: Boolean,
-    person: Person,
-    index: Int,
-    followedState: MutableState<Boolean>,
+    personItem: PersonItem,
     onItemClicked: (item: Person, index: Int) -> Unit,
     onFollowed: (Person, Boolean) -> Unit,
     onSexViewed: (String) -> Unit,
     onMemberDeleted: (Int) -> Unit,
     onEstimated: (Int, Boolean) -> Unit,
     state: PersonItemState = rememberPersonItemState(onDismissedToEstimation = {
-        onEstimated(person.id, it)
+        onEstimated(personItem.person.id, it)
     }),
     onNavigateToDetailInfo: (Int) -> Unit
 ) {
@@ -74,8 +72,8 @@ fun PersonItem(
 
      */
 
-    if (!person.deleted) {
-        val verticalPadding = if (index == 0)
+    if (!personItem.person.deleted) {
+        val verticalPadding = if (personItem.index == 0)
             0.dp
         else
             2.dp
@@ -83,7 +81,7 @@ fun PersonItem(
         state.heightDpState.value = animateDpAsState(
             targetValue = if (state.visibleDeleteBoxState.value) 104.dp else 68.dp,
         ).value
-        state.favorState.value = person.favor
+        state.favorState.value = personItem.person.favor
         SwipeToDismiss(
             state = state.dismissState,
             modifier = modifier
@@ -94,10 +92,7 @@ fun PersonItem(
             dismissContent = {
                 DismissContent(
                     modifier = modifier,
-                    sexButtonVisible = sexButtonVisible,
-                    person = person,
-                    index = index,
-                    followedState = followedState,
+                    personItem,
                     onItemClicked = onItemClicked,
                     onFollowed = onFollowed,
                     onSexViewed = onSexViewed,
@@ -109,7 +104,7 @@ fun PersonItem(
             },
             background = {
                 DismissBackgroundContent(
-                    person = person,
+                    person = personItem.person,
                     onEstimated = onEstimated,
                     state = state
                 )
