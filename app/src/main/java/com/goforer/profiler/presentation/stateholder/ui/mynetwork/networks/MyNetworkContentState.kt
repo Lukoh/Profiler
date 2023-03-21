@@ -29,11 +29,11 @@ fun rememberMyNetworkContentState(
     baseUiState: BaseUiState<List<Person>>,
     followedState: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
     selectedIndex: MutableState<Int> = remember { mutableStateOf(-1) },
-    resourceState: ResourceState<StateFlow<List<Person>>> = produceState(initialValue = ResourceState()) {
+    resourceState: ResourceState<StateFlow<List<Person>>> = produceState(initialValue = ResourceState(isLoading = true)) {
         // will be changed if the data come from Backend Server like below:
         /*
-        when (profilesState.resource.status) {
-            Status.SUCCESS -> { value = ResourceState(isSuccess= true, data = profilesState.resource.data) }
+        when (baseUiState.uiState.resource.status) {
+            Status.SUCCESS -> { value = ResourceState(isSuccess= true, data = baseUiState.uiState.resource.data) }
             Status.ERROR -> { value = ResourceState(throwError = true) }
             Status.LOADING -> { value = ResourceState(isLoading = true) }
 

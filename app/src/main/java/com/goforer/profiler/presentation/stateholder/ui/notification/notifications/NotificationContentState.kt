@@ -23,8 +23,8 @@ fun rememberNotificationContentState(
     resourceState: ResourceState<StateFlow<List<Notification>>> = produceState(initialValue = ResourceState()) {
         // will be changed if the data come from Backend Server like below:
         /*
-        when (profilesState.resource.status) {
-            Status.SUCCESS -> { ResourceState(isSuccess = true, data = profilesState.resource.data) }
+        when (baseUiState.uiState.resource.status) {
+            Status.SUCCESS -> { ResourceState(isSuccess = true, data = baseUiState.uiState.resource.data) }
             Status.ERROR -> { ResourceState(throwError = true) }
             Status.LOADING -> { ResourceState(isLoading = true) }
         */
