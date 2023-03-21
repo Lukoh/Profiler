@@ -26,7 +26,7 @@ import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.core.view.WindowCompat
-import com.goforer.profiler.presentation.ui.screen.compose.MainScreen
+import com.goforer.profiler.presentation.ui.screen.MainScreen
 import com.goforer.profiler.presentation.ui.theme.ProfilerTheme
 import dagger.hilt.android.AndroidEntryPoint
 

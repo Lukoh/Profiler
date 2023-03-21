@@ -36,9 +36,14 @@ class MyNetworkViewModel
 
     init {
         viewModelScope.launch {
-            myNetworkRepository.profiles.collectLatest {
-                _myNetworks.value = it
+            try {
+                myNetworkRepository.profiles.collectLatest {
+                    _myNetworks.value = it
+                }
+            } catch(e: Exception) {
+                _myNetworks.value = emptyList()
             }
+
         }
     }
 
