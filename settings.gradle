@@ -1,0 +1,27 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        google()
+        mavenCentral()
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        maven { url 'https://maven.google.com' }
+        maven { url 'https://oss.jfrog.org/artifactory/oss-snapshot-local' }
+        maven { url 'https://plugins.gradle.org/m2/' }
+        // Reference local .aar file if it doesn't exist in maven
+        flatDir { dirs '../../' }
+        maven { url 'https://jitpack.io' }
+        maven {
+            name 'glide-snapshot'
+            url 'https://oss.sonatype.org/content/repositories/snapshots'
+        }
+    }
+}
+
+rootProject.name = "Profiler"
+include ':app'
