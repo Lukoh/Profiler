@@ -96,7 +96,6 @@ fun TopContainer(
     personItem.followedState.value = personItem.person.followed
     Row(
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.Start,
         modifier = modifier
             .background(ColorBgSecondary)
             .wrapContentHeight(Alignment.CenterVertically)
@@ -149,7 +148,10 @@ fun TopContainer(
             }
         }
         Spacer(modifier = Modifier.width(12.dp))
-        Column {
+        Column(modifier = Modifier
+            .height(IntrinsicSize.Min)
+            .widthIn(186.dp)
+        ) {
             Text(
                 personItem.person.name,
                 modifier = Modifier.padding(0.dp, 4.dp, 0.dp, 0.dp),
@@ -160,7 +162,10 @@ fun TopContainer(
                 style = MaterialTheme.typography.titleMedium
             )
             Spacer(modifier = Modifier.height(4.dp))
-            Row(modifier = Modifier.wrapContentWidth()) {
+            Row(modifier = Modifier
+                .height(IntrinsicSize.Min)
+                .wrapContentWidth()
+            ) {
                 Surface(
                     modifier = Modifier
                         .widthIn(36.dp)
@@ -210,10 +215,7 @@ fun TopContainer(
 
         Spacer(modifier = Modifier.weight(1f))
         Row(
-            modifier = Modifier
-                .align(Alignment.CenterVertically)
-                .wrapContentSize(),
-            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier.wrapContentSize(),
             horizontalArrangement = Arrangement.End,
         ) {
             Text(
@@ -413,7 +415,10 @@ fun DismissContentPreview() {
                         }
                     }
                     Spacer(modifier = Modifier.width(12.dp))
-                    Column(modifier = Modifier.wrapContentWidth()) {
+                    Column(modifier = Modifier
+                        .height(IntrinsicSize.Min)
+                        .widthIn(186.dp)
+                    ) {
                         Text(
                             "Lukoh",
                             modifier = Modifier.padding(0.dp, 4.dp, 0.dp, 0.dp),
@@ -424,7 +429,10 @@ fun DismissContentPreview() {
                             style = MaterialTheme.typography.titleMedium
                         )
                         Spacer(modifier = Modifier.height(4.dp))
-                        Row(modifier = Modifier.wrapContentWidth()) {
+                        Row(modifier = Modifier
+                            .height(IntrinsicSize.Min)
+                            .wrapContentWidth()
+                        ) {
                             Surface(
                                 modifier = Modifier
                                     .widthIn(36.dp)
@@ -469,10 +477,7 @@ fun DismissContentPreview() {
 
                     Spacer(modifier = Modifier.weight(1f))
                     Row(
-                        modifier = Modifier
-                            .align(Alignment.CenterVertically)
-                            .wrapContentSize(),
-                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier.wrapContentSize(),
                         horizontalArrangement = Arrangement.End,
                     ) {
                         Text(
