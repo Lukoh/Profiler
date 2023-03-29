@@ -104,7 +104,7 @@ fun TopContainer(
                 //clikced = true
                 onNavigateToDetailInfo(personItem.person.id)
                 onItemClicked(personItem.person, personItem.index)
-            },
+            }
     ) {
         IconContainer {
             Box {

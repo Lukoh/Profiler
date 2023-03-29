@@ -72,16 +72,16 @@ fun PersonItem(
 
      */
 
-    if (!personItem.person.deleted) {
-        val verticalPadding = if (personItem.index == 0)
-            0.dp
-        else
-            2.dp
+    val verticalPadding = if (personItem.index == 0)
+        0.dp
+    else
+        2.dp
 
-        state.heightDpState.value = animateDpAsState(
-            targetValue = if (state.visibleDeleteBoxState.value) 104.dp else 68.dp
-        ).value
-        state.favorState.value = personItem.person.favor
+    state.heightDpState.value = animateDpAsState(
+        targetValue = if (state.visibleDeleteBoxState.value) 104.dp else 68.dp
+    ).value
+    state.favorState.value = personItem.person.favor
+    if (!personItem.person.deleted) {
         SwipeToDismiss(
             state = state.dismissState,
             modifier = modifier

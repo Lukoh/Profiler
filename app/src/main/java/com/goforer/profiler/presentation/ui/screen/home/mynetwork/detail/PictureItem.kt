@@ -106,7 +106,7 @@ fun DetailPersonInfo(profile: Person, onTitleChanged: (String) -> Unit) {
             targetState = expanded,
             transitionSpec = {
                 fadeIn(animationSpec = tween(150, 150)) with
-                        fadeOut(animationSpec = tween(150)) using
+                    fadeOut(animationSpec = tween(150)) using
                         SizeTransform { initialSize, targetSize ->
                             if (targetState) {
                                 keyframes {
@@ -124,11 +124,11 @@ fun DetailPersonInfo(profile: Person, onTitleChanged: (String) -> Unit) {
             }
         ) { targetExpanded ->
             if (targetExpanded) {
-                onTitleChanged(stringResource(id = R.string.profile_brief))
                 PersonBriefInfo("Lukoh is an honest and hardworking team lead, always willing to pitch in to help the team. He is efficient in planning projects, punctual in meeting deadlines, and conscientiously adheres to company standards and guidelines.")
+                onTitleChanged(stringResource(id = R.string.profile_brief))
             } else {
-                onTitleChanged(stringResource(id = R.string.profile_detail_picture))
                 PersonPicture(profile.profileImage)
+                onTitleChanged(stringResource(id = R.string.profile_detail_picture))
             }
         }
     }
