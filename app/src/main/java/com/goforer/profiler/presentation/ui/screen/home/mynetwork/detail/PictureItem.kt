@@ -97,7 +97,7 @@ fun DetailPersonInfo(profile: Person, onTitleChanged: (String) -> Unit) {
     var expanded by remember { mutableStateOf(false) }
 
     Surface(
-        color = MaterialTheme.colorScheme.primary,
+        color = MaterialTheme.colorScheme.secondary,
         modifier = Modifier.padding(4.dp),
         shape = MaterialTheme.shapes.small,
         onClick = { expanded = !expanded }
@@ -138,13 +138,14 @@ fun DetailPersonInfo(profile: Person, onTitleChanged: (String) -> Unit) {
 fun PersonBriefInfo(briefInfo: String) {
     Surface(
         shape = MaterialTheme.shapes.small,
+        color = MaterialTheme.colorScheme.onPrimary,
         modifier = Modifier.padding(4.dp, 4.dp, 4.dp, 4.dp)
     ) {
         Text(
             briefInfo,
-            modifier = Modifier.padding(4.dp, 4.dp, 4.dp, 4.dp),
+            modifier = Modifier.padding(4.dp, 4.dp, 4.dp, 4.dp).background(ColorBgSecondary),
             fontFamily = FontFamily.SansSerif,
-            fontWeight = FontWeight.Medium,
+            fontWeight = FontWeight.Normal,
             fontSize = 18.sp,
             fontStyle = FontStyle.Normal,
             color = ColorText4,
