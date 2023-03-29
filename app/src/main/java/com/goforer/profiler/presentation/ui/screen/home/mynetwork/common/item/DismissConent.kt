@@ -1,7 +1,6 @@
 package com.goforer.profiler.presentation.ui.screen.home.mynetwork.common.item
 
 import android.content.res.Configuration
-import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -237,7 +236,10 @@ fun TopContainer(
             )
 
             val likePainter = loadImagePainter(
-                data = R.drawable.ic_member_like,
+                data = if (state.favorState.value)
+                    R.drawable.ic_member_like
+                else
+                    R.drawable.ic_dislike,
                 size = Size.ORIGINAL
             )
 
@@ -288,7 +290,6 @@ fun BottomContainer(
             .wrapContentHeight(Alignment.Top)
             .fillMaxWidth()
             .heightIn(min = 36.dp)
-            .animateContentSize()
     ) {
         Text(
             stringResource(id = R.string.profile_list_item_delete, person.name),

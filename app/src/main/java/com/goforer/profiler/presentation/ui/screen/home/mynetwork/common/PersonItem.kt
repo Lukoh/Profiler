@@ -79,7 +79,7 @@ fun PersonItem(
             2.dp
 
         state.heightDpState.value = animateDpAsState(
-            targetValue = if (state.visibleDeleteBoxState.value) 104.dp else 68.dp,
+            targetValue = if (state.visibleDeleteBoxState.value) 104.dp else 68.dp
         ).value
         state.favorState.value = personItem.person.favor
         SwipeToDismiss(

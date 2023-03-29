@@ -11,6 +11,7 @@
 
     <string name="profile_detail">Profile Detail</string>
     <string name="profile_detail_picture">Picture : </string>
+    <string name="profile_brief">Brief : </string>
     <string name="profile_detail_name">Full Name : </string>
     <string name="profile_detail_birthday">Birthday : </string>
     <string name="profile_detail_cellphone">Cellphone : </string>

@@ -67,7 +67,7 @@ fun MyNetworkSection(
                 deleteAction -> {
                     derivedStateOf {
                         it.value.filter { person ->
-                            person.deleted
+                            !person.deleted
                         }
                     }
                 }
@@ -122,8 +122,8 @@ fun MyNetworkSection(
                 onFollowed = onFollowed,
                 onSexViewed = {},
                 onMemberDeleted = {
-                    myNetworkContentState.onDeleteMember(it)
                     myNetworkSectionState.refreshActionState.value = deleteAction
+                    myNetworkContentState.onDeleteMember(it)
                 },
                 onEstimated = onEstimated,
                 onNavigateToDetailInfo = onNavigateToDetailInfo
