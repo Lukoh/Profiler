@@ -76,7 +76,7 @@ fun NotificationItem(
             IconContainer {
                 BoxWithConstraints {
                     val painter = loadImagePainter(
-                        data = notification.sender,
+                        data = notification.sender.profileImage,
                         size = Size.ORIGINAL
                     )
 

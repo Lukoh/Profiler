@@ -18,7 +18,7 @@ package com.goforer.profiler.presentation.ui.screen.home.mynetwork.networks
 
 import android.annotation.SuppressLint
 import android.content.res.Configuration
-import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.*
 import androidx.compose.material.FloatingActionButton
@@ -27,6 +27,7 @@ import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -40,6 +41,7 @@ import com.goforer.profiler.presentation.ui.ext.noRippleClickable
 import com.goforer.profiler.presentation.ui.screen.home.mynetwork.common.ListSection
 import com.goforer.profiler.presentation.ui.theme.ProfilerTheme
 
+@OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun MyNetworkSection(
     modifier: Modifier = Modifier,
@@ -131,15 +133,21 @@ fun MyNetworkSection(
         }
 
         AnimatedVisibility(
+            enter = expandVertically(),
+            exit = shrinkVertically(),
             visible = myNetworkSectionState.showButtonState.value,
             modifier = Modifier.align(Alignment.BottomEnd)
         ) {
+            val background by transition.animateColor(label = "FloatingAnimation") { state ->
+                if (state == EnterExitState.Visible) MaterialTheme.colorScheme.primary else Color.Gray
+            }
+
             FloatingActionButton(
                 modifier = Modifier
                     .align(Alignment.BottomEnd)
                     .navigationBarsPadding()
                     .padding(bottom = 4.dp, end = 8.dp),
-                backgroundColor = MaterialTheme.colorScheme.primary,
+                backgroundColor = background,
                 onClick = {
                     myNetworkSectionState.clickedState.value = true
                     myNetworkSectionState.refreshActionState.value = noneAction
