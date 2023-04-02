@@ -22,10 +22,11 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -45,16 +46,26 @@ import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.goforer.profiler.R
 import com.goforer.profiler.data.model.datum.response.mynetwork.Person
+import com.goforer.profiler.presentation.stateholder.ui.mynetwork.detail.PictureItemState
+import com.goforer.profiler.presentation.stateholder.ui.mynetwork.detail.rememberPictureItemState
 import com.goforer.profiler.presentation.ui.screen.home.common.DetailPersonInfo
 import com.goforer.profiler.presentation.ui.theme.ColorBgSecondary
 import com.goforer.profiler.presentation.ui.theme.ProfilerTheme
+import kotlinx.coroutines.launch
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PictureItem(
     modifier: Modifier = Modifier,
-    profile: Person
+    profile: Person,
+    pictureItemState: PictureItemState = rememberPictureItemState(),
 ) {
     Surface(
+        onClick = {
+            pictureItemState.scope.launch {
+                pictureItemState.openBottomSheet.value = true
+            }
+        },
         shape = MaterialTheme.shapes.small,
         modifier = modifier.padding(8.dp, 0.dp)
     ) {
@@ -82,6 +93,49 @@ fun PictureItem(
             Spacer(modifier = Modifier.height(4.dp))
             DetailPersonInfo(profile) { tag ->
                 title.value = tag
+            }
+        }
+    }
+
+    if (pictureItemState.openBottomSheet.value) {
+        ShowBottomSheet(pictureItemState)
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun ShowBottomSheet(pictureItemState: PictureItemState) {
+    ModalBottomSheet(
+        onDismissRequest = { pictureItemState.openBottomSheet.value = false },
+        sheetState = pictureItemState.bottomSheetState,
+    ) {
+        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
+            Button(
+                // Note: If you provide logic outside of onDismissRequest to remove the sheet,
+                // you must additionally handle intended state cleanup, if any.
+                onClick = {
+                    pictureItemState.scope.launch { pictureItemState.bottomSheetState.hide() }.invokeOnCompletion {
+                        if (!pictureItemState.bottomSheetState.isVisible) {
+                            pictureItemState.openBottomSheet.value = false
+                        }
+                    }
+                }
+            ) {
+                Text("Hide Bottom Sheet")
+            }
+        }
+        Spacer(modifier = Modifier.padding(0.dp, 4.dp))
+        LazyColumn {
+            items(50) {
+                ListItem(
+                    headlineContent = { Text("Item $it") },
+                    leadingContent = {
+                        Icon(
+                            Icons.Default.Favorite,
+                            contentDescription = "Localized description"
+                        )
+                    }
+                )
             }
         }
     }
