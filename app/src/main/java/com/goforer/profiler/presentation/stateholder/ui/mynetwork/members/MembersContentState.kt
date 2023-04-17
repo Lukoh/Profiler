@@ -4,46 +4,39 @@ import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import com.goforer.profiler.data.model.datum.response.mynetwork.Person
 import com.goforer.profiler.data.model.state.ResourceState
+import com.goforer.profiler.data.network.response.Status
+import com.goforer.profiler.presentation.stateholder.ui.BaseUiState
+import com.goforer.profiler.presentation.stateholder.ui.createResourceState
 import kotlinx.coroutines.flow.StateFlow
 
 @Stable
 class MembersContentState(
-    val uiState: StateFlow<List<Person>>,
+    val baseUiState: BaseUiState<List<Person>>,
     val sexState: MutableState<String>,
     val followedState: MutableState<Boolean>,
     val onGetMembers: (sex: String) -> List<Person>,
     val onGetMember: (sex: String) -> Person?,
     val onEstimated: (id: Int, favor: Boolean) -> Person?,
-    resourceState: ResourceState<StateFlow<List<Person>>>
+    val resourceState: ResourceState<StateFlow<List<Person>>>
 ) {
-    val data: StateFlow<List<Person>>? = resourceState.data
-    val isLoading: Boolean = resourceState.isLoading
-    val throwError: Boolean = resourceState.throwError
+    val resourceStateFlow: StateFlow<List<Person>>? = resourceState.resourceStateFlow
+    val status: Status = resourceState.status
 
     lateinit var membersState: State<List<Person>>
 }
 
 @Composable
 fun rememberMembersContentState(
-    uiState: StateFlow<List<Person>>,
+    baseUiState: BaseUiState<List<Person>>,
     sexState: MutableState<String> = rememberSaveable { mutableStateOf("") },
     followedState: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
     onGetMembers: (sex: String) -> List<Person>,
     onGetMember: (sex: String) -> Person?,
     onEstimated: (id: Int, favor: Boolean) -> Person?,
-    resourceState: ResourceState<StateFlow<List<Person>>> = produceState(initialValue = ResourceState()) {
-        // will be changed if the data come from Backend Server like below:
-        /*
-        when (profilesState.resource.status) {
-            Status.SUCCESS -> { ResourceState(profilesState.resource.data) }
-            Status.ERROR -> { ResourceState(throwError = true) }
-            Status.LOADING -> { ResourceState(isLoading = true) }
-        */
-        value = ResourceState(uiState)
-    }.value
-): MembersContentState = remember(uiState, sexState, followedState, onGetMembers, onGetMember, onEstimated, resourceState) {
+    resourceState: ResourceState<StateFlow<List<Person>>> = createResourceState(baseUiState = baseUiState)
+): MembersContentState = remember(baseUiState, sexState, followedState, onGetMembers, onGetMember, onEstimated, resourceState) {
     MembersContentState(
-        uiState = uiState,
+        baseUiState = baseUiState,
         sexState = sexState,
         followedState = followedState,
         onGetMembers = onGetMembers,

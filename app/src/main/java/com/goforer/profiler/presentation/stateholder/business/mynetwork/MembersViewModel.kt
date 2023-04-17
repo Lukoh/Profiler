@@ -33,7 +33,7 @@ class MembersViewModel
     private val membersRepository: MembersRepository
 ) : BaseViewModel() {
     private val _members = MutableStateFlow<List<Person>>(listOf())
-    val uiState: StateFlow<List<Person>> = _members
+    val resourceStateFlow: StateFlow<List<Person>> = _members
 
     init {
         viewModelScope.launch {
@@ -44,15 +44,15 @@ class MembersViewModel
     }
 
     internal fun getMembers(sex: String): List<Person> {
-        return uiState.value.filter { it.sex == sex }
+        return resourceStateFlow.value.filter { it.sex == sex }
     }
 
     internal fun getMember(sex: String): Person? {
-        return uiState.value.find { it.sex == sex }
+        return resourceStateFlow.value.find { it.sex == sex }
     }
 
     internal fun setEstimation(id: Int, favor: Boolean): Person? {
-        uiState.value.find { it.id == id }?.let {
+        resourceStateFlow.value.find { it.id == id }?.let {
             it.favor = favor
 
             return it

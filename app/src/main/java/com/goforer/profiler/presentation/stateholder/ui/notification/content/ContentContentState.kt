@@ -8,14 +8,14 @@ import kotlinx.coroutines.flow.StateFlow
 
 @Stable
 class ContentContentState(
-    val uiState: StateFlow<List<Notification>>,
+    val uiStateFlow: StateFlow<List<Notification>>,
     val onGetNotification: (id: Int) -> Notification?
 ) {}
 
 @Composable
 fun rememberContentContentState(
-    uiState: StateFlow<List<Notification>>,
+    uiStateFlow: StateFlow<List<Notification>>,
     onGetNotification: (id: Int) -> Notification?,
-): ContentContentState = remember(uiState, onGetNotification) {
-    ContentContentState(uiState = uiState, onGetNotification = onGetNotification)
+): ContentContentState = remember(uiStateFlow, onGetNotification) {
+    ContentContentState(uiStateFlow = uiStateFlow, onGetNotification = onGetNotification)
 }

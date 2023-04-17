@@ -6,14 +6,14 @@ import kotlinx.coroutines.flow.StateFlow
 
 @Stable
 class DetailContentState(
-    val uiState: StateFlow<List<Person>>,
+    val uiStateFlow: StateFlow<List<Person>>,
     val onGetMember: (id: Int) -> Person?
 )
 
 @Composable
 fun rememberDetailContentState(
-    uiState: StateFlow<List<Person>>,
+    uiStateFlow: StateFlow<List<Person>>,
     onGetMember: (id: Int) -> Person?,
-): DetailContentState = remember(uiState, onGetMember) {
-    DetailContentState(uiState = uiState, onGetMember = onGetMember)
+): DetailContentState = remember(uiStateFlow, onGetMember) {
+    DetailContentState(uiStateFlow = uiStateFlow, onGetMember = onGetMember)
 }

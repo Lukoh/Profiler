@@ -4,7 +4,9 @@ import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import com.goforer.profiler.data.model.datum.response.mynetwork.Person
 import com.goforer.profiler.data.model.state.ResourceState
+import com.goforer.profiler.data.network.response.Status
 import com.goforer.profiler.presentation.stateholder.ui.BaseUiState
+import com.goforer.profiler.presentation.stateholder.ui.createResourceState
 import kotlinx.coroutines.flow.StateFlow
 
 @Stable
@@ -16,12 +18,10 @@ class MyNetworkContentState(
     val onGetMember: (keyword: String) -> Person?,
     val onDeleteMember: (id: Int) -> Person?,
     val onEstimated: (id: Int, favor: Boolean) -> Person?,
-    resourceState: ResourceState<StateFlow<List<Person>>>,
+    val resourceState: ResourceState<StateFlow<List<Person>>>
 ) {
-    val data: StateFlow<List<Person>>? = resourceState.data
-    val isSuccess: Boolean = resourceState.isSuccess
-    val isLoading: Boolean = resourceState.isLoading
-    val throwError: Boolean = resourceState.throwError
+    val resourceStateFlow: StateFlow<List<Person>>? = resourceState.resourceStateFlow
+    val status: Status = resourceState.status
 }
 
 @Composable
@@ -29,17 +29,7 @@ fun rememberMyNetworkContentState(
     baseUiState: BaseUiState<List<Person>>,
     followedState: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
     selectedIndex: MutableState<Int> = remember { mutableStateOf(-1) },
-    resourceState: ResourceState<StateFlow<List<Person>>> = produceState(initialValue = ResourceState(isLoading = true)) {
-        // will be changed if the data come from Backend Server like below:
-        /*
-        when (baseUiState.uiState.resource.status) {
-            Status.SUCCESS -> { value = ResourceState(isSuccess= true, data = baseUiState.uiState.resource.data) }
-            Status.ERROR -> { value = ResourceState(throwError = true) }
-            Status.LOADING -> { value = ResourceState(isLoading = true) }
-
-         */
-        value = ResourceState(isSuccess = true, data = baseUiState.uiState)
-    }.value,
+    resourceState: ResourceState<StateFlow<List<Person>>> = createResourceState(baseUiState),
     onFollowStatusChanged: (id: Int, name: String, followed: Boolean) -> Unit,
     onGetMember: (keyword: String) -> Person?,
     onEstimated: (id: Int, favor: Boolean) -> Person?,

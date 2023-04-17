@@ -21,6 +21,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.goforer.profiler.data.network.response.Status
 import com.goforer.profiler.presentation.stateholder.ui.notification.notifications.NotificationContentState
 
 @Composable
@@ -30,9 +31,9 @@ fun NotificationContent(
     contentPadding: PaddingValues = PaddingValues(4.dp),
     onNavigateToDetailInfo: (Int) -> Unit
 ) {
-    when {
-        state.isSuccess -> {
-            state.data?.let {
+    when(state.status) {
+        Status.SUCCESS -> {
+            state.resourceStateFlow?.let {
                 NotificationSection(
                     modifier = modifier, contentPadding,
                     onItemClicked = { _, _ ->
@@ -43,10 +44,10 @@ fun NotificationContent(
                 )
             }
         }
-        state.isLoading -> {
+        Status.LOADING -> {
             // To Do : run the loading animation or shimmer
         }
-        state.throwError -> {
+        Status.ERROR -> {
             // To Do : handle the error
         }
     }

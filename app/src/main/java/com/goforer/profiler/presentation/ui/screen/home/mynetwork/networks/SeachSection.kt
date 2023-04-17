@@ -18,6 +18,8 @@ package com.goforer.profiler.presentation.ui.screen.home.mynetwork.networks
 
 import android.content.res.Configuration
 import androidx.compose.foundation.background
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.interaction.collectIsFocusedAsState
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
@@ -25,6 +27,8 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
@@ -32,12 +36,12 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.goforer.profiler.R
 import com.goforer.profiler.presentation.stateholder.ui.mynetwork.networks.EditableInputState
 import com.goforer.profiler.presentation.stateholder.ui.mynetwork.networks.rememberEditableInputState
 import com.goforer.profiler.presentation.ui.component.SearchIconButton
-import com.goforer.profiler.presentation.ui.theme.ColorBgSecondary
 import com.goforer.profiler.presentation.ui.theme.ProfilerTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -47,11 +51,17 @@ fun SearchSection(
     state: EditableInputState = rememberEditableInputState(""),
     onSearched: (String) -> Unit
 ) {
+    val interactionSource = remember { MutableInteractionSource() }
+    val isFocused by interactionSource.collectIsFocusedAsState()
+
+    val indicatorColor = if (isFocused) Color.Black else Color.Gray
+    val indicatorWidth = 0.5.dp
+
     Row(
         verticalAlignment = Alignment.CenterVertically,
         modifier = modifier
             .height(IntrinsicSize.Min)
-            .background(ColorBgSecondary)
+            .background(Color.Transparent)
             .wrapContentHeight(Alignment.Top)
             .fillMaxWidth()
     ) {
@@ -76,7 +86,8 @@ fun SearchSection(
                 disabledTextColor = Color.Transparent,
                 focusedIndicatorColor = Color.Transparent,
                 unfocusedIndicatorColor = Color.Transparent,
-                disabledIndicatorColor = Color.Transparent
+                disabledIndicatorColor = Color.Transparent,
+                containerColor = Color.Transparent
             ),
             shape = MaterialTheme.shapes.small,
             placeholder = {
@@ -90,6 +101,17 @@ fun SearchSection(
             ),
             modifier = modifier
                 .weight(4f)
+                .background(Color.Transparent)
+                .drawBehind {
+                    val strokeWidth = indicatorWidth.value * density
+                    val y = size.height - strokeWidth / 2
+                    drawLine(
+                        indicatorColor,
+                        Offset(0f, y),
+                        Offset(size.width, y),
+                        strokeWidth
+                    )
+                }
         )
         SearchIconButton(
             onClick = {
@@ -124,15 +146,20 @@ fun SearchSection(
 @Composable
 fun SearchSectionPreview(modifier: Modifier = Modifier) {
     ProfilerTheme {
+        val interactionSource = remember { MutableInteractionSource() }
+        val isFocused by interactionSource.collectIsFocusedAsState()
+        val indicatorColor = if (isFocused) Color.Black else Color.Gray
+        val indicatorWidth = 0.5.dp
+        val state: EditableInputState = rememberEditableInputState("")
+
         Row(
             verticalAlignment = Alignment.CenterVertically,
             modifier = modifier
                 .height(IntrinsicSize.Min)
-                .background(ColorBgSecondary)
+                .background(Color.Transparent)
                 .wrapContentHeight(Alignment.Top)
                 .fillMaxWidth()
         ) {
-            val state: EditableInputState = rememberEditableInputState("")
             TextField(
                 value = if (state.isHint)
                     ""
@@ -154,7 +181,8 @@ fun SearchSectionPreview(modifier: Modifier = Modifier) {
                     disabledTextColor = Color.Transparent,
                     focusedIndicatorColor = Color.Transparent,
                     unfocusedIndicatorColor = Color.Transparent,
-                    disabledIndicatorColor = Color.Transparent
+                    disabledIndicatorColor = Color.Transparent,
+                    containerColor = Color.Transparent
                 ),
                 shape = MaterialTheme.shapes.small,
                 placeholder = {
@@ -168,6 +196,17 @@ fun SearchSectionPreview(modifier: Modifier = Modifier) {
                 ),
                 modifier = modifier
                     .weight(4f)
+                    .background(Color.Transparent)
+                    .drawBehind {
+                        val strokeWidth = indicatorWidth.value * density
+                        val y = size.height - strokeWidth / 2
+                        drawLine(
+                            indicatorColor,
+                            Offset(0f, y),
+                            Offset(size.width, y),
+                            strokeWidth
+                        )
+                    }
             )
             SearchIconButton(
                 onClick = {},

@@ -55,9 +55,9 @@ fun MyNetworkSection(
     onEstimated: (Int, Boolean) -> Unit,
     onNavigateToDetailInfo: (Int) -> Unit
 ) {
-    myNetworkContentState.data?.collectAsStateWithLifecycle()?.let {
-        myNetworkSectionState.currentNetworksState = remember(myNetworkSectionState.refreshActionState.value) {
-            when(myNetworkSectionState.refreshActionState.value) {
+    myNetworkContentState.resourceStateFlow?.collectAsStateWithLifecycle()?.let {
+        myNetworkSectionState.currentNetworksState =
+            when(myNetworkSectionState.actionState.value) {
                 searchAction -> {
                     derivedStateOf {
                         it.value.filter { person ->
@@ -75,13 +75,8 @@ fun MyNetworkSection(
                 }
 
                 else -> {
-                    derivedStateOf {
-                        it.value.filter { person ->
-                            person.id >= 0
-                        }
-                    }
+                    it
                 }
-            }
         }
     }
 
@@ -103,7 +98,7 @@ fun MyNetworkSection(
                 modifier = Modifier.padding(8.dp),
                 state = myNetworkSectionState.editableInputState,
                 onSearched = { keyword ->
-                    myNetworkSectionState.refreshActionState.value = searchAction
+                    myNetworkSectionState.actionState.value = searchAction
                     myNetworkContentState.onGetMember(keyword)?.let {
                         myNetworkSectionState.searchedKeywordState.value = keyword
                     }
@@ -124,7 +119,7 @@ fun MyNetworkSection(
                 onFollowed = onFollowed,
                 onSexViewed = {},
                 onMemberDeleted = {
-                    myNetworkSectionState.refreshActionState.value = deleteAction
+                    myNetworkSectionState.actionState.value = deleteAction
                     myNetworkContentState.onDeleteMember(it)
                 },
                 onEstimated = onEstimated,
@@ -150,7 +145,7 @@ fun MyNetworkSection(
                 backgroundColor = background,
                 onClick = {
                     myNetworkSectionState.clickedState.value = true
-                    myNetworkSectionState.refreshActionState.value = noneAction
+                    myNetworkSectionState.actionState.value = noneAction
                 }
             ) {
                 Text("Back!")

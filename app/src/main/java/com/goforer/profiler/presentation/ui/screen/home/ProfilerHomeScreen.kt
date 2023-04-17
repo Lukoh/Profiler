@@ -166,7 +166,7 @@ fun ProfilerHomeScreen(
                     notificationGraph(
                         navController = navController,
                         startDestination = notificationsStartRoute,
-                        route = notificationHomeRoute
+                        route =  notificationHomeRoute
                     )
                     settingGraph(
                         navController = navController,

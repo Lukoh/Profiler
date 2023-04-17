@@ -31,8 +31,7 @@ class MyNetworkViewModel
     private val myNetworkRepository: MyNetworkRepository
 ) : BaseViewModel() {
     private val _myNetworks = MutableStateFlow<List<Person>>(listOf())
-    val uiState: StateFlow<List<Person>> = _myNetworks
-
+    val resourceStateFlow: StateFlow<List<Person>> = _myNetworks
 
     init {
         viewModelScope.launch {
@@ -48,13 +47,13 @@ class MyNetworkViewModel
     }
 
     internal fun changeFollowStatus(id: Int, name: String, followed: Boolean) {
-        uiState.value.find { it.id == id && it.name == name }?.let {
+        resourceStateFlow.value.find { it.id == id && it.name == name }?.let {
             it.followed = followed
         }
     }
 
     internal fun getMember(id: Int): Person? {
-        uiState.value.find { it.id == id }?.let {
+        resourceStateFlow.value.find { it.id == id }?.let {
             return it
         }
 
@@ -62,7 +61,7 @@ class MyNetworkViewModel
     }
 
     internal fun getMember(keyword: String): Person? {
-        uiState.value.find { it.name.contains(keyword) }?.let {
+        resourceStateFlow.value.find { it.name.contains(keyword) }?.let {
             return it
         }
 
@@ -70,7 +69,7 @@ class MyNetworkViewModel
     }
 
     internal fun setEstimation(id: Int, favor: Boolean): Person? {
-        uiState.value.find { it.id == id }?.let {
+        resourceStateFlow.value.find { it.id == id }?.let {
             it.favor = favor
 
             return it
@@ -80,7 +79,7 @@ class MyNetworkViewModel
     }
 
     internal fun deleteMember(id: Int): Person? {
-        uiState.value.find { it.id == id }?.let {
+        resourceStateFlow.value.find { it.id == id }?.let {
             it.deleted = true
 
             return it

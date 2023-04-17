@@ -25,6 +25,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.goforer.profiler.data.model.datum.response.mynetwork.Person
+import com.goforer.profiler.data.network.response.Status
 import com.goforer.profiler.presentation.stateholder.ui.mynetwork.common.rememberListSectionState
 import com.goforer.profiler.presentation.stateholder.ui.mynetwork.members.MembersContentState
 import com.goforer.profiler.presentation.ui.screen.home.mynetwork.common.ListSection
@@ -38,19 +39,22 @@ fun MembersContent(
     onItemClicked: (item: Person, index: Int) -> Unit,
     onFollowed: (Person, Boolean) -> Unit
 ) {
-    when {
-        state.data != null -> {
-            val numbersState = state.data.collectAsStateWithLifecycle()
+    when(state.status) {
+        Status.SUCCESS -> {
+            val numbersState = state.resourceStateFlow?.collectAsStateWithLifecycle()
 
-            state.membersState = remember(numbersState.value) {
-                derivedStateOf {
-                    if (state.sexState.value.isEmpty()) {
-                        numbersState.value
-                    } else {
-                        state.onGetMembers(state.sexState.value)
+            numbersState?.let {
+                state.membersState = remember(it.value) {
+                    derivedStateOf {
+                        if (state.sexState.value.isEmpty()) {
+                            it.value
+                        } else {
+                            state.onGetMembers(state.sexState.value)
+                        }
                     }
                 }
             }
+
 
             BoxWithConstraints(modifier = modifier.padding(
                 0.dp,
@@ -82,10 +86,10 @@ fun MembersContent(
                 )
             }
         }
-        state.isLoading -> {
+        Status.LOADING -> {
             // To Do : run the loading animation or shimmer
         }
-        state.throwError -> {
+        Status.ERROR -> {
             // To Do : handle the error
         }
     }

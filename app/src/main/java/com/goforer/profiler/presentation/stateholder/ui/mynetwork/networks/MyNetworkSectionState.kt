@@ -14,7 +14,7 @@ class MyNetworkSectionState(
     var searchedKeywordState: MutableState<String>,
     val showButtonState: State<Boolean>,
     var clickedState: MutableState<Boolean>,
-    var refreshActionState: MutableState<Int>
+    var actionState: MutableState<Int>
 ) {
     companion object {
         internal const val noneAction = 0
@@ -32,15 +32,15 @@ fun rememberMyNetworkSectionState(
     searchedKeywordState: MutableState<String> = rememberSaveable { mutableStateOf("") },
     showButtonState: State<Boolean> = remember { derivedStateOf { searchedKeywordState.value.isNotEmpty() } },
     clickedState: MutableState<Boolean> = remember { mutableStateOf(false) },
-    refreshActionState: MutableState<Int> = rememberSaveable { mutableStateOf(noneAction)}
+    actionState: MutableState<Int> = rememberSaveable { mutableStateOf(noneAction)}
 ): MyNetworkSectionState = remember(
-    lazyListState, editableInputState, searchedKeywordState, showButtonState, clickedState, refreshActionState) {
+    lazyListState, editableInputState, searchedKeywordState, showButtonState, clickedState, actionState) {
     MyNetworkSectionState(
         lazyListState = lazyListState,
         editableInputState =  editableInputState,
         searchedKeywordState = searchedKeywordState,
         showButtonState = showButtonState,
         clickedState = clickedState,
-        refreshActionState = refreshActionState
+        actionState = actionState
     )
 }

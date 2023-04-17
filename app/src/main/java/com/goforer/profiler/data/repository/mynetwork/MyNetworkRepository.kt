@@ -58,7 +58,7 @@ import javax.inject.Inject
 class MyNetworkRepository
 @Inject constructor(
     @ApplicationScope private val externalScope: CoroutineScope
-) : Repository<Resource() {
+) : Repository<Resource>() {
     override fun trigger(replyCount: Int, params: Params) {
         value = object : DataMediator<PersonResponse>(externalScope, Companion.replyCount) {
             override fun load() = restAPI.getMyNetworks(params.args[0] as String)

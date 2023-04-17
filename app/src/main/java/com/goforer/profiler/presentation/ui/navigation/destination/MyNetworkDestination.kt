@@ -54,7 +54,7 @@ object MyNetworks : ProfilerDestination {
 
             MyNetworkScreen(
                 state = rememberMyNetworkContentState(
-                    baseUiState = rememberBaseUiState(uiState = viewModel.uiState),
+                    baseUiState = rememberBaseUiState(resourceStateFlow = viewModel.resourceStateFlow),
                     onFollowStatusChanged = viewModel::changeFollowStatus,
                     onGetMember = viewModel::getMember,
                     onEstimated = viewModel::setEstimation,
@@ -87,7 +87,7 @@ object DetailInfo : ProfilerDestination {
             id?.let { userId ->
                 DetailScreen(
                     state = rememberDetailContentState(
-                        uiState = viewModel.uiState,
+                        uiStateFlow = viewModel.resourceStateFlow,
                         onGetMember =  viewModel::getMember
                     ),
                     userId = userId,
@@ -103,6 +103,7 @@ object DetailInfo : ProfilerDestination {
     }
 }
 
+@OptIn(ExperimentalComposeUiApi::class)
 object Members : ProfilerDestination {
     override val icon = Icons.Sharp.People
     override val route = membersRoute
@@ -112,7 +113,9 @@ object Members : ProfilerDestination {
 
             MembersScreen(
                 state = rememberMembersContentState(
-                    uiState = viewModel.uiState,
+                    baseUiState = rememberBaseUiState(
+                        resourceStateFlow = viewModel.resourceStateFlow
+                    ),
                     onGetMembers = viewModel::getMembers,
                     onGetMember = viewModel::getMember,
                     onEstimated = viewModel::setEstimation

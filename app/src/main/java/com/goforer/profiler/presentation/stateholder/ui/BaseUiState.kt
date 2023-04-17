@@ -14,7 +14,7 @@ import kotlinx.coroutines.flow.StateFlow
 @OptIn(ExperimentalComposeUiApi::class)
 @Stable
 class BaseUiState<T>(
-    val uiState: StateFlow<T>,
+    val resourceStateFlow: StateFlow<T>,
     val context: Context?,
     val scope: CoroutineScope?,
     val lifecycle: Lifecycle?,
@@ -24,15 +24,15 @@ class BaseUiState<T>(
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun <T> rememberBaseUiState(
-    uiState: StateFlow<T>,
+    resourceStateFlow: StateFlow<T>,
     context: Context = LocalContext.current,
     scope: CoroutineScope = rememberCoroutineScope(),
     lifecycle: Lifecycle = LocalLifecycleOwner.current.lifecycle,
     keyboardController: SoftwareKeyboardController? = LocalSoftwareKeyboardController.current,
 ): BaseUiState<T> = remember(
-    uiState, context, scope, lifecycle, keyboardController) {
+    resourceStateFlow, context, scope, lifecycle, keyboardController) {
     BaseUiState(
-        uiState = uiState,
+        resourceStateFlow = resourceStateFlow,
         context = context,
         scope = scope,
         lifecycle = lifecycle,

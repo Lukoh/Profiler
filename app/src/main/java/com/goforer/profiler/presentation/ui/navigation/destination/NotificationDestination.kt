@@ -48,7 +48,7 @@ object Notifications : ProfilerDestination {
             val viewModel: NotificationViewModel =  hiltViewModel(it)
 
             NotificationScreen(
-                state = rememberNotificationContentState(baseUiState = rememberBaseUiState(uiState = viewModel.uiState)),
+                state = rememberNotificationContentState(baseUiState = rememberBaseUiState(resourceStateFlow = viewModel.uiStateFlow)),
                 onNavigateToDetailInfo = { userId ->
                     navController.navigateSingleTopTo("${Content.route}/$userId")
                 }
@@ -75,7 +75,7 @@ object Content : ProfilerDestination {
             id?.let { userId ->
                 ContentScreen(
                     state  = rememberContentContentState(
-                        uiState = viewModel.uiState,
+                        uiStateFlow = viewModel.uiStateFlow,
                         onGetNotification =  viewModel::getNotification
                     ),
                     userId = userId,

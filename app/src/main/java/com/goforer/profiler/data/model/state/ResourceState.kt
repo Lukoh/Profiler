@@ -18,13 +18,12 @@ package com.goforer.profiler.data.model.state
 
 import android.os.Parcelable
 import com.goforer.profiler.data.model.BaseModel
+import com.goforer.profiler.data.network.response.Status
 import kotlinx.parcelize.Parcelize
 import kotlinx.parcelize.RawValue
 
 @Parcelize
 data class ResourceState<T>(
-    val data: @RawValue T? = null,
-    val isSuccess: Boolean = false,
-    val isLoading: Boolean = false,
-    val throwError: Boolean = false
+    val resourceStateFlow: @RawValue T? = null,
+    var status: Status
 ) : BaseModel(), Parcelable

@@ -11,6 +11,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.goforer.profiler.data.repository.Repository.Companion.replyCount
 import com.goforer.profiler.R
+import com.goforer.profiler.data.network.response.Status
 import com.goforer.profiler.presentation.stateholder.ui.mynetwork.networks.MyNetworkContentState
 import kotlinx.coroutines.launch
 import timber.log.Timber
@@ -39,9 +40,9 @@ fun MyNetworkContent(
             Toast.makeText(state.baseUiState.context, "Show the detailed profile!", Toast.LENGTH_SHORT).show()
     }
 
-    when {
-        state.isSuccess -> {
-            state.data?.let {
+    when(state.status) {
+        Status.SUCCESS -> {
+            state.resourceStateFlow?.let {
                 MyNetworkSection(
                     modifier = modifier,
                     contentPadding = contentPadding,
@@ -81,10 +82,10 @@ fun MyNetworkContent(
                 )
             }
         }
-        state.isLoading -> {
+        Status.LOADING -> {
             // To Do : run the loading animation or shimmer
         }
-        state.throwError -> {
+        Status.ERROR -> {
             // To Do : handle the error
         }
     }

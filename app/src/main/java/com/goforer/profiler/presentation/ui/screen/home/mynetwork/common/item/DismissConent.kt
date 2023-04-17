@@ -215,7 +215,7 @@ fun TopContainer(
         Spacer(modifier = Modifier.weight(1f))
         Row(
             modifier = Modifier.wrapContentSize(),
-            horizontalArrangement = Arrangement.End,
+            horizontalArrangement = Arrangement.End
         ) {
             Text(
                 stringResource(id = R.string.follower_check),
