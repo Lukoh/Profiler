@@ -20,7 +20,8 @@ buildscript {
         timber_version = '5.0.1'
         dagger_hilt_version = '2.44'
         navigation_compose_hilt_version = '1.0.0'
-        nav_version = '2.5.3'
+        nav_version = '2.6.0-alpha08'
+        accompanist_version = '0.30.0'
         kotlin_version = '1.7.20'
     }
 
@@ -29,7 +30,7 @@ buildscript {
         classpath 'com.google.gms:google-services:4.3.15' // google-services plugin
         classpath 'com.android.tools.build.jetifier:jetifier-processor:1.0.0-beta10'
         classpath 'com.google.firebase:perf-plugin:1.4.2'
-        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.9.4'
+        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.9.5'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         // https://github.com/getsentry/sentry-android-gradle-plugin/releases
         //classpath "io.sentry:sentry-android-gradle-plugin:$sentry_gradle_plug_in_version"
