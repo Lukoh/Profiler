@@ -5,7 +5,7 @@ import com.goforer.profiler.data.model.datum.response.notification.Notification
 import com.goforer.profiler.data.model.state.ResourceState
 import com.goforer.profiler.data.network.response.Status
 import com.goforer.profiler.presentation.stateholder.ui.BaseUiState
-import com.goforer.profiler.presentation.stateholder.ui.createResourceState
+import com.goforer.profiler.presentation.stateholder.ui.rememberResourceState
 import kotlinx.coroutines.flow.StateFlow
 
 @Stable
@@ -20,7 +20,7 @@ class NotificationContentState(
 @Composable
 fun rememberNotificationContentState(
     baseUiState: BaseUiState<List<Notification>>,
-    resourceState: ResourceState<StateFlow<List<Notification>>> = createResourceState(baseUiState)
+    resourceState: ResourceState<StateFlow<List<Notification>>> = rememberResourceState(resourceStateFlow = baseUiState.resourceStateFlow)
 ): NotificationContentState = remember(baseUiState, resourceState) {
     NotificationContentState(baseUiState = baseUiState, resourceState)
 }

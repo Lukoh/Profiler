@@ -7,12 +7,12 @@ import com.goforer.profiler.data.network.response.Status
 import kotlinx.coroutines.flow.StateFlow
 
 @Composable
-fun <T> createResourceState(baseUiState: BaseUiState<T>): ResourceState<StateFlow<T>> {
+fun <T> rememberResourceState(resourceStateFlow: StateFlow<T>): ResourceState<StateFlow<T>> {
     return produceState(initialValue = ResourceState(status = Status.LOADING)) {
         // will be changed if the data come from Backend Server like below:
         /*
         value = ResourceState(status = baseUiState.uiState.value.status, data = baseUiState.uiState)
          */
-        value = ResourceState(status = Status.SUCCESS, resourceStateFlow = baseUiState.resourceStateFlow)
+        value = ResourceState(status = Status.SUCCESS, resourceStateFlow = resourceStateFlow)
     }.value
 }

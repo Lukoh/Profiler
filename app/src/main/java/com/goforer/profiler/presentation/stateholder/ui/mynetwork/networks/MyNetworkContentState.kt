@@ -6,7 +6,7 @@ import com.goforer.profiler.data.model.datum.response.mynetwork.Person
 import com.goforer.profiler.data.model.state.ResourceState
 import com.goforer.profiler.data.network.response.Status
 import com.goforer.profiler.presentation.stateholder.ui.BaseUiState
-import com.goforer.profiler.presentation.stateholder.ui.createResourceState
+import com.goforer.profiler.presentation.stateholder.ui.rememberResourceState
 import kotlinx.coroutines.flow.StateFlow
 
 @Stable
@@ -29,7 +29,7 @@ fun rememberMyNetworkContentState(
     baseUiState: BaseUiState<List<Person>>,
     followedState: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
     selectedIndex: MutableState<Int> = remember { mutableStateOf(-1) },
-    resourceState: ResourceState<StateFlow<List<Person>>> = createResourceState(baseUiState),
+    resourceState: ResourceState<StateFlow<List<Person>>> = rememberResourceState(resourceStateFlow = baseUiState.resourceStateFlow),
     onFollowStatusChanged: (id: Int, name: String, followed: Boolean) -> Unit,
     onGetMember: (keyword: String) -> Person?,
     onEstimated: (id: Int, favor: Boolean) -> Person?,
