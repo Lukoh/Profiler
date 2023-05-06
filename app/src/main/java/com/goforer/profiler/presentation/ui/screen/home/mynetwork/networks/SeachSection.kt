@@ -18,9 +18,11 @@ package com.goforer.profiler.presentation.ui.screen.home.mynetwork.networks
 
 import android.content.res.Configuration
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsFocusedAsState
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.*
@@ -42,9 +44,9 @@ import com.goforer.profiler.R
 import com.goforer.profiler.presentation.stateholder.ui.mynetwork.networks.EditableInputState
 import com.goforer.profiler.presentation.stateholder.ui.mynetwork.networks.rememberEditableInputState
 import com.goforer.profiler.presentation.ui.component.SearchIconButton
+import com.goforer.profiler.presentation.ui.theme.ColorSearchBarBorder
 import com.goforer.profiler.presentation.ui.theme.ProfilerTheme
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SearchSection(
     modifier: Modifier = Modifier,
@@ -63,6 +65,11 @@ fun SearchSection(
             .height(IntrinsicSize.Min)
             .background(Color.Transparent)
             .wrapContentHeight(Alignment.Top)
+            .border(
+                width = 1.dp,
+                color = ColorSearchBarBorder,
+                shape = RoundedCornerShape(size = 4.dp)
+            )
             .fillMaxWidth()
     ) {
         TextField(
@@ -79,15 +86,17 @@ fun SearchSection(
                     contentDescription = null
                 )
             },
-            colors = TextFieldDefaults.textFieldColors(
-                focusedPlaceholderColor = MaterialTheme.colorScheme.primary,
-                unfocusedPlaceholderColor = MaterialTheme.colorScheme.primary,
+            colors = TextFieldDefaults.colors(
                 focusedTextColor = Color.Gray,
                 disabledTextColor = Color.Transparent,
+                focusedContainerColor = Color.Transparent,
+                unfocusedContainerColor = Color.Transparent,
+                disabledContainerColor = Color.Transparent,
                 focusedIndicatorColor = Color.Transparent,
                 unfocusedIndicatorColor = Color.Transparent,
                 disabledIndicatorColor = Color.Transparent,
-                containerColor = Color.Transparent
+                focusedPlaceholderColor = MaterialTheme.colorScheme.primary,
+                unfocusedPlaceholderColor = MaterialTheme.colorScheme.primary,
             ),
             shape = MaterialTheme.shapes.small,
             placeholder = {
@@ -114,6 +123,7 @@ fun SearchSection(
                 }
         )
         SearchIconButton(
+            modifier = modifier.padding(2.dp, 4.dp),
             onClick = {
                 onSearched(state.textState)
             },
@@ -135,7 +145,6 @@ fun SearchSection(
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Preview(name = "Light Mode")
 @Preview(
     uiMode = Configuration.UI_MODE_NIGHT_YES,
@@ -158,6 +167,11 @@ fun SearchSectionPreview(modifier: Modifier = Modifier) {
                 .height(IntrinsicSize.Min)
                 .background(Color.Transparent)
                 .wrapContentHeight(Alignment.Top)
+                .border(
+                    width = 1.dp,
+                    color = ColorSearchBarBorder,
+                    shape = RoundedCornerShape(size = 4.dp)
+                )
                 .fillMaxWidth()
         ) {
             TextField(
@@ -174,19 +188,24 @@ fun SearchSectionPreview(modifier: Modifier = Modifier) {
                         contentDescription = null
                     )
                 },
-                colors = TextFieldDefaults.textFieldColors(
-                    focusedPlaceholderColor = MaterialTheme.colorScheme.primary,
-                    unfocusedPlaceholderColor = MaterialTheme.colorScheme.primary,
+                colors = TextFieldDefaults.colors(
                     focusedTextColor = Color.Gray,
                     disabledTextColor = Color.Transparent,
+                    focusedContainerColor = Color.Transparent,
+                    unfocusedContainerColor = Color.Transparent,
+                    disabledContainerColor = Color.Transparent,
                     focusedIndicatorColor = Color.Transparent,
                     unfocusedIndicatorColor = Color.Transparent,
                     disabledIndicatorColor = Color.Transparent,
-                    containerColor = Color.Transparent
+                    focusedPlaceholderColor = MaterialTheme.colorScheme.primary,
+                    unfocusedPlaceholderColor = MaterialTheme.colorScheme.primary,
                 ),
                 shape = MaterialTheme.shapes.small,
                 placeholder = {
-                    Text(stringResource(R.string.placeholder_search),  style = MaterialTheme.typography.titleMedium.copy(color = LocalContentColor.current))
+                    Text(
+                        stringResource(R.string.placeholder_search),
+                        style = MaterialTheme.typography.titleMedium.copy(color = LocalContentColor.current)
+                    )
                 },
                 textStyle = TextStyle.Default.copy(
                     fontSize = 16.sp,
@@ -209,6 +228,7 @@ fun SearchSectionPreview(modifier: Modifier = Modifier) {
                     }
             )
             SearchIconButton(
+                modifier = modifier.padding(2.dp, 4.dp),
                 onClick = {},
                 icon = {
                     Icon(
